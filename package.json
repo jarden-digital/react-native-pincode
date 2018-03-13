@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/Haskkor/react-native-pin#readme",
   "devDependencies": {
+    "@types/react": "^16.0.40",
+    "@types/react-native": "^0.52.16",
+    "react": "^16.2.0",
+    "react-native": "^0.54.2",
     "typescript": "^2.7.2"
   }
 }

@@ -1,0 +1,62 @@
+/**
+ * Copyright (c) 2018-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @format
+ * 
+ */
+
+'use strict';
+
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+const path = require('path');
+const serializer = require('jest-serializer');
+
+
+
+
+
+class FileStore {
+
+
+  constructor(options) {
+    const root = options.root;
+
+    for (let i = 0; i < 256; i++) {
+      mkdirp.sync(path.join(root, ('0' + i.toString(16)).slice(-2)));
+    }
+
+    this._root = root;
+  }
+
+  get(key) {
+    try {
+      return serializer.readFileSync(this._getFilePath(key));
+    } catch (err) {
+      return null;
+    }
+  }
+
+  set(key, value) {
+    return new Promise((resolve, reject) => {
+      const data = serializer.serialize(value);
+
+      fs.writeFile(this._getFilePath(key), data, err => {
+        err ? reject(err) : resolve();
+      });
+    });
+  }
+
+  _getFilePath(key) {
+    return path.join(
+    this._root,
+    key.slice(0, 1).toString('hex'),
+    key.slice(1).toString('hex'));
+
+  }}
+
+
+module.exports = FileStore;

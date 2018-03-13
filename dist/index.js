@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function getConsole() {
-    return 'TEST';
+const React = require("react");
+class PINCode extends React.PureComponent {
+    render() {
+        return (TEST < /Text></View >
+        );
+    }
 }
-exports.getConsole = getConsole;
+exports.default = PINCode;
