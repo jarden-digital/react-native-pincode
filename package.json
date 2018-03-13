@@ -1,0 +1,23 @@
+{
+  "name": "react-native-pin",
+  "version": "0.0.1",
+  "description": "React native PIN code component",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haskkor/react-native-pin.git"
+  },
+  "author": "Jeremy Farnault",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Haskkor/react-native-pin/issues"
+  },
+  "homepage": "https://github.com/Haskkor/react-native-pin#readme",
+  "devDependencies": {
+    "typescript": "^2.7.2"
+  }
+}
