@@ -1,13 +1,13 @@
 import * as React from 'react'
 import {Dimensions, StyleSheet, Text, TouchableHighlight, Vibration, View} from 'react-native'
 import {Col, Row, Grid} from 'react-native-easy-grid'
-import {grid} from '../../design/grid'
-import {colors} from '../../design/colors'
+import {grid} from './design/grid'
+import {colors} from './design/colors'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import * as lodash from 'lodash'
+import * as _ from 'lodash'
 import Animate from 'react-move/Animate'
 import {easeLinear} from 'd3-ease'
-import delay from '../../../utils/delay'
+import delay from './delay'
 
 /**
  * Pin Code Component
@@ -42,8 +42,8 @@ export enum PinStatus {
 
 class PinCode extends React.PureComponent<IProps, IState> {
 
-  constructor() {
-    super()
+  constructor(props: IProps) {
+    super(props)
     this.state = {
       password: '',
       moveData: {x: 0, y: 0},
@@ -178,7 +178,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     const {password, moveData, showError, changeScreen, attemptFailed} = this.state
     return (
       <View style={styles.viewCirclePassword}>
-        {lodash.range(4).map((val: number) => {
+        {_.range(4).map((val: number) => {
           const lengthSup = ((password.length >= val + 1 && !changeScreen) || showError) && !attemptFailed
           const marginSup = ((password.length > 0 && !changeScreen) || showError) && !attemptFailed
           return (
