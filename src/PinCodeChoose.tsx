@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {AsyncStorage, StyleSheet, View} from 'react-native'
 import PinCode, {PinStatus} from './PinCode'
 import * as Keychain from 'react-native-keychain'
 
@@ -7,7 +7,13 @@ import * as Keychain from 'react-native-keychain'
  * Pin Code Choose PIN Page
  */
 
-type IProps = {}
+type IProps = {
+  storePin: any
+  titleEnter: string
+  subtitleEnter: string
+  titleConfirm: string
+  subtitleConfirm: string
+}
 
 type IState = {
   status: PinStatus
@@ -29,10 +35,13 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
 
   endProcessConfirm = async (pinCode: string) => {
     if (pinCode === this.state.pinCode) {
-      // authPin.pin = pinCode
-      // this.props.navigation.state.params.createPreAccount()
-      await Keychain.setGenericPassword('onboarding', pinCode)
-      // this.props.navigation.navigate('pin-code-flow-end-pin', {changeProcess: this.props.navigation.state.params.changeProcess})
+      if (this.props.storePin) {
+        this.props.storePin(pinCode)
+      } else {
+        // todo ENCRYPT PASSWORD
+        AsyncStorage.setItem('reactNativePinCode', pinCode)
+        await Keychain.setGenericPassword('reactNativePinCode', pinCode)
+      }
     } else {
       this.setState({status: PinStatus.choose})
     }
@@ -45,14 +54,20 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.status === 'choose' &&
-        <PinCode endProcess={this.endProcessCreation}
-                 sentenceTitle="1 - Enter a PIN Code"
-                 status={PinStatus.choose} subtitle="to keep your information secure"/>}
-        {this.state.status === 'confirm' &&
-        <PinCode endProcess={this.endProcessConfirm} sentenceTitle="2 - Confirm your PIN Code"
-                 status={PinStatus.confirm} cancelFunction={this.cancelConfirm}
-                 previousPin={this.state.pinCode}/>}
+        {this.state.status === PinStatus.choose &&
+        <PinCode
+          endProcess={this.endProcessCreation}
+          sentenceTitle={this.props.titleEnter}
+          status={PinStatus.choose}
+          subtitle={this.props.subtitleEnter}/>}
+        {this.state.status === PinStatus.confirm &&
+        <PinCode
+          endProcess={this.endProcessConfirm}
+          sentenceTitle={this.props.titleConfirm}
+          status={PinStatus.confirm}
+          cancelFunction={this.cancelConfirm}
+          previousPin={this.state.pinCode}
+          subtitle={this.props.subtitleConfirm}/>}
       </View>
     )
   }
