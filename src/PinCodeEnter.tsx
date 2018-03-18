@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {AsyncStorage, StyleSheet, View} from 'react-native'
 import PinCode, {PinStatus} from './PinCode'
 import * as TouchID from 'react-native-touch-id'
 import * as Keychain from 'react-native-keychain'
@@ -11,15 +11,46 @@ import * as Keychain from 'react-native-keychain'
 type IProps = {
   openError: (type: string) => void
   storedPin: string
-  pinCodeStatus: 'initial' | 'success' | 'failure' | 'locked'
+  allowedTries: number
   touchIDSentence: string
+  handleResult: any
   title: string
   subtitle: string
+  maxAttempts: number
+  pinStatusExternal: PinResultStatus
 }
 
-type IState = {}
+type IState = {
+  pinCodeStatus: PinResultStatus
+  locked: boolean
+}
+
+enum PinResultStatus {
+  initial = 'initial',
+  success = 'success',
+  failure = 'failure',
+  locked = 'locked'
+}
 
 class PinCodeEnter extends React.PureComponent<IProps, IState> {
+  keyChainResult: any
+
+  constructor(props: IProps) {
+    super(props)
+    this.state = {pinCodeStatus: PinResultStatus.initial, locked: false}
+    this.endProcess = this.endProcess.bind(this)
+    this.launchTouchID = this.launchTouchID.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps: IProps) {
+    if (nextProps.pinStatusExternal !== this.props.pinStatusExternal) {
+      this.setState({pinCodeStatus: nextProps.pinStatusExternal})
+    }
+  }
+
+  async componentWillMount() {
+    this.keyChainResult = await Keychain.getGenericPassword()
+  }
 
   componentDidMount() {
     TouchID.isSupported()
@@ -33,30 +64,47 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       })
   }
 
-  endProcess = (pinCode?: string) => {
-    //this.props.renewAuthToken()
+  endProcess = async (pinCode?: string) => {
+    if (this.props.handleResult) {
+      this.props.handleResult(pinCode)
+      return
+    }
+    let pinAttempts = await +AsyncStorage.getItem('pinAttemptsRNPin') || 0
+    const pin = this.props.storedPin || this.keyChainResult.password
+    if (pin === pinCode) {
+      this.setState({pinCodeStatus: PinResultStatus.success})
+      AsyncStorage.removeItem('pinAttemptsRNPin')
+    } else {
+      pinAttempts++
+      if (pinAttempts >= this.props.maxAttempts) {
+        this.setState({locked: true, pinCodeStatus: PinResultStatus.locked})
+      } else {
+        AsyncStorage.setItem('reactNativePinCode', pinAttempts.toString())
+        this.setState({pinCodeStatus: PinResultStatus.failure})
+      }
+    }
   }
 
   async launchTouchID() {
     try {
       await TouchID.authenticate('To unlock you application')
-      const result: any = await Keychain.getGenericPassword()
-      this.endProcess(result.password)
+      this.endProcess(this.props.storedPin || this.keyChainResult.password)
     } catch (e) {
       console.warn('TouchID error', e)
     }
   }
 
   render() {
+    const pin = this.props.storedPin || this.keyChainResult.password
     return (
       <View style={styles.container}>
         <PinCode
           endProcess={this.endProcess}
-          sentenceTitle="Enter your PIN Code"
+          sentenceTitle={this.props.title}
           subtitle={this.props.subtitle}
           status={PinStatus.enter}
-          previousPin={this.props.storedPin}
-          pinCodeStatus={this.props.pinCodeStatus}/>
+          previousPin={pin}
+          pinCodeStatus={this.state.pinCodeStatus}/>
       </View>
     )
   }

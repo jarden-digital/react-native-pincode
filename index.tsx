@@ -9,6 +9,8 @@ type IProps = {
   storePin?: any
   titleEnter?: string
   subtitleEnter?: string
+  titleChoose?: string
+  subtitleChoose?: string
   titleConfirm?: string
   subtitleConfirm?: string
 }
@@ -24,11 +26,21 @@ class PINCode extends React.PureComponent<IProps, IState> {
         {status === PinStatus.choose &&
         <PinCodeChoose
           storePin={this.props.storePin || null}
-          titleEnter={this.props.titleEnter || "1 - Enter a PIN Code"}
-          subtitleEnter={this.props.subtitleEnter || "to keep your information secure"}
+          titleEnter={this.props.titleChoose || "1 - Enter a PIN Code"}
+          subtitleEnter={this.props.subtitleChoose || "to keep your information secure"}
           titleConfirm={this.props.titleConfirm || "2 - Confirm your PIN Code"}
           subtitleConfirm={this.props.subtitleConfirm || ""}/>}
-        {status === PinStatus.enter && <PinCodeEnter/>}
+        {status === PinStatus.enter &&
+        <PinCodeEnter
+          title={this.props.titleEnter || "Enter your PIN Code"}
+          subtitle={}
+          allowedTries={}
+          handleResult={}
+          maxAttempts={}
+          openError={}
+          pinStatusExternal={}
+          storedPin={}
+          touchIDSentence={}/>}
       </View>
     )
   }

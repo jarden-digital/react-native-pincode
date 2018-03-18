@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {AsyncStorage, StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import PinCode, {PinStatus} from './PinCode'
 import * as Keychain from 'react-native-keychain'
 
@@ -38,8 +38,6 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
       if (this.props.storePin) {
         this.props.storePin(pinCode)
       } else {
-        // todo ENCRYPT PASSWORD
-        AsyncStorage.setItem('reactNativePinCode', pinCode)
         await Keychain.setGenericPassword('reactNativePinCode', pinCode)
       }
     } else {
