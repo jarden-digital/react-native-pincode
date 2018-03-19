@@ -10,14 +10,14 @@ import * as Keychain from 'react-native-keychain'
 
 type IProps = {
   openError: (type: string) => void
-  storedPin: string
-  allowedTries: number
+  storedPin: string | null
   touchIDSentence: string
   handleResult: any
   title: string
   subtitle: string
   maxAttempts: number
   pinStatusExternal: PinResultStatus
+  changeInternalStatus: (status: PinResultStatus) => void
 }
 
 type IState = {
@@ -25,7 +25,7 @@ type IState = {
   locked: boolean
 }
 
-enum PinResultStatus {
+export enum PinResultStatus {
   initial = 'initial',
   success = 'success',
   failure = 'failure',
@@ -73,21 +73,24 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     const pin = this.props.storedPin || this.keyChainResult.password
     if (pin === pinCode) {
       this.setState({pinCodeStatus: PinResultStatus.success})
+      this.props.changeInternalStatus(PinResultStatus.success)
       AsyncStorage.removeItem('pinAttemptsRNPin')
     } else {
       pinAttempts++
       if (pinAttempts >= this.props.maxAttempts) {
         this.setState({locked: true, pinCodeStatus: PinResultStatus.locked})
+        this.props.changeInternalStatus(PinResultStatus.locked)
       } else {
         AsyncStorage.setItem('reactNativePinCode', pinAttempts.toString())
         this.setState({pinCodeStatus: PinResultStatus.failure})
+        this.props.changeInternalStatus(PinResultStatus.failure)
       }
     }
   }
 
   async launchTouchID() {
     try {
-      await TouchID.authenticate('To unlock you application')
+      await TouchID.authenticate(this.props.touchIDSentence)
       this.endProcess(this.props.storedPin || this.keyChainResult.password)
     } catch (e) {
       console.warn('TouchID error', e)
