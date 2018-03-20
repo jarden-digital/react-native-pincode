@@ -2,11 +2,11 @@ import * as React from 'react'
 import PinCodeChoose from './src/PinCodeChoose'
 import {PinStatus} from './src/PinCode'
 import PinCodeEnter, {PinResultStatus} from './src/PinCodeEnter'
-import {View} from 'react-native'
+import {View, StyleSheet} from 'react-native'
 import ApplicationLocked from './src/ApplicationLocked'
 
-type IProps = {
-  status: PinStatus
+export type IProps = {
+  status: 'choose' | 'enter' | 'locked'
   storePin?: any
   titleEnter?: string
   subtitleEnter?: string
@@ -21,9 +21,11 @@ type IProps = {
   touchIDSentence?: string
   handleResultEnterPin?: any
   timeLocked?: number
+  textButtonLockedPage?: string
+  onClickButtonLockedPage?: any
 }
 
-type IState = {
+export type IState = {
   internalPinStatus: PinResultStatus
 }
 
@@ -42,7 +44,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
   render() {
     const {status, pinStatus} = this.props
     return (
-      <View>
+      <View style={styles.container}>
         {status === PinStatus.choose &&
         <PinCodeChoose
           storePin={this.props.storePin || null}
@@ -63,10 +65,20 @@ class PINCode extends React.PureComponent<IProps, IState> {
           touchIDSentence={this.props.touchIDSentence || 'To unlock your application'}/>}
         {(pinStatus === PinResultStatus.locked || this.state.internalPinStatus === PinResultStatus.locked) &&
         <ApplicationLocked
-        timeLocked={this.props.timeLocked || 300000}/>}
+          timeToLock={this.props.timeLocked || 300000}
+          textButton={this.props.textButtonLockedPage || 'Quit'}
+          onClickButton={this.props.onClickButtonLockedPage || (() => {throw ('Quit application')})}/>}
       </View>
     )
   }
 }
 
 export default PINCode
+
+let styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+})

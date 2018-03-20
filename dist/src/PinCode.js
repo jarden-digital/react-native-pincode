@@ -3,13 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const react_native_1 = require("react-native");
 const react_native_easy_grid_1 = require("react-native-easy-grid");
-const grid_1 = require("../../design/grid");
-const colors_1 = require("../../design/colors");
+const grid_1 = require("./design/grid");
+const colors_1 = require("./design/colors");
 const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
-const lodash = require("lodash");
+const _ = require("lodash");
 const Animate_1 = require("react-move/Animate");
 const d3_ease_1 = require("d3-ease");
-const delay_1 = require("../../../utils/delay");
+const delay_1 = require("./delay");
 var PinStatus;
 (function (PinStatus) {
     PinStatus["choose"] = "choose";
@@ -17,8 +17,8 @@ var PinStatus;
     PinStatus["enter"] = "enter";
 })(PinStatus = exports.PinStatus || (exports.PinStatus = {}));
 class PinCode extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.failedAttempt = async () => {
             this.setState({ changeScreen: true });
             await delay_1.default(300);
@@ -78,7 +78,7 @@ class PinCode extends React.PureComponent {
         };
         this.renderCirclePassword = () => {
             const { password, moveData, showError, changeScreen, attemptFailed } = this.state;
-            return (React.createElement(react_native_1.View, { style: styles.viewCirclePassword }, lodash.range(4).map((val) => {
+            return (React.createElement(react_native_1.View, { style: styles.viewCirclePassword }, _.range(4).map((val) => {
                 const lengthSup = ((password.length >= val + 1 && !changeScreen) || showError) && !attemptFailed;
                 const marginSup = ((password.length > 0 && !changeScreen) || showError) && !attemptFailed;
                 return (React.createElement(Animate_1.default, { key: val, show: true, start: {

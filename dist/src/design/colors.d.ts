@@ -1,0 +1,27 @@
+declare const colors: {
+    red: string;
+    alert: string;
+    green: string;
+    valid: string;
+    orange: string;
+    dark: string;
+    light: string;
+    background: string;
+    white: string;
+    base: string;
+    primary: string;
+    pink: string;
+    grey: string;
+    turquoise: string;
+    darkBlue: string;
+    cash: string;
+    nzSecurities: string;
+    property: string;
+    nzEquities: string;
+    ausEquities: string;
+    globalEquities: string;
+    altStrategies: string;
+    globalDebtSecurities: string;
+};
+declare const documentColor: (docType: string) => string;
+export { colors, documentColor };

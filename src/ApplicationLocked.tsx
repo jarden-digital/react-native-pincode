@@ -7,44 +7,41 @@ import {easeLinear} from 'd3-ease'
 import delay from './delay'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-type IProps = {
-  errorType: string
-  closeError?: typeof closeErrorPage
-  errorInfo?: string
-  startNewApplication?: () => void // and this
+export type IProps = {
+  timeToLock: number
+  onClickButton: any
+  textButton: string
 }
 
-type IState = {
+export type IState = {
   timeDiff: number
 }
 
 class ApplicationLocked extends React.PureComponent<IProps, IState> {
-  timeLocked: string
+  timeLocked: number
   isUnmounted: boolean
 
-  constructor() {
-    super()
+  constructor(props: IProps) {
+    super(props)
     this.state = {
       timeDiff: 0
     }
+    this.isUnmounted = false
+    this.timeLocked = new Date().getTime() + this.props.timeToLock
     this.timer = this.timer.bind(this)
   }
 
   componentDidMount() {
-    this.isUnmounted = false
-    if (this.props.errorType === errorPage.errorPageTypes.pinLocked) {
-      AsyncStorage.getItem(STORAGE_KEYS.timePinLocked).then((val) => {
-        this.timeLocked = val
-        this.timer()
-      })
-    }
+    AsyncStorage.getItem('timePinLocked').then((val) => {
+      this.timeLocked = new Date(val).getTime() + this.props.timeToLock
+      this.timer()
+    })
   }
 
   async timer() {
     this.setState({timeDiff: +new Date(this.timeLocked) - +new Date()})
     if (this.state.timeDiff <= 0) {
-      AsyncStorage.removeItem(STORAGE_KEYS.timePinLocked)
-      this.props.closeError({type: errorPageTypes.pinLocked})
+      AsyncStorage.removeItem('timePinLocked')
     }
     await delay(1000)
     if (!this.isUnmounted) {
@@ -82,7 +79,9 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                 <View style={styles.viewIcon}>
                   <Icon name="lock" size={24} color={colors.white}/>
                 </View>
-                <Text style={styles.text}>To protect your information, access has been locked for 60 minutes.</Text>
+                <Text style={styles.text}>
+                  {`To protect your information, access has been locked for ${this.props.timeToLock / 1000 / 60} minutes.`}
+                </Text>
                 <Text style={styles.text}>Come back later and try again.</Text>
               </View>
             )}
@@ -100,9 +99,13 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
               <View style={{opacity: state.opacity, flex: 1}}>
                 <View style={styles.viewCloseButton}>
                   <TouchableOpacity onPress={() => {
-                    throw('fatal error')
+                    if (this.props.onClickButton) {
+                      this.props.onClickButton()
+                    } else {
+                      throw('quit application')
+                    }
                   }} style={styles.closeButton}>
-                    <Text style={styles.closeButtonText}>Quit</Text>
+                    <Text style={styles.closeButtonText}>{this.props.textButton}</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -133,10 +136,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     justifyContent: 'center'
   },
-  animation: {
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
-  },
   viewTextErrorLock: {
     position: 'absolute',
     top: 0,
@@ -146,19 +145,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center'
-  },
-  button: {
-    backgroundColor: colors.turquoise,
-    borderRadius: grid.border,
-    paddingLeft: grid.unit * 2,
-    paddingRight: grid.unit * 2,
-    paddingBottom: grid.unit,
-    paddingTop: grid.unit
-  },
-  textButton: {
-    color: colors.white,
-    fontFamily: 'Roboto-Bold',
-    fontSize: 16
   },
   text: {
     fontSize: grid.unit,
@@ -211,14 +197,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'rgb(230, 231, 233)',
     marginBottom: grid.unit * 4
-  },
-  viewButton: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '100%',
-    width: '100%',
-    alignItems: 'center'
   },
   viewCloseButton: {
     alignItems: 'center',

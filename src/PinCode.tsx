@@ -13,7 +13,7 @@ import delay from './delay'
  * Pin Code Component
  */
 
-type IProps = {
+export type IProps = {
   endProcess: (pinCode: string) => void
   sentenceTitle: string
   subtitle?: string
@@ -24,7 +24,7 @@ type IProps = {
   error?: boolean
 }
 
-type IState = {
+export type IState = {
   password: string,
   moveData: { x: number, y: number }
   showError: boolean
@@ -68,14 +68,14 @@ class PinCode extends React.PureComponent<IProps, IState> {
     }
   }
 
-  failedAttempt = async() => {
+  failedAttempt = async () => {
     this.setState({changeScreen: true})
     await delay(300)
     this.setState({showError: true, attemptFailed: true, changeScreen: false, password: ''})
     this.doShake()
   }
 
-  newAttempt = async() => {
+  newAttempt = async () => {
     this.setState({changeScreen: true})
     await delay(200)
     this.setState({changeScreen: false, showError: false, attemptFailed: false})

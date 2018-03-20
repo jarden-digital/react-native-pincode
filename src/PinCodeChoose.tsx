@@ -7,7 +7,7 @@ import * as Keychain from 'react-native-keychain'
  * Pin Code Choose PIN Page
  */
 
-type IProps = {
+export type IProps = {
   storePin: any
   titleEnter: string
   subtitleEnter: string
@@ -15,7 +15,7 @@ type IProps = {
   subtitleConfirm: string
 }
 
-type IState = {
+export type IState = {
   status: PinStatus
   pinCode: string
 }

@@ -8,7 +8,7 @@ import * as Keychain from 'react-native-keychain'
  * Pin Code Enter PIN Page
  */
 
-type IProps = {
+export type IProps = {
   openError: (type: string) => void
   storedPin: string | null
   touchIDSentence: string
@@ -20,7 +20,7 @@ type IProps = {
   changeInternalStatus: (status: PinResultStatus) => void
 }
 
-type IState = {
+export type IState = {
   pinCodeStatus: PinResultStatus
   locked: boolean
 }
@@ -74,10 +74,11 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     if (pin === pinCode) {
       this.setState({pinCodeStatus: PinResultStatus.success})
       this.props.changeInternalStatus(PinResultStatus.success)
-      AsyncStorage.removeItem('pinAttemptsRNPin')
+      AsyncStorage.multiRemove(['pinAttemptsRNPin', 'timePinLocked'])
     } else {
       pinAttempts++
       if (pinAttempts >= this.props.maxAttempts) {
+        await AsyncStorage.setItem('timePinLocked', new Date().toISOString())
         this.setState({locked: true, pinCodeStatus: PinResultStatus.locked})
         this.props.changeInternalStatus(PinResultStatus.locked)
       } else {
