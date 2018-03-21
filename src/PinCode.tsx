@@ -16,12 +16,22 @@ import delay from './delay'
 export type IProps = {
   endProcess: (pinCode: string) => void
   sentenceTitle: string
-  subtitle?: string
+  subtitle: string
   status: PinStatus
   cancelFunction?: () => void
   previousPin?: string
   pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked'
-  error?: boolean
+  buttonNumberComponent?: any
+  passwordLength: number
+  passwordComponent?: any
+  titleAttemptFailed: string
+  titleConfirmFailed: string
+  subtitleError: string
+  colorPassword?: string
+  numbersButtonOverlayColor?: string
+  buttonDeleteComponent?: any
+  titleComponent?: any
+  subtitleComponent?: any
 }
 
 export type IState = {
@@ -60,6 +70,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this.endProcess = this.endProcess.bind(this)
     this.failedAttempt = this.failedAttempt.bind(this)
     this.newAttempt = this.newAttempt.bind(this)
+    this.renderButtonDelete = this.renderButtonDelete.bind(this)
+    this.onPressButtonNumber = this.onPressButtonNumber.bind(this)
   }
 
   componentWillUpdate(nextProps: IProps) {
@@ -81,8 +93,33 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this.setState({changeScreen: false, showError: false, attemptFailed: false})
   }
 
+  onPressButtonNumber = (text: string) => {
+    if (this.state.showError && this.state.attemptFailed) this.newAttempt()
+    const currentPassword = this.state.password + text
+    this.setState({password: currentPassword})
+    if (currentPassword.length === this.props.passwordLength) {
+      switch (this.props.status) {
+        case PinStatus.choose:
+          this.endProcess(currentPassword)
+          break
+        case PinStatus.confirm:
+          if (currentPassword !== this.props.previousPin) {
+            this.showError()
+          } else {
+            this.endProcess(currentPassword)
+          }
+          break
+        case PinStatus.enter:
+          this.props.endProcess(currentPassword)
+          break
+        default:
+          break
+      }
+    }
+  }
+
   renderButtonNumber = (text: string) => {
-    const disabled = (this.state.password.length === 4 || this.state.showError) && !this.state.attemptFailed
+    const disabled = (this.state.password.length === this.props.passwordLength || this.state.showError) && !this.state.attemptFailed
     return (
       <Animate
         show={true}
@@ -96,32 +133,12 @@ class PinCode extends React.PureComponent<IProps, IState> {
         {({opacity}: any) => (
           <TouchableHighlight
             style={styles.buttonCircle}
-            underlayColor={colors.turquoise} disabled={disabled}
+            underlayColor={this.props.numbersButtonOverlayColor ? this.props.numbersButtonOverlayColor : colors.turquoise}
+            disabled={disabled}
             onShowUnderlay={() => this.setState({textButtonSelected: text})}
             onHideUnderlay={() => this.setState({textButtonSelected: ''})}
             onPress={() => {
-              if (this.state.showError && this.state.attemptFailed) this.newAttempt()
-              const currentPassword = this.state.password + text
-              this.setState({password: currentPassword})
-              if (currentPassword.length === 4) {
-                switch (this.props.status) {
-                  case PinStatus.choose:
-                    this.endProcess(currentPassword)
-                    break
-                  case PinStatus.confirm:
-                    if (currentPassword !== this.props.previousPin) {
-                      this.showError()
-                    } else {
-                      this.endProcess(currentPassword)
-                    }
-                    break
-                  case PinStatus.enter:
-                    this.props.endProcess(currentPassword)
-                    break
-                  default:
-                    break
-                }
-              }
+              this.onPressButtonNumber(text)
             }}>
             <Text style={[styles.text, {
               opacity: opacity,
@@ -178,7 +195,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     const {password, moveData, showError, changeScreen, attemptFailed} = this.state
     return (
       <View style={styles.viewCirclePassword}>
-        {_.range(4).map((val: number) => {
+        {_.range(this.props.passwordLength).map((val: number) => {
           const lengthSup = ((password.length >= val + 1 && !changeScreen) || showError) && !attemptFailed
           const marginSup = ((password.length > 0 && !changeScreen) || showError) && !attemptFailed
           return (
@@ -191,10 +208,14 @@ class PinCode extends React.PureComponent<IProps, IState> {
               }}
               update={{
                 x: [moveData.x], opacity: [lengthSup ? 1 : 0.5], height: [lengthSup ? 8 : 4],
-                width: [lengthSup ? 8 : 4], color: [showError ? colors.alert : colors.turquoise],
-                borderRadius: [lengthSup ? 4 : 2], marginRight: [lengthSup ? 8 : 10],
-                marginLeft: [lengthSup ? 8 : 10], marginBottom: [marginSup ? 30 : grid.unit * 2],
-                marginTop: [marginSup ? 62 : grid.unit * 4], y: [moveData.y],
+                width: [lengthSup ? 8 : 4],
+                color: [showError ? colors.alert : (this.props.colorPassword ? this.props.colorPassword : colors.turquoise)],
+                borderRadius: [lengthSup ? 4 : 2],
+                marginRight: [lengthSup ? 8 : 10],
+                marginLeft: [lengthSup ? 8 : 10],
+                marginBottom: [marginSup ? 30 : grid.unit * 2],
+                marginTop: [marginSup ? 62 : grid.unit * 4],
+                y: [moveData.y],
                 timing: {duration: 200, ease: easeLinear}
               }}>
               {({opacity, x, height, width, color, borderRadius, marginRight, marginTop, marginLeft, marginBottom}: any) => (
@@ -209,6 +230,24 @@ class PinCode extends React.PureComponent<IProps, IState> {
         })}
       </View>
     )
+  }
+
+  renderButtonDelete = (opacity: number) => {
+    return (<TouchableHighlight style={styles.colIcon} disabled={this.state.password.length === 0}
+                                underlayColor="transparent"
+                                onHideUnderlay={() => this.setState({colorDelete: 'rgb(211, 213, 218)'})}
+                                onShowUnderlay={() => this.setState({colorDelete: colors.turquoise})}
+                                onPress={() => this.state.password.length > 0 && this.setState({password: this.state.password.slice(0, -1)})}>
+      <View>
+        <Icon name="backspace" size={30} color={this.state.colorDelete} style={{opacity: opacity}}/>
+        <Text style={{
+          color: this.state.colorDelete,
+          fontFamily: grid.fontLight,
+          marginTop: 5,
+          opacity: opacity
+        }}>delete</Text>
+      </View>
+    </TouchableHighlight>)
   }
 
   render() {
@@ -236,35 +275,53 @@ class PinCode extends React.PureComponent<IProps, IState> {
           }}>
           {({opacity, colorTitle, opacityTitle, opacityError}: any) => (
             <View style={[styles.viewTitle, {opacity: opacity}]}>
-              <Text style={[styles.textTitle, {color: colorTitle, opacity: opacityTitle}]}>
-                {(attemptFailed && 'Incorrect PIN Code') || (showError && 'Your entries did not match') || this.props.sentenceTitle}
-              </Text>
-              <Text style={[styles.textSubtitle, {color: colorTitle, opacity: opacityTitle}]}>
-                {attemptFailed || showError ? 'Please try again' : this.props.subtitle}
-              </Text>
+              {this.props.titleComponent ? this.props.titleComponent() : (() => {
+                return (
+                  <Text style={[styles.textTitle, {color: colorTitle, opacity: opacityTitle}]}>
+                    {(attemptFailed && this.props.titleAttemptFailed) || (showError && this.props.titleConfirmFailed) || this.props.sentenceTitle}
+                  </Text>)
+              })}
+              {this.props.subtitleComponent ? this.props.subtitleComponent() : (() => {
+                return (
+                  <Text style={[styles.textSubtitle, {color: colorTitle, opacity: opacityTitle}]}>
+                    {attemptFailed || showError ? this.props.subtitleError : this.props.subtitle}
+                  </Text>)
+              })}
             </View>
           )}
         </Animate>
-        <View>{this.renderCirclePassword()}</View>
+        <View>{this.props.passwordComponent ? this.props.passwordComponent() : this.renderCirclePassword()}</View>
         <Grid style={{maxHeight: grid.unit * 22, maxWidth: grid.unit * 16.25}}>
           <Row style={styles.row}>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('1')}</Col>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('2')}</Col>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('3')}</Col>
+            {_.range(1, 3).map((i: number) => {
+              return (<Col style={styles.colButtonCircle}>
+                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(this.onPressButtonNumber(i.toString())) :
+                  this.renderButtonNumber(i.toString())}
+              </Col>)
+            })}
           </Row>
           <Row style={styles.row}>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('4')}</Col>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('5')}</Col>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('6')}</Col>
+            {_.range(4, 6).map((i: number) => {
+              return (<Col style={styles.colButtonCircle}>
+                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(this.onPressButtonNumber(i.toString())) :
+                  this.renderButtonNumber(i.toString())}
+              </Col>)
+            })}
           </Row>
           <Row style={styles.row}>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('7')}</Col>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('8')}</Col>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('9')}</Col>
+            {_.range(7, 9).map((i: number) => {
+              return (<Col style={styles.colButtonCircle}>
+                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(this.onPressButtonNumber(i.toString())) :
+                  this.renderButtonNumber(i.toString())}
+              </Col>)
+            })}
           </Row>
           <Row style={styles.row}>
             <Col style={styles.colEmpty}/>
-            <Col style={styles.colButtonCircle}>{this.renderButtonNumber('0')}</Col>
+            <Col style={styles.colButtonCircle}>
+              {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(this.onPressButtonNumber('0')) :
+                this.renderButtonNumber('0')}
+            </Col>
             <Col>
               <Animate
                 show={true}
@@ -272,25 +329,13 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   opacity: 0.5
                 }}
                 update={{
-                  opacity: [password.length === 0 || password.length === 4 ? 0.5 : 1],
+                  opacity: [password.length === 0 || password.length === this.props.passwordLength ? 0.5 : 1],
                   timing: {duration: 400, ease: easeLinear}
                 }}>
                 {({opacity}: any) => (
-                  <TouchableHighlight style={styles.colIcon} disabled={this.state.password.length === 0}
-                                      underlayColor="transparent"
-                                      onHideUnderlay={() => this.setState({colorDelete: 'rgb(211, 213, 218)'})}
-                                      onShowUnderlay={() => this.setState({colorDelete: colors.turquoise})}
-                                      onPress={() => this.state.password.length > 0 && this.setState({password: this.state.password.slice(0, -1)})}>
-                    <View>
-                      <Icon name="backspace" size={30} color={this.state.colorDelete} style={{opacity: opacity}}/>
-                      <Text style={{
-                        color: this.state.colorDelete,
-                        fontFamily: grid.fontLight,
-                        marginTop: 5,
-                        opacity: opacity
-                      }}>delete</Text>
-                    </View>
-                  </TouchableHighlight>
+                  this.props.buttonDeleteComponent ?
+                    this.props.buttonDeleteComponent((() => this.state.password.length > 0 && this.setState({password: this.state.password.slice(0, -1)}))) :
+                    this.renderButtonDelete(opacity)
                 )}
               </Animate>
             </Col>

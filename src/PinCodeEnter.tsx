@@ -18,6 +18,19 @@ export type IProps = {
   maxAttempts: number
   pinStatusExternal: PinResultStatus
   changeInternalStatus: (status: PinResultStatus) => void
+  sentenceTitle?: string
+  status: PinStatus
+  buttonNumberComponent: any
+  passwordLength?: number
+  passwordComponent: any
+  titleAttemptFailed?: string
+  titleConfirmFailed?: string
+  subtitleError?: string
+  colorPassword?: string
+  numbersButtonOverlayColor?: string
+  buttonDeleteComponent: any
+  titleComponent: any
+  subtitleComponent: any
 }
 
 export type IState = {
@@ -108,7 +121,18 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           subtitle={this.props.subtitle}
           status={PinStatus.enter}
           previousPin={pin}
-          pinCodeStatus={this.state.pinCodeStatus}/>
+          pinCodeStatus={this.state.pinCodeStatus}
+          buttonNumberComponent={this.props.buttonNumberComponent || null}
+          passwordLength={this.props.passwordLength || 4}
+          passwordComponent={this.props.passwordComponent || null}
+          titleAttemptFailed={this.props.titleAttemptFailed || 'Incorrect PIN Code'}
+          titleConfirmFailed={this.props.titleConfirmFailed || 'Your entries did not match'}
+          subtitleError={this.props.subtitleError || 'Please try again'}
+          colorPassword={this.props.colorPassword || undefined}
+          numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
+          buttonDeleteComponent={this.props.buttonDeleteComponent || null}
+          titleComponent={this.props.titleComponent || null}
+          subtitleComponent={this.props.subtitleComponent || null}/>
       </View>
     )
   }

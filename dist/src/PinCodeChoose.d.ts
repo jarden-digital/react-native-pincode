@@ -10,6 +10,18 @@ export declare type IProps = {
     subtitleEnter: string;
     titleConfirm: string;
     subtitleConfirm: string;
+    sentenceTitle?: string;
+    buttonNumberComponent: any;
+    passwordLength?: number;
+    passwordComponent: any;
+    titleAttemptFailed?: string;
+    titleConfirmFailed?: string;
+    subtitleError?: string;
+    colorPassword?: string;
+    numbersButtonOverlayColor?: string;
+    buttonDeleteComponent: any;
+    titleComponent: any;
+    subtitleComponent: any;
 };
 export declare type IState = {
     status: PinStatus;

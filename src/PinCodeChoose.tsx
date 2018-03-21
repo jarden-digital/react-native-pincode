@@ -13,6 +13,18 @@ export type IProps = {
   subtitleEnter: string
   titleConfirm: string
   subtitleConfirm: string
+  sentenceTitle?: string
+  buttonNumberComponent: any
+  passwordLength?: number
+  passwordComponent: any
+  titleAttemptFailed?: string
+  titleConfirmFailed?: string
+  subtitleError?: string
+  colorPassword?: string
+  numbersButtonOverlayColor?: string
+  buttonDeleteComponent: any
+  titleComponent: any
+  subtitleComponent: any
 }
 
 export type IState = {
@@ -57,15 +69,36 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           endProcess={this.endProcessCreation}
           sentenceTitle={this.props.titleEnter}
           status={PinStatus.choose}
-          subtitle={this.props.subtitleEnter}/>}
+          subtitle={this.props.subtitleEnter}
+          buttonNumberComponent={this.props.buttonNumberComponent || null}
+          passwordLength={this.props.passwordLength || 4}
+          passwordComponent={this.props.passwordComponent || null}
+          titleAttemptFailed={this.props.titleAttemptFailed || 'Incorrect PIN Code'}
+          titleConfirmFailed={this.props.titleConfirmFailed || 'Your entries did not match'}
+          subtitleError={this.props.subtitleError || 'Please try again'}
+          colorPassword={this.props.colorPassword || undefined}
+          numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
+          buttonDeleteComponent={this.props.buttonDeleteComponent || null}
+          titleComponent={this.props.titleComponent || null}
+          subtitleComponent={this.props.subtitleComponent || null}/>}
         {this.state.status === PinStatus.confirm &&
         <PinCode
           endProcess={this.endProcessConfirm}
           sentenceTitle={this.props.titleConfirm}
           status={PinStatus.confirm}
           cancelFunction={this.cancelConfirm}
-          previousPin={this.state.pinCode}
-          subtitle={this.props.subtitleConfirm}/>}
+          subtitle={this.props.subtitleConfirm}
+          buttonNumberComponent={this.props.buttonNumberComponent || null}
+          passwordLength={this.props.passwordLength || 4}
+          passwordComponent={this.props.passwordComponent || null}
+          titleAttemptFailed={this.props.titleAttemptFailed || 'Incorrect PIN Code'}
+          titleConfirmFailed={this.props.titleConfirmFailed || 'Your entries did not match'}
+          subtitleError={this.props.subtitleError || 'Please try again'}
+          colorPassword={this.props.colorPassword || undefined}
+          numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
+          buttonDeleteComponent={this.props.buttonDeleteComponent || null}
+          titleComponent={this.props.titleComponent || null}
+          subtitleComponent={this.props.subtitleComponent || null}/>}
       </View>
     )
   }

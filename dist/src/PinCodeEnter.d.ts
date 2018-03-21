@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
+import { PinStatus } from './PinCode';
 /**
  * Pin Code Enter PIN Page
  */
@@ -13,6 +14,19 @@ export declare type IProps = {
     maxAttempts: number;
     pinStatusExternal: PinResultStatus;
     changeInternalStatus: (status: PinResultStatus) => void;
+    sentenceTitle?: string;
+    status: PinStatus;
+    buttonNumberComponent: any;
+    passwordLength?: number;
+    passwordComponent: any;
+    titleAttemptFailed?: string;
+    titleConfirmFailed?: string;
+    subtitleError?: string;
+    colorPassword?: string;
+    numbersButtonOverlayColor?: string;
+    buttonDeleteComponent: any;
+    titleComponent: any;
+    subtitleComponent: any;
 };
 export declare type IState = {
     pinCodeStatus: PinResultStatus;

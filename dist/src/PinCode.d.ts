@@ -6,12 +6,22 @@ import * as React from 'react';
 export declare type IProps = {
     endProcess: (pinCode: string) => void;
     sentenceTitle: string;
-    subtitle?: string;
+    subtitle: string;
     status: PinStatus;
     cancelFunction?: () => void;
     previousPin?: string;
     pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
-    error?: boolean;
+    buttonNumberComponent?: any;
+    passwordLength: number;
+    passwordComponent?: any;
+    titleAttemptFailed: string;
+    titleConfirmFailed: string;
+    subtitleError: string;
+    colorPassword?: string;
+    numbersButtonOverlayColor?: string;
+    buttonDeleteComponent?: any;
+    titleComponent?: any;
+    subtitleComponent?: any;
 };
 export declare type IState = {
     password: string;
@@ -35,11 +45,13 @@ declare class PinCode extends React.PureComponent<IProps, IState> {
     componentWillUpdate(nextProps: IProps): void;
     failedAttempt: () => Promise<void>;
     newAttempt: () => Promise<void>;
+    onPressButtonNumber: (text: string) => void;
     renderButtonNumber: (text: string) => JSX.Element;
     endProcess: (pwd: string) => void;
     doShake(): Promise<void>;
     showError(): Promise<void>;
     renderCirclePassword: () => JSX.Element;
+    renderButtonDelete: (opacity: number) => JSX.Element;
     render(): JSX.Element;
 }
 export default PinCode;

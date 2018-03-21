@@ -19,6 +19,22 @@ export declare type IProps = {
     timeLocked?: number;
     textButtonLockedPage?: string;
     onClickButtonLockedPage?: any;
+    pinStatusExternal?: PinResultStatus;
+    changeInternalStatus?: (status: PinResultStatus) => void;
+    sentenceTitle?: string;
+    previousPin?: string;
+    pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
+    buttonNumberComponent?: any;
+    passwordLength?: number;
+    passwordComponent?: any;
+    titleAttemptFailed?: string;
+    titleConfirmFailed?: string;
+    subtitleError?: string;
+    colorPassword?: string;
+    numbersButtonOverlayColor?: string;
+    buttonDeleteComponent?: any;
+    titleComponent?: any;
+    subtitleComponent?: any;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;
