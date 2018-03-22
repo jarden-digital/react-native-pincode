@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {AsyncStorage, StyleSheet, View} from 'react-native'
 import PinCode, {PinStatus} from './PinCode'
-import TouchID from 'react-native-touch-id'
+import * as TouchID from 'react-native-touch-id'
 import * as Keychain from 'react-native-keychain'
 
 /**

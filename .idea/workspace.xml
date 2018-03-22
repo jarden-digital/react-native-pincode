@@ -3,10 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="6a037da3-c3b4-44e1-aaa6-d4b336809149" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.d.ts" afterPath="$PROJECT_DIR$/dist/index.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/src/ApplicationLocked.d.ts" afterPath="$PROJECT_DIR$/dist/src/ApplicationLocked.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/src/ApplicationLocked.js" afterPath="$PROJECT_DIR$/dist/src/ApplicationLocked.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/src/PinCode.d.ts" afterPath="$PROJECT_DIR$/dist/src/PinCode.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/src/PinCode.js" afterPath="$PROJECT_DIR$/dist/src/PinCode.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/src/PinCodeChoose.d.ts" afterPath="$PROJECT_DIR$/dist/src/PinCodeChoose.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/src/PinCodeChoose.js" afterPath="$PROJECT_DIR$/dist/src/PinCodeChoose.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/src/PinCodeEnter.d.ts" afterPath="$PROJECT_DIR$/dist/src/PinCodeEnter.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/src/PinCodeEnter.js" afterPath="$PROJECT_DIR$/dist/src/PinCodeEnter.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.tsx" afterPath="$PROJECT_DIR$/index.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ApplicationLocked.tsx" afterPath="$PROJECT_DIR$/src/ApplicationLocked.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PinCode.tsx" afterPath="$PROJECT_DIR$/src/PinCode.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PinCodeChoose.tsx" afterPath="$PROJECT_DIR$/src/PinCodeChoose.tsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PinCodeEnter.tsx" afterPath="$PROJECT_DIR$/src/PinCodeEnter.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,12 +31,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PinCode.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PinCode.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="585">
+                <caret line="39" column="110" lean-forward="false" selection-start-line="39" selection-start-column="110" selection-end-line="39" selection-end-column="110" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -34,22 +47,53 @@
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+            <state relative-caret-position="1485">
+              <caret line="104" column="55" lean-forward="false" selection-start-line="104" selection-start-column="55" selection-end-line="104" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="15">
-                <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
-                <folding />
-              </first_editor>
-              <second_editor />
+      <file leaf-file-name="PinCodeEnter.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PinCodeEnter.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="687">
+              <caret line="118" column="18" lean-forward="false" selection-start-line="118" selection-start-column="18" selection-end-line="118" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplicationLocked.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ApplicationLocked.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="938">
+              <caret line="73" column="15" lean-forward="false" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PinCode.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PinCode.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3208">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PinCodeChoose.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/PinCodeChoose.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="654">
+              <caret line="50" column="27" lean-forward="false" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,14 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>storedPin</find>
-      <find>handleResult</find>
-      <find>isUnmounted</find>
-      <find>1</find>
-      <find>timeLocked</find>
-      <find>closeButtonText</find>
-      <find>closeButton</find>
-      <find>viewButton</find>
       <find>viewTimer</find>
       <find>viewIcon</find>
       <find>title</find>
@@ -88,6 +124,14 @@
       <find>subtitleError</find>
       <find>status</find>
       <find>pinCodeStatus</find>
+      <find>timeLocked</find>
+      <find>TouchID</find>
+      <find>storePin</find>
+      <find>changeInternalStatus</find>
+      <find>handleResultEnterPin</find>
+      <find>handleResult</find>
+      <find>throw</find>
+      <find>thro</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -97,12 +141,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Error.tsx" />
-        <option value="$PROJECT_DIR$/src/ApplicationLocked.tsx" />
         <option value="$PROJECT_DIR$/src/delay.ts" />
         <option value="$PROJECT_DIR$/src/PinCodeChoose.tsx" />
-        <option value="$PROJECT_DIR$/src/PinCodeEnter.tsx" />
-        <option value="$PROJECT_DIR$/index.tsx" />
         <option value="$PROJECT_DIR$/src/PinCode.tsx" />
+        <option value="$PROJECT_DIR$/src/PinCodeEnter.tsx" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/index.tsx" />
+        <option value="$PROJECT_DIR$/src/ApplicationLocked.tsx" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -118,7 +164,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="1171" />
+    <option name="height" value="1417" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -187,7 +233,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="typescript-compiler-editor-notification" value="false" />
     <property name="settings.editor.selected.configurable" value="Errors" />
-    <property name="SearchEverywhereHistoryKey" value="Rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/react-native-pin/README.md&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/react-native-pin/README.md&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/onboarding-app/local_modules/react-native-pin/README.md" />
+    <property name="SearchEverywhereHistoryKey" value="PinCodeEn&#9;FILE&#9;file:///Users/jfarnaul/Projects/react-native-pin/src/PinCodeEnter.tsx&#10;Rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/react-native-pin/README.md&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/react-native-pin/README.md&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/onboarding-app/local_modules/react-native-pin/README.md" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -218,12 +264,12 @@
       <workItem from="1521512016388" duration="1383000" />
       <workItem from="1521513831949" duration="9849000" />
       <workItem from="1521592140379" duration="9998000" />
-      <workItem from="1521685618416" duration="25000" />
+      <workItem from="1521685618416" duration="5323000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30114000" />
+    <option name="totallyTimeSpent" value="35412000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -235,11 +281,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="1171" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="1417" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11596505" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -299,22 +345,36 @@
     <entry file="file://$PROJECT_DIR$/../onboarding-app/local_modules/react-native-pin/src/ApplicationLocked.tsx" />
     <entry file="file://$PROJECT_DIR$/../onboarding-app/local_modules/react-native-pin/index.tsx" />
     <entry file="file://$PROJECT_DIR$/../onboarding-app/local_modules/react-native-pin/src/PinCodeEnter.tsx" />
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/../onboarding-app/local_modules/react-native-pin/src/delay.ts" />
+    <entry file="file://$PROJECT_DIR$/src/delay.ts" />
+    <entry file="file://$PROJECT_DIR$/../onboarding-app/local_modules/react-native-pin/README.md" />
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/react-native-touch-id/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="30">
+          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../onboarding-app/local_modules/react-native-pin/src/delay.ts" />
-    <entry file="file://$PROJECT_DIR$/src/delay.ts" />
-    <entry file="file://$PROJECT_DIR$/../onboarding-app/local_modules/react-native-pin/README.md" />
-    <entry file="file://$PROJECT_DIR$/src/PinCodeChoose.tsx" />
-    <entry file="file://$PROJECT_DIR$/src/PinCodeEnter.tsx" />
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="62" lean-forward="false" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PinCodeChoose.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="654">
+          <caret line="50" column="27" lean-forward="false" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PinCode.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-3208">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -322,17 +382,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        <state relative-caret-position="1485">
+          <caret line="104" column="55" lean-forward="false" selection-start-line="104" selection-start-column="55" selection-end-line="104" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PinCodeEnter.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="687">
+          <caret line="118" column="18" lean-forward="false" selection-start-line="118" selection-start-column="18" selection-end-line="118" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ApplicationLocked.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="938">
+          <caret line="73" column="15" lean-forward="false" selection-start-line="73" selection-start-column="15" selection-end-line="73" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="15">
-            <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+          <first_editor relative-caret-position="585">
+            <caret line="39" column="110" lean-forward="false" selection-start-line="39" selection-start-column="110" selection-end-line="39" selection-end-column="110" />
             <folding />
           </first_editor>
           <second_editor />

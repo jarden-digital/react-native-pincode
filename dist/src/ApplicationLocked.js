@@ -8,9 +8,32 @@ const Animate_1 = require("react-move/Animate");
 const d3_ease_1 = require("d3-ease");
 const delay_1 = require("./delay");
 const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
+const PinCodeEnter_1 = require("./PinCodeEnter");
 class ApplicationLocked extends React.PureComponent {
     constructor(props) {
         super(props);
+        this.renderButton = () => {
+            return (React.createElement(react_native_1.TouchableOpacity, { onPress: () => {
+                    if (this.props.onClickButton) {
+                        this.props.onClickButton();
+                    }
+                    else {
+                        throw ('quit application');
+                    }
+                }, style: styles.button },
+                React.createElement(react_native_1.Text, { style: styles.closeButtonText }, this.props.textButton)));
+        };
+        this.renderTimer = (minutes, seconds) => {
+            return (React.createElement(react_native_1.View, { style: styles.viewTimer },
+                React.createElement(react_native_1.Text, { style: styles.textTimer }, `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`)));
+        };
+        this.renderTitle = () => {
+            return (React.createElement(react_native_1.Text, { style: styles.title }, this.props.textTitle || 'Maximum attempts reached'));
+        };
+        this.renderIcon = () => {
+            return (React.createElement(react_native_1.View, { style: styles.viewIcon },
+                React.createElement(MaterialIcons_1.default, { name: "lock", size: 24, color: colors_1.colors.white })));
+        };
         this.renderErrorLocked = () => {
             const minutes = Math.floor(this.state.timeDiff / 1000 / 60);
             const seconds = Math.floor(this.state.timeDiff / 1000) % 60;
@@ -22,12 +45,11 @@ class ApplicationLocked extends React.PureComponent {
                             opacity: [1],
                             timing: { delay: 1000, duration: 1500, ease: d3_ease_1.easeLinear }
                         } }, (state) => (React.createElement(react_native_1.View, { style: [styles.viewTextLock, { opacity: state.opacity }] },
-                        React.createElement(react_native_1.Text, { style: styles.title }, "Maximum attempts reached"),
-                        React.createElement(react_native_1.View, { style: styles.viewTimer },
-                            React.createElement(react_native_1.Text, { style: styles.textTimer }, `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`)),
-                        React.createElement(react_native_1.View, { style: styles.viewIcon },
-                            React.createElement(MaterialIcons_1.default, { name: "lock", size: 24, color: colors_1.colors.white })),
-                        React.createElement(react_native_1.Text, { style: styles.text }, `To protect your information, access has been locked for ${this.props.timeToLock / 1000 / 60} minutes.`),
+                        this.props.titleComponent ? this.props.titleComponent() : this.renderTitle(),
+                        this.props.timerComponent ? this.props.timerComponent() : this.renderTimer(minutes, seconds),
+                        this.props.iconComponent ? this.props.iconComponent() : this.renderIcon(),
+                        React.createElement(react_native_1.Text, { style: styles.text }, this.props.textDescription ? this.props.textDescription :
+                            `To protect your information, access has been locked for ${(this.props.timeToLock / 1000 / 60).toFixed(1)} minutes.`),
                         React.createElement(react_native_1.Text, { style: styles.text }, "Come back later and try again.")))),
                     React.createElement(Animate_1.default, { show: true, start: {
                             opacity: 0
@@ -35,26 +57,19 @@ class ApplicationLocked extends React.PureComponent {
                             opacity: [1],
                             timing: { delay: 2000, duration: 1500, ease: d3_ease_1.easeLinear }
                         } }, (state) => (React.createElement(react_native_1.View, { style: { opacity: state.opacity, flex: 1 } },
-                        React.createElement(react_native_1.View, { style: styles.viewCloseButton },
-                            React.createElement(react_native_1.TouchableOpacity, { onPress: () => {
-                                    if (this.props.onClickButton) {
-                                        this.props.onClickButton();
-                                    }
-                                    else {
-                                        throw ('quit application');
-                                    }
-                                }, style: styles.closeButton },
-                                React.createElement(react_native_1.Text, { style: styles.closeButtonText }, this.props.textButton)))))))));
+                        React.createElement(react_native_1.View, { style: styles.viewCloseButton }, this.props.buttonComponent ? this.props.buttonComponent() : this.renderButton())))))));
         };
         this.state = {
             timeDiff: 0
         };
         this.isUnmounted = false;
-        this.timeLocked = new Date().getTime() + this.props.timeToLock;
+        this.timeLocked = 0;
         this.timer = this.timer.bind(this);
+        this.renderButton = this.renderButton.bind(this);
+        this.renderTitle = this.renderTitle.bind(this);
     }
     componentDidMount() {
-        react_native_1.AsyncStorage.getItem('timePinLocked').then((val) => {
+        react_native_1.AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName).then((val) => {
             this.timeLocked = new Date(val).getTime() + this.props.timeToLock;
             this.timer();
         });
@@ -62,7 +77,8 @@ class ApplicationLocked extends React.PureComponent {
     async timer() {
         this.setState({ timeDiff: +new Date(this.timeLocked) - +new Date() });
         if (this.state.timeDiff <= 0) {
-            react_native_1.AsyncStorage.removeItem('timePinLocked');
+            await react_native_1.AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName]);
+            this.props.changeStatus(PinCodeEnter_1.PinResultStatus.initial);
         }
         await delay_1.default(1000);
         if (!this.isUnmounted) {
@@ -154,10 +170,13 @@ const styles = react_native_1.StyleSheet.create({
         justifyContent: 'center',
         marginTop: grid_1.grid.unit * 2
     },
-    closeButton: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
+    button: {
+        backgroundColor: colors_1.colors.turquoise,
+        borderRadius: grid_1.grid.border,
+        paddingLeft: grid_1.grid.unit * 2,
+        paddingRight: grid_1.grid.unit * 2,
+        paddingBottom: grid_1.grid.unit,
+        paddingTop: grid_1.grid.unit
     },
     closeButtonText: {
         color: colors_1.colors.base,

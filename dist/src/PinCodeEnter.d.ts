@@ -14,7 +14,6 @@ export declare type IProps = {
     maxAttempts: number;
     pinStatusExternal: PinResultStatus;
     changeInternalStatus: (status: PinResultStatus) => void;
-    sentenceTitle?: string;
     status: PinStatus;
     buttonNumberComponent: any;
     passwordLength?: number;
@@ -27,6 +26,8 @@ export declare type IProps = {
     buttonDeleteComponent: any;
     titleComponent: any;
     subtitleComponent: any;
+    timePinLockedAsyncStorageName: string;
+    pinAttemptsAsyncStorageName: string;
 };
 export declare type IState = {
     pinCodeStatus: PinResultStatus;

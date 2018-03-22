@@ -21,7 +21,6 @@ export declare type IProps = {
     onClickButtonLockedPage?: any;
     pinStatusExternal?: PinResultStatus;
     changeInternalStatus?: (status: PinResultStatus) => void;
-    sentenceTitle?: string;
     previousPin?: string;
     pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
     buttonNumberComponent?: any;
@@ -35,13 +34,24 @@ export declare type IProps = {
     buttonDeleteComponent?: any;
     titleComponent?: any;
     subtitleComponent?: any;
+    textDescriptionLockedPage?: string;
+    buttonComponentLockedPage?: any;
+    timerComponentLockedPage?: any;
+    textTitleLockedPage?: string;
+    titleComponentLockedPage?: any;
+    iconComponentLockedPage?: any;
+    pinCodeKeychainName?: string;
+    timePinLockedAsyncStorageName?: string;
+    pinAttemptsAsyncStorageName?: string;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;
+    pinLocked: boolean;
 };
 declare class PINCode extends React.PureComponent<IProps, IState> {
     constructor(props: IProps);
     changeInternalStatus: (status: PinResultStatus) => void;
+    componentWillMount(): Promise<void>;
     render(): JSX.Element;
 }
 export default PINCode;

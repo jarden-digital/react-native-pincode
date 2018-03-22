@@ -5,11 +5,13 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "compile": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Haskkor/react-native-pin.git"
+    "url": "git+https://github.com/Haskkor/react-native-pin.git",
+    "addlocal": "yarn add file:./local_modules/react-native-pin"
   },
   "author": "Jeremy Farnault",
   "license": "MIT",

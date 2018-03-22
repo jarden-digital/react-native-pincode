@@ -20,22 +20,25 @@ class PinCodeEnter extends React.PureComponent {
                 this.props.handleResult(pinCode);
                 return;
             }
-            let pinAttempts = await +react_native_1.AsyncStorage.getItem('pinAttemptsRNPin') || 0;
+            this.setState({ pinCodeStatus: PinResultStatus.initial });
+            this.props.changeInternalStatus(PinResultStatus.initial);
+            const pinAttemptsStr = await react_native_1.AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName);
+            let pinAttempts = +pinAttemptsStr;
             const pin = this.props.storedPin || this.keyChainResult.password;
             if (pin === pinCode) {
                 this.setState({ pinCodeStatus: PinResultStatus.success });
                 this.props.changeInternalStatus(PinResultStatus.success);
-                react_native_1.AsyncStorage.multiRemove(['pinAttemptsRNPin', 'timePinLocked']);
+                react_native_1.AsyncStorage.multiRemove([this.props.pinAttemptsAsyncStorageName, this.props.timePinLockedAsyncStorageName]);
             }
             else {
                 pinAttempts++;
-                if (pinAttempts >= this.props.maxAttempts) {
-                    await react_native_1.AsyncStorage.setItem('timePinLocked', new Date().toISOString());
+                if (+pinAttempts >= this.props.maxAttempts) {
+                    await react_native_1.AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
                     this.setState({ locked: true, pinCodeStatus: PinResultStatus.locked });
                     this.props.changeInternalStatus(PinResultStatus.locked);
                 }
                 else {
-                    react_native_1.AsyncStorage.setItem('reactNativePinCode', pinAttempts.toString());
+                    await react_native_1.AsyncStorage.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString());
                     this.setState({ pinCodeStatus: PinResultStatus.failure });
                     this.props.changeInternalStatus(PinResultStatus.failure);
                 }
@@ -74,7 +77,7 @@ class PinCodeEnter extends React.PureComponent {
         }
     }
     render() {
-        const pin = this.props.storedPin || this.keyChainResult.password;
+        const pin = this.props.storedPin || (this.keyChainResult && this.keyChainResult.password);
         return (React.createElement(react_native_1.View, { style: styles.container },
             React.createElement(PinCode_1.default, { endProcess: this.endProcess, sentenceTitle: this.props.title, subtitle: this.props.subtitle, status: PinCode_1.PinStatus.enter, previousPin: pin, pinCodeStatus: this.state.pinCodeStatus, buttonNumberComponent: this.props.buttonNumberComponent || null, passwordLength: this.props.passwordLength || 4, passwordComponent: this.props.passwordComponent || null, titleAttemptFailed: this.props.titleAttemptFailed || 'Incorrect PIN Code', titleConfirmFailed: this.props.titleConfirmFailed || 'Your entries did not match', subtitleError: this.props.subtitleError || 'Please try again', colorPassword: this.props.colorPassword || undefined, numbersButtonOverlayColor: this.props.numbersButtonOverlayColor || undefined, buttonDeleteComponent: this.props.buttonDeleteComponent || null, titleComponent: this.props.titleComponent || null, subtitleComponent: this.props.subtitleComponent || null })));
     }

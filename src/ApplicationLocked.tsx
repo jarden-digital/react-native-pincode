@@ -37,7 +37,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
       timeDiff: 0
     }
     this.isUnmounted = false
-    this.timeLocked = null
+    this.timeLocked = 0
     this.timer = this.timer.bind(this)
     this.renderButton = this.renderButton.bind(this)
     this.renderTitle = this.renderTitle.bind(this)
@@ -71,7 +71,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
       if (this.props.onClickButton) {
         this.props.onClickButton()
       } else {
-        throw('quit application')
+        throw('Quit application')
       }
     }} style={styles.button}>
       <Text style={styles.closeButtonText}>{this.props.textButton}</Text>

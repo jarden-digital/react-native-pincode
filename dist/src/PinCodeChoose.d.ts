@@ -6,11 +6,10 @@ import { PinStatus } from './PinCode';
  */
 export declare type IProps = {
     storePin: any;
-    titleEnter: string;
-    subtitleEnter: string;
+    titleChoose: string;
+    subtitleChoose: string;
     titleConfirm: string;
     subtitleConfirm: string;
-    sentenceTitle?: string;
     buttonNumberComponent: any;
     passwordLength?: number;
     passwordComponent: any;
@@ -22,6 +21,7 @@ export declare type IProps = {
     buttonDeleteComponent: any;
     titleComponent: any;
     subtitleComponent: any;
+    pinCodeKeychainName: string;
 };
 export declare type IState = {
     status: PinStatus;
