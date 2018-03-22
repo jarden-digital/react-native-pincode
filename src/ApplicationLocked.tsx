@@ -6,11 +6,21 @@ import Animate from 'react-move/Animate'
 import {easeLinear} from 'd3-ease'
 import delay from './delay'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import {PinResultStatus} from './PinCodeEnter'
 
 export type IProps = {
   timeToLock: number
   onClickButton: any
   textButton: string
+  changeStatus: (status: PinResultStatus) => void
+  textDescription?: string
+  buttonComponent?: any
+  timerComponent?: any
+  textTitle?: string
+  titleComponent?: any
+  iconComponent?: any
+  timePinLockedAsyncStorageName: string
+  pinAttemptsAsyncStorageName: string
 }
 
 export type IState = {
@@ -27,12 +37,14 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
       timeDiff: 0
     }
     this.isUnmounted = false
-    this.timeLocked = new Date().getTime() + this.props.timeToLock
+    this.timeLocked = null
     this.timer = this.timer.bind(this)
+    this.renderButton = this.renderButton.bind(this)
+    this.renderTitle = this.renderTitle.bind(this)
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('timePinLocked').then((val) => {
+    AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName).then((val) => {
       this.timeLocked = new Date(val).getTime() + this.props.timeToLock
       this.timer()
     })
@@ -41,7 +53,8 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
   async timer() {
     this.setState({timeDiff: +new Date(this.timeLocked) - +new Date()})
     if (this.state.timeDiff <= 0) {
-      AsyncStorage.removeItem('timePinLocked')
+      await AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName])
+      this.props.changeStatus(PinResultStatus.initial)
     }
     await delay(1000)
     if (!this.isUnmounted) {
@@ -51,6 +64,38 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
 
   componentWillUnmount() {
     this.isUnmounted = true
+  }
+
+  renderButton = () => {
+    return (<TouchableOpacity onPress={() => {
+      if (this.props.onClickButton) {
+        this.props.onClickButton()
+      } else {
+        throw('quit application')
+      }
+    }} style={styles.button}>
+      <Text style={styles.closeButtonText}>{this.props.textButton}</Text>
+    </TouchableOpacity>)
+  }
+
+  renderTimer = (minutes: number, seconds: number) => {
+    return (<View style={styles.viewTimer}>
+      <Text style={styles.textTimer}>
+        {`${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`}
+      </Text>
+    </View>)
+  }
+
+  renderTitle = () => {
+    return (
+      <Text style={styles.title}>{this.props.textTitle || 'Maximum attempts reached'}</Text>
+    )
+  }
+
+  renderIcon = () => {
+    return (<View style={styles.viewIcon}>
+      <Icon name="lock" size={24} color={colors.white}/>
+    </View>)
   }
 
   renderErrorLocked = () => {
@@ -70,17 +115,12 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
             }}>
             {(state: any) => (
               <View style={[styles.viewTextLock, {opacity: state.opacity}]}>
-                <Text style={styles.title}>Maximum attempts reached</Text>
-                <View style={styles.viewTimer}>
-                  <Text style={styles.textTimer}>
-                    {`${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`}
-                  </Text>
-                </View>
-                <View style={styles.viewIcon}>
-                  <Icon name="lock" size={24} color={colors.white}/>
-                </View>
+                {this.props.titleComponent ? this.props.titleComponent() : this.renderTitle()}
+                {this.props.timerComponent ? this.props.timerComponent() : this.renderTimer(minutes, seconds)}
+                {this.props.iconComponent ? this.props.iconComponent() : this.renderIcon()}
                 <Text style={styles.text}>
-                  {`To protect your information, access has been locked for ${this.props.timeToLock / 1000 / 60} minutes.`}
+                  {this.props.textDescription ? this.props.textDescription :
+                    `To protect your information, access has been locked for ${(this.props.timeToLock / 1000 / 60).toFixed(1)} minutes.`}
                 </Text>
                 <Text style={styles.text}>Come back later and try again.</Text>
               </View>
@@ -98,15 +138,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
             {(state: any) => (
               <View style={{opacity: state.opacity, flex: 1}}>
                 <View style={styles.viewCloseButton}>
-                  <TouchableOpacity onPress={() => {
-                    if (this.props.onClickButton) {
-                      this.props.onClickButton()
-                    } else {
-                      throw('quit application')
-                    }
-                  }} style={styles.closeButton}>
-                    <Text style={styles.closeButtonText}>{this.props.textButton}</Text>
-                  </TouchableOpacity>
+                  {this.props.buttonComponent ? this.props.buttonComponent() : this.renderButton()}
                 </View>
               </View>
             )}
@@ -204,10 +236,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: grid.unit * 2
   },
-  closeButton: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+  button: {
+    backgroundColor: colors.turquoise,
+    borderRadius: grid.border,
+    paddingLeft: grid.unit * 2,
+    paddingRight: grid.unit * 2,
+    paddingBottom: grid.unit,
+    paddingTop: grid.unit
   },
   closeButtonText: {
     color: colors.base,

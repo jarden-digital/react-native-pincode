@@ -9,11 +9,10 @@ import * as Keychain from 'react-native-keychain'
 
 export type IProps = {
   storePin: any
-  titleEnter: string
-  subtitleEnter: string
+  titleChoose: string
+  subtitleChoose: string
   titleConfirm: string
   subtitleConfirm: string
-  sentenceTitle?: string
   buttonNumberComponent: any
   passwordLength?: number
   passwordComponent: any
@@ -25,6 +24,7 @@ export type IProps = {
   buttonDeleteComponent: any
   titleComponent: any
   subtitleComponent: any
+  pinCodeKeychainName: string
 }
 
 export type IState = {
@@ -50,7 +50,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
       if (this.props.storePin) {
         this.props.storePin(pinCode)
       } else {
-        await Keychain.setGenericPassword('reactNativePinCode', pinCode)
+        await Keychain.setGenericPassword(this.props.pinCodeKeychainName, pinCode)
       }
     } else {
       this.setState({status: PinStatus.choose})
@@ -67,9 +67,9 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
         {this.state.status === PinStatus.choose &&
         <PinCode
           endProcess={this.endProcessCreation}
-          sentenceTitle={this.props.titleEnter}
+          sentenceTitle={this.props.titleChoose}
           status={PinStatus.choose}
-          subtitle={this.props.subtitleEnter}
+          subtitle={this.props.subtitleChoose}
           buttonNumberComponent={this.props.buttonNumberComponent || null}
           passwordLength={this.props.passwordLength || 4}
           passwordComponent={this.props.passwordComponent || null}
@@ -88,6 +88,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           status={PinStatus.confirm}
           cancelFunction={this.cancelConfirm}
           subtitle={this.props.subtitleConfirm}
+          previousPin={this.state.pinCode}
           buttonNumberComponent={this.props.buttonNumberComponent || null}
           passwordLength={this.props.passwordLength || 4}
           passwordComponent={this.props.passwordComponent || null}

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {AsyncStorage, StyleSheet, View} from 'react-native'
 import PinCode, {PinStatus} from './PinCode'
-import * as TouchID from 'react-native-touch-id'
+import TouchID from 'react-native-touch-id'
 import * as Keychain from 'react-native-keychain'
 
 /**
@@ -18,7 +18,6 @@ export type IProps = {
   maxAttempts: number
   pinStatusExternal: PinResultStatus
   changeInternalStatus: (status: PinResultStatus) => void
-  sentenceTitle?: string
   status: PinStatus
   buttonNumberComponent: any
   passwordLength?: number
@@ -31,6 +30,8 @@ export type IProps = {
   buttonDeleteComponent: any
   titleComponent: any
   subtitleComponent: any
+  timePinLockedAsyncStorageName: string
+  pinAttemptsAsyncStorageName: string
 }
 
 export type IState = {
@@ -82,20 +83,23 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       this.props.handleResult(pinCode)
       return
     }
-    let pinAttempts = await +AsyncStorage.getItem('pinAttemptsRNPin') || 0
+    this.setState({pinCodeStatus: PinResultStatus.initial})
+    this.props.changeInternalStatus(PinResultStatus.initial)
+    const pinAttemptsStr = await AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName)
+    let pinAttempts = +pinAttemptsStr
     const pin = this.props.storedPin || this.keyChainResult.password
     if (pin === pinCode) {
       this.setState({pinCodeStatus: PinResultStatus.success})
       this.props.changeInternalStatus(PinResultStatus.success)
-      AsyncStorage.multiRemove(['pinAttemptsRNPin', 'timePinLocked'])
+      AsyncStorage.multiRemove([this.props.pinAttemptsAsyncStorageName, this.props.timePinLockedAsyncStorageName])
     } else {
       pinAttempts++
-      if (pinAttempts >= this.props.maxAttempts) {
-        await AsyncStorage.setItem('timePinLocked', new Date().toISOString())
+      if (+pinAttempts >= this.props.maxAttempts) {
+        await AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString())
         this.setState({locked: true, pinCodeStatus: PinResultStatus.locked})
         this.props.changeInternalStatus(PinResultStatus.locked)
       } else {
-        AsyncStorage.setItem('reactNativePinCode', pinAttempts.toString())
+        await AsyncStorage.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString())
         this.setState({pinCodeStatus: PinResultStatus.failure})
         this.props.changeInternalStatus(PinResultStatus.failure)
       }
@@ -112,7 +116,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    const pin = this.props.storedPin || this.keyChainResult.password
+    const pin = this.props.storedPin || (this.keyChainResult && this.keyChainResult.password)
     return (
       <View style={styles.container}>
         <PinCode

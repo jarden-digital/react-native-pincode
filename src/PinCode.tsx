@@ -72,6 +72,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this.newAttempt = this.newAttempt.bind(this)
     this.renderButtonDelete = this.renderButtonDelete.bind(this)
     this.onPressButtonNumber = this.onPressButtonNumber.bind(this)
+    this.renderTitle = this.renderTitle.bind(this)
   }
 
   componentWillUpdate(nextProps: IProps) {
@@ -203,11 +204,22 @@ class PinCode extends React.PureComponent<IProps, IState> {
               key={val}
               show={true}
               start={{
-                opacity: 0.5, height: 4, width: 4, borderRadius: 2, color: colors.turquoise, marginRight: 10,
-                marginLeft: 10, marginBottom: grid.unit * 2, marginTop: grid.unit * 4, x: 0, y: 0
+                opacity: 0.5,
+                height: 4,
+                width: 4,
+                borderRadius: 2,
+                color: (this.props.colorPassword ? this.props.colorPassword : colors.turquoise),
+                marginRight: 10,
+                marginLeft: 10,
+                marginBottom: grid.unit * 2,
+                marginTop: grid.unit * 4,
+                x: 0,
+                y: 0
               }}
               update={{
-                x: [moveData.x], opacity: [lengthSup ? 1 : 0.5], height: [lengthSup ? 8 : 4],
+                x: [moveData.x],
+                opacity: [lengthSup ? 1 : 0.5],
+                height: [lengthSup ? 8 : 4],
                 width: [lengthSup ? 8 : 4],
                 color: [showError ? colors.alert : (this.props.colorPassword ? this.props.colorPassword : colors.turquoise)],
                 borderRadius: [lengthSup ? 4 : 2],
@@ -220,8 +232,15 @@ class PinCode extends React.PureComponent<IProps, IState> {
               }}>
               {({opacity, x, height, width, color, borderRadius, marginRight, marginTop, marginLeft, marginBottom}: any) => (
                 <View style={{
-                  left: x, opacity: opacity, height: height, width: width, borderRadius: borderRadius,
-                  marginLeft: marginLeft, marginRight: marginRight, marginBottom: marginBottom, marginTop: marginTop,
+                  left: x,
+                  opacity: opacity,
+                  height: height,
+                  width: width,
+                  borderRadius: borderRadius,
+                  marginLeft: marginLeft,
+                  marginRight: marginRight,
+                  marginBottom: marginBottom,
+                  marginTop: marginTop,
                   backgroundColor: color
                 }}/>
               )}
@@ -250,6 +269,20 @@ class PinCode extends React.PureComponent<IProps, IState> {
     </TouchableHighlight>)
   }
 
+  renderTitle = (colorTitle: string, opacityTitle: number, attemptFailed: boolean, showError: boolean) => {
+    return (
+      <Text style={[styles.textTitle, {color: colorTitle, opacity: opacityTitle}]}>
+        {(attemptFailed && this.props.titleAttemptFailed) || (showError && this.props.titleConfirmFailed) || this.props.sentenceTitle}
+      </Text>)
+  }
+
+  renderSubtitle = (colorTitle: string, opacityTitle: number, attemptFailed: boolean, showError: boolean) => {
+    return (
+      <Text style={[styles.textSubtitle, {color: colorTitle, opacity: opacityTitle}]}>
+        {attemptFailed || showError ? this.props.subtitleError : this.props.subtitle}
+      </Text>)
+  }
+
   render() {
     const {password, showError, attemptFailed, changeScreen} = this.state
     return (
@@ -275,43 +308,35 @@ class PinCode extends React.PureComponent<IProps, IState> {
           }}>
           {({opacity, colorTitle, opacityTitle, opacityError}: any) => (
             <View style={[styles.viewTitle, {opacity: opacity}]}>
-              {this.props.titleComponent ? this.props.titleComponent() : (() => {
-                return (
-                  <Text style={[styles.textTitle, {color: colorTitle, opacity: opacityTitle}]}>
-                    {(attemptFailed && this.props.titleAttemptFailed) || (showError && this.props.titleConfirmFailed) || this.props.sentenceTitle}
-                  </Text>)
-              })}
-              {this.props.subtitleComponent ? this.props.subtitleComponent() : (() => {
-                return (
-                  <Text style={[styles.textSubtitle, {color: colorTitle, opacity: opacityTitle}]}>
-                    {attemptFailed || showError ? this.props.subtitleError : this.props.subtitle}
-                  </Text>)
-              })}
+              {this.props.titleComponent ? this.props.titleComponent() :
+                this.renderTitle(colorTitle, opacityTitle, attemptFailed, showError)}
+              {this.props.subtitleComponent ? this.props.subtitleComponent() :
+                this.renderSubtitle(colorTitle, opacityTitle, attemptFailed, showError)}
             </View>
           )}
         </Animate>
         <View>{this.props.passwordComponent ? this.props.passwordComponent() : this.renderCirclePassword()}</View>
         <Grid style={{maxHeight: grid.unit * 22, maxWidth: grid.unit * 16.25}}>
           <Row style={styles.row}>
-            {_.range(1, 3).map((i: number) => {
-              return (<Col style={styles.colButtonCircle}>
-                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(this.onPressButtonNumber(i.toString())) :
+            {_.range(1, 4).map((i: number) => {
+              return (<Col key={i} style={styles.colButtonCircle}>
+                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(i, this.onPressButtonNumber) :
                   this.renderButtonNumber(i.toString())}
               </Col>)
             })}
           </Row>
           <Row style={styles.row}>
-            {_.range(4, 6).map((i: number) => {
-              return (<Col style={styles.colButtonCircle}>
-                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(this.onPressButtonNumber(i.toString())) :
+            {_.range(4, 7).map((i: number) => {
+              return (<Col key={i} style={styles.colButtonCircle}>
+                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(i, this.onPressButtonNumber) :
                   this.renderButtonNumber(i.toString())}
               </Col>)
             })}
           </Row>
           <Row style={styles.row}>
-            {_.range(7, 9).map((i: number) => {
-              return (<Col style={styles.colButtonCircle}>
-                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(this.onPressButtonNumber(i.toString())) :
+            {_.range(7, 10).map((i: number) => {
+              return (<Col key={i} style={styles.colButtonCircle}>
+                {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(i, this.onPressButtonNumber) :
                   this.renderButtonNumber(i.toString())}
               </Col>)
             })}
@@ -319,7 +344,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
           <Row style={styles.row}>
             <Col style={styles.colEmpty}/>
             <Col style={styles.colButtonCircle}>
-              {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(this.onPressButtonNumber('0')) :
+              {this.props.buttonNumberComponent ? this.props.buttonNumberComponent('0', this.onPressButtonNumber) :
                 this.renderButtonNumber('0')}
             </Col>
             <Col>
