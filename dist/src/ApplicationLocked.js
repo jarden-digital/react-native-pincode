@@ -79,8 +79,8 @@ class ApplicationLocked extends React.PureComponent {
         this.setState({ timeDiff: timeDiff });
         await delay_1.default(1000);
         if (timeDiff < 1000) {
-            await react_native_1.AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName]);
             this.props.changeStatus(index_1.PinResultStatus.initial);
+            react_native_1.AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName]);
         }
         if (!this.isUnmounted) {
             this.timer();
