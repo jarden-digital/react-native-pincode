@@ -11,11 +11,11 @@ Using:
 ## Installation
 
 ```
-npm install --save react-native-pincode
+npm install --save @haskkor/react-native-pincode
 ```
 or
 ```
-yarn add react-native-pincode
+yarn add @haskkor/react-native-pincode
 ```
 
 ## Demo
