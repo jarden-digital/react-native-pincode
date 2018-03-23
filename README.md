@@ -20,9 +20,7 @@ yarn add react-native-pin
 
 ## Demo
 
-![choose-confirm](https://user-images.githubusercontent.com/10620919/37805052-bdefa610-2e9c-11e8-8290-fe2d695020a5.gif)
-
-![enter-locked](https://user-images.githubusercontent.com/10620919/37805092-f443c8fe-2e9c-11e8-9524-1e0b6a93fc78.gif)
+![choose-confirm](https://user-images.githubusercontent.com/10620919/37805052-bdefa610-2e9c-11e8-8290-fe2d695020a5.gif)   ![enter-locked](https://user-images.githubusercontent.com/10620919/37805092-f443c8fe-2e9c-11e8-9524-1e0b6a93fc78.gif)
 
 ## Usage
 
