@@ -1,5 +1,5 @@
 {
-  "name": "react-native-pincode",
+  "name": "@haskkor/react-native-pincode",
   "version": "1.0.0",
   "description": "React native PIN code component",
   "main": "dist/index.js",
@@ -27,16 +27,21 @@
     "@types/react-native-touch-id": "^4.0.0",
     "@types/react-native-vector-icons": "^4.4.3",
     "@types/react-navigation": "^1.2.1",
-    "d3-ease": "^1.0.3",
-    "lodash": "^4.17.5",
     "react": "^16.2.0",
-    "react-move": "^2.7.0",
     "react-native": "^0.54.2",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
     "react-native-easy-grid": "^0.1.17",
     "react-native-keychain": "^3.0.0-rc.3",
     "react-native-touch-id": "^4.0.1",
     "react-native-vector-icons": "^4.5.0",
-    "react-navigation": "^1.5.2",
-    "typescript": "^2.7.2"
+    "react-move": "^2.7.0",
+    "lodash": "^4.17.5",
+    "d3-ease": "^1.0.3",
+  },
+  "peerDependencies": {
+    "react-native": "*",
+    "react": "*"
   }
 }
