@@ -1,24 +1,24 @@
 {
-  "name": "react-native-pin",
-  "version": "0.0.1",
+  "name": "react-native-pincode",
+  "version": "1.0.0",
   "description": "React native PIN code component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "compile": "npm run build"
+    "compile": "npm run build",
+    "addlocal": "yarn add file:./local_modules/react-native-pincode"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Haskkor/react-native-pin.git",
-    "addlocal": "yarn add file:./local_modules/react-native-pin"
+    "url": "git+https://github.com/Haskkor/react-native-pincode.git"
   },
   "author": "Jeremy Farnault",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Haskkor/react-native-pin/issues"
+    "url": "https://github.com/Haskkor/react-native-pincode/issues"
   },
-  "homepage": "https://github.com/Haskkor/react-native-pin#readme",
+  "homepage": "https://github.com/Haskkor/react-native-pincode#readme",
   "devDependencies": {
     "@types/d3-ease": "^1.0.7",
     "@types/lodash": "^4.14.104",

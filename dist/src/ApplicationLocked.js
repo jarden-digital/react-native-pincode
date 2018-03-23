@@ -8,7 +8,7 @@ const Animate_1 = require("react-move/Animate");
 const d3_ease_1 = require("d3-ease");
 const delay_1 = require("./delay");
 const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
-const PinCodeEnter_1 = require("./PinCodeEnter");
+const index_1 = require("../index");
 class ApplicationLocked extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -18,7 +18,7 @@ class ApplicationLocked extends React.PureComponent {
                         this.props.onClickButton();
                     }
                     else {
-                        throw ('quit application');
+                        throw ('Quit application');
                     }
                 }, style: styles.button },
                 React.createElement(react_native_1.Text, { style: styles.closeButtonText }, this.props.textButton)));
@@ -76,11 +76,11 @@ class ApplicationLocked extends React.PureComponent {
     }
     async timer() {
         this.setState({ timeDiff: +new Date(this.timeLocked) - +new Date() });
-        if (this.state.timeDiff <= 0) {
-            await react_native_1.AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName]);
-            this.props.changeStatus(PinCodeEnter_1.PinResultStatus.initial);
-        }
         await delay_1.default(1000);
+        if (this.state.timeDiff < 1000) {
+            await react_native_1.AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName]);
+            this.props.changeStatus(index_1.PinResultStatus.initial);
+        }
         if (!this.isUnmounted) {
             this.timer();
         }

@@ -1,11 +1,11 @@
 /// <reference types="react" />
 import * as React from 'react';
 import { PinStatus } from './PinCode';
+import { PinResultStatus } from '../index';
 /**
  * Pin Code Enter PIN Page
  */
 export declare type IProps = {
-    openError: (type: string) => void;
     storedPin: string | null;
     touchIDSentence: string;
     handleResult: any;
@@ -19,6 +19,7 @@ export declare type IProps = {
     passwordLength?: number;
     passwordComponent: any;
     titleAttemptFailed?: string;
+    finishProcess?: any;
     titleConfirmFailed?: string;
     subtitleError?: string;
     colorPassword?: string;
@@ -33,12 +34,6 @@ export declare type IState = {
     pinCodeStatus: PinResultStatus;
     locked: boolean;
 };
-export declare enum PinResultStatus {
-    initial = "initial",
-    success = "success",
-    failure = "failure",
-    locked = "locked",
-}
 declare class PinCodeEnter extends React.PureComponent<IProps, IState> {
     keyChainResult: any;
     constructor(props: IProps);

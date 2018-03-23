@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
-import { PinResultStatus } from './PinCodeEnter';
+import { PinResultStatus } from '../index';
 export declare type IProps = {
     timeToLock: number;
     onClickButton: any;

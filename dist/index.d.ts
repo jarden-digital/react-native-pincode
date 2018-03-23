@@ -1,57 +1,60 @@
 /// <reference types="react" />
 import * as React from 'react';
-import { PinResultStatus } from './src/PinCodeEnter';
 export declare type IProps = {
-    status: 'choose' | 'enter' | 'locked';
-    storePin?: any;
-    titleEnter?: string;
-    subtitleEnter?: string;
-    titleChoose?: string;
-    subtitleChoose?: string;
-    titleConfirm?: string;
-    subtitleConfirm?: string;
-    maxAttempts?: number;
-    openAppLockedScreen?: any;
-    pinStatus?: PinResultStatus;
-    storedPin?: string;
-    touchIDSentence?: string;
-    handleResultEnterPin?: any;
-    timeLocked?: number;
-    textButtonLockedPage?: string;
-    onClickButtonLockedPage?: any;
-    pinStatusExternal?: PinResultStatus;
-    changeInternalStatus?: (status: PinResultStatus) => void;
-    previousPin?: string;
-    pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
-    buttonNumberComponent?: any;
-    passwordLength?: number;
-    passwordComponent?: any;
-    titleAttemptFailed?: string;
-    titleConfirmFailed?: string;
-    subtitleError?: string;
-    colorPassword?: string;
-    numbersButtonOverlayColor?: string;
-    buttonDeleteComponent?: any;
-    titleComponent?: any;
-    subtitleComponent?: any;
-    textDescriptionLockedPage?: string;
     buttonComponentLockedPage?: any;
-    timerComponentLockedPage?: any;
-    textTitleLockedPage?: string;
-    titleComponentLockedPage?: any;
+    buttonDeleteComponent?: any;
+    buttonNumberComponent?: any;
+    colorPassword?: string;
+    finishProcess?: any;
+    handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
-    pinCodeKeychainName?: string;
-    timePinLockedAsyncStorageName?: string;
+    lockedPage?: any;
+    maxAttempts?: number;
+    numbersButtonOverlayColor?: string;
+    onClickButtonLockedPage?: any;
+    passwordComponent?: any;
+    passwordLength?: number;
     pinAttemptsAsyncStorageName?: string;
+    pinCodeKeychainName?: string;
+    pinStatus?: PinResultStatus;
+    status: 'choose' | 'enter' | 'locked';
+    storedPin?: string;
+    storePin?: any;
+    subtitleChoose?: string;
+    subtitleComponent?: any;
+    subtitleConfirm?: string;
+    subtitleEnter?: string;
+    subtitleError?: string;
+    textButtonLockedPage?: string;
+    textDescriptionLockedPage?: string;
+    textTitleLockedPage?: string;
+    timeLocked?: number;
+    timePinLockedAsyncStorageName?: string;
+    timerComponentLockedPage?: any;
+    titleAttemptFailed?: string;
+    titleChoose?: string;
+    titleComponent?: any;
+    titleComponentLockedPage?: any;
+    titleConfirm?: string;
+    titleConfirmFailed?: string;
+    titleEnter?: string;
+    touchIDSentence?: string;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;
     pinLocked: boolean;
 };
+export declare enum PinResultStatus {
+    initial = "initial",
+    success = "success",
+    failure = "failure",
+    locked = "locked",
+}
 declare class PINCode extends React.PureComponent<IProps, IState> {
     constructor(props: IProps);
-    changeInternalStatus: (status: PinResultStatus) => void;
     componentWillMount(): Promise<void>;
+    changeInternalStatus: (status: PinResultStatus) => void;
+    renderLockedPage: () => JSX.Element;
     render(): JSX.Element;
 }
 export default PINCode;

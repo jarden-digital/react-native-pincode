@@ -5,13 +5,7 @@ const react_native_1 = require("react-native");
 const PinCode_1 = require("./PinCode");
 const TouchID = require("react-native-touch-id");
 const Keychain = require("react-native-keychain");
-var PinResultStatus;
-(function (PinResultStatus) {
-    PinResultStatus["initial"] = "initial";
-    PinResultStatus["success"] = "success";
-    PinResultStatus["failure"] = "failure";
-    PinResultStatus["locked"] = "locked";
-})(PinResultStatus = exports.PinResultStatus || (exports.PinResultStatus = {}));
+const index_1 = require("../index");
 class PinCodeEnter extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -20,31 +14,33 @@ class PinCodeEnter extends React.PureComponent {
                 this.props.handleResult(pinCode);
                 return;
             }
-            this.setState({ pinCodeStatus: PinResultStatus.initial });
-            this.props.changeInternalStatus(PinResultStatus.initial);
+            this.setState({ pinCodeStatus: index_1.PinResultStatus.initial });
+            this.props.changeInternalStatus(index_1.PinResultStatus.initial);
             const pinAttemptsStr = await react_native_1.AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName);
             let pinAttempts = +pinAttemptsStr;
             const pin = this.props.storedPin || this.keyChainResult.password;
             if (pin === pinCode) {
-                this.setState({ pinCodeStatus: PinResultStatus.success });
-                this.props.changeInternalStatus(PinResultStatus.success);
+                this.setState({ pinCodeStatus: index_1.PinResultStatus.success });
                 react_native_1.AsyncStorage.multiRemove([this.props.pinAttemptsAsyncStorageName, this.props.timePinLockedAsyncStorageName]);
+                if (this.props.finishProcess)
+                    this.props.finishProcess();
+                this.props.changeInternalStatus(index_1.PinResultStatus.success);
             }
             else {
                 pinAttempts++;
                 if (+pinAttempts >= this.props.maxAttempts) {
                     await react_native_1.AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
-                    this.setState({ locked: true, pinCodeStatus: PinResultStatus.locked });
-                    this.props.changeInternalStatus(PinResultStatus.locked);
+                    this.setState({ locked: true, pinCodeStatus: index_1.PinResultStatus.locked });
+                    this.props.changeInternalStatus(index_1.PinResultStatus.locked);
                 }
                 else {
                     await react_native_1.AsyncStorage.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString());
-                    this.setState({ pinCodeStatus: PinResultStatus.failure });
-                    this.props.changeInternalStatus(PinResultStatus.failure);
+                    this.setState({ pinCodeStatus: index_1.PinResultStatus.failure });
+                    this.props.changeInternalStatus(index_1.PinResultStatus.failure);
                 }
             }
         };
-        this.state = { pinCodeStatus: PinResultStatus.initial, locked: false };
+        this.state = { pinCodeStatus: index_1.PinResultStatus.initial, locked: false };
         this.endProcess = this.endProcess.bind(this);
         this.launchTouchID = this.launchTouchID.bind(this);
     }

@@ -1,4 +1,4 @@
-# react-native-pin
+# react-native-pincode
 
 _A customizable PIN Code component for react native_
 
@@ -11,11 +11,11 @@ Using:
 ## Installation
 
 ```
-npm install --save react-native-pin
+npm install --save react-native-pincode
 ```
 or
 ```
-yarn add react-native-pin
+yarn add react-native-pincode
 ```
 
 ## Demo
@@ -30,7 +30,7 @@ Basic usage requires choosing between the _**choose**_, _**enter**_ and _**locke
 * _**locked**_ : prints a locked screen for a given time if the user failed to enter his/her PIN code too many times
 
 ```
-import PINCode from 'react-native-pin'
+import PINCode from 'react-native-pincode'
 <PINCode status={'choose'}/>
 ```
 
