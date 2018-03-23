@@ -3,13 +3,13 @@ import {AsyncStorage, StyleSheet, View} from 'react-native'
 import PinCode, {PinStatus} from './PinCode'
 import * as TouchID from 'react-native-touch-id'
 import * as Keychain from 'react-native-keychain'
+import {PinResultStatus} from '../index'
 
 /**
  * Pin Code Enter PIN Page
  */
 
 export type IProps = {
-  openError: (type: string) => void
   storedPin: string | null
   touchIDSentence: string
   handleResult: any
@@ -23,6 +23,7 @@ export type IProps = {
   passwordLength?: number
   passwordComponent: any
   titleAttemptFailed?: string
+  finishProcess?: any
   titleConfirmFailed?: string
   subtitleError?: string
   colorPassword?: string
@@ -37,13 +38,6 @@ export type IProps = {
 export type IState = {
   pinCodeStatus: PinResultStatus
   locked: boolean
-}
-
-export enum PinResultStatus {
-  initial = 'initial',
-  success = 'success',
-  failure = 'failure',
-  locked = 'locked'
 }
 
 class PinCodeEnter extends React.PureComponent<IProps, IState> {
@@ -90,8 +84,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     const pin = this.props.storedPin || this.keyChainResult.password
     if (pin === pinCode) {
       this.setState({pinCodeStatus: PinResultStatus.success})
-      this.props.changeInternalStatus(PinResultStatus.success)
       AsyncStorage.multiRemove([this.props.pinAttemptsAsyncStorageName, this.props.timePinLockedAsyncStorageName])
+      if (this.props.finishProcess) this.props.finishProcess()
+      this.props.changeInternalStatus(PinResultStatus.success)
     } else {
       pinAttempts++
       if (+pinAttempts >= this.props.maxAttempts) {

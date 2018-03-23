@@ -6,7 +6,7 @@ import Animate from 'react-move/Animate'
 import {easeLinear} from 'd3-ease'
 import delay from './delay'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {PinResultStatus} from './PinCodeEnter'
+import {PinResultStatus} from '../index'
 
 export type IProps = {
   timeToLock: number
@@ -52,11 +52,11 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
 
   async timer() {
     this.setState({timeDiff: +new Date(this.timeLocked) - +new Date()})
-    if (this.state.timeDiff <= 0) {
+    await delay(1000)
+    if (this.state.timeDiff < 1000) {
       await AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName])
       this.props.changeStatus(PinResultStatus.initial)
     }
-    await delay(1000)
     if (!this.isUnmounted) {
       this.timer()
     }
