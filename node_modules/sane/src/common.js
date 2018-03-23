@@ -2,7 +2,7 @@
 
 var walker = require('walker');
 var anymatch = require('anymatch');
-var minimatch = require('minimatch');
+var micromatch = require('micromatch');
 var path = require('path');
 var platform = require('os').platform();
 
@@ -59,23 +59,12 @@ exports.assignOptions = function(watcher, opts) {
  */
 
 exports.isFileIncluded = function(globs, dot, doIgnore, relativePath) {
-  var matched;
-  if (globs.length) {
-    for (var i = 0; i < globs.length; i++) {
-      if (
-        minimatch(relativePath, globs[i], { dot: dot }) &&
-        !doIgnore(relativePath)
-      ) {
-        matched = true;
-        break;
-      }
-    }
-  } else {
-    // Make sure we honor the dot option if even we're not using globs.
-    matched =
-      (dot || minimatch(relativePath, '**/*')) && !doIgnore(relativePath);
+  if (doIgnore(relativePath)) {
+    return false;
   }
-  return matched;
+  return globs.length
+    ? micromatch.some(relativePath, globs, { dot: dot })
+    : dot || micromatch.some(relativePath, '**/*');
 };
 
 /**

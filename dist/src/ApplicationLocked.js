@@ -49,7 +49,7 @@ class ApplicationLocked extends React.PureComponent {
                         this.props.timerComponent ? this.props.timerComponent() : this.renderTimer(minutes, seconds),
                         this.props.iconComponent ? this.props.iconComponent() : this.renderIcon(),
                         React.createElement(react_native_1.Text, { style: styles.text }, this.props.textDescription ? this.props.textDescription :
-                            `To protect your information, access has been locked for ${(this.props.timeToLock / 1000 / 60).toFixed(1)} minutes.`),
+                            `To protect your information, access has been locked for ${Math.ceil(this.props.timeToLock / 1000 / 60)} minutes.`),
                         React.createElement(react_native_1.Text, { style: styles.text }, "Come back later and try again.")))),
                     React.createElement(Animate_1.default, { show: true, start: {
                             opacity: 0
@@ -75,9 +75,10 @@ class ApplicationLocked extends React.PureComponent {
         });
     }
     async timer() {
-        this.setState({ timeDiff: +new Date(this.timeLocked) - +new Date() });
+        const timeDiff = +new Date(this.timeLocked) - +new Date();
+        this.setState({ timeDiff: timeDiff });
         await delay_1.default(1000);
-        if (this.state.timeDiff < 1000) {
+        if (timeDiff < 1000) {
             await react_native_1.AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName]);
             this.props.changeStatus(index_1.PinResultStatus.initial);
         }
@@ -115,7 +116,6 @@ const styles = react_native_1.StyleSheet.create({
     text: {
         fontSize: grid_1.grid.unit,
         color: colors_1.colors.base,
-        fontFamily: grid_1.grid.font,
         lineHeight: grid_1.grid.unit * grid_1.grid.lineHeight,
         textAlign: 'center'
     },
@@ -132,7 +132,7 @@ const styles = react_native_1.StyleSheet.create({
         flex: 3
     },
     textTimer: {
-        fontFamily: 'RobotoMono-Medium',
+        fontFamily: react_native_1.Platform.OS === 'ios' ? 'Courier' : 'monospace',
         fontSize: 20,
         color: colors_1.colors.base
     },
@@ -140,7 +140,7 @@ const styles = react_native_1.StyleSheet.create({
         fontSize: grid_1.grid.navIcon,
         color: colors_1.colors.base,
         opacity: grid_1.grid.mediumOpacity,
-        fontFamily: grid_1.grid.fontLight,
+        fontWeight: '200',
         marginBottom: grid_1.grid.unit * 4
     },
     viewIcon: {
@@ -180,7 +180,7 @@ const styles = react_native_1.StyleSheet.create({
     },
     closeButtonText: {
         color: colors_1.colors.base,
-        fontFamily: grid_1.grid.fontBold,
+        fontWeight: 'bold',
         fontSize: 14
     }
 });

@@ -129,7 +129,7 @@ class PinCode extends React.PureComponent {
                     React.createElement(MaterialIcons_1.default, { name: "backspace", size: 30, color: this.state.colorDelete, style: { opacity: opacity } }),
                     React.createElement(react_native_1.Text, { style: {
                             color: this.state.colorDelete,
-                            fontFamily: grid_1.grid.fontLight,
+                            fontWeight: '200',
                             marginTop: 5,
                             opacity: opacity
                         } }, "delete"))));
@@ -285,7 +285,7 @@ let styles = react_native_1.StyleSheet.create({
     },
     text: {
         fontSize: grid_1.grid.unit * 2,
-        fontFamily: grid_1.grid.fontLight
+        fontWeight: '200'
     },
     buttonCircle: {
         alignItems: 'center',
@@ -297,12 +297,12 @@ let styles = react_native_1.StyleSheet.create({
     },
     textTitle: {
         fontSize: 20,
-        fontFamily: grid_1.grid.fontLight,
+        fontWeight: '200',
         lineHeight: grid_1.grid.unit * 2.5
     },
     textSubtitle: {
         fontSize: grid_1.grid.unit,
-        fontFamily: grid_1.grid.fontLight,
+        fontWeight: '200',
         textAlign: 'center'
     },
     viewCirclePassword: {

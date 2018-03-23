@@ -30,7 +30,7 @@ Basic usage requires choosing between the _**choose**_, _**enter**_ and _**locke
 * _**locked**_ : prints a locked screen for a given time if the user failed to enter his/her PIN code too many times
 
 ```
-import PINCode from 'react-native-pincode'
+import PINCode from '@haskkor/react-native-pincode'
 <PINCode status={'choose'}/>
 ```
 
@@ -58,7 +58,7 @@ import PINCode from 'react-native-pincode'
 |**`storedPin`**|The PIN code previously stored with the `storePin` function|The PIN Code previously stored in the Keychain/Keystore|`false`|`string`|
 |**`storePin`**|Function that will be used to store the PIN (pin is given as a string argument)|Stores the PIN in Keychain/Keystore|`false`|`any`|
 |**`subtitleChoose`**|String used as a subtitle on the PIN code choose page|`to keep your information secure`|`false`|`string`|
-|**`subtitleComponent`**|Component to be used as a subtitle on all the PIN code pages|`Roboto-Light` grey Text component|`false`|`any`|
+|**`subtitleComponent`**|Component to be used as a subtitle on all the PIN code pages|Light grey Text component|`false`|`any`|
 |**`subtitleConfirm`**|String used as a subtitle on the PIN code confirmation page|`None`|`false`|`string`|
 |**`subtitleEnter`**|String used as a subtitle on the PIN code enter page|`None`|`false`|`string`|
 |**`subtitleError`**|String used as a subtitle on the PIN code pages when an error occurs (wrong PIN code used for `enter` or `confirm` modes)|`Please try again`|`false`|`string`|
@@ -70,8 +70,8 @@ import PINCode from 'react-native-pincode'
 |**`timerComponentLockedPage`**|Component to be used on the application locked page to indicates the remaining locked time to the user|A Text component displaying a timer with the remaining locked time on the application locked page|`false`|`any`|
 |**`titleAttemptFailed`**|String used as a title on the PIN enter page when the user enters a wrong PIN code|`Incorrect PIN Code`|`false`|`string`|
 |**`titleChoose`**|String used as a title on the PIN choose page|`1 - Enter a PIN Code`|`false`|`string`|
-|**`titleComponent`**|Component to be used as a title on all the PIN code pages|`Roboto-Light` grey Text component|`false`|`any`|
-|**`titleComponentLockedPage`**|Component to be used as a title on the application locked page|`Roboto-Light` grey Text component|`false`|`any`|
+|**`titleComponent`**|Component to be used as a title on all the PIN code pages|Light grey Text component|`false`|`any`|
+|**`titleComponentLockedPage`**|Component to be used as a title on the application locked page|Light grey Text component|`false`|`any`|
 |**`titleConfirm`**|String used as a title on the PIN confirm page|`2 - Confirm your PIN Code`|`false`|`string`|
 |**`titleConfirmFailed`**|String used as a title on the PIN confirm page when the user enters a wrong PIN code|`Your entries did not match`|`false`|`string`|
 |**`titleEnter`**|String used as a title on the PIN enter page|`Enter your PIN Code`|`false`|`string`|

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, View, Dimensions, TouchableOpacity, Text, AsyncStorage} from 'react-native'
+import {StyleSheet, View, Dimensions, TouchableOpacity, Text, AsyncStorage, Platform} from 'react-native'
 import {colors} from './design/colors'
 import {grid} from './design/grid'
 import Animate from 'react-move/Animate'
@@ -51,9 +51,10 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
   }
 
   async timer() {
-    this.setState({timeDiff: +new Date(this.timeLocked) - +new Date()})
+    const timeDiff = +new Date(this.timeLocked) - +new Date()
+    this.setState({timeDiff: timeDiff})
     await delay(1000)
-    if (this.state.timeDiff < 1000) {
+    if (timeDiff < 1000) {
       await AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName])
       this.props.changeStatus(PinResultStatus.initial)
     }
@@ -120,7 +121,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                 {this.props.iconComponent ? this.props.iconComponent() : this.renderIcon()}
                 <Text style={styles.text}>
                   {this.props.textDescription ? this.props.textDescription :
-                    `To protect your information, access has been locked for ${(this.props.timeToLock / 1000 / 60).toFixed(1)} minutes.`}
+                    `To protect your information, access has been locked for ${Math.ceil(this.props.timeToLock / 1000 / 60)} minutes.`}
                 </Text>
                 <Text style={styles.text}>Come back later and try again.</Text>
               </View>
@@ -181,7 +182,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: grid.unit,
     color: colors.base,
-    fontFamily: grid.font,
     lineHeight: grid.unit * grid.lineHeight,
     textAlign: 'center'
   },
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     flex: 3
   },
   textTimer: {
-    fontFamily: 'RobotoMono-Medium',
+    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
     fontSize: 20,
     color: colors.base
   },
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     fontSize: grid.navIcon,
     color: colors.base,
     opacity: grid.mediumOpacity,
-    fontFamily: grid.fontLight,
+    fontWeight: '200',
     marginBottom: grid.unit * 4
   },
   viewIcon: {
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
   },
   closeButtonText: {
     color: colors.base,
-    fontFamily: grid.fontBold,
+    fontWeight: 'bold',
     fontSize: 14
   }
 })

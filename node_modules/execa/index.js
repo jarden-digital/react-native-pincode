@@ -16,16 +16,11 @@ const TEN_MEGABYTES = 1000 * 1000 * 10;
 function handleArgs(cmd, args, opts) {
 	let parsed;
 
-	opts = Object.assign({
-		extendEnv: true,
-		env: {}
-	}, opts);
-
-	if (opts.extendEnv) {
+	if (opts && opts.env && opts.extendEnv !== false) {
 		opts.env = Object.assign({}, process.env, opts.env);
 	}
 
-	if (opts.__winShell === true) {
+	if (opts && opts.__winShell === true) {
 		delete opts.__winShell;
 		parsed = {
 			command: cmd,
@@ -200,7 +195,7 @@ module.exports = (cmd, args, opts) => {
 		}
 	}
 
-	const handlePromise = () => pFinally(Promise.all([
+	const promise = pFinally(Promise.all([
 		processDone,
 		getStream(spawned, 'stdout', encoding, maxBuffer),
 		getStream(spawned, 'stderr', encoding, maxBuffer)
@@ -272,8 +267,8 @@ module.exports = (cmd, args, opts) => {
 
 	handleInput(spawned, parsed.opts);
 
-	spawned.then = (onfulfilled, onrejected) => handlePromise().then(onfulfilled, onrejected);
-	spawned.catch = onrejected => handlePromise().catch(onrejected);
+	spawned.then = promise.then.bind(promise);
+	spawned.catch = promise.catch.bind(promise);
 
 	return spawned;
 };

@@ -261,7 +261,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
         <Icon name="backspace" size={30} color={this.state.colorDelete} style={{opacity: opacity}}/>
         <Text style={{
           color: this.state.colorDelete,
-          fontFamily: grid.fontLight,
+          fontWeight: '200',
           marginTop: 5,
           opacity: opacity
         }}>delete</Text>
@@ -410,7 +410,7 @@ let styles = StyleSheet.create({
   },
   text: {
     fontSize: grid.unit * 2,
-    fontFamily: grid.fontLight
+    fontWeight: '200'
   },
   buttonCircle: {
     alignItems: 'center',
@@ -422,12 +422,12 @@ let styles = StyleSheet.create({
   },
   textTitle: {
     fontSize: 20,
-    fontFamily: grid.fontLight,
+    fontWeight: '200',
     lineHeight: grid.unit * 2.5
   },
   textSubtitle: {
     fontSize: grid.unit,
-    fontFamily: grid.fontLight,
+    fontWeight: '200',
     textAlign: 'center'
   },
   viewCirclePassword: {

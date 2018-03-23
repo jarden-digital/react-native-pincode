@@ -12,10 +12,6 @@ const grid = {
     navIcon: 20,
     border: 2,
     borderRadius: 2,
-    font: 'Roboto-Regular',
-    fontBold: 'Roboto-Bold',
-    fontLight: 'Roboto-Light',
-    fontAccent: 'Bitter-Bold',
     lowOpacity: 0.4,
     mediumOpacity: 0.6,
     highOpacity: 0.8

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const react_native_1 = require("react-native");
 const PinCode_1 = require("./PinCode");
-const TouchID = require("react-native-touch-id");
+const react_native_touch_id_1 = require("react-native-touch-id");
 const Keychain = require("react-native-keychain");
 const index_1 = require("../index");
 class PinCodeEnter extends React.PureComponent {
@@ -53,7 +53,7 @@ class PinCodeEnter extends React.PureComponent {
         this.keyChainResult = await Keychain.getGenericPassword();
     }
     componentDidMount() {
-        TouchID.isSupported()
+        react_native_touch_id_1.default.isSupported()
             .then(() => {
             setTimeout(() => {
                 this.launchTouchID();
@@ -65,7 +65,7 @@ class PinCodeEnter extends React.PureComponent {
     }
     async launchTouchID() {
         try {
-            await TouchID.authenticate(this.props.touchIDSentence);
+            await react_native_touch_id_1.default.authenticate(this.props.touchIDSentence);
             this.endProcess(this.props.storedPin || this.keyChainResult.password);
         }
         catch (e) {

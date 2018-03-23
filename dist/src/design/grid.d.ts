@@ -10,10 +10,6 @@ declare const grid: {
     navIcon: number;
     border: number;
     borderRadius: number;
-    font: string;
-    fontBold: string;
-    fontLight: string;
-    fontAccent: string;
     lowOpacity: number;
     mediumOpacity: number;
     highOpacity: number;

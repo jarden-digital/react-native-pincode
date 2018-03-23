@@ -359,6 +359,7 @@ Aliases: `Property`
  - `computed`: `boolean` (default: `false`)
  - `abstract`: `boolean` (default: `null`)
  - `accessibility`: `"public" | "private" | "protected"` (default: `null`)
+ - `definite`: `boolean` (default: `null`)
  - `optional`: `boolean` (default: `null`)
  - `readonly`: `boolean` (default: `null`)
  - `static`: `boolean` (default: `null`)
@@ -1498,7 +1499,7 @@ Aliases: `UserWhitespacable`, `Property`, `ObjectMember`
 
 ### objectTypeAnnotation
 ```javascript
-t.objectTypeAnnotation(properties, indexers, callProperties)
+t.objectTypeAnnotation(properties, indexers, callProperties, exact)
 ```
 
 See also `t.isObjectTypeAnnotation(node, opts)` and `t.assertObjectTypeAnnotation(node, opts)`.
@@ -1508,7 +1509,7 @@ Aliases: `Flow`, `FlowType`
  - `properties`: `Array<ObjectTypeProperty | ObjectTypeSpreadProperty>` (required)
  - `indexers`: `Array<ObjectTypeIndexer>` (default: `null`)
  - `callProperties`: `Array<ObjectTypeCallProperty>` (default: `null`)
- - `exact`: `boolean` (default: `null`)
+ - `exact`: `boolean` (default: `false`)
 
 ---
 
@@ -1875,6 +1876,22 @@ Aliases: `TSTypeElement`
 
 ---
 
+### tSConditionalType
+```javascript
+t.tsConditionalType(checkType, extendsType, trueType, falseType)
+```
+
+See also `t.isTSConditionalType(node, opts)` and `t.assertTSConditionalType(node, opts)`.
+
+Aliases: `TSType`
+
+ - `checkType`: `TSType` (required)
+ - `extendsType`: `TSType` (required)
+ - `trueType`: `TSType` (required)
+ - `falseType`: `TSType` (required)
+
+---
+
 ### tSConstructSignatureDeclaration
 ```javascript
 t.tsConstructSignatureDeclaration(typeParameters, parameters, typeAnnotation)
@@ -2071,6 +2088,19 @@ Aliases: `TSType`
 
  - `objectType`: `TSType` (required)
  - `indexType`: `TSType` (required)
+
+---
+
+### tSInferType
+```javascript
+t.tsInferType(typeParameter)
+```
+
+See also `t.isTSInferType(node, opts)` and `t.assertTSInferType(node, opts)`.
+
+Aliases: `TSType`
+
+ - `typeParameter`: `TSType` (required)
 
 ---
 
@@ -2822,6 +2852,7 @@ See also `t.isVariableDeclarator(node, opts)` and `t.assertVariableDeclarator(no
 
  - `id`: `LVal` (required)
  - `init`: `Expression` (default: `null`)
+ - `definite`: `boolean` (default: `null`)
 
 ---
 

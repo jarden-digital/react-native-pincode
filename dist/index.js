@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/// <reference path='./src/types.d.ts'/>
 const React = require("react");
 const PinCodeChoose_1 = require("./src/PinCodeChoose");
 const PinCode_1 = require("./src/PinCode");
@@ -45,7 +46,7 @@ class PINCode extends React.PureComponent {
             (pinStatus === PinResultStatus.locked ||
                 this.state.internalPinStatus === PinResultStatus.locked ||
                 this.state.pinLocked) &&
-                this.props.lockedPage ? this.props.lockedPage() : this.renderLockedPage()));
+                (this.props.lockedPage ? this.props.lockedPage() : this.renderLockedPage())));
     }
 }
 exports.default = PINCode;

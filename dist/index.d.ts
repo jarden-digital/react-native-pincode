@@ -1,3 +1,4 @@
+/// <reference path="../src/types.d.ts" />
 /// <reference types="react" />
 import * as React from 'react';
 export declare type IProps = {

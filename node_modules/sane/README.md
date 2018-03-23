@@ -55,7 +55,7 @@ options:
 * `dot`: enables watching files/directories that start with a dot.
 * `ignored`: a glob, regex, function, or array of any combination.
 
-For the glob pattern documentation, see [minimatch](https://github.com/isaacs/minimatch).
+For the glob pattern documentation, see [micromatch](https://github.com/micromatch/micromatch).
 If you choose to use `watchman` you'll have to [install watchman yourself](https://facebook.github.io/watchman/docs/install.html)).
 For the ignored options, see [anymatch](https://github.com/es128/anymatch).
 

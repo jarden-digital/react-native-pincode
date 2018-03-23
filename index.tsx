@@ -1,3 +1,4 @@
+/// <reference path='./src/types.d.ts'/>
 import * as React from 'react'
 import PinCodeChoose from './src/PinCodeChoose'
 import {PinStatus} from './src/PinCode'
@@ -153,7 +154,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||
           this.state.pinLocked) &&
-        this.props.lockedPage ? this.props.lockedPage() : this.renderLockedPage()}
+        (this.props.lockedPage ? this.props.lockedPage() : this.renderLockedPage())}
       </View>
     )
   }
