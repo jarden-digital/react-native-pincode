@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6a037da3-c3b4-44e1-aaa6-d4b336809149" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.tsx" afterPath="$PROJECT_DIR$/index.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ApplicationLocked.tsx" afterPath="$PROJECT_DIR$/src/ApplicationLocked.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PinCodeEnter.tsx" afterPath="$PROJECT_DIR$/src/PinCodeEnter.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,8 +20,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="126">
-                <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <first_editor relative-caret-position="366">
+                <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -208,12 +205,12 @@
       <workItem from="1521512016388" duration="1383000" />
       <workItem from="1521513831949" duration="9849000" />
       <workItem from="1521592140379" duration="9998000" />
-      <workItem from="1521685618416" duration="13948000" />
+      <workItem from="1521685618416" duration="14320000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44037000" />
+    <option name="totallyTimeSpent" value="44409000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -355,8 +352,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="126">
-            <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <first_editor relative-caret-position="366">
+            <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
