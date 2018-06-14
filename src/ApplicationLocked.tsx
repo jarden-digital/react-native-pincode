@@ -123,7 +123,6 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                   {this.props.textDescription ? this.props.textDescription :
                     `To protect your information, access has been locked for ${Math.ceil(this.props.timeToLock / 1000 / 60)} minutes.`}
                 </Text>
-                <Text style={styles.text}>Come back later and try again.</Text>
               </View>
             )}
           </Animate>
@@ -180,9 +179,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
-    fontSize: grid.unit,
-    color: colors.base,
-    lineHeight: grid.unit * grid.lineHeight,
+    fontSize: 14,
+    fontWeight: 400,
+    color: '#3C3F43',
+    lineHeight: 20,
     textAlign: 'center'
   },
   viewErrorLocked: {
@@ -198,15 +198,18 @@ const styles = StyleSheet.create({
     flex: 3
   },
   textTimer: {
-    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
-    fontSize: 20,
-    color: colors.base
+    fontSize: 14,
+    fontWeight: 400,
+    color: '#3C3F43',
+    lineHeight: 20,
+    textAlign: 'center'
   },
   title: {
-    fontSize: grid.navIcon,
-    color: colors.base,
-    opacity: grid.mediumOpacity,
-    fontWeight: '200',
+    fontSize: 14,
+    fontWeight: 400,
+    color: '#3C3F43',
+    lineHeight: 20,
+    textAlign: 'center',
     marginBottom: grid.unit * 4
   },
   viewIcon: {
@@ -234,7 +237,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     opacity: grid.mediumOpacity,
     justifyContent: 'center',
-    marginTop: grid.unit * 2
+    marginTop: grid.unit,
+    marginBottom: grid.unit,
+    paddingBottom: grid.unit
   },
   button: {
     backgroundColor: colors.turquoise,
