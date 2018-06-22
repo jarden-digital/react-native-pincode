@@ -94,7 +94,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this.setState({changeScreen: false, showError: false, attemptFailed: false})
   }
 
-  onPressButtonNumber = (text: string) => {
+  onPressButtonNumber = async (text: string) => {
     if (this.state.showError && this.state.attemptFailed) this.newAttempt()
     const currentPassword = this.state.password + text
     this.setState({password: currentPassword})
@@ -111,8 +111,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
           }
           break
         case PinStatus.enter:
-          this.setState({password: ''})
           this.props.endProcess(currentPassword)
+          await delay(300)
           break
         default:
           break

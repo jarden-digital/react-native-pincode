@@ -30,7 +30,7 @@ class PinCode extends React.PureComponent {
             await delay_1.default(200);
             this.setState({ changeScreen: false, showError: false, attemptFailed: false });
         };
-        this.onPressButtonNumber = (text) => {
+        this.onPressButtonNumber = async (text) => {
             if (this.state.showError && this.state.attemptFailed)
                 this.newAttempt();
             const currentPassword = this.state.password + text;
@@ -49,8 +49,8 @@ class PinCode extends React.PureComponent {
                         }
                         break;
                     case PinStatus.enter:
-                        this.setState({ password: '' });
                         this.props.endProcess(currentPassword);
+                        await delay_1.default(300);
                         break;
                     default:
                         break;
