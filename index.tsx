@@ -78,6 +78,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
   }
 
   changeInternalStatus = (status: PinResultStatus) => {
+    if (status === PinResultStatus.initial) this.setState({pinLocked: false})
     this.setState({internalPinStatus: status})
   }
 

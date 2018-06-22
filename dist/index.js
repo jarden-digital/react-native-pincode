@@ -20,6 +20,8 @@ class PINCode extends React.PureComponent {
     constructor(props) {
         super(props);
         this.changeInternalStatus = (status) => {
+            if (status === PinResultStatus.initial)
+                this.setState({ pinLocked: false });
             this.setState({ internalPinStatus: status });
         };
         this.renderLockedPage = () => {
