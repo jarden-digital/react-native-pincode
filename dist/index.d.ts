@@ -21,6 +21,9 @@ export declare type IProps = {
     status: 'choose' | 'enter' | 'locked';
     storedPin?: string;
     storePin?: any;
+    styleMainContainer?: any;
+    stylePinCodeChooseContainer?: any;
+    stylePinCodeEnterContainer?: any;
     subtitleChoose?: string;
     subtitleComponent?: any;
     subtitleConfirm?: string;

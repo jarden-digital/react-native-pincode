@@ -22,6 +22,7 @@ export declare type IProps = {
     titleComponent: any;
     subtitleComponent: any;
     pinCodeKeychainName: string;
+    styleContainer: any;
 };
 export declare type IState = {
     status: PinStatus;

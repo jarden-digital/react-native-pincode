@@ -21,6 +21,12 @@ export type IProps = {
   iconComponent?: any
   timePinLockedAsyncStorageName: string
   pinAttemptsAsyncStorageName: string
+  styleButton: any
+  styleTextButton: any
+  styleViewTimer: any
+  styleTextTimer: any
+  styleTitle: any
+  styleViewTextLock: any
 }
 
 export type IState = {
@@ -74,14 +80,16 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
       } else {
         throw('Quit application')
       }
-    }} style={styles.button}>
-      <Text style={styles.closeButtonText}>{this.props.textButton}</Text>
+    }} style={this.props.styleButton ? this.props.styleButton : styles.button}>
+      <Text style={this.props.styleTextButton ? this.props.styleTextButton : styles.closeButtonText}>
+        {this.props.textButton}
+      </Text>
     </TouchableOpacity>)
   }
 
   renderTimer = (minutes: number, seconds: number) => {
-    return (<View style={styles.viewTimer}>
-      <Text style={styles.textTimer}>
+    return (<View style={this.props.styleViewTimer ? this.props.styleViewTimer : styles.viewTimer}>
+      <Text style={this.props.styleTextTimer ? this.props.styleTextTimer : styles.textTimer}>
         {`${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`}
       </Text>
     </View>)
@@ -89,13 +97,15 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
 
   renderTitle = () => {
     return (
-      <Text style={styles.title}>{this.props.textTitle || 'Maximum attempts reached'}</Text>
+      <Text style={this.props.styleTitle ? this.props.styleTitle : styles.title}>
+        {this.props.textTitle || 'Maximum attempts reached'}
+      </Text>
     )
   }
 
   renderIcon = () => {
-    return (<View style={styles.viewIcon}>
-      <Icon name="lock" size={24} color={colors.white}/>
+    return (<View style={styles.viewIcon}> // todo replace
+      <Icon name="lock" size={24} color={colors.white}/> // todo replace
     </View>)
   }
 
@@ -103,8 +113,8 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
     const minutes = Math.floor(this.state.timeDiff / 1000 / 60)
     const seconds = Math.floor(this.state.timeDiff / 1000) % 60
     return (
-      <View style={styles.viewErrorLocked}>
-        <View style={styles.viewTextErrorLock}>
+      <View style={styles.viewErrorLocked}> // todo understand those 2 differences
+        <View style={styles.viewTextErrorLock}> // todo understand those 2 differences
           <Animate
             show={true}
             start={{
@@ -115,15 +125,16 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
               timing: {delay: 1000, duration: 1500, ease: easeLinear}
             }}>
             {(state: any) => (
-              <View style={[styles.viewTextLock, {opacity: state.opacity}]}>
+              <View style={[this.props.styleViewTextLock ? this.props.styleViewTextLock : styles.viewTextLock,
+                {opacity: state.opacity}]}>
                 {this.props.titleComponent ? this.props.titleComponent() : this.renderTitle()}
                 {this.props.timerComponent ? this.props.timerComponent() : this.renderTimer(minutes, seconds)}
                 {this.props.iconComponent ? this.props.iconComponent() : this.renderIcon()}
-                <Text style={styles.text}>
+                <Text style={styles.text}> // todo replace
                   {this.props.textDescription ? this.props.textDescription :
                     `To protect your information, access has been locked for ${Math.ceil(this.props.timeToLock / 1000 / 60)} minutes.`}
                 </Text>
-                <Text style={styles.text}>Come back later and try again.</Text>
+                <Text style={styles.text}>Come back later and try again.</Text> // todo replace
               </View>
             )}
           </Animate>
@@ -138,7 +149,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
             }}>
             {(state: any) => (
               <View style={{opacity: state.opacity, flex: 1}}>
-                <View style={styles.viewCloseButton}>
+                <View style={styles.viewCloseButton}> // todo replace
                   {this.props.buttonComponent ? this.props.buttonComponent() : this.renderButton()}
                 </View>
               </View>
@@ -151,7 +162,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.container}> // todo replace
         {this.renderErrorLocked()}
       </View>
     )
@@ -245,7 +256,7 @@ const styles = StyleSheet.create({
     paddingTop: grid.unit
   },
   closeButtonText: {
-    color: colors.base,
+    color: colors.white,
     fontWeight: 'bold',
     fontSize: 14
   }

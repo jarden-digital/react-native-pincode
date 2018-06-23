@@ -31,7 +31,7 @@ class PinCodeChoose extends React.PureComponent {
         this.endProcessConfirm = this.endProcessConfirm.bind(this);
     }
     render() {
-        return (React.createElement(react_native_1.View, { style: styles.container },
+        return (React.createElement(react_native_1.View, { style: this.props.styleContainer ? this.props.styleContainer : styles.container },
             this.state.status === PinCode_1.PinStatus.choose &&
                 React.createElement(PinCode_1.default, { endProcess: this.endProcessCreation, sentenceTitle: this.props.titleChoose, status: PinCode_1.PinStatus.choose, subtitle: this.props.subtitleChoose, buttonNumberComponent: this.props.buttonNumberComponent || null, passwordLength: this.props.passwordLength || 4, passwordComponent: this.props.passwordComponent || null, titleAttemptFailed: this.props.titleAttemptFailed || 'Incorrect PIN Code', titleConfirmFailed: this.props.titleConfirmFailed || 'Your entries did not match', subtitleError: this.props.subtitleError || 'Please try again', colorPassword: this.props.colorPassword || undefined, numbersButtonOverlayColor: this.props.numbersButtonOverlayColor || undefined, buttonDeleteComponent: this.props.buttonDeleteComponent || null, titleComponent: this.props.titleComponent || null, subtitleComponent: this.props.subtitleComponent || null }),
             this.state.status === PinCode_1.PinStatus.confirm &&

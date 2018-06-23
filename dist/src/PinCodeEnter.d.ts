@@ -29,6 +29,7 @@ export declare type IProps = {
     subtitleComponent: any;
     timePinLockedAsyncStorageName: string;
     pinAttemptsAsyncStorageName: string;
+    styleContainer: any;
 };
 export declare type IState = {
     pinCodeStatus: PinResultStatus;

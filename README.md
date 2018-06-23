@@ -94,6 +94,20 @@ import PINCode from '@haskkor/react-native-pincode'
 |**`titleEnter`**|String used as a title on the PIN enter page|`Enter your PIN Code`|`false`|`string`|
 |**`touchIDSentence`**|String to be used in the TouchID/FaceID popup|`To unlock your application`|`false`|`string`|
 
+## Options
+
+| Key | Description | Default |
+|---|---|---|---|---|
+|**`styleMainContainer`**|Main container of index file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|
+|**`stylePinCodeChooseContainer`**|Main container of PinCodeChoose file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|
+|**`stylePinCodeEnterContainer`**|Main container of PinCodeEnter file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|
+|**`styleLockScreenButton`**|Button of the lock screen|`backgroundColor: colors.turquoise, borderRadius: grid.border, paddingLeft: grid.unit * 2, paddingRight: grid.unit * 2, paddingBottom: grid.unit, paddingTop: grid.unit`|
+|**`styleLockScreenTextButton`**|Text of the button of the lock screen|`color: colors.white, fontWeight: 'bold', fontSize: 14`|
+|**`styleLockScreenTextTimer`**|Text of the timer of the lock screen|`fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace', fontSize: 20, color: colors.base`|
+|**`styleLockScreenTitle`**|Title of the lock screen|`fontSize: grid.navIcon, color: colors.base, opacity: grid.mediumOpacity, fontWeight: '200', marginBottom: grid.unit * 4`|
+|**`styleLockScreenViewTextLock`**|View containing all the text of the lock screen|`justifyContent: 'center', alignItems: 'center', paddingLeft: grid.unit * 3, paddingRight: grid.unit * 3, flex: 3`|
+|**`styleLockScreenViewTimer`**|View of the timer of the lock screen|`paddingLeft: 30, paddingRight: 30, paddingBottom: 10, paddingTop: 10, borderRadius: 4, borderWidth: 2, borderColor: 'rgb(230, 231, 233)', marginBottom: grid.unit * 4`|
+
 ## Contributing
 
 Pull requests are welcome.

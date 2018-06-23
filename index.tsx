@@ -26,6 +26,11 @@ export type IProps = {
   status: 'choose' | 'enter' | 'locked'
   storedPin?: string
   storePin?: any
+
+  styleMainContainer?: any
+  stylePinCodeChooseContainer?: any
+  stylePinCodeEnterContainer?: any
+
   subtitleChoose?: string
   subtitleComponent?: any
   subtitleConfirm?: string
@@ -103,9 +108,9 @@ class PINCode extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    const {status, pinStatus} = this.props
+    const {status, pinStatus, styleMainContainer} = this.props
     return (
-      <View style={styles.container}>
+      <View style={styleMainContainer ? styleMainContainer : styles.container}>
         {status === PinStatus.choose &&
         <PinCodeChoose
           storePin={this.props.storePin || null}
@@ -125,6 +130,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleComponent={this.props.titleComponent}
           subtitleComponent={this.props.subtitleComponent}
           pinCodeKeychainName={this.props.pinCodeKeychainName || 'reactNativePinCode'}
+          styleContainer={this.props.stylePinCodeChooseContainer}
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter
@@ -151,6 +157,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           subtitleComponent={this.props.subtitleComponent}
           timePinLockedAsyncStorageName={this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault}
           pinAttemptsAsyncStorageName={this.props.pinAttemptsAsyncStorageName || pinAttemptsAsyncStorageNameDefault}
+          styleContainer={this.props.stylePinCodeEnterContainer}
         />}
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||

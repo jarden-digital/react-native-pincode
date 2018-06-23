@@ -33,6 +33,7 @@ export type IProps = {
   subtitleComponent: any
   timePinLockedAsyncStorageName: string
   pinAttemptsAsyncStorageName: string
+  styleContainer: any
 }
 
 export type IState = {
@@ -113,7 +114,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   render() {
     const pin = this.props.storedPin || (this.keyChainResult && this.keyChainResult.password)
     return (
-      <View style={styles.container}>
+      <View style={this.props.styleContainer ? this.props.styleContainer : styles.container}>
         <PinCode
           endProcess={this.endProcess}
           sentenceTitle={this.props.title}

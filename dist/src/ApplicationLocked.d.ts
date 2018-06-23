@@ -14,6 +14,12 @@ export declare type IProps = {
     iconComponent?: any;
     timePinLockedAsyncStorageName: string;
     pinAttemptsAsyncStorageName: string;
+    styleButton: any;
+    styleTextButton: any;
+    styleViewTimer: any;
+    styleTextTimer: any;
+    styleTitle: any;
+    styleViewTextLock: any;
 };
 export declare type IState = {
     timeDiff: number;

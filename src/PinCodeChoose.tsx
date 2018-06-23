@@ -25,6 +25,7 @@ export type IProps = {
   titleComponent: any
   subtitleComponent: any
   pinCodeKeychainName: string
+  styleContainer: any
 }
 
 export type IState = {
@@ -63,7 +64,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={this.props.styleContainer ? this.props.styleContainer : styles.container}>
         {this.state.status === PinStatus.choose &&
         <PinCode
           endProcess={this.endProcessCreation}
