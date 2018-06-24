@@ -20,6 +20,13 @@ export declare type IProps = {
     styleTextTimer: any;
     styleTitle: any;
     styleViewTextLock: any;
+    styleViewIcon: any;
+    colorIcon: string;
+    nameIcon: string;
+    sizeIcon: number;
+    styleMainContainer: any;
+    styleText: any;
+    styleViewButton: any;
 };
 export declare type IState = {
     timeDiff: number;

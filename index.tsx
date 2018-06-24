@@ -30,6 +30,19 @@ export type IProps = {
   styleMainContainer?: any
   stylePinCodeChooseContainer?: any
   stylePinCodeEnterContainer?: any
+  styleLockScreenButton?: any
+  styleLockScreenColorIcon?: any
+  styleLockScreenMainContainer?: any
+  styleLockScreenNameIcon?: any
+  styleLockScreenSizeIcon?: any
+  styleLockScreenText?: any
+  styleLockScreenTextButton?: any
+  styleLockScreenTextTimer?: any
+  styleLockScreenTitle?: any
+  styleLockScreenViewCloseButton?: any
+  styleLockScreenViewIcon?: any
+  styleLockScreenViewTextLock?: any
+  styleLockScreenViewTimer?: any
 
   subtitleChoose?: string
   subtitleComponent?: any
@@ -103,7 +116,20 @@ class PINCode extends React.PureComponent<IProps, IState> {
         pinAttemptsAsyncStorageName={this.props.pinAttemptsAsyncStorageName || pinAttemptsAsyncStorageNameDefault}
         onClickButton={this.props.onClickButtonLockedPage || (() => {
           throw ('Quit application')
-        })}/>
+        })}
+        styleButton={this.props.styleLockScreenButton}
+        styleTextButton={this.props.styleLockScreenTextButton}
+        styleViewTimer={this.props.styleLockScreenViewTimer}
+        styleTextTimer={this.props.styleLockScreenTextTimer}
+        styleTitle={this.props.styleLockScreenTitle}
+        styleViewTextLock={this.props.styleLockScreenViewTextLock}
+        styleViewIcon={this.props.styleLockScreenViewIcon}
+        colorIcon={this.props.styleLockScreenColorIcon}
+        nameIcon={this.props.styleLockScreenNameIcon}
+        sizeIcon={this.props.styleLockScreenSizeIcon}
+        styleMainContainer={this.props.styleLockScreenMainContainer}
+        styleText={this.props.styleLockScreenText}
+        styleViewButton={this.props.styleLockScreenViewCloseButton}/>
     )
   }
 
