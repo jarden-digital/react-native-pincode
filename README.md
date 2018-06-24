@@ -114,6 +114,15 @@ import PINCode from '@haskkor/react-native-pincode'
 |**`styleLockScreenViewIcon`**|View containing the icon of the lock screen|`width: grid.unit * 4, justifyContent: 'center', alignItems: 'center', height: grid.unit * 4, borderRadius: grid.unit * 2, opacity: grid.mediumOpacity, backgroundColor: colors.alert, overflow: 'hidden', marginBottom: grid.unit * 4`|
 |**`styleLockScreenViewTextLock`**|View containing all the text of the lock screen|`justifyContent: 'center', alignItems: 'center', paddingLeft: grid.unit * 3, paddingRight: grid.unit * 3, flex: 3`|
 |**`styleLockScreenViewTimer`**|View of the timer of the lock screen|`paddingLeft: 30, paddingRight: 30, paddingBottom: 10, paddingTop: 10, borderRadius: 4, borderWidth: 2, borderColor: 'rgb(230, 231, 233)', marginBottom: grid.unit * 4`|
+|**`stylePinCodeButtonCircle`**|Circle button TouchableHighlight of the PinCode file|`alignItems: 'center', justifyContent: 'center', width: grid.unit * 4, height: grid.unit * 4, backgroundColor: 'rgb(242, 245, 251)', borderRadius: grid.unit * 2`|
+|**`styleLockScreenColumnButtons`**|Column of buttons of the PinCode file|`alignItems: 'center', width: 'auto'`|
+|**`styleLockScreenEmptyColumn`**|Empty column of the last line of buttons of the PinCode file|`width: grid.unit * 4, height: grid.unit * 4`|
+|**`stylePinCodeHiddenPasswordCircle`**|Circle representing the hidden password of the PinCode file|`flexDirection: 'row', height: 'auto', justifyContent: 'center', alignItems: 'center'`|
+|**`styleLockScreenRowButtons`**|Row of buttons of the PinCode file|`justifyContent: 'center', alignItems: 'center', width: '100%', height: grid.unit * 5.5`|
+|**`stylePinCodeTextButtonCircle`**|Text of circle button TouchableHighlight of the PinCode file|`fontSize: grid.unit * 2, fontWeight: '200'`|
+|**`styleLockScreenTextSubtitle`**|Title of the PinCode file|`fontSize: 20, fontWeight: '200', lineHeight: grid.unit * 2.5`|
+|**`styleLockScreenTextTitle`**|Subtitle of the PinCode file|`fontSize: grid.unit, fontWeight: '200', textAlign: 'center'`|
+|**`styleLockScreenViewTitle`**|View of the title of the PinCode file|`flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: grid.unit * 4`|
 
 ## Contributing
 

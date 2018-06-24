@@ -22,6 +22,15 @@ export declare type IProps = {
     buttonDeleteComponent?: any;
     titleComponent?: any;
     subtitleComponent?: any;
+    styleButtonCircle: any;
+    styleTextButton: any;
+    styleCircleHiddenPassword: any;
+    styleRowButtons: any;
+    styleColumnButtons: any;
+    styleEmptyColumn: any;
+    styleViewTitle: any;
+    styleTextTitle: any;
+    styleTextSubtitle: any;
 };
 export declare type IState = {
     password: string;

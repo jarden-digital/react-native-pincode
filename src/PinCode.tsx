@@ -32,6 +32,15 @@ export type IProps = {
   buttonDeleteComponent?: any
   titleComponent?: any
   subtitleComponent?: any
+  styleButtonCircle: any
+  styleTextButton: any
+  styleCircleHiddenPassword: any
+  styleRowButtons: any
+  styleColumnButtons: any
+  styleEmptyColumn: any
+  styleViewTitle: any
+  styleTextTitle: any
+  styleTextSubtitle: any
 }
 
 export type IState = {
@@ -134,7 +143,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
         }}>
         {({opacity}: any) => (
           <TouchableHighlight
-            style={styles.buttonCircle}
+            style={this.props.styleButtonCircle ? this.props.styleButtonCircle : styles.buttonCircle}
             underlayColor={this.props.numbersButtonOverlayColor ? this.props.numbersButtonOverlayColor : colors.turquoise}
             disabled={disabled}
             onShowUnderlay={() => this.setState({textButtonSelected: text})}
@@ -142,7 +151,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
             onPress={() => {
               this.onPressButtonNumber(text)
             }}>
-            <Text style={[styles.text, {
+            <Text style={[this.props.styleTextButton ? this.props.styleTextButton : styles.text, {
               opacity: opacity,
               color: this.state.textButtonSelected === text ? colors.white : colors.grey
             }]}>{text}</Text>
@@ -196,7 +205,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
   renderCirclePassword = () => {
     const {password, moveData, showError, changeScreen, attemptFailed} = this.state
     return (
-      <View style={styles.viewCirclePassword}>
+      <View style={this.props.styleCircleHiddenPassword ? this.props.styleCircleHiddenPassword : styles.viewCirclePassword}>
         {_.range(this.props.passwordLength).map((val: number) => {
           const lengthSup = ((password.length >= val + 1 && !changeScreen) || showError) && !attemptFailed
           const marginSup = ((password.length > 0 && !changeScreen) || showError) && !attemptFailed
@@ -253,15 +262,15 @@ class PinCode extends React.PureComponent<IProps, IState> {
   }
 
   renderButtonDelete = (opacity: number) => {
-    return (<TouchableHighlight style={styles.colIcon} disabled={this.state.password.length === 0}
+    return (<TouchableHighlight style={styles.colIcon} disabled={this.state.password.length === 0} // todo replace
                                 underlayColor="transparent"
-                                onHideUnderlay={() => this.setState({colorDelete: 'rgb(211, 213, 218)'})}
-                                onShowUnderlay={() => this.setState({colorDelete: colors.turquoise})}
+                                onHideUnderlay={() => this.setState({colorDelete: 'rgb(211, 213, 218)'})} // todo replace
+                                onShowUnderlay={() => this.setState({colorDelete: colors.turquoise})} // todo replace
                                 onPress={() => this.state.password.length > 0 && this.setState({password: this.state.password.slice(0, -1)})}>
       <View>
-        <Icon name="backspace" size={30} color={this.state.colorDelete} style={{opacity: opacity}}/>
+        <Icon name="backspace" size={30} color={this.state.colorDelete} style={{opacity: opacity}}/> // todo replace
         <Text style={{
-          color: this.state.colorDelete,
+          color: this.state.colorDelete, // todo replace
           fontWeight: '200',
           marginTop: 5,
           opacity: opacity
@@ -272,14 +281,16 @@ class PinCode extends React.PureComponent<IProps, IState> {
 
   renderTitle = (colorTitle: string, opacityTitle: number, attemptFailed: boolean, showError: boolean) => {
     return (
-      <Text style={[styles.textTitle, {color: colorTitle, opacity: opacityTitle}]}>
+      <Text style={[this.props.styleTextTitle ? this.props.styleTextTitle : styles.textTitle,
+        {color: colorTitle, opacity: opacityTitle}]}>
         {(attemptFailed && this.props.titleAttemptFailed) || (showError && this.props.titleConfirmFailed) || this.props.sentenceTitle}
       </Text>)
   }
 
   renderSubtitle = (colorTitle: string, opacityTitle: number, attemptFailed: boolean, showError: boolean) => {
     return (
-      <Text style={[styles.textSubtitle, {color: colorTitle, opacity: opacityTitle}]}>
+      <Text style={[this.props.styleTextSubtitle ? this.props.styleTextSubtitle : styles.textSubtitle,
+        {color: colorTitle, opacity: opacityTitle}]}>
         {attemptFailed || showError ? this.props.subtitleError : this.props.subtitle}
       </Text>)
   }
@@ -287,7 +298,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
   render() {
     const {password, showError, attemptFailed, changeScreen} = this.state
     return (
-      <View style={styles.container}>
+      <View style={styles.container}> // todo replace
         <Animate
           show={true}
           start={{
@@ -307,8 +318,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
             opacityTitle: [showError || attemptFailed ? grid.highOpacity : 1],
             timing: {duration: 200, ease: easeLinear}
           }}>
-          {({opacity, colorTitle, opacityTitle, opacityError}: any) => (
-            <View style={[styles.viewTitle, {opacity: opacity}]}>
+          {({opacity, colorTitle, opacityTitle}: any) => (
+            <View style={[this.props.styleViewTitle ? this.props.styleViewTitle : styles.viewTitle, {opacity: opacity}]}>
               {this.props.titleComponent ? this.props.titleComponent() :
                 this.renderTitle(colorTitle, opacityTitle, attemptFailed, showError)}
               {this.props.subtitleComponent ? this.props.subtitleComponent() :
@@ -318,33 +329,33 @@ class PinCode extends React.PureComponent<IProps, IState> {
         </Animate>
         <View>{this.props.passwordComponent ? this.props.passwordComponent() : this.renderCirclePassword()}</View>
         <Grid style={{maxHeight: grid.unit * 22, maxWidth: grid.unit * 16.25}}>
-          <Row style={styles.row}>
+          <Row style={this.props.styleRowButtons ? this.props.styleRowButtons : styles.row}>
             {_.range(1, 4).map((i: number) => {
-              return (<Col key={i} style={styles.colButtonCircle}>
+              return (<Col key={i} style={this.props.styleColumnButtons ? this.props.styleColumnButtons : styles.colButtonCircle}>
                 {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(i, this.onPressButtonNumber) :
                   this.renderButtonNumber(i.toString())}
               </Col>)
             })}
           </Row>
-          <Row style={styles.row}>
+          <Row style={this.props.styleRowButtons ? this.props.styleRowButtons : styles.row}>
             {_.range(4, 7).map((i: number) => {
-              return (<Col key={i} style={styles.colButtonCircle}>
+              return (<Col key={i} style={this.props.styleColumnButtons ? this.props.styleColumnButtons : styles.colButtonCircle}>
                 {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(i, this.onPressButtonNumber) :
                   this.renderButtonNumber(i.toString())}
               </Col>)
             })}
           </Row>
-          <Row style={styles.row}>
+          <Row style={this.props.styleRowButtons ? this.props.styleRowButtons : styles.row}>
             {_.range(7, 10).map((i: number) => {
-              return (<Col key={i} style={styles.colButtonCircle}>
+              return (<Col key={i} style={this.props.styleColumnButtons ? this.props.styleColumnButtons : styles.colButtonCircle}>
                 {this.props.buttonNumberComponent ? this.props.buttonNumberComponent(i, this.onPressButtonNumber) :
                   this.renderButtonNumber(i.toString())}
               </Col>)
             })}
           </Row>
-          <Row style={styles.row}>
-            <Col style={styles.colEmpty}/>
-            <Col style={styles.colButtonCircle}>
+          <Row style={this.props.styleRowButtons ? this.props.styleRowButtons : styles.row}>
+            <Col style={this.props.styleEmptyColumn ? this.props.styleEmptyColumn : styles.colEmpty}/>
+            <Col style={this.props.styleColumnButtons ? this.props.styleColumnButtons : styles.colButtonCircle}>
               {this.props.buttonNumberComponent ? this.props.buttonNumberComponent('0', this.onPressButtonNumber) :
                 this.renderButtonNumber('0')}
             </Col>
