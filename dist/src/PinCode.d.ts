@@ -31,6 +31,13 @@ export declare type IProps = {
     styleViewTitle: any;
     styleTextTitle: any;
     styleTextSubtitle: any;
+    styleContainer: any;
+    styleColumnDeleteButton: any;
+    styleDeleteButtonColorShowUnderlay: string;
+    styleDeleteButtonColorHideUnderlay: string;
+    styleDeleteButtonIcon: string;
+    styleDeleteButtonSize: number;
+    styleDeleteButtonText: any;
 };
 export declare type IState = {
     password: string;

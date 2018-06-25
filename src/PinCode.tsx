@@ -41,6 +41,13 @@ export type IProps = {
   styleViewTitle: any
   styleTextTitle: any
   styleTextSubtitle: any
+  styleContainer: any
+  styleColumnDeleteButton: any
+  styleDeleteButtonColorShowUnderlay: string
+  styleDeleteButtonColorHideUnderlay: string
+  styleDeleteButtonIcon: string
+  styleDeleteButtonSize: number
+  styleDeleteButtonText: any
 }
 
 export type IState = {
@@ -262,19 +269,23 @@ class PinCode extends React.PureComponent<IProps, IState> {
   }
 
   renderButtonDelete = (opacity: number) => {
-    return (<TouchableHighlight style={styles.colIcon} disabled={this.state.password.length === 0} // todo replace
-                                underlayColor="transparent"
-                                onHideUnderlay={() => this.setState({colorDelete: 'rgb(211, 213, 218)'})} // todo replace
-                                onShowUnderlay={() => this.setState({colorDelete: colors.turquoise})} // todo replace
+    return (<TouchableHighlight style={this.props.styleColumnDeleteButton ? this.props.styleColumnDeleteButton :  styles.colIcon}
+                                disabled={this.state.password.length === 0} underlayColor="transparent"
+                                onHideUnderlay={() => this.setState({
+                                  colorDelete: this.props.styleDeleteButtonColorHideUnderlay ?
+                                    this.props.styleDeleteButtonColorHideUnderlay : 'rgb(211, 213, 218)'})
+                                }
+                                onShowUnderlay={() => this.setState({
+                                  colorDelete: this.props.styleDeleteButtonColorShowUnderlay ?
+                                    this.props.styleDeleteButtonColorShowUnderlay : colors.turquoise})
+                                }
                                 onPress={() => this.state.password.length > 0 && this.setState({password: this.state.password.slice(0, -1)})}>
       <View>
-        <Icon name="backspace" size={30} color={this.state.colorDelete} style={{opacity: opacity}}/> // todo replace
-        <Text style={{
-          color: this.state.colorDelete, // todo replace
-          fontWeight: '200',
-          marginTop: 5,
-          opacity: opacity
-        }}>delete</Text>
+        <Icon name={this.props.styleDeleteButtonIcon ? this.props.styleDeleteButtonIcon : 'backspace'}
+              size={this.props.styleDeleteButtonSize ? this.props.styleDeleteButtonSize : 30}
+              color={this.state.colorDelete} style={{opacity: opacity}}/>
+        <Text style={[this.props.styleDeleteButtonText ? this.props.styleDeleteButtonText : styles.textDeleteButton,
+          {color: this.state.colorDelete, opacity: opacity}]}>delete</Text>
       </View>
     </TouchableHighlight>)
   }
@@ -298,7 +309,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
   render() {
     const {password, showError, attemptFailed, changeScreen} = this.state
     return (
-      <View style={styles.container}> // todo replace
+      <View style={this.props.styleContainer ? this.props.styleContainer : styles.container}>
         <Animate
           show={true}
           start={{
@@ -447,5 +458,9 @@ let styles = StyleSheet.create({
     height: 'auto',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  textDeleteButton: {
+    fontWeight: '200',
+    marginTop: 5
   }
 })

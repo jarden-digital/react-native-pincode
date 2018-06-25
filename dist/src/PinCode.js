@@ -125,17 +125,17 @@ class PinCode extends React.PureComponent {
             })));
         };
         this.renderButtonDelete = (opacity) => {
-            return (React.createElement(react_native_1.TouchableHighlight, { style: styles.colIcon, disabled: this.state.password.length === 0, underlayColor: "transparent", onHideUnderlay: () => this.setState({ colorDelete: 'rgb(211, 213, 218)' }), onShowUnderlay: () => this.setState({ colorDelete: colors_1.colors.turquoise }), onPress: () => this.state.password.length > 0 && this.setState({ password: this.state.password.slice(0, -1) }) },
+            return (React.createElement(react_native_1.TouchableHighlight, { style: this.props.styleColumnDeleteButton ? this.props.styleColumnDeleteButton : styles.colIcon, disabled: this.state.password.length === 0, underlayColor: "transparent", onHideUnderlay: () => this.setState({
+                    colorDelete: this.props.styleDeleteButtonColorHideUnderlay ?
+                        this.props.styleDeleteButtonColorHideUnderlay : 'rgb(211, 213, 218)'
+                }), onShowUnderlay: () => this.setState({
+                    colorDelete: this.props.styleDeleteButtonColorShowUnderlay ?
+                        this.props.styleDeleteButtonColorShowUnderlay : colors_1.colors.turquoise
+                }), onPress: () => this.state.password.length > 0 && this.setState({ password: this.state.password.slice(0, -1) }) },
                 React.createElement(react_native_1.View, null,
-                    React.createElement(MaterialIcons_1.default, { name: "backspace", size: 30, color: this.state.colorDelete, style: { opacity: opacity } }) // todo replace
-                ,
-                    " // todo replace",
-                    React.createElement(react_native_1.Text, { style: {
-                            color: this.state.colorDelete,
-                            fontWeight: '200',
-                            marginTop: 5,
-                            opacity: opacity
-                        } }, "delete"))));
+                    React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon ? this.props.styleDeleteButtonIcon : 'backspace', size: this.props.styleDeleteButtonSize ? this.props.styleDeleteButtonSize : 30, color: this.state.colorDelete, style: { opacity: opacity } }),
+                    React.createElement(react_native_1.Text, { style: [this.props.styleDeleteButtonText ? this.props.styleDeleteButtonText : styles.textDeleteButton,
+                            { color: this.state.colorDelete, opacity: opacity }] }, "delete"))));
         };
         this.renderTitle = (colorTitle, opacityTitle, attemptFailed, showError) => {
             return (React.createElement(react_native_1.Text, { style: [this.props.styleTextTitle ? this.props.styleTextTitle : styles.textTitle,
@@ -203,8 +203,7 @@ class PinCode extends React.PureComponent {
     }
     render() {
         const { password, showError, attemptFailed, changeScreen } = this.state;
-        return (React.createElement(react_native_1.View, { style: styles.container },
-            " // todo replace",
+        return (React.createElement(react_native_1.View, { style: this.props.styleContainer ? this.props.styleContainer : styles.container },
             React.createElement(Animate_1.default, { show: true, start: {
                     opacity: 0,
                     colorTitle: colors_1.colors.grey,
@@ -316,5 +315,9 @@ let styles = react_native_1.StyleSheet.create({
         height: 'auto',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    textDeleteButton: {
+        fontWeight: '200',
+        marginTop: 5
     }
 });

@@ -30,6 +30,22 @@ export declare type IProps = {
     timePinLockedAsyncStorageName: string;
     pinAttemptsAsyncStorageName: string;
     styleContainer: any;
+    styleButtonCircle: any;
+    styleTextButton: any;
+    styleCircleHiddenPassword: any;
+    styleRowButtons: any;
+    styleColumnButtons: any;
+    styleEmptyColumn: any;
+    styleViewTitle: any;
+    styleTextTitle: any;
+    styleTextSubtitle: any;
+    styleContainerPinCode: any;
+    styleColumnDeleteButton: any;
+    styleDeleteButtonColorShowUnderlay: string;
+    styleDeleteButtonColorHideUnderlay: string;
+    styleDeleteButtonIcon: string;
+    styleDeleteButtonSize: number;
+    styleDeleteButtonText: any;
 };
 export declare type IState = {
     pinCodeStatus: PinResultStatus;
