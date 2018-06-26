@@ -32,22 +32,22 @@ export type IProps = {
   buttonDeleteComponent?: any
   titleComponent?: any
   subtitleComponent?: any
-  styleButtonCircle: any
-  styleTextButton: any
-  styleCircleHiddenPassword: any
-  styleRowButtons: any
-  styleColumnButtons: any
-  styleEmptyColumn: any
-  styleViewTitle: any
-  styleTextTitle: any
-  styleTextSubtitle: any
-  styleContainer: any
-  styleColumnDeleteButton: any
-  styleDeleteButtonColorShowUnderlay: string
-  styleDeleteButtonColorHideUnderlay: string
-  styleDeleteButtonIcon: string
-  styleDeleteButtonSize: number
-  styleDeleteButtonText: any
+  styleButtonCircle?: any
+  styleTextButton?: any
+  styleCircleHiddenPassword?: any
+  styleRowButtons?: any
+  styleColumnButtons?: any
+  styleEmptyColumn?: any
+  styleViewTitle?: any
+  styleTextTitle?: any
+  styleTextSubtitle?: any
+  styleContainer?: any
+  styleColumnDeleteButton?: any
+  styleDeleteButtonColorShowUnderlay?: string
+  styleDeleteButtonColorHideUnderlay?: string
+  styleDeleteButtonIcon?: string
+  styleDeleteButtonSize?: number
+  styleDeleteButtonText?: any
 }
 
 export type IState = {

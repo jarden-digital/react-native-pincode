@@ -25,7 +25,23 @@ export type IProps = {
   titleComponent: any
   subtitleComponent: any
   pinCodeKeychainName: string
-  styleContainer: any
+  styleContainer?: any
+  styleButtonCircle?: any
+  styleTextButton?: any
+  styleCircleHiddenPassword?: any
+  styleRowButtons?: any
+  styleColumnButtons?: any
+  styleEmptyColumn?: any
+  styleViewTitle?: any
+  styleTextTitle?: any
+  styleTextSubtitle?: any
+  styleContainerPinCode?: any
+  styleColumnDeleteButton?: any
+  styleDeleteButtonColorShowUnderlay?: string
+  styleDeleteButtonColorHideUnderlay?: string
+  styleDeleteButtonIcon?: string
+  styleDeleteButtonSize?: number
+  styleDeleteButtonText?: any
 }
 
 export type IState = {
@@ -81,7 +97,23 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
           titleComponent={this.props.titleComponent || null}
-          subtitleComponent={this.props.subtitleComponent || null}/>}
+          subtitleComponent={this.props.subtitleComponent || null}
+          styleButtonCircle={this.props.styleButtonCircle}
+          styleTextButton={this.props.styleTextButton}
+          styleCircleHiddenPassword={this.props.styleCircleHiddenPassword}
+          styleRowButtons={this.props.styleRowButtons}
+          styleColumnButtons={this.props.styleColumnButtons}
+          styleEmptyColumn={this.props.styleEmptyColumn}
+          styleViewTitle={this.props.styleViewTitle}
+          styleTextTitle={this.props.styleTextTitle}
+          styleTextSubtitle={this.props.styleTextSubtitle}
+          styleContainer={this.props.styleContainerPinCode}
+          styleColumnDeleteButton={this.props.styleColumnDeleteButton}
+          styleDeleteButtonColorShowUnderlay={this.props.styleDeleteButtonColorShowUnderlay}
+          styleDeleteButtonColorHideUnderlay={this.props.styleDeleteButtonColorHideUnderlay}
+          styleDeleteButtonIcon={this.props.styleDeleteButtonIcon}
+          styleDeleteButtonSize={this.props.styleDeleteButtonSize}
+          styleDeleteButtonText={this.props.styleDeleteButtonText}/>}
         {this.state.status === PinStatus.confirm &&
         <PinCode
           endProcess={this.endProcessConfirm}
@@ -100,7 +132,23 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
           titleComponent={this.props.titleComponent || null}
-          subtitleComponent={this.props.subtitleComponent || null}/>}
+          subtitleComponent={this.props.subtitleComponent || null}
+          styleButtonCircle={this.props.styleButtonCircle}
+          styleTextButton={this.props.styleTextButton}
+          styleCircleHiddenPassword={this.props.styleCircleHiddenPassword}
+          styleRowButtons={this.props.styleRowButtons}
+          styleColumnButtons={this.props.styleColumnButtons}
+          styleEmptyColumn={this.props.styleEmptyColumn}
+          styleViewTitle={this.props.styleViewTitle}
+          styleTextTitle={this.props.styleTextTitle}
+          styleTextSubtitle={this.props.styleTextSubtitle}
+          styleContainer={this.props.styleContainerPinCode}
+          styleColumnDeleteButton={this.props.styleColumnDeleteButton}
+          styleDeleteButtonColorShowUnderlay={this.props.styleDeleteButtonColorShowUnderlay}
+          styleDeleteButtonColorHideUnderlay={this.props.styleDeleteButtonColorHideUnderlay}
+          styleDeleteButtonIcon={this.props.styleDeleteButtonIcon}
+          styleDeleteButtonSize={this.props.styleDeleteButtonSize}
+          styleDeleteButtonText={this.props.styleDeleteButtonText}/>}
       </View>
     )
   }

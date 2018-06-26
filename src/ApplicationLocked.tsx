@@ -21,19 +21,19 @@ export type IProps = {
   iconComponent?: any
   timePinLockedAsyncStorageName: string
   pinAttemptsAsyncStorageName: string
-  styleButton: any
-  styleTextButton: any
-  styleViewTimer: any
-  styleTextTimer: any
-  styleTitle: any
-  styleViewTextLock: any
-  styleViewIcon: any
-  colorIcon: string
-  nameIcon: string
-  sizeIcon: number
-  styleMainContainer: any
-  styleText: any
-  styleViewButton: any
+  styleButton?: any
+  styleTextButton?: any
+  styleViewTimer?: any
+  styleTextTimer?: any
+  styleTitle?: any
+  styleViewTextLock?: any
+  styleViewIcon?: any
+  colorIcon?: string
+  nameIcon?: string
+  sizeIcon?: number
+  styleMainContainer?: any
+  styleText?: any
+  styleViewButton?: any
 }
 
 export type IState = {
