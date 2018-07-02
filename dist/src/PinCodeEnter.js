@@ -53,15 +53,17 @@ class PinCodeEnter extends React.PureComponent {
         this.keyChainResult = await Keychain.getGenericPassword();
     }
     componentDidMount() {
-        react_native_touch_id_1.default.isSupported()
-            .then(() => {
-            setTimeout(() => {
-                this.launchTouchID();
+        if (!this.props.touchIDDisabled) {
+            react_native_touch_id_1.default.isSupported()
+                .then(() => {
+                setTimeout(() => {
+                    this.launchTouchID();
+                });
+            })
+                .catch((error) => {
+                console.warn('TouchID error', error);
             });
-        })
-            .catch((error) => {
-            console.warn('TouchID error', error);
-        });
+        }
     }
     async launchTouchID() {
         try {

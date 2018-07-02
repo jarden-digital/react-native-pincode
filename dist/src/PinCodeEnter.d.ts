@@ -31,6 +31,7 @@ export declare type IProps = {
     pinAttemptsAsyncStorageName: string;
     styleContainer?: any;
     styleButtonCircle?: any;
+    touchIDDisabled: boolean;
     styleTextButton?: any;
     styleCircleHiddenPassword?: any;
     styleRowButtons?: any;
