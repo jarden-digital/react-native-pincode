@@ -76,6 +76,7 @@ export type IProps = {
   titleConfirm?: string
   titleConfirmFailed?: string
   titleEnter?: string
+  touchIDDisabled?: boolean
   touchIDSentence?: string
 }
 
@@ -93,6 +94,7 @@ export enum PinResultStatus {
 
 const timePinLockedAsyncStorageNameDefault = 'timePinLockedRNPin'
 const pinAttemptsAsyncStorageNameDefault = 'pinAttemptsRNPin'
+const touchIDDisabledDefault = false
 
 class PINCode extends React.PureComponent<IProps, IState> {
 
@@ -206,6 +208,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleAttemptFailed={this.props.titleAttemptFailed}
           titleConfirmFailed={this.props.titleConfirmFailed}
           subtitleError={this.props.subtitleError}
+          touchIDDisabled={this.props.touchIDDisabled || touchIDDisabledDefault}
           colorPassword={this.props.colorPassword}
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor}
           buttonDeleteComponent={this.props.buttonDeleteComponent}

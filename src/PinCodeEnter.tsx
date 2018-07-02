@@ -35,6 +35,7 @@ export type IProps = {
   pinAttemptsAsyncStorageName: string
   styleContainer?: any
   styleButtonCircle?: any
+  touchIDDisabled: boolean
   styleTextButton?: any
   styleCircleHiddenPassword?: any
   styleRowButtons?: any
@@ -78,15 +79,17 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   }
 
   componentDidMount() {
-    TouchID.isSupported()
-      .then(() => {
-        setTimeout(() => {
-          this.launchTouchID()
+    if (!this.props.touchIDDisabled) {
+      TouchID.isSupported()
+        .then(() => {
+          setTimeout(() => {
+            this.launchTouchID()
+          })
         })
-      })
-      .catch((error: any) => {
-        console.warn('TouchID error', error)
-      })
+        .catch((error: any) => {
+          console.warn('TouchID error', error)
+        })
+    }
   }
 
   endProcess = async (pinCode?: string) => {
