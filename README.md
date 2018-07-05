@@ -97,40 +97,44 @@ import PINCode from '@haskkor/react-native-pincode'
 
 ## Styles
 
-| Key | Description | Default |
-|---|---|---|
-|**`styleMainContainer`**|Main container of index file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|
-|**`stylePinCodeChooseContainer`**|Main container of PinCodeChoose file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|
-|**`stylePinCodeEnterContainer`**|Main container of PinCodeEnter file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|
-|**`styleLockScreenButton`**|Button of the lock screen|`backgroundColor: colors.turquoise, borderRadius: grid.border, paddingLeft: grid.unit * 2, paddingRight: grid.unit * 2, paddingBottom: grid.unit, paddingTop: grid.unit`|
-|**`styleLockScreenColorIcon`**|Color of the icon on the lock screen|`white`|
-|**`styleLockScreenMainContainer`**|Main container of the lock screen|`position: 'absolute', top: 0, backgroundColor: colors.background, flexBasis: 0, left: 0, height: '100%', width: '100%', alignItems: 'center', flex: 1, justifyContent: 'center'`|
-|**`styleLockScreenNameIcon`**|Name of the material icon to be used on the lock screen|`lock`|
-|**`styleLockScreenSizeIcon`**|Size of the icon on the lock screen|`24`|
-|**`styleLockScreenText`**|Text on the lock screen (Come back..., To protect...)|`fontSize: grid.unit, color: colors.base, lineHeight: grid.unit * grid.lineHeight, textAlign: 'center'`|
-|**`styleLockScreenTextButton`**|Text of the button of the lock screen|`color: colors.white, fontWeight: 'bold', fontSize: 14`|
-|**`styleLockScreenTextTimer`**|Text of the timer of the lock screen|`fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace', fontSize: 20, color: colors.base`|
-|**`styleLockScreenTitle`**|Title of the lock screen|`fontSize: grid.navIcon, color: colors.base, opacity: grid.mediumOpacity, fontWeight: '200', marginBottom: grid.unit * 4`|
-|**`styleLockScreenViewCloseButton`**|View of the button close of the lock screen|`alignItems: 'center', opacity: grid.mediumOpacity, justifyContent: 'center', marginTop: grid.unit * 2`|
-|**`styleLockScreenViewIcon`**|View containing the icon of the lock screen|`width: grid.unit * 4, justifyContent: 'center', alignItems: 'center', height: grid.unit * 4, borderRadius: grid.unit * 2, opacity: grid.mediumOpacity, backgroundColor: colors.alert, overflow: 'hidden', marginBottom: grid.unit * 4`|
-|**`styleLockScreenViewTextLock`**|View containing all the text of the lock screen|`justifyContent: 'center', alignItems: 'center', paddingLeft: grid.unit * 3, paddingRight: grid.unit * 3, flex: 3`|
-|**`styleLockScreenViewTimer`**|View of the timer of the lock screen|`paddingLeft: 30, paddingRight: 30, paddingBottom: 10, paddingTop: 10, borderRadius: 4, borderWidth: 2, borderColor: 'rgb(230, 231, 233)', marginBottom: grid.unit * 4`|
-|**`stylePinCodeButtonCircle`**|Circle button TouchableHighlight of the PinCode file|`alignItems: 'center', justifyContent: 'center', width: grid.unit * 4, height: grid.unit * 4, backgroundColor: 'rgb(242, 245, 251)', borderRadius: grid.unit * 2`|
-|**`stylePinCodeColumnButtons`**|Column of buttons of the PinCode file|`alignItems: 'center', width: 'auto'`|
-|**`stylePinCodeColumnDeleteButton`**|Column of the delete button of the PinCode file|`width: grid.unit * 4, height: grid.unit * 4, marginLeft: grid.unit / 2, marginRight: grid.unit / 2, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'`|
-|**`stylePinCodeDeleteButtonColorHideUnderlay`**|Color of the delete button when underlay is hidden of the PinCode file|`rgb(211, 213, 218)`|
-|**`stylePinCodeDeleteButtonColorShowUnderlay`**|Color of the delete button when underlay is shown of the PinCode file|`colors.turquoise`|
-|**`stylePinCodeDeleteButtonIcon`**|Name of the icon of the delete button of the PinCode file|`backspace`|
-|**`stylePinCodeDeleteButtonSize`**|Size of the icon of the delete button of the PinCode file|`30`|
-|**`stylePinCodeDeleteButtonText`**|Text of the delete button of the PinCode file|`fontWeight: '200', marginTop: 5`|
-|**`stylePinCodeEmptyColumn`**|Empty column of the last line of buttons of the PinCode file|`width: grid.unit * 4, height: grid.unit * 4`|
-|**`stylePinCodeHiddenPasswordCircle`**|Circle representing the hidden password of the PinCode file|`flexDirection: 'row', height: 'auto', justifyContent: 'center', alignItems: 'center'`|
-|**`stylePinCodeMainContainer`**|Main container of the PinCode file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|
-|**`stylePinCodeRowButtons`**|Row of buttons of the PinCode file|`justifyContent: 'center', alignItems: 'center', width: '100%', height: grid.unit * 5.5`|
-|**`stylePinCodeTextButtonCircle`**|Text of circle button TouchableHighlight of the PinCode file|`fontSize: grid.unit * 2, fontWeight: '200'`|
-|**`stylePinCodeTextSubtitle`**|Title of the PinCode file|`fontSize: 20, fontWeight: '200', lineHeight: grid.unit * 2.5`|
-|**`stylePinCodeTextTitle`**|Subtitle of the PinCode file|`fontSize: grid.unit, fontWeight: '200', textAlign: 'center'`|
-|**`stylePinCodeViewTitle`**|View of the title of the PinCode file|`flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: grid.unit * 4`|
+| Key | Description | Default | Type |
+|---|---|---|---|
+|**`styleMainContainer`**|Main container of index file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeChooseContainer`**|Main container of PinCodeChoose file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeEnterContainer`**|Main container of PinCodeEnter file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|`StyleProp<ViewStyle>`|
+|**`styleLockScreenButton`**|Button of the lock screen|`backgroundColor: colors.turquoise, borderRadius: grid.border, paddingLeft: grid.unit * 2, paddingRight: grid.unit * 2, paddingBottom: grid.unit, paddingTop: grid.unit`|`StyleProp<ViewStyle>`|
+|**`styleLockScreenColorIcon`**|Color of the icon on the lock screen|`white`|`string`|
+|**`styleLockScreenMainContainer`**|Main container of the lock screen|`position: 'absolute', top: 0, backgroundColor: colors.background, flexBasis: 0, left: 0, height: '100%', width: '100%', alignItems: 'center', flex: 1, justifyContent: 'center'`|`StyleProp<ViewStyle>`|
+|**`styleLockScreenNameIcon`**|Name of the material icon to be used on the lock screen|`lock`|`string`|
+|**`styleLockScreenSizeIcon`**|Size of the icon on the lock screen|`24`|`number`|
+|**`styleLockScreenText`**|Text on the lock screen (Come back..., To protect...)|`fontSize: grid.unit, color: colors.base, lineHeight: grid.unit * grid.lineHeight, textAlign: 'center'`|`StyleProp<TextStyle>`|
+|**`styleLockScreenTextButton`**|Text of the button of the lock screen|`color: colors.white, fontWeight: 'bold', fontSize: 14`|`StyleProp<TextStyle>`|
+|**`styleLockScreenTextTimer`**|Text of the timer of the lock screen|`fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace', fontSize: 20, color: colors.base`|`StyleProp<TextStyle>`|
+|**`styleLockScreenTitle`**|Title of the lock screen|`fontSize: grid.navIcon, color: colors.base, opacity: grid.mediumOpacity, fontWeight: '200', marginBottom: grid.unit * 4`|`StyleProp<TextStyle>`|
+|**`styleLockScreenViewCloseButton`**|View of the button close of the lock screen|`alignItems: 'center', opacity: grid.mediumOpacity, justifyContent: 'center', marginTop: grid.unit * 2`|`StyleProp<ViewStyle>`|
+|**`styleLockScreenViewIcon`**|View containing the icon of the lock screen|`width: grid.unit * 4, justifyContent: 'center', alignItems: 'center', height: grid.unit * 4, borderRadius: grid.unit * 2, opacity: grid.mediumOpacity, backgroundColor: colors.alert, overflow: 'hidden', marginBottom: grid.unit * 4`|`StyleProp<ViewStyle>`|
+|**`styleLockScreenViewTextLock`**|View containing all the text of the lock screen|`justifyContent: 'center', alignItems: 'center', paddingLeft: grid.unit * 3, paddingRight: grid.unit * 3, flex: 3`|`StyleProp<ViewStyle>`|
+|**`styleLockScreenViewTimer`**|View of the timer of the lock screen|`paddingLeft: 30, paddingRight: 30, paddingBottom: 10, paddingTop: 10, borderRadius: 4, borderWidth: 2, borderColor: 'rgb(230, 231, 233)', marginBottom: grid.unit * 4`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeButtonCircle`**|Circle button TouchableHighlight of the PinCode file|`alignItems: 'center', justifyContent: 'center', width: grid.unit * 4, height: grid.unit * 4, backgroundColor: 'rgb(242, 245, 251)', borderRadius: grid.unit * 2`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeColorSubtitle`**|Color of the subtitle in normal state|`#9DAFC8`|`string`|
+|**`stylePinCodeColorSubtitleError`**|Color of the subtitle in error state|`#FC4349`|`string`|
+|**`stylePinCodeColorTitle`**|Color of the title in normal state|`#9DAFC8`|`string`|
+|**`stylePinCodeColorTitleError`**|Color of the title in error state|`#9DAFC8`|`string`|
+|**`stylePinCodeColumnButtons`**|Column of buttons of the PinCode file|`alignItems: 'center', width: 'auto'`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeColumnDeleteButton`**|Column of the delete button of the PinCode file|`width: grid.unit * 4, height: grid.unit * 4, marginLeft: grid.unit / 2, marginRight: grid.unit / 2, justifyContent: 'center', alignItems: 'center', flexDirection: 'column'`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeDeleteButtonColorHideUnderlay`**|Color of the delete button when underlay is hidden of the PinCode file|`rgb(211, 213, 218)`|`string`|
+|**`stylePinCodeDeleteButtonColorShowUnderlay`**|Color of the delete button when underlay is shown of the PinCode file|`colors.turquoise`|`string`|
+|**`stylePinCodeDeleteButtonIcon`**|Name of the icon of the delete button of the PinCode file|`backspace`|`string`|
+|**`stylePinCodeDeleteButtonSize`**|Size of the icon of the delete button of the PinCode file|`30`|`number`|
+|**`stylePinCodeDeleteButtonText`**|Text of the delete button of the PinCode file|`fontWeight: '200', marginTop: 5`|`StyleProp<TextStyle>`|
+|**`stylePinCodeEmptyColumn`**|Empty column of the last line of buttons of the PinCode file|`width: grid.unit * 4, height: grid.unit * 4`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeHiddenPasswordCircle`**|Circle representing the hidden password of the PinCode file|`flexDirection: 'row', height: 'auto', justifyContent: 'center', alignItems: 'center'`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeMainContainer`**|Main container of the PinCode file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeRowButtons`**|Row of buttons of the PinCode file|`justifyContent: 'center', alignItems: 'center', width: '100%', height: grid.unit * 5.5`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeTextButtonCircle`**|Text of circle button TouchableHighlight of the PinCode file|`fontSize: grid.unit * 2, fontWeight: '200'`|`StyleProp<TextStyle>`|
+|**`stylePinCodeTextSubtitle`**|Title of the PinCode file|`fontSize: 20, fontWeight: '200', lineHeight: grid.unit * 2.5`|`StyleProp<TextStyle>`|
+|**`stylePinCodeTextTitle`**|Subtitle of the PinCode file|`fontSize: grid.unit, fontWeight: '200', textAlign: 'center'`|`StyleProp<TextStyle>`|
+|**`stylePinCodeViewTitle`**|View of the title of the PinCode file|`flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: grid.unit * 4`|`StyleProp<TextStyle>`|
 
 ## Contributing
 

@@ -1,5 +1,15 @@
 import * as React from 'react'
-import {Dimensions, StyleSheet, Text, TouchableHighlight, Vibration, View} from 'react-native'
+import {
+  Dimensions,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableHighlight,
+  Vibration,
+  View,
+  ViewStyle
+} from 'react-native'
 import {Col, Row, Grid} from 'react-native-easy-grid'
 import {grid} from './design/grid'
 import {colors} from './design/colors'
@@ -32,22 +42,26 @@ export type IProps = {
   buttonDeleteComponent?: any
   titleComponent?: any
   subtitleComponent?: any
-  styleButtonCircle?: any
-  styleTextButton?: any
-  styleCircleHiddenPassword?: any
-  styleRowButtons?: any
-  styleColumnButtons?: any
-  styleEmptyColumn?: any
-  styleViewTitle?: any
-  styleTextTitle?: any
-  styleTextSubtitle?: any
-  styleContainer?: any
-  styleColumnDeleteButton?: any
+  styleButtonCircle?: StyleProp<ViewStyle>
+  styleTextButton?: StyleProp<TextStyle>
+  styleCircleHiddenPassword?: StyleProp<ViewStyle>
+  styleRowButtons?: StyleProp<ViewStyle>
+  styleColumnButtons?: StyleProp<ViewStyle>
+  styleEmptyColumn?: StyleProp<ViewStyle>
+  styleViewTitle?: StyleProp<ViewStyle>
+  styleTextTitle?: StyleProp<TextStyle>
+  styleTextSubtitle?: StyleProp<TextStyle>
+  styleContainer?: StyleProp<ViewStyle>
+  styleColumnDeleteButton?: StyleProp<ViewStyle>
   styleDeleteButtonColorShowUnderlay?: string
   styleDeleteButtonColorHideUnderlay?: string
   styleDeleteButtonIcon?: string
   styleDeleteButtonSize?: number
-  styleDeleteButtonText?: any
+  styleDeleteButtonText?: StyleProp<TextStyle>
+  styleColorTitle?: string
+  styleColorTitleError?: string
+  styleColorSubtitle?: string
+  styleColorSubtitleError?: string
 }
 
 export type IState = {
@@ -314,27 +328,34 @@ class PinCode extends React.PureComponent<IProps, IState> {
           show={true}
           start={{
             opacity: 0,
-            colorTitle: colors.grey,
+            colorTitle: this.props.styleColorTitle ? this.props.styleColorTitle : colors.grey,
+            colorSubtitle: this.props.styleColorSubtitle ? this.props.styleColorSubtitle : colors.grey,
             opacityTitle: 1
           }}
           enter={{
             opacity: [1],
-            colorTitle: [colors.grey],
+            colorTitle: [this.props.styleColorTitle ? this.props.styleColorTitle : colors.grey],
+            colorSubtitle: [this.props.styleColorSubtitle ? this.props.styleColorSubtitle : colors.grey],
             opacityTitle: [1],
             timing: {duration: 200, ease: easeLinear}
           }}
           update={{
             opacity: [changeScreen ? 0 : 1],
-            colorTitle: [showError || attemptFailed ? colors.alert : colors.grey],
+            colorTitle: [showError || attemptFailed ?
+              (this.props.styleColorTitleError ? this.props.styleColorTitleError : colors.alert) :
+              (this.props.styleColorTitle ? this.props.styleColorTitle : colors.grey)],
+            colorSubtitle: [showError || attemptFailed ?
+              (this.props.styleColorSubtitleError ? this.props.styleColorSubtitleError : colors.alert) :
+              (this.props.styleColorSubtitle ? this.props.styleColorSubtitle : colors.grey)],
             opacityTitle: [showError || attemptFailed ? grid.highOpacity : 1],
             timing: {duration: 200, ease: easeLinear}
           }}>
-          {({opacity, colorTitle, opacityTitle}: any) => (
+          {({opacity, colorTitle, colorSubtitle, opacityTitle}: any) => (
             <View style={[this.props.styleViewTitle ? this.props.styleViewTitle : styles.viewTitle, {opacity: opacity}]}>
               {this.props.titleComponent ? this.props.titleComponent() :
                 this.renderTitle(colorTitle, opacityTitle, attemptFailed, showError)}
               {this.props.subtitleComponent ? this.props.subtitleComponent() :
-                this.renderSubtitle(colorTitle, opacityTitle, attemptFailed, showError)}
+                this.renderSubtitle(colorSubtitle, opacityTitle, attemptFailed, showError)}
             </View>
           )}
         </Animate>

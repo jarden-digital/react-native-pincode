@@ -3,7 +3,7 @@ import * as React from 'react'
 import PinCodeChoose from './src/PinCodeChoose'
 import {PinStatus} from './src/PinCode'
 import PinCodeEnter from './src/PinCodeEnter'
-import {View, StyleSheet, AsyncStorage} from 'react-native'
+import {View, StyleSheet, AsyncStorage, StyleProp, ViewStyle, TextStyle} from 'react-native'
 import ApplicationLocked from './src/ApplicationLocked'
 
 export type IProps = {
@@ -26,38 +26,42 @@ export type IProps = {
   status: 'choose' | 'enter' | 'locked'
   storedPin?: string
   storePin?: any
-  styleMainContainer?: any
-  stylePinCodeChooseContainer?: any
-  stylePinCodeEnterContainer?: any
-  styleLockScreenButton?: any
+  styleMainContainer?: StyleProp<ViewStyle>
+  stylePinCodeChooseContainer?: StyleProp<ViewStyle>
+  stylePinCodeEnterContainer?: StyleProp<ViewStyle>
+  styleLockScreenButton?: StyleProp<ViewStyle>
   styleLockScreenColorIcon?: string
-  styleLockScreenMainContainer?: any
+  styleLockScreenMainContainer?: StyleProp<ViewStyle>
   styleLockScreenNameIcon?: string
   styleLockScreenSizeIcon?: number
-  styleLockScreenText?: any
-  styleLockScreenTextButton?: any
-  styleLockScreenTextTimer?: any
-  styleLockScreenTitle?: any
-  styleLockScreenViewCloseButton?: any
-  styleLockScreenViewIcon?: any
-  styleLockScreenViewTextLock?: any
-  styleLockScreenViewTimer?: any
-  stylePinCodeButtonCircle?: any
-  stylePinCodeColumnButtons?: any
-  stylePinCodeColumnDeleteButton?: any
+  styleLockScreenText?: StyleProp<TextStyle>
+  styleLockScreenTextButton?: StyleProp<TextStyle>
+  styleLockScreenTextTimer?: StyleProp<TextStyle>
+  styleLockScreenTitle?: StyleProp<TextStyle>
+  styleLockScreenViewCloseButton?: StyleProp<ViewStyle>
+  styleLockScreenViewIcon?: StyleProp<ViewStyle>
+  styleLockScreenViewTextLock?: StyleProp<ViewStyle>
+  styleLockScreenViewTimer?: StyleProp<ViewStyle>
+  stylePinCodeButtonCircle?: StyleProp<ViewStyle>
+  stylePinCodeColorSubtitle?: string
+  stylePinCodeColorSubtitleError?: string
+  stylePinCodeColorTitle?: string
+  stylePinCodeColorTitleError?: string
+  stylePinCodeColumnButtons?: StyleProp<ViewStyle>
+  stylePinCodeColumnDeleteButton?: StyleProp<ViewStyle>
   stylePinCodeDeleteButtonColorHideUnderlay?: string
   stylePinCodeDeleteButtonColorShowUnderlay?: string
   stylePinCodeDeleteButtonIcon?: string
   stylePinCodeDeleteButtonSize?: number
-  stylePinCodeDeleteButtonText?: any
-  stylePinCodeEmptyColumn?: any
-  stylePinCodeHiddenPasswordCircle?: any
-  stylePinCodeMainContainer?: any
-  stylePinCodeRowButtons?: any
-  stylePinCodeTextButtonCircle?: any
-  stylePinCodeTextSubtitle?: any
-  stylePinCodeTextTitle?: any
-  stylePinCodeViewTitle?: any
+  stylePinCodeDeleteButtonText?: StyleProp<TextStyle>
+  stylePinCodeEmptyColumn?: StyleProp<ViewStyle>
+  stylePinCodeHiddenPasswordCircle?: StyleProp<ViewStyle>
+  stylePinCodeMainContainer?: StyleProp<ViewStyle>
+  stylePinCodeRowButtons?: StyleProp<ViewStyle>
+  stylePinCodeTextButtonCircle?: StyleProp<TextStyle>
+  stylePinCodeTextSubtitle?: StyleProp<TextStyle>
+  stylePinCodeTextTitle?: StyleProp<TextStyle>
+  stylePinCodeViewTitle?: StyleProp<TextStyle>
   subtitleChoose?: string
   subtitleComponent?: any
   subtitleConfirm?: string
@@ -189,6 +193,10 @@ class PINCode extends React.PureComponent<IProps, IState> {
           styleDeleteButtonIcon={this.props.stylePinCodeDeleteButtonIcon}
           styleDeleteButtonSize={this.props.stylePinCodeDeleteButtonSize}
           styleDeleteButtonText={this.props.stylePinCodeDeleteButtonText}
+          styleColorTitle={this.props.stylePinCodeColorTitle}
+          styleColorTitleError={this.props.stylePinCodeColorTitleError}
+          styleColorSubtitle={this.props.stylePinCodeColorSubtitle}
+          styleColorSubtitleError={this.props.stylePinCodeColorSubtitleError}
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter
@@ -233,6 +241,10 @@ class PINCode extends React.PureComponent<IProps, IState> {
           styleDeleteButtonIcon={this.props.stylePinCodeDeleteButtonIcon}
           styleDeleteButtonSize={this.props.stylePinCodeDeleteButtonSize}
           styleDeleteButtonText={this.props.stylePinCodeDeleteButtonText}
+          styleColorTitle={this.props.stylePinCodeColorTitle}
+          styleColorTitleError={this.props.stylePinCodeColorTitleError}
+          styleColorSubtitle={this.props.stylePinCodeColorSubtitle}
+          styleColorSubtitleError={this.props.stylePinCodeColorSubtitleError}
         />}
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||

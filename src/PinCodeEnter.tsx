@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {AsyncStorage, StyleSheet, View} from 'react-native'
+import {AsyncStorage, StyleProp, StyleSheet, TextStyle, View, ViewStyle} from 'react-native'
 import PinCode, {PinStatus} from './PinCode'
 import TouchID from 'react-native-touch-id'
 import * as Keychain from 'react-native-keychain'
@@ -33,24 +33,28 @@ export type IProps = {
   subtitleComponent: any
   timePinLockedAsyncStorageName: string
   pinAttemptsAsyncStorageName: string
-  styleContainer?: any
-  styleButtonCircle?: any
   touchIDDisabled: boolean
-  styleTextButton?: any
-  styleCircleHiddenPassword?: any
-  styleRowButtons?: any
-  styleColumnButtons?: any
-  styleEmptyColumn?: any
-  styleViewTitle?: any
-  styleTextTitle?: any
-  styleTextSubtitle?: any
-  styleContainerPinCode?: any
-  styleColumnDeleteButton?: any
+  styleContainerPinCode?: StyleProp<ViewStyle>
+  styleColorTitle?: string
+  styleColorTitleError?: string
+  styleColorSubtitle?: string
+  styleColorSubtitleError?: string
+  styleButtonCircle?: StyleProp<ViewStyle>
+  styleTextButton?: StyleProp<TextStyle>
+  styleCircleHiddenPassword?: StyleProp<ViewStyle>
+  styleRowButtons?: StyleProp<ViewStyle>
+  styleColumnButtons?: StyleProp<ViewStyle>
+  styleEmptyColumn?: StyleProp<ViewStyle>
+  styleViewTitle?: StyleProp<ViewStyle>
+  styleTextTitle?: StyleProp<TextStyle>
+  styleTextSubtitle?: StyleProp<TextStyle>
+  styleContainer?: StyleProp<ViewStyle>
+  styleColumnDeleteButton?: StyleProp<ViewStyle>
   styleDeleteButtonColorShowUnderlay?: string
   styleDeleteButtonColorHideUnderlay?: string
   styleDeleteButtonIcon?: string
   styleDeleteButtonSize?: number
-  styleDeleteButtonText?: any
+  styleDeleteButtonText?: StyleProp<TextStyle>
 }
 
 export type IState = {
@@ -167,6 +171,10 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           styleDeleteButtonColorHideUnderlay={this.props.styleDeleteButtonColorHideUnderlay}
           styleDeleteButtonIcon={this.props.styleDeleteButtonIcon}
           styleDeleteButtonSize={this.props.styleDeleteButtonSize}
+          styleColorTitle={this.props.styleColorTitle}
+          styleColorTitleError={this.props.styleColorTitleError}
+          styleColorSubtitle={this.props.styleColorSubtitle}
+          styleColorSubtitleError={this.props.styleColorSubtitleError}
           styleDeleteButtonText={this.props.styleDeleteButtonText}/>
       </View>
     )

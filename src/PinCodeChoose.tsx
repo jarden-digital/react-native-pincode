@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleProp, StyleSheet, TextStyle, View, ViewStyle} from 'react-native'
 import PinCode, {PinStatus} from './PinCode'
 import * as Keychain from 'react-native-keychain'
 
@@ -25,23 +25,27 @@ export type IProps = {
   titleComponent: any
   subtitleComponent: any
   pinCodeKeychainName: string
-  styleContainer?: any
-  styleButtonCircle?: any
-  styleTextButton?: any
-  styleCircleHiddenPassword?: any
-  styleRowButtons?: any
-  styleColumnButtons?: any
-  styleEmptyColumn?: any
-  styleViewTitle?: any
-  styleTextTitle?: any
-  styleTextSubtitle?: any
-  styleContainerPinCode?: any
-  styleColumnDeleteButton?: any
+  styleContainerPinCode?: StyleProp<ViewStyle>
+  styleColorTitle?: string
+  styleColorTitleError?: string
+  styleColorSubtitle?: string
+  styleColorSubtitleError?: string
+  styleButtonCircle?: StyleProp<ViewStyle>
+  styleTextButton?: StyleProp<TextStyle>
+  styleCircleHiddenPassword?: StyleProp<ViewStyle>
+  styleRowButtons?: StyleProp<ViewStyle>
+  styleColumnButtons?: StyleProp<ViewStyle>
+  styleEmptyColumn?: StyleProp<ViewStyle>
+  styleViewTitle?: StyleProp<ViewStyle>
+  styleTextTitle?: StyleProp<TextStyle>
+  styleTextSubtitle?: StyleProp<TextStyle>
+  styleContainer?: StyleProp<ViewStyle>
+  styleColumnDeleteButton?: StyleProp<ViewStyle>
   styleDeleteButtonColorShowUnderlay?: string
   styleDeleteButtonColorHideUnderlay?: string
   styleDeleteButtonIcon?: string
   styleDeleteButtonSize?: number
-  styleDeleteButtonText?: any
+  styleDeleteButtonText?: StyleProp<TextStyle>
 }
 
 export type IState = {
@@ -111,6 +115,10 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           styleColumnDeleteButton={this.props.styleColumnDeleteButton}
           styleDeleteButtonColorShowUnderlay={this.props.styleDeleteButtonColorShowUnderlay}
           styleDeleteButtonColorHideUnderlay={this.props.styleDeleteButtonColorHideUnderlay}
+          styleColorTitle={this.props.styleColorTitle}
+          styleColorTitleError={this.props.styleColorTitleError}
+          styleColorSubtitle={this.props.styleColorSubtitle}
+          styleColorSubtitleError={this.props.styleColorSubtitleError}
           styleDeleteButtonIcon={this.props.styleDeleteButtonIcon}
           styleDeleteButtonSize={this.props.styleDeleteButtonSize}
           styleDeleteButtonText={this.props.styleDeleteButtonText}/>}
@@ -142,6 +150,10 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           styleViewTitle={this.props.styleViewTitle}
           styleTextTitle={this.props.styleTextTitle}
           styleTextSubtitle={this.props.styleTextSubtitle}
+          styleColorTitle={this.props.styleColorTitle}
+          styleColorTitleError={this.props.styleColorTitleError}
+          styleColorSubtitle={this.props.styleColorSubtitle}
+          styleColorSubtitleError={this.props.styleColorSubtitleError}
           styleContainer={this.props.styleContainerPinCode}
           styleColumnDeleteButton={this.props.styleColumnDeleteButton}
           styleDeleteButtonColorShowUnderlay={this.props.styleDeleteButtonColorShowUnderlay}
