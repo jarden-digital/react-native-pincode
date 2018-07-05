@@ -206,23 +206,30 @@ class PinCode extends React.PureComponent {
         return (React.createElement(react_native_1.View, { style: this.props.styleContainer ? this.props.styleContainer : styles.container },
             React.createElement(Animate_1.default, { show: true, start: {
                     opacity: 0,
-                    colorTitle: colors_1.colors.grey,
+                    colorTitle: this.props.styleColorTitle ? this.props.styleColorTitle : colors_1.colors.grey,
+                    colorSubtitle: this.props.styleColorSubtitle ? this.props.styleColorSubtitle : colors_1.colors.grey,
                     opacityTitle: 1
                 }, enter: {
                     opacity: [1],
-                    colorTitle: [colors_1.colors.grey],
+                    colorTitle: [this.props.styleColorTitle ? this.props.styleColorTitle : colors_1.colors.grey],
+                    colorSubtitle: [this.props.styleColorSubtitle ? this.props.styleColorSubtitle : colors_1.colors.grey],
                     opacityTitle: [1],
                     timing: { duration: 200, ease: d3_ease_1.easeLinear }
                 }, update: {
                     opacity: [changeScreen ? 0 : 1],
-                    colorTitle: [showError || attemptFailed ? colors_1.colors.alert : colors_1.colors.grey],
+                    colorTitle: [showError || attemptFailed ?
+                            (this.props.styleColorTitleError ? this.props.styleColorTitleError : colors_1.colors.alert) :
+                            (this.props.styleColorTitle ? this.props.styleColorTitle : colors_1.colors.grey)],
+                    colorSubtitle: [showError || attemptFailed ?
+                            (this.props.styleColorSubtitleError ? this.props.styleColorSubtitleError : colors_1.colors.alert) :
+                            (this.props.styleColorSubtitle ? this.props.styleColorSubtitle : colors_1.colors.grey)],
                     opacityTitle: [showError || attemptFailed ? grid_1.grid.highOpacity : 1],
                     timing: { duration: 200, ease: d3_ease_1.easeLinear }
-                } }, ({ opacity, colorTitle, opacityTitle }) => (React.createElement(react_native_1.View, { style: [this.props.styleViewTitle ? this.props.styleViewTitle : styles.viewTitle, { opacity: opacity }] },
+                } }, ({ opacity, colorTitle, colorSubtitle, opacityTitle }) => (React.createElement(react_native_1.View, { style: [this.props.styleViewTitle ? this.props.styleViewTitle : styles.viewTitle, { opacity: opacity }] },
                 this.props.titleComponent ? this.props.titleComponent() :
                     this.renderTitle(colorTitle, opacityTitle, attemptFailed, showError),
                 this.props.subtitleComponent ? this.props.subtitleComponent() :
-                    this.renderSubtitle(colorTitle, opacityTitle, attemptFailed, showError)))),
+                    this.renderSubtitle(colorSubtitle, opacityTitle, attemptFailed, showError)))),
             React.createElement(react_native_1.View, null, this.props.passwordComponent ? this.props.passwordComponent() : this.renderCirclePassword()),
             React.createElement(react_native_easy_grid_1.Grid, { style: { maxHeight: grid_1.grid.unit * 22, maxWidth: grid_1.grid.unit * 16.25 } },
                 React.createElement(react_native_easy_grid_1.Row, { style: this.props.styleRowButtons ? this.props.styleRowButtons : styles.row }, _.range(1, 4).map((i) => {

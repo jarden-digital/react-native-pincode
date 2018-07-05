@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { PinStatus } from './PinCode';
 /**
  * Pin Code Choose PIN Page
@@ -22,23 +23,27 @@ export declare type IProps = {
     titleComponent: any;
     subtitleComponent: any;
     pinCodeKeychainName: string;
-    styleContainer?: any;
-    styleButtonCircle?: any;
-    styleTextButton?: any;
-    styleCircleHiddenPassword?: any;
-    styleRowButtons?: any;
-    styleColumnButtons?: any;
-    styleEmptyColumn?: any;
-    styleViewTitle?: any;
-    styleTextTitle?: any;
-    styleTextSubtitle?: any;
-    styleContainerPinCode?: any;
-    styleColumnDeleteButton?: any;
+    styleContainerPinCode?: StyleProp<ViewStyle>;
+    styleColorTitle?: string;
+    styleColorTitleError?: string;
+    styleColorSubtitle?: string;
+    styleColorSubtitleError?: string;
+    styleButtonCircle?: StyleProp<ViewStyle>;
+    styleTextButton?: StyleProp<TextStyle>;
+    styleCircleHiddenPassword?: StyleProp<ViewStyle>;
+    styleRowButtons?: StyleProp<ViewStyle>;
+    styleColumnButtons?: StyleProp<ViewStyle>;
+    styleEmptyColumn?: StyleProp<ViewStyle>;
+    styleViewTitle?: StyleProp<ViewStyle>;
+    styleTextTitle?: StyleProp<TextStyle>;
+    styleTextSubtitle?: StyleProp<TextStyle>;
+    styleContainer?: StyleProp<ViewStyle>;
+    styleColumnDeleteButton?: StyleProp<ViewStyle>;
     styleDeleteButtonColorShowUnderlay?: string;
     styleDeleteButtonColorHideUnderlay?: string;
     styleDeleteButtonIcon?: string;
     styleDeleteButtonSize?: number;
-    styleDeleteButtonText?: any;
+    styleDeleteButtonText?: StyleProp<TextStyle>;
 };
 export declare type IState = {
     status: PinStatus;

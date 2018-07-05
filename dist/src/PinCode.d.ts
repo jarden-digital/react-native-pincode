@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 /**
  * Pin Code Component
  */
@@ -22,22 +23,26 @@ export declare type IProps = {
     buttonDeleteComponent?: any;
     titleComponent?: any;
     subtitleComponent?: any;
-    styleButtonCircle?: any;
-    styleTextButton?: any;
-    styleCircleHiddenPassword?: any;
-    styleRowButtons?: any;
-    styleColumnButtons?: any;
-    styleEmptyColumn?: any;
-    styleViewTitle?: any;
-    styleTextTitle?: any;
-    styleTextSubtitle?: any;
-    styleContainer?: any;
-    styleColumnDeleteButton?: any;
+    styleButtonCircle?: StyleProp<ViewStyle>;
+    styleTextButton?: StyleProp<TextStyle>;
+    styleCircleHiddenPassword?: StyleProp<ViewStyle>;
+    styleRowButtons?: StyleProp<ViewStyle>;
+    styleColumnButtons?: StyleProp<ViewStyle>;
+    styleEmptyColumn?: StyleProp<ViewStyle>;
+    styleViewTitle?: StyleProp<ViewStyle>;
+    styleTextTitle?: StyleProp<TextStyle>;
+    styleTextSubtitle?: StyleProp<TextStyle>;
+    styleContainer?: StyleProp<ViewStyle>;
+    styleColumnDeleteButton?: StyleProp<ViewStyle>;
     styleDeleteButtonColorShowUnderlay?: string;
     styleDeleteButtonColorHideUnderlay?: string;
     styleDeleteButtonIcon?: string;
     styleDeleteButtonSize?: number;
-    styleDeleteButtonText?: any;
+    styleDeleteButtonText?: StyleProp<TextStyle>;
+    styleColorTitle?: string;
+    styleColorTitleError?: string;
+    styleColorSubtitle?: string;
+    styleColorSubtitleError?: string;
 };
 export declare type IState = {
     password: string;
