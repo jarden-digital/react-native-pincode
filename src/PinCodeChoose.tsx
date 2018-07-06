@@ -20,6 +20,7 @@ export type IProps = {
   titleConfirmFailed?: string
   subtitleError?: string
   colorPassword?: string
+  colorPasswordError?: string
   numbersButtonOverlayColor?: string
   buttonDeleteComponent: any
   titleComponent: any
@@ -46,6 +47,8 @@ export type IProps = {
   styleDeleteButtonIcon?: string
   styleDeleteButtonSize?: number
   styleDeleteButtonText?: StyleProp<TextStyle>
+  styleColorButtonTitle?: string
+  styleColorButtonTitleSelected?: string
 }
 
 export type IState = {
@@ -98,6 +101,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           titleConfirmFailed={this.props.titleConfirmFailed || 'Your entries did not match'}
           subtitleError={this.props.subtitleError || 'Please try again'}
           colorPassword={this.props.colorPassword || undefined}
+          colorPasswordError={this.props.colorPasswordError || undefined}
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
           titleComponent={this.props.titleComponent || null}
@@ -121,7 +125,8 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           styleColorSubtitleError={this.props.styleColorSubtitleError}
           styleDeleteButtonIcon={this.props.styleDeleteButtonIcon}
           styleDeleteButtonSize={this.props.styleDeleteButtonSize}
-          styleDeleteButtonText={this.props.styleDeleteButtonText}/>}
+          styleDeleteButtonText={this.props.styleDeleteButtonText}
+          styleColorButtonTitle={this.props.styleColorButtonTitle}/>}
         {this.state.status === PinStatus.confirm &&
         <PinCode
           endProcess={this.endProcessConfirm}
@@ -137,6 +142,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           titleConfirmFailed={this.props.titleConfirmFailed || 'Your entries did not match'}
           subtitleError={this.props.subtitleError || 'Please try again'}
           colorPassword={this.props.colorPassword || undefined}
+          colorPasswordError={this.props.colorPasswordError || undefined}
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
           titleComponent={this.props.titleComponent || null}
@@ -160,7 +166,9 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           styleDeleteButtonColorHideUnderlay={this.props.styleDeleteButtonColorHideUnderlay}
           styleDeleteButtonIcon={this.props.styleDeleteButtonIcon}
           styleDeleteButtonSize={this.props.styleDeleteButtonSize}
-          styleDeleteButtonText={this.props.styleDeleteButtonText}/>}
+          styleDeleteButtonText={this.props.styleDeleteButtonText}
+          styleColorButtonTitle={this.props.styleColorButtonTitle}
+          styleColorButtonTitleSelected={this.props.styleColorButtonTitleSelected}/>}
       </View>
     )
   }

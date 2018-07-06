@@ -27,6 +27,7 @@ export type IProps = {
   titleConfirmFailed?: string
   subtitleError?: string
   colorPassword?: string
+  colorPasswordError?: string
   numbersButtonOverlayColor?: string
   buttonDeleteComponent: any
   titleComponent: any
@@ -55,6 +56,8 @@ export type IProps = {
   styleDeleteButtonIcon?: string
   styleDeleteButtonSize?: number
   styleDeleteButtonText?: StyleProp<TextStyle>
+  styleColorButtonTitle?: string
+  styleColorButtonTitleSelected?: string
 }
 
 export type IState = {
@@ -152,6 +155,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           titleConfirmFailed={this.props.titleConfirmFailed || 'Your entries did not match'}
           subtitleError={this.props.subtitleError || 'Please try again'}
           colorPassword={this.props.colorPassword || undefined}
+          colorPasswordError={this.props.colorPasswordError || undefined}
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
           titleComponent={this.props.titleComponent || null}
@@ -175,7 +179,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           styleColorTitleError={this.props.styleColorTitleError}
           styleColorSubtitle={this.props.styleColorSubtitle}
           styleColorSubtitleError={this.props.styleColorSubtitleError}
-          styleDeleteButtonText={this.props.styleDeleteButtonText}/>
+          styleDeleteButtonText={this.props.styleDeleteButtonText}
+          styleColorButtonTitle={this.props.styleColorButtonTitle}
+          styleColorButtonTitleSelected={this.props.styleColorButtonTitleSelected}/>
       </View>
     )
   }
