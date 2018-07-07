@@ -69,7 +69,9 @@ class PinCode extends React.PureComponent {
                 } },
                 React.createElement(react_native_1.Text, { style: [this.props.styleTextButton ? this.props.styleTextButton : styles.text, {
                             opacity: opacity,
-                            color: this.state.textButtonSelected === text ? colors_1.colors.white : colors_1.colors.grey
+                            color: this.state.textButtonSelected === text ? (this.props.styleColorButtonTitleSelected ?
+                                this.props.styleColorButtonTitleSelected : colors_1.colors.white) : (this.props.styleColorButtonTitle ?
+                                this.props.styleColorButtonTitle : colors_1.colors.grey)
                         }] }, text)))));
         };
         this.endProcess = (pwd) => {
@@ -102,7 +104,7 @@ class PinCode extends React.PureComponent {
                         opacity: [lengthSup ? 1 : 0.5],
                         height: [lengthSup ? 8 : 4],
                         width: [lengthSup ? 8 : 4],
-                        color: [showError ? colors_1.colors.alert : (this.props.colorPassword ? this.props.colorPassword : colors_1.colors.turquoise)],
+                        color: [showError ? (this.props.colorPasswordError ? this.props.colorPasswordError : colors_1.colors.alert) : (this.props.colorPassword ? this.props.colorPassword : colors_1.colors.turquoise)],
                         borderRadius: [lengthSup ? 4 : 2],
                         marginRight: [lengthSup ? 8 : 10],
                         marginLeft: [lengthSup ? 8 : 10],

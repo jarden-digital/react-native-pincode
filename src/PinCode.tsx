@@ -177,7 +177,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
             }}>
             <Text style={[this.props.styleTextButton ? this.props.styleTextButton : styles.text, {
               opacity: opacity,
-              color: this.state.textButtonSelected === text ? (this.props.styleColorButtonTitleSelected ? this.props.styleColorButtonTitleSelected : colors.white) : (this.props.styleColorButtonTitle ? this.props.styleColorButtonTitle : colors.grey)
+              color: this.state.textButtonSelected === text ? (this.props.styleColorButtonTitleSelected ?
+                this.props.styleColorButtonTitleSelected : colors.white) : (this.props.styleColorButtonTitle ?
+                this.props.styleColorButtonTitle : colors.grey)
             }]}>{text}</Text>
           </TouchableHighlight>
         )}

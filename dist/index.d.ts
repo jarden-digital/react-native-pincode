@@ -7,6 +7,7 @@ export declare type IProps = {
     buttonDeleteComponent?: any;
     buttonNumberComponent?: any;
     colorPassword?: string;
+    colorPasswordError?: string;
     finishProcess?: any;
     handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
@@ -39,6 +40,8 @@ export declare type IProps = {
     styleLockScreenViewTextLock?: StyleProp<ViewStyle>;
     styleLockScreenViewTimer?: StyleProp<ViewStyle>;
     stylePinCodeButtonCircle?: StyleProp<ViewStyle>;
+    stylePinCodeButtonNumber?: string;
+    stylePinCodeButtonNumberPressed?: string;
     stylePinCodeColorSubtitle?: string;
     stylePinCodeColorSubtitleError?: string;
     stylePinCodeColorTitle?: string;

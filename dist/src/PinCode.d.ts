@@ -19,6 +19,7 @@ export declare type IProps = {
     titleConfirmFailed: string;
     subtitleError: string;
     colorPassword?: string;
+    colorPasswordError?: string;
     numbersButtonOverlayColor?: string;
     buttonDeleteComponent?: any;
     titleComponent?: any;
@@ -43,6 +44,8 @@ export declare type IProps = {
     styleColorTitleError?: string;
     styleColorSubtitle?: string;
     styleColorSubtitleError?: string;
+    styleColorButtonTitle?: string;
+    styleColorButtonTitleSelected?: string;
 };
 export declare type IState = {
     password: string;
