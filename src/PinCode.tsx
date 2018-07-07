@@ -38,6 +38,7 @@ export type IProps = {
   titleConfirmFailed: string
   subtitleError: string
   colorPassword?: string
+  colorPasswordError?: string
   numbersButtonOverlayColor?: string
   buttonDeleteComponent?: any
   titleComponent?: any
@@ -62,6 +63,8 @@ export type IProps = {
   styleColorTitleError?: string
   styleColorSubtitle?: string
   styleColorSubtitleError?: string
+  styleColorButtonTitle?: string
+  styleColorButtonTitleSelected?: string
 }
 
 export type IState = {
@@ -174,7 +177,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
             }}>
             <Text style={[this.props.styleTextButton ? this.props.styleTextButton : styles.text, {
               opacity: opacity,
-              color: this.state.textButtonSelected === text ? colors.white : colors.grey
+              color: this.state.textButtonSelected === text ? (this.props.styleColorButtonTitleSelected ? this.props.styleColorButtonTitleSelected : colors.white) : (this.props.styleColorButtonTitle ? this.props.styleColorButtonTitle : colors.grey)
             }]}>{text}</Text>
           </TouchableHighlight>
         )}
@@ -252,7 +255,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 opacity: [lengthSup ? 1 : 0.5],
                 height: [lengthSup ? 8 : 4],
                 width: [lengthSup ? 8 : 4],
-                color: [showError ? colors.alert : (this.props.colorPassword ? this.props.colorPassword : colors.turquoise)],
+                color: [showError ? (this.props.colorPasswordError ? this.props.colorPasswordError : colors.alert) : (this.props.colorPassword ? this.props.colorPassword : colors.turquoise)],
                 borderRadius: [lengthSup ? 4 : 2],
                 marginRight: [lengthSup ? 8 : 10],
                 marginLeft: [lengthSup ? 8 : 10],
