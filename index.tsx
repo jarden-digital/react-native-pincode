@@ -11,6 +11,7 @@ export type IProps = {
   buttonDeleteComponent?: any
   buttonNumberComponent?: any
   colorPassword?: string
+  colorPasswordError?: string
   finishProcess?: any
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
@@ -43,6 +44,8 @@ export type IProps = {
   styleLockScreenViewTextLock?: StyleProp<ViewStyle>
   styleLockScreenViewTimer?: StyleProp<ViewStyle>
   stylePinCodeButtonCircle?: StyleProp<ViewStyle>
+  stylePinCodeButtonNumber?: string
+  stylePinCodeButtonNumberPressed?: string
   stylePinCodeColorSubtitle?: string
   stylePinCodeColorSubtitleError?: string
   stylePinCodeColorTitle?: string
@@ -171,6 +174,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleConfirmFailed={this.props.titleConfirmFailed}
           subtitleError={this.props.subtitleError}
           colorPassword={this.props.colorPassword}
+          colorPasswordError={this.props.colorPasswordError}
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor}
           buttonDeleteComponent={this.props.buttonDeleteComponent}
           titleComponent={this.props.titleComponent}
@@ -197,6 +201,8 @@ class PINCode extends React.PureComponent<IProps, IState> {
           styleColorTitleError={this.props.stylePinCodeColorTitleError}
           styleColorSubtitle={this.props.stylePinCodeColorSubtitle}
           styleColorSubtitleError={this.props.stylePinCodeColorSubtitleError}
+          styleColorButtonTitle={this.props.stylePinCodeButtonNumber}
+          styleColorButtonTitleSelected={this.props.stylePinCodeButtonNumberPressed}
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter
@@ -218,6 +224,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           subtitleError={this.props.subtitleError}
           touchIDDisabled={this.props.touchIDDisabled || touchIDDisabledDefault}
           colorPassword={this.props.colorPassword}
+          colorPasswordError={this.props.colorPasswordError}
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor}
           buttonDeleteComponent={this.props.buttonDeleteComponent}
           titleComponent={this.props.titleComponent}
@@ -245,6 +252,8 @@ class PINCode extends React.PureComponent<IProps, IState> {
           styleColorTitleError={this.props.stylePinCodeColorTitleError}
           styleColorSubtitle={this.props.stylePinCodeColorSubtitle}
           styleColorSubtitleError={this.props.stylePinCodeColorSubtitleError}
+          styleColorButtonTitle={this.props.stylePinCodeButtonNumber}
+          styleColorButtonTitleSelected={this.props.stylePinCodeButtonNumberPressed}
         />}
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||

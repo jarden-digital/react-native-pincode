@@ -18,6 +18,7 @@ export declare type IProps = {
     titleConfirmFailed?: string;
     subtitleError?: string;
     colorPassword?: string;
+    colorPasswordError?: string;
     numbersButtonOverlayColor?: string;
     buttonDeleteComponent: any;
     titleComponent: any;
@@ -44,6 +45,8 @@ export declare type IProps = {
     styleDeleteButtonIcon?: string;
     styleDeleteButtonSize?: number;
     styleDeleteButtonText?: StyleProp<TextStyle>;
+    styleColorButtonTitle?: string;
+    styleColorButtonTitleSelected?: string;
 };
 export declare type IState = {
     status: PinStatus;
