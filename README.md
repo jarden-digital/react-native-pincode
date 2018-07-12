@@ -22,17 +22,19 @@ yarn add @haskkor/react-native-pincode
 
 **Please note that:**
 
-If you wish to use the `TouchID/FaceID` authentication you will have to link the library:
+If you wish to use the `TouchID/FaceID` authentication you will have to link the ![library](https://github.com/naoufal/react-native-touch-id):
 
 ```
 react-native link react-native-touch-id
 ```
 
-If you wish to use `Keychain/Keystore` to store the PIN code you will have to link the library: 
+If you wish to use `Keychain/Keystore` to store the PIN code you will have to link the ![library](https://github.com/oblador/react-native-keychain):
 
 ```
 react-native link react-native-keychain
 ```
+
+_Please note that you might have to link those libraries manually._
 
 **IMPORTANT:**
 _If you decide not to use `Keychain/Keystore`, you will have to provide a **`storePin`** property to the `PINCode` component._
