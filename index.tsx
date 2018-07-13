@@ -168,6 +168,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleConfirm={this.props.titleConfirm || '2 - Confirm your PIN Code'}
           subtitleConfirm={this.props.subtitleConfirm || ''}
           passwordComponent={this.props.passwordComponent}
+          finishProcess={this.props.finishProcess || null}
           buttonNumberComponent={this.props.buttonNumberComponent}
           passwordLength={this.props.passwordLength}
           titleAttemptFailed={this.props.titleAttemptFailed}

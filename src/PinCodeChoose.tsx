@@ -14,6 +14,7 @@ export type IProps = {
   titleConfirm: string
   subtitleConfirm: string
   buttonNumberComponent: any
+  finishProcess?: any
   passwordLength?: number
   passwordComponent: any
   titleAttemptFailed?: string
@@ -76,6 +77,8 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
       } else {
         await Keychain.setGenericPassword(this.props.pinCodeKeychainName, pinCode)
       }
+      if (this.props.finishProcess)
+        this.props.finishProcess();
     } else {
       this.setState({status: PinStatus.choose})
     }

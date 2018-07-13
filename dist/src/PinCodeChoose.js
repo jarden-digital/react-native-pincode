@@ -18,6 +18,8 @@ class PinCodeChoose extends React.PureComponent {
                 else {
                     await Keychain.setGenericPassword(this.props.pinCodeKeychainName, pinCode);
                 }
+                if (this.props.finishProcess)
+                    this.props.finishProcess();
             }
             else {
                 this.setState({ status: PinCode_1.PinStatus.choose });
