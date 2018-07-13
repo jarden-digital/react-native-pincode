@@ -37,7 +37,7 @@ class ApplicationLocked extends React.PureComponent {
         this.renderErrorLocked = () => {
             const minutes = Math.floor(this.state.timeDiff / 1000 / 60);
             const seconds = Math.floor(this.state.timeDiff / 1000) % 60;
-            return (React.createElement(react_native_1.View, { style: this.props.styleMainContainer ? this.props.styleMainContainer : styles.container },
+            return (React.createElement(react_native_1.View, null,
                 React.createElement(Animate_1.default, { show: true, start: {
                         opacity: 0
                     }, enter: {
@@ -90,7 +90,7 @@ class ApplicationLocked extends React.PureComponent {
         this.isUnmounted = true;
     }
     render() {
-        return (React.createElement(react_native_1.View, null, this.renderErrorLocked()));
+        return (React.createElement(react_native_1.View, { style: this.props.styleMainContainer ? this.props.styleMainContainer : styles.container }, this.renderErrorLocked()));
     }
 }
 exports.default = ApplicationLocked;

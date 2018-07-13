@@ -122,7 +122,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
     const minutes = Math.floor(this.state.timeDiff / 1000 / 60)
     const seconds = Math.floor(this.state.timeDiff / 1000) % 60
     return (
-      <View style={this.props.styleMainContainer ? this.props.styleMainContainer : styles.container}>
+      <View>
         <Animate
           show={true}
           start={{
@@ -171,7 +171,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <View>
+      <View style={this.props.styleMainContainer ? this.props.styleMainContainer : styles.container}>
         {this.renderErrorLocked()}
       </View>
     )
