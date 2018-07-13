@@ -4,10 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.4.1] - 2018-07-012
+## [1.5.0] - 2018-07-14
+### Added
+- License file
+
+### Update
+- Readme
+
+### Merged
+- Merged [mikecann](https://github.com/mikecann) pull request adding a finish process function to the choose pin flow.
+- Merged [Panda-ref](https://github.com/Panda-ref) pull request fixing the lock page main container style.
+
+## [1.4.1] - 2018-07-12
 ### Added
 - Changelog
-- MIT licence
+- MIT license
 
 ## [1.4.0] - 2018-07-07
 ### Merged

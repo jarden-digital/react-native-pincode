@@ -149,6 +149,4 @@ import PINCode from '@haskkor/react-native-pincode'
 
 Pull requests are welcome.
 
-## License
-
-This project is licenced under the [MIT License](http://opensource.org/licenses/mit-license.html).
+## [License](https://github.com/Haskkor/react-native-pincode/blob/master/LICENSE)
