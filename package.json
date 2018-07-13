@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "dev": "yarn build -watch",
     "build": "tsc",
     "compile": "npm run build",
     "addlocal": "yarn add file:./local_modules/react-native-pincode"

@@ -12,6 +12,7 @@ export declare type IProps = {
     titleConfirm: string;
     subtitleConfirm: string;
     buttonNumberComponent: any;
+    finishProcess?: any;
     passwordLength?: number;
     passwordComponent: any;
     titleAttemptFailed?: string;
