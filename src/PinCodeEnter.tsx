@@ -82,7 +82,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   }
 
   async componentWillMount() {
-    this.keyChainResult = await Keychain.getGenericPassword()
+    if (!this.props.storedPin) {
+      this.keyChainResult = await Keychain.getGenericPassword()
+    }
   }
 
   componentDidMount() {
@@ -112,8 +114,8 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     if (pin === pinCode) {
       this.setState({pinCodeStatus: PinResultStatus.success})
       AsyncStorage.multiRemove([this.props.pinAttemptsAsyncStorageName, this.props.timePinLockedAsyncStorageName])
-      if (this.props.finishProcess) this.props.finishProcess()
       this.props.changeInternalStatus(PinResultStatus.success)
+      if (this.props.finishProcess) this.props.finishProcess()
     } else {
       pinAttempts++
       if (+pinAttempts >= this.props.maxAttempts) {
