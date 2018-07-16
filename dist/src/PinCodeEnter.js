@@ -22,9 +22,9 @@ class PinCodeEnter extends React.PureComponent {
             if (pin === pinCode) {
                 this.setState({ pinCodeStatus: index_1.PinResultStatus.success });
                 react_native_1.AsyncStorage.multiRemove([this.props.pinAttemptsAsyncStorageName, this.props.timePinLockedAsyncStorageName]);
+                this.props.changeInternalStatus(index_1.PinResultStatus.success);
                 if (this.props.finishProcess)
                     this.props.finishProcess();
-                this.props.changeInternalStatus(index_1.PinResultStatus.success);
             }
             else {
                 pinAttempts++;
@@ -50,7 +50,9 @@ class PinCodeEnter extends React.PureComponent {
         }
     }
     async componentWillMount() {
-        this.keyChainResult = await Keychain.getGenericPassword();
+        if (!this.props.storedPin) {
+            this.keyChainResult = await Keychain.getGenericPassword();
+        }
     }
     componentDidMount() {
         if (!this.props.touchIDDisabled) {
