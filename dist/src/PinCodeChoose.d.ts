@@ -19,6 +19,7 @@ export declare type IProps = {
     titleConfirmFailed?: string;
     subtitleError?: string;
     colorPassword?: string;
+    buttonDeleteText?: string;
     colorPasswordError?: string;
     numbersButtonOverlayColor?: string;
     buttonDeleteComponent: any;

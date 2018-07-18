@@ -16,6 +16,7 @@ var PinStatus;
     PinStatus["confirm"] = "confirm";
     PinStatus["enter"] = "enter";
 })(PinStatus = exports.PinStatus || (exports.PinStatus = {}));
+const textDeleteButtonDefault = 'delete';
 class PinCode extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -137,7 +138,7 @@ class PinCode extends React.PureComponent {
                 React.createElement(react_native_1.View, null,
                     React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon ? this.props.styleDeleteButtonIcon : 'backspace', size: this.props.styleDeleteButtonSize ? this.props.styleDeleteButtonSize : 30, color: this.state.colorDelete, style: { opacity: opacity } }),
                     React.createElement(react_native_1.Text, { style: [this.props.styleDeleteButtonText ? this.props.styleDeleteButtonText : styles.textDeleteButton,
-                            { color: this.state.colorDelete, opacity: opacity }] }, "delete"))));
+                            { color: this.state.colorDelete, opacity: opacity }] }, this.props.buttonDeleteText ? this.props.buttonDeleteText : textDeleteButtonDefault))));
         };
         this.renderTitle = (colorTitle, opacityTitle, attemptFailed, showError) => {
             return (React.createElement(react_native_1.Text, { style: [this.props.styleTextTitle ? this.props.styleTextTitle : styles.textTitle,

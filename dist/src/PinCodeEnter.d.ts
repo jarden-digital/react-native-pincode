@@ -23,6 +23,7 @@ export declare type IProps = {
     finishProcess?: any;
     titleConfirmFailed?: string;
     subtitleError?: string;
+    buttonDeleteText?: string;
     colorPassword?: string;
     colorPasswordError?: string;
     numbersButtonOverlayColor?: string;

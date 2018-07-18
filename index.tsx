@@ -9,6 +9,7 @@ import ApplicationLocked from './src/ApplicationLocked'
 export type IProps = {
   buttonComponentLockedPage?: any
   buttonDeleteComponent?: any
+  buttonDeleteText?: string
   buttonNumberComponent?: any
   colorPassword?: string
   colorPasswordError?: string
@@ -179,6 +180,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor}
           buttonDeleteComponent={this.props.buttonDeleteComponent}
           titleComponent={this.props.titleComponent}
+          buttonDeleteText={this.props.buttonDeleteText}
           subtitleComponent={this.props.subtitleComponent}
           pinCodeKeychainName={this.props.pinCodeKeychainName || 'reactNativePinCode'}
           styleContainer={this.props.stylePinCodeChooseContainer}
@@ -212,6 +214,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           handleResult={this.props.handleResultEnterPin || null}
           maxAttempts={this.props.maxAttempts || 3}
           changeInternalStatus={this.changeInternalStatus}
+          buttonDeleteText={this.props.buttonDeleteText}
           pinStatusExternal={this.props.pinStatus || PinResultStatus.initial}
           storedPin={this.props.storedPin || null}
           touchIDSentence={this.props.touchIDSentence || 'To unlock your application'}

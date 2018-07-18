@@ -21,6 +21,7 @@ export type IProps = {
   titleConfirmFailed?: string
   subtitleError?: string
   colorPassword?: string
+  buttonDeleteText?: string
   colorPasswordError?: string
   numbersButtonOverlayColor?: string
   buttonDeleteComponent: any
@@ -113,6 +114,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           styleTextButton={this.props.styleTextButton}
           styleCircleHiddenPassword={this.props.styleCircleHiddenPassword}
           styleRowButtons={this.props.styleRowButtons}
+          buttonDeleteText={this.props.buttonDeleteText}
           styleColumnButtons={this.props.styleColumnButtons}
           styleEmptyColumn={this.props.styleEmptyColumn}
           styleViewTitle={this.props.styleViewTitle}
@@ -148,6 +150,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           colorPasswordError={this.props.colorPasswordError || undefined}
           numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
+          buttonDeleteText={this.props.buttonDeleteText}
           titleComponent={this.props.titleComponent || null}
           subtitleComponent={this.props.subtitleComponent || null}
           styleButtonCircle={this.props.styleButtonCircle}

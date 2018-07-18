@@ -5,6 +5,7 @@ import { StyleProp, ViewStyle, TextStyle } from 'react-native';
 export declare type IProps = {
     buttonComponentLockedPage?: any;
     buttonDeleteComponent?: any;
+    buttonDeleteText?: string;
     buttonNumberComponent?: any;
     colorPassword?: string;
     colorPasswordError?: string;

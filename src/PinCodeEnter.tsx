@@ -26,6 +26,7 @@ export type IProps = {
   finishProcess?: any
   titleConfirmFailed?: string
   subtitleError?: string
+  buttonDeleteText?: string
   colorPassword?: string
   colorPasswordError?: string
   numbersButtonOverlayColor?: string
@@ -163,6 +164,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           titleComponent={this.props.titleComponent || null}
           subtitleComponent={this.props.subtitleComponent || null}
           styleButtonCircle={this.props.styleButtonCircle}
+          buttonDeleteText={this.props.buttonDeleteText}
           styleTextButton={this.props.styleTextButton}
           styleCircleHiddenPassword={this.props.styleCircleHiddenPassword}
           styleRowButtons={this.props.styleRowButtons}

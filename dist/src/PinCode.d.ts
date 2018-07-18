@@ -9,6 +9,7 @@ export declare type IProps = {
     sentenceTitle: string;
     subtitle: string;
     status: PinStatus;
+    buttonDeleteText?: string;
     cancelFunction?: () => void;
     previousPin?: string;
     pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
