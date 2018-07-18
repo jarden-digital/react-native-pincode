@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2018-07-18
+### Added
+- Added a prop to change the text of the delete button. Related issue: [Issue 19](https://github.com/Haskkor/react-native-pincode/issues/19).
+
 ## [1.5.1] - 2018-07-17
 ### Merged
 - Merged [neutrous](https://github.com/neutrous) pull request allowing to avoid the use of Keychain, and preventing YellowBox.
