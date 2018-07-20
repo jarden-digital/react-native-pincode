@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.5.4] - 2018-07-20
+### Added
+- Added a prop to remove the icon on the delete button of the PIN panel. Related issue: [Issue 19](https://github.com/Haskkor/react-native-pincode/issues/19).
+
+
 ## [1.5.3] - 2018-07-19
 ### Fixed
 - Changed the react-native-touch-id version to fix a crash on iOS. Related issue: [Issue 20](https://github.com/Haskkor/react-native-pincode/issues/20).
