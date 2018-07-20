@@ -34,6 +34,7 @@ export type IProps = {
   pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked'
   buttonNumberComponent?: any
   passwordLength: number
+  iconButtonDeleteDisabled?: boolean
   passwordComponent?: any
   titleAttemptFailed: string
   titleConfirmFailed: string
@@ -305,9 +306,10 @@ class PinCode extends React.PureComponent<IProps, IState> {
       })}
       onPress={() => this.state.password.length > 0 && this.setState({password: this.state.password.slice(0, -1)})}>
       <View>
+        {!this.props.iconButtonDeleteDisabled &&
         <Icon name={this.props.styleDeleteButtonIcon ? this.props.styleDeleteButtonIcon : 'backspace'}
               size={this.props.styleDeleteButtonSize ? this.props.styleDeleteButtonSize : 30}
-              color={this.state.colorDelete} style={{opacity: opacity}}/>
+              color={this.state.colorDelete} style={{opacity: opacity}}/>}
         <Text style={[this.props.styleDeleteButtonText ? this.props.styleDeleteButtonText : styles.textDeleteButton,
           {color: this.state.colorDelete, opacity: opacity}]}>
           {this.props.buttonDeleteText ? this.props.buttonDeleteText : textDeleteButtonDefault}

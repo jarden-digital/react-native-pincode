@@ -15,6 +15,7 @@ export declare type IProps = {
     pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
     buttonNumberComponent?: any;
     passwordLength: number;
+    iconButtonDeleteDisabled?: boolean;
     passwordComponent?: any;
     titleAttemptFailed: string;
     titleConfirmFailed: string;

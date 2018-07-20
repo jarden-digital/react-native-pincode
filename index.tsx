@@ -16,6 +16,7 @@ export type IProps = {
   finishProcess?: any
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
+  iconButtonDeleteDisabled?: boolean
   lockedPage?: any
   maxAttempts?: number
   numbersButtonOverlayColor?: string
@@ -172,6 +173,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           finishProcess={this.props.finishProcess || null}
           buttonNumberComponent={this.props.buttonNumberComponent}
           passwordLength={this.props.passwordLength}
+          iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
           titleAttemptFailed={this.props.titleAttemptFailed}
           titleConfirmFailed={this.props.titleConfirmFailed}
           subtitleError={this.props.subtitleError}
@@ -225,6 +227,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           passwordComponent={this.props.passwordComponent}
           titleAttemptFailed={this.props.titleAttemptFailed}
           titleConfirmFailed={this.props.titleConfirmFailed}
+          iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
           subtitleError={this.props.subtitleError}
           touchIDDisabled={this.props.touchIDDisabled || touchIDDisabledDefault}
           colorPassword={this.props.colorPassword}

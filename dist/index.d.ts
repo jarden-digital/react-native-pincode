@@ -12,6 +12,7 @@ export declare type IProps = {
     finishProcess?: any;
     handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
+    iconButtonDeleteDisabled?: boolean;
     lockedPage?: any;
     maxAttempts?: number;
     numbersButtonOverlayColor?: string;

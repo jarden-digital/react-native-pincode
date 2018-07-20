@@ -24,6 +24,7 @@ export type IProps = {
   passwordComponent: any
   titleAttemptFailed?: string
   finishProcess?: any
+  iconButtonDeleteDisabled?: boolean
   titleConfirmFailed?: string
   subtitleError?: string
   buttonDeleteText?: string
@@ -153,6 +154,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           pinCodeStatus={this.state.pinCodeStatus}
           buttonNumberComponent={this.props.buttonNumberComponent || null}
           passwordLength={this.props.passwordLength || 4}
+          iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
           passwordComponent={this.props.passwordComponent || null}
           titleAttemptFailed={this.props.titleAttemptFailed || 'Incorrect PIN Code'}
           titleConfirmFailed={this.props.titleConfirmFailed || 'Your entries did not match'}

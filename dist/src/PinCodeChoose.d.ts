@@ -21,6 +21,7 @@ export declare type IProps = {
     colorPassword?: string;
     buttonDeleteText?: string;
     colorPasswordError?: string;
+    iconButtonDeleteDisabled?: boolean;
     numbersButtonOverlayColor?: string;
     buttonDeleteComponent: any;
     titleComponent: any;
