@@ -8,7 +8,11 @@
     "dev": "yarn build -watch",
     "build": "tsc",
     "compile": "npm run build",
-    "addlocal": "yarn add file:./local_modules/react-native-pincode"
+    "addlocal": "yarn add file:./local_modules/react-native-pincode",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native"
   },
   "repository": {
     "type": "git",
@@ -27,21 +31,23 @@
     "@types/react-native": "^0.52.16",
     "@types/react-native-vector-icons": "^4.4.3",
     "@types/react-navigation": "^1.2.1",
+    "jest": "^23.3",
+    "react-test-renderer": "^16.4.1",
     "react": "^16.2.0",
     "react-native": "^0.54.2",
     "typescript": "^2.7.2"
   },
   "dependencies": {
+    "d3-ease": "^1.0.3",
+    "lodash": "^4.17.5",
+    "react-move": "^2.7.0",
     "react-native-easy-grid": "^0.1.17",
     "react-native-keychain": "^3.0.0-rc.3",
     "react-native-touch-id": "^4.0.4",
-    "react-native-vector-icons": "^4.5.0",
-    "react-move": "^2.7.0",
-    "lodash": "^4.17.5",
-    "d3-ease": "^1.0.3"
+    "react-native-vector-icons": "^4.5.0"
   },
   "peerDependencies": {
-    "react-native": "*",
-    "react": "*"
+    "react": "*",
+    "react-native": "*"
   }
 }
