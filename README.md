@@ -1,6 +1,6 @@
 # react-native-pincode
 
-[![npm](https://img.shields.io/npm/v/@haskkor/react-native-pincode.svg)](https://www.npmjs.com/package/@haskkor/react-native-pincode) [![npm](https://img.shields.io/npm/dt/@haskkor/react-native-pincode.svg)](https://www.npmjs.com/package/@haskkor/react-native-pincode)
+[![npm](https://img.shields.io/npm/v/@haskkor/react-native-pincode.svg)](https://www.npmjs.com/package/@haskkor/react-native-pincode) [![npm](https://img.shields.io/npm/dt/@haskkor/react-native-pincode.svg)](https://www.npmjs.com/package/@haskkor/react-native-pincode) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 _A customizable PIN Code component for react native_
 

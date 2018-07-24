@@ -35,3 +35,5 @@ it('ApplicatinLocked renders correctly', () => {
     ).toJSON();
     expect(tree).toMatchSnapshot();
 });
+
+// https://medium.com/react-native-training/learning-to-test-react-native-with-jest-part-1-f782c4e30101

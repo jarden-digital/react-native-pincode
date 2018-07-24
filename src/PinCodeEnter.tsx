@@ -1,9 +1,16 @@
 import * as React from 'react'
-import {AsyncStorage, StyleProp, StyleSheet, TextStyle, View, ViewStyle} from 'react-native'
-import PinCode, {PinStatus} from './PinCode'
+import {
+  AsyncStorage,
+  StyleProp,
+  StyleSheet,
+  TextStyle,
+  View,
+  ViewStyle
+} from 'react-native'
+import PinCode, { PinStatus } from './PinCode'
 import TouchID from 'react-native-touch-id'
 import * as Keychain from 'react-native-keychain'
-import {PinResultStatus} from '../index'
+import { PinResultStatus } from '../index'
 
 /**
  * Pin Code Enter PIN Page
@@ -72,14 +79,14 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
 
   constructor(props: IProps) {
     super(props)
-    this.state = {pinCodeStatus: PinResultStatus.initial, locked: false}
+    this.state = { pinCodeStatus: PinResultStatus.initial, locked: false }
     this.endProcess = this.endProcess.bind(this)
     this.launchTouchID = this.launchTouchID.bind(this)
   }
 
   componentWillReceiveProps(nextProps: IProps) {
     if (nextProps.pinStatusExternal !== this.props.pinStatusExternal) {
-      this.setState({pinCodeStatus: nextProps.pinStatusExternal})
+      this.setState({ pinCodeStatus: nextProps.pinStatusExternal })
     }
   }
 
@@ -108,25 +115,36 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       this.props.handleResult(pinCode)
       return
     }
-    this.setState({pinCodeStatus: PinResultStatus.initial})
+    this.setState({ pinCodeStatus: PinResultStatus.initial })
     this.props.changeInternalStatus(PinResultStatus.initial)
-    const pinAttemptsStr = await AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName)
+    const pinAttemptsStr = await AsyncStorage.getItem(
+      this.props.pinAttemptsAsyncStorageName
+    )
     let pinAttempts = +pinAttemptsStr
     const pin = this.props.storedPin || this.keyChainResult.password
     if (pin === pinCode) {
-      this.setState({pinCodeStatus: PinResultStatus.success})
-      AsyncStorage.multiRemove([this.props.pinAttemptsAsyncStorageName, this.props.timePinLockedAsyncStorageName])
+      this.setState({ pinCodeStatus: PinResultStatus.success })
+      AsyncStorage.multiRemove([
+        this.props.pinAttemptsAsyncStorageName,
+        this.props.timePinLockedAsyncStorageName
+      ])
       this.props.changeInternalStatus(PinResultStatus.success)
       if (this.props.finishProcess) this.props.finishProcess()
     } else {
       pinAttempts++
       if (+pinAttempts >= this.props.maxAttempts) {
-        await AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString())
-        this.setState({locked: true, pinCodeStatus: PinResultStatus.locked})
+        await AsyncStorage.setItem(
+          this.props.timePinLockedAsyncStorageName,
+          new Date().toISOString()
+        )
+        this.setState({ locked: true, pinCodeStatus: PinResultStatus.locked })
         this.props.changeInternalStatus(PinResultStatus.locked)
       } else {
-        await AsyncStorage.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString())
-        this.setState({pinCodeStatus: PinResultStatus.failure})
+        await AsyncStorage.setItem(
+          this.props.pinAttemptsAsyncStorageName,
+          pinAttempts.toString()
+        )
+        this.setState({ pinCodeStatus: PinResultStatus.failure })
         this.props.changeInternalStatus(PinResultStatus.failure)
       }
     }
@@ -142,9 +160,16 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    const pin = this.props.storedPin || (this.keyChainResult && this.keyChainResult.password)
+    const pin =
+      this.props.storedPin ||
+      (this.keyChainResult && this.keyChainResult.password)
     return (
-      <View style={this.props.styleContainer ? this.props.styleContainer : styles.container}>
+      <View
+        style={
+          this.props.styleContainer
+            ? this.props.styleContainer
+            : styles.container
+        }>
         <PinCode
           endProcess={this.endProcess}
           sentenceTitle={this.props.title}
@@ -156,12 +181,18 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           passwordLength={this.props.passwordLength || 4}
           iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
           passwordComponent={this.props.passwordComponent || null}
-          titleAttemptFailed={this.props.titleAttemptFailed || 'Incorrect PIN Code'}
-          titleConfirmFailed={this.props.titleConfirmFailed || 'Your entries did not match'}
+          titleAttemptFailed={
+            this.props.titleAttemptFailed || 'Incorrect PIN Code'
+          }
+          titleConfirmFailed={
+            this.props.titleConfirmFailed || 'Your entries did not match'
+          }
           subtitleError={this.props.subtitleError || 'Please try again'}
           colorPassword={this.props.colorPassword || undefined}
           colorPasswordError={this.props.colorPasswordError || undefined}
-          numbersButtonOverlayColor={this.props.numbersButtonOverlayColor || undefined}
+          numbersButtonOverlayColor={
+            this.props.numbersButtonOverlayColor || undefined
+          }
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
           titleComponent={this.props.titleComponent || null}
           subtitleComponent={this.props.subtitleComponent || null}
@@ -177,8 +208,12 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           styleTextSubtitle={this.props.styleTextSubtitle}
           styleContainer={this.props.styleContainerPinCode}
           styleColumnDeleteButton={this.props.styleColumnDeleteButton}
-          styleDeleteButtonColorShowUnderlay={this.props.styleDeleteButtonColorShowUnderlay}
-          styleDeleteButtonColorHideUnderlay={this.props.styleDeleteButtonColorHideUnderlay}
+          styleDeleteButtonColorShowUnderlay={
+            this.props.styleDeleteButtonColorShowUnderlay
+          }
+          styleDeleteButtonColorHideUnderlay={
+            this.props.styleDeleteButtonColorHideUnderlay
+          }
           styleDeleteButtonIcon={this.props.styleDeleteButtonIcon}
           styleDeleteButtonSize={this.props.styleDeleteButtonSize}
           styleColorTitle={this.props.styleColorTitle}
@@ -187,7 +222,10 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           styleColorSubtitleError={this.props.styleColorSubtitleError}
           styleDeleteButtonText={this.props.styleDeleteButtonText}
           styleColorButtonTitle={this.props.styleColorButtonTitle}
-          styleColorButtonTitleSelected={this.props.styleColorButtonTitleSelected}/>
+          styleColorButtonTitleSelected={
+            this.props.styleColorButtonTitleSelected
+          }
+        />
       </View>
     )
   }

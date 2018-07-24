@@ -18,14 +18,20 @@ class ApplicationLocked extends React.PureComponent {
                         this.props.onClickButton();
                     }
                     else {
-                        throw ('Quit application');
+                        throw 'Quit application';
                     }
                 }, style: this.props.styleButton ? this.props.styleButton : styles.button },
-                React.createElement(react_native_1.Text, { style: this.props.styleTextButton ? this.props.styleTextButton : styles.closeButtonText }, this.props.textButton)));
+                React.createElement(react_native_1.Text, { style: this.props.styleTextButton
+                        ? this.props.styleTextButton
+                        : styles.closeButtonText }, this.props.textButton)));
         };
         this.renderTimer = (minutes, seconds) => {
-            return (React.createElement(react_native_1.View, { style: this.props.styleViewTimer ? this.props.styleViewTimer : styles.viewTimer },
-                React.createElement(react_native_1.Text, { style: this.props.styleTextTimer ? this.props.styleTextTimer : styles.textTimer }, `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`)));
+            return (React.createElement(react_native_1.View, { style: this.props.styleViewTimer
+                    ? this.props.styleViewTimer
+                    : styles.viewTimer },
+                React.createElement(react_native_1.Text, { style: this.props.styleTextTimer
+                        ? this.props.styleTextTimer
+                        : styles.textTimer }, `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`)));
         };
         this.renderTitle = () => {
             return (React.createElement(react_native_1.Text, { style: this.props.styleTitle ? this.props.styleTitle : styles.title }, this.props.textTitle || 'Maximum attempts reached'));
@@ -43,13 +49,24 @@ class ApplicationLocked extends React.PureComponent {
                     }, enter: {
                         opacity: [1],
                         timing: { delay: 1000, duration: 1500, ease: d3_ease_1.easeLinear }
-                    } }, (state) => (React.createElement(react_native_1.View, { style: [this.props.styleViewTextLock ? this.props.styleViewTextLock : styles.viewTextLock,
-                        { opacity: state.opacity }] },
-                    this.props.titleComponent ? this.props.titleComponent() : this.renderTitle(),
-                    this.props.timerComponent ? this.props.timerComponent() : this.renderTimer(minutes, seconds),
-                    this.props.iconComponent ? this.props.iconComponent() : this.renderIcon(),
-                    React.createElement(react_native_1.Text, { style: this.props.styleText ? this.props.styleText : styles.text }, this.props.textDescription ? this.props.textDescription :
-                        `To protect your information, access has been locked for ${Math.ceil(this.props.timeToLock / 1000 / 60)} minutes.`),
+                    } }, (state) => (React.createElement(react_native_1.View, { style: [
+                        this.props.styleViewTextLock
+                            ? this.props.styleViewTextLock
+                            : styles.viewTextLock,
+                        { opacity: state.opacity }
+                    ] },
+                    this.props.titleComponent
+                        ? this.props.titleComponent()
+                        : this.renderTitle(),
+                    this.props.timerComponent
+                        ? this.props.timerComponent()
+                        : this.renderTimer(minutes, seconds),
+                    this.props.iconComponent
+                        ? this.props.iconComponent()
+                        : this.renderIcon(),
+                    React.createElement(react_native_1.Text, { style: this.props.styleText ? this.props.styleText : styles.text }, this.props.textDescription
+                        ? this.props.textDescription
+                        : `To protect your information, access has been locked for ${Math.ceil(this.props.timeToLock / 1000 / 60)} minutes.`),
                     React.createElement(react_native_1.Text, { style: this.props.styleText ? this.props.styleText : styles.text }, "Come back later and try again.")))),
                 React.createElement(Animate_1.default, { show: true, start: {
                         opacity: 0
@@ -57,7 +74,11 @@ class ApplicationLocked extends React.PureComponent {
                         opacity: [1],
                         timing: { delay: 2000, duration: 1500, ease: d3_ease_1.easeLinear }
                     } }, (state) => (React.createElement(react_native_1.View, { style: { opacity: state.opacity, flex: 1 } },
-                    React.createElement(react_native_1.View, { style: this.props.styleViewButton ? this.props.styleViewButton : styles.viewCloseButton }, this.props.buttonComponent ? this.props.buttonComponent() : this.renderButton()))))));
+                    React.createElement(react_native_1.View, { style: this.props.styleViewButton
+                            ? this.props.styleViewButton
+                            : styles.viewCloseButton }, this.props.buttonComponent
+                        ? this.props.buttonComponent()
+                        : this.renderButton()))))));
         };
         this.state = {
             timeDiff: 0
@@ -69,7 +90,7 @@ class ApplicationLocked extends React.PureComponent {
         this.renderTitle = this.renderTitle.bind(this);
     }
     componentDidMount() {
-        react_native_1.AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName).then((val) => {
+        react_native_1.AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName).then(val => {
             this.timeLocked = new Date(val).getTime() + this.props.timeToLock;
             this.timer();
         });
@@ -80,7 +101,10 @@ class ApplicationLocked extends React.PureComponent {
         await delay_1.default(1000);
         if (timeDiff < 1000) {
             this.props.changeStatus(index_1.PinResultStatus.initial);
-            react_native_1.AsyncStorage.multiRemove([this.props.timePinLockedAsyncStorageName, this.props.pinAttemptsAsyncStorageName]);
+            react_native_1.AsyncStorage.multiRemove([
+                this.props.timePinLockedAsyncStorageName,
+                this.props.pinAttemptsAsyncStorageName
+            ]);
         }
         if (!this.isUnmounted) {
             this.timer();
@@ -90,7 +114,9 @@ class ApplicationLocked extends React.PureComponent {
         this.isUnmounted = true;
     }
     render() {
-        return (React.createElement(react_native_1.View, { style: this.props.styleMainContainer ? this.props.styleMainContainer : styles.container }, this.renderErrorLocked()));
+        return (React.createElement(react_native_1.View, { style: this.props.styleMainContainer
+                ? this.props.styleMainContainer
+                : styles.container }, this.renderErrorLocked()));
     }
 }
 exports.default = ApplicationLocked;
