@@ -64,13 +64,13 @@ import PINCode from '@haskkor/react-native-pincode'
 |**`buttonDeleteText`**|Text of the of the button used to delete a previous entry on the PIN panel|`delete`|`false`|`string`|
 |**`buttonNumberComponent`**|Button component to be used on the PIN panel to select a character for the PIN|TouchableHighlight button with a number text|`false`|`any`|
 |**`finishProcess`**|Function to be used when the user enters the right PIN code|Removes the values in AsyncStorage and set the status to `success`|`false`|`any`|
-|**`onFail`**|Function to be used when the user enters the wrong PIN code|returns number of failed attempts|`false`|`any`|
 |**`handleResultEnterPin`**|Function to be used to handle the PIN code entered by the user. To be used with the **`pinStatus`** props|Functions that checks the validity of the give PIN code, stores the number of failed attempts in the `AsyncStorage` and the time the application was locked if needed|`false`|`any`|
 |**`iconComponentLockedPage`**|View component to be used between the timer and the text on the locked application page|A circular red View using the `lock` material icon|`false`|`any`|
 |**`iconButtonDeleteDisabled`**|Boolean to remove the icon on the delete button of the PIN panel|`false`|`false`|`boolean`|
 |**`lockedPage`**|View component used as a locked page if the user fails to provide the correct PIN code `maxAttempts` times|A application locked page with a timer indicating to the user the remaining time locked and a button closing the application|`false`|`any`|
 |**`maxAttempts`**|Number of attempts the user is given before locking the application|`3`|`false`|`number`|
 |**`onClickButtonLockedPage`**|Function to be used when the user taps the button on the locked application page|Kills the app by throwing `Quit application`|`false`|`any`|
+|**`onFail`**|Function to be used when the user enters the wrong PIN code|Returns number of failed attempts|`false`|`any`|
 |**`passwordComponent`**|Component to be used to indicate to the user how many characters he/she typed|Dots growing or shrinking when the user adds or removes a character in the PIN code|`false`|`any`|
 |**`passwordLength`**|Length of the password the user has to enter|`4`|`false`|`number`|
 |**`pinAttemptsAsyncStorageName`**|String to be used as a key in AsyncStorage to store the number of attempts the user already made|`pinAttemptsRNPin`|`false`|`string`|

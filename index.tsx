@@ -14,7 +14,6 @@ export type IProps = {
   colorPassword?: string
   colorPasswordError?: string
   finishProcess?: any
-  onFail?: any
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
   iconButtonDeleteDisabled?: boolean
@@ -22,6 +21,7 @@ export type IProps = {
   maxAttempts?: number
   numbersButtonOverlayColor?: string
   onClickButtonLockedPage?: any
+  onFail?: any
   passwordComponent?: any
   passwordLength?: number
   pinAttemptsAsyncStorageName?: string

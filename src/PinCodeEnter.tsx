@@ -133,8 +133,8 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       if (this.props.finishProcess) this.props.finishProcess()
     } else {
       pinAttempts++
-      if(this.props.onFail){
-        this.props.onFail(pinAttempts);
+      if (this.props.onFail) {
+        this.props.onFail(pinAttempts)
       }
       if (+pinAttempts >= this.props.maxAttempts) {
         await AsyncStorage.setItem(
