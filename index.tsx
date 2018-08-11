@@ -14,6 +14,7 @@ export type IProps = {
   colorPassword?: string
   colorPasswordError?: string
   finishProcess?: any
+  onFail?: any
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
   iconButtonDeleteDisabled?: boolean
@@ -222,6 +223,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           touchIDSentence={this.props.touchIDSentence || 'To unlock your application'}
           status={PinStatus.enter}
           finishProcess={this.props.finishProcess || null}
+          onFail={this.props.onFail || null}
           buttonNumberComponent={this.props.buttonNumberComponent}
           passwordLength={this.props.passwordLength}
           passwordComponent={this.props.passwordComponent}

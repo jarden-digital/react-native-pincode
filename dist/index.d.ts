@@ -10,6 +10,7 @@ export declare type IProps = {
     colorPassword?: string;
     colorPasswordError?: string;
     finishProcess?: any;
+    onFail?: any;
     handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
     iconButtonDeleteDisabled?: boolean;
