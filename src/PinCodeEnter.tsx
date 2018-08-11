@@ -31,6 +31,7 @@ export type IProps = {
   passwordComponent: any
   titleAttemptFailed?: string
   finishProcess?: any
+  onFail?: any
   iconButtonDeleteDisabled?: boolean
   titleConfirmFailed?: string
   subtitleError?: string
@@ -132,6 +133,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       if (this.props.finishProcess) this.props.finishProcess()
     } else {
       pinAttempts++
+      if(this.props.onFail){
+        this.props.onFail(pinAttempts);
+      }
       if (+pinAttempts >= this.props.maxAttempts) {
         await AsyncStorage.setItem(
           this.props.timePinLockedAsyncStorageName,

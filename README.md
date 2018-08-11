@@ -64,6 +64,7 @@ import PINCode from '@haskkor/react-native-pincode'
 |**`buttonDeleteText`**|Text of the of the button used to delete a previous entry on the PIN panel|`delete`|`false`|`string`|
 |**`buttonNumberComponent`**|Button component to be used on the PIN panel to select a character for the PIN|TouchableHighlight button with a number text|`false`|`any`|
 |**`finishProcess`**|Function to be used when the user enters the right PIN code|Removes the values in AsyncStorage and set the status to `success`|`false`|`any`|
+|**`onFail`**|Function to be used when the user enters the wrong PIN code|returns number of failed attempts|`false`|`any`|
 |**`handleResultEnterPin`**|Function to be used to handle the PIN code entered by the user. To be used with the **`pinStatus`** props|Functions that checks the validity of the give PIN code, stores the number of failed attempts in the `AsyncStorage` and the time the application was locked if needed|`false`|`any`|
 |**`iconComponentLockedPage`**|View component to be used between the timer and the text on the locked application page|A circular red View using the `lock` material icon|`false`|`any`|
 |**`iconButtonDeleteDisabled`**|Boolean to remove the icon on the delete button of the PIN panel|`false`|`false`|`boolean`|

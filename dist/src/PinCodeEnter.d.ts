@@ -21,6 +21,7 @@ export declare type IProps = {
     passwordComponent: any;
     titleAttemptFailed?: string;
     finishProcess?: any;
+    onFail?: any;
     iconButtonDeleteDisabled?: boolean;
     titleConfirmFailed?: string;
     subtitleError?: string;

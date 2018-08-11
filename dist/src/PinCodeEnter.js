@@ -31,6 +31,9 @@ class PinCodeEnter extends React.PureComponent {
             }
             else {
                 pinAttempts++;
+                if (this.props.onFail) {
+                    this.props.onFail(pinAttempts);
+                }
                 if (+pinAttempts >= this.props.maxAttempts) {
                     await react_native_1.AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
                     this.setState({ locked: true, pinCodeStatus: index_1.PinResultStatus.locked });
