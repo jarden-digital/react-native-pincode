@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [1.5.4] - 2018-08-12
+## [1.6.0] - 2018-08-13
+### Added
+- Exposed a new function `hasUserSetPinCode` to know if a user already set a PIN code with the package.
+
+## [1.5.5] - 2018-08-12
 ### Merged
 - Merged [stephenkopylov](https://github.com/stephenkopylov) pull request adding a onFail function triggered when user enters a wrong password.
 
