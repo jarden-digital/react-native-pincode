@@ -102,4 +102,5 @@ declare class PINCode extends React.PureComponent<IProps, IState> {
     renderLockedPage: () => JSX.Element;
     render(): JSX.Element;
 }
+export declare function hasUserSetPinCode(): Promise<boolean>;
 export default PINCode;

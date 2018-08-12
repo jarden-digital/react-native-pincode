@@ -55,6 +55,13 @@ import PINCode from '@haskkor/react-native-pincode'
 <PINCode status={'choose'}/>
 ```
 
+One can also use a provided promise to know if a PIN code has been set by the user.
+
+```
+import {hasUserSetPinCode} from '@haskkor/react-native-pincode'
+await hasUserSetPinCode()
+```
+
 ## Options
 
 | Key | Description | Default | Required | Type |

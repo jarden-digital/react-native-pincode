@@ -5,6 +5,7 @@ import {PinStatus} from './src/PinCode'
 import PinCodeEnter from './src/PinCodeEnter'
 import {View, StyleSheet, AsyncStorage, StyleProp, ViewStyle, TextStyle} from 'react-native'
 import ApplicationLocked from './src/ApplicationLocked'
+import { hasPinCode } from './src/utils'
 
 export type IProps = {
   buttonComponentLockedPage?: any
@@ -273,6 +274,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
   }
 }
 
+export function hasUserSetPinCode() {return hasPinCode()}
 export default PINCode
 
 let styles = StyleSheet.create({

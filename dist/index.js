@@ -7,6 +7,7 @@ const PinCode_1 = require("./src/PinCode");
 const PinCodeEnter_1 = require("./src/PinCodeEnter");
 const react_native_1 = require("react-native");
 const ApplicationLocked_1 = require("./src/ApplicationLocked");
+const utils_1 = require("./src/utils");
 var PinResultStatus;
 (function (PinResultStatus) {
     PinResultStatus["initial"] = "initial";
@@ -52,6 +53,8 @@ class PINCode extends React.PureComponent {
                 (this.props.lockedPage ? this.props.lockedPage() : this.renderLockedPage())));
     }
 }
+function hasUserSetPinCode() { return utils_1.hasPinCode(); }
+exports.hasUserSetPinCode = hasUserSetPinCode;
 exports.default = PINCode;
 let styles = react_native_1.StyleSheet.create({
     container: {

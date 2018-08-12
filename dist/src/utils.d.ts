@@ -1,1 +1,1 @@
-export declare const hasPinCode: () => Promise<string | false>;
+export declare const hasPinCode: () => Promise<boolean>;

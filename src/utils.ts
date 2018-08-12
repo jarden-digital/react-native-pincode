@@ -1,6 +1,7 @@
 import * as Keychain from 'react-native-keychain'
 
 export const hasPinCode = async() => {
-  const keyChainResult = await Keychain.getGenericPassword()
-  return keyChainResult && (keyChainResult as {service: string, username: string, password: string}).password
+  return await Keychain.getGenericPassword().then((res: boolean | {service: string, username: string, password: string}) => {
+    return !!res && !!(res as {service: string, username: string, password: string}).password
+  })
 }
