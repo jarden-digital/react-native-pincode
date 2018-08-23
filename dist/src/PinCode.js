@@ -220,7 +220,8 @@ class PinCode extends React.PureComponent {
             moveData: { x: 0, y: 0 },
             showError: false,
             textButtonSelected: '',
-            colorDelete: 'rgb(211, 213, 218)',
+            colorDelete: this.props.styleDeleteButtonColorHideUnderlay ?
+                this.props.styleDeleteButtonColorHideUnderlay : 'rgb(211, 213, 218)',
             attemptFailed: false,
             changeScreen: false
         };
