@@ -35,6 +35,8 @@ export declare type IProps = {
     styleButtonCircle?: StyleProp<ViewStyle>;
     styleTextButton?: StyleProp<TextStyle>;
     styleCircleHiddenPassword?: StyleProp<ViewStyle>;
+    styleCircleSizeEmpty?: number;
+    styleCircleSizeFull?: number;
     styleRowButtons?: StyleProp<ViewStyle>;
     styleColumnButtons?: StyleProp<ViewStyle>;
     styleEmptyColumn?: StyleProp<ViewStyle>;

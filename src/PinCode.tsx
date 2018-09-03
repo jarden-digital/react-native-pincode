@@ -48,6 +48,8 @@ export type IProps = {
   styleButtonCircle?: StyleProp<ViewStyle>
   styleTextButton?: StyleProp<TextStyle>
   styleCircleHiddenPassword?: StyleProp<ViewStyle>
+  styleCircleSizeEmpty?: number
+  styleCircleSizeFull?: number
   styleRowButtons?: StyleProp<ViewStyle>
   styleColumnButtons?: StyleProp<ViewStyle>
   styleEmptyColumn?: StyleProp<ViewStyle>
@@ -88,6 +90,9 @@ export enum PinStatus {
 const textDeleteButtonDefault = 'delete'
 
 class PinCode extends React.PureComponent<IProps, IState> {
+  _circleSizeEmpty: number
+  _circleSizeFull: number
+
   constructor(props: IProps) {
     super(props)
     this.state = {
@@ -100,6 +105,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
       attemptFailed: false,
       changeScreen: false
     }
+    this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4
+    this._circleSizeFull = this.props.styleCircleSizeFull || 8
     this.renderButtonNumber = this.renderButtonNumber.bind(this)
     this.renderCirclePassword = this.renderCirclePassword.bind(this)
     this.doShake = this.doShake.bind(this)
@@ -299,9 +306,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
               show={true}
               start={{
                 opacity: 0.5,
-                height: 4,
-                width: 4,
-                borderRadius: 2,
+                height: this._circleSizeEmpty,
+                width: this._circleSizeEmpty,
+                borderRadius: this._circleSizeEmpty / 2,
                 color: this.props.colorPassword
                   ? this.props.colorPassword
                   : colors.turquoise,
@@ -315,8 +322,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
               update={{
                 x: [moveData.x],
                 opacity: [lengthSup ? 1 : 0.5],
-                height: [lengthSup ? 8 : 4],
-                width: [lengthSup ? 8 : 4],
+                height: [lengthSup ? this._circleSizeFull : this._circleSizeEmpty],
+                width: [lengthSup ? this._circleSizeFull : this._circleSizeEmpty],
                 color: [
                   showError
                     ? this.props.colorPasswordError
@@ -326,7 +333,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                       ? this.props.colorPassword
                       : colors.turquoise
                 ],
-                borderRadius: [lengthSup ? 4 : 2],
+                borderRadius: [lengthSup ? this._circleSizeFull / 2 : this._circleSizeEmpty / 2],
                 marginRight: [lengthSup ? 8 : 10],
                 marginLeft: [lengthSup ? 8 : 10],
                 marginBottom: [marginSup ? 30 : grid.unit * 2],

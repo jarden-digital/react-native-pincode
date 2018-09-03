@@ -58,6 +58,8 @@ export declare type IProps = {
     stylePinCodeDeleteButtonText?: StyleProp<TextStyle>;
     stylePinCodeEmptyColumn?: StyleProp<ViewStyle>;
     stylePinCodeHiddenPasswordCircle?: StyleProp<ViewStyle>;
+    stylePinCodeHiddenPasswordSizeEmpty?: number;
+    stylePinCodeHiddenPasswordSizeFull?: number;
     stylePinCodeMainContainer?: StyleProp<ViewStyle>;
     stylePinCodeRowButtons?: StyleProp<ViewStyle>;
     stylePinCodeTextButtonCircle?: StyleProp<TextStyle>;

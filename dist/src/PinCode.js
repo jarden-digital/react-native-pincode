@@ -120,9 +120,9 @@ class PinCode extends React.PureComponent {
                     !attemptFailed;
                 return (React.createElement(Animate_1.default, { key: val, show: true, start: {
                         opacity: 0.5,
-                        height: 4,
-                        width: 4,
-                        borderRadius: 2,
+                        height: this._circleSizeEmpty,
+                        width: this._circleSizeEmpty,
+                        borderRadius: this._circleSizeEmpty / 2,
                         color: this.props.colorPassword
                             ? this.props.colorPassword
                             : colors_1.colors.turquoise,
@@ -135,8 +135,8 @@ class PinCode extends React.PureComponent {
                     }, update: {
                         x: [moveData.x],
                         opacity: [lengthSup ? 1 : 0.5],
-                        height: [lengthSup ? 8 : 4],
-                        width: [lengthSup ? 8 : 4],
+                        height: [lengthSup ? this._circleSizeFull : this._circleSizeEmpty],
+                        width: [lengthSup ? this._circleSizeFull : this._circleSizeEmpty],
                         color: [
                             showError
                                 ? this.props.colorPasswordError
@@ -146,7 +146,7 @@ class PinCode extends React.PureComponent {
                                     ? this.props.colorPassword
                                     : colors_1.colors.turquoise
                         ],
-                        borderRadius: [lengthSup ? 4 : 2],
+                        borderRadius: [lengthSup ? this._circleSizeFull / 2 : this._circleSizeEmpty / 2],
                         marginRight: [lengthSup ? 8 : 10],
                         marginLeft: [lengthSup ? 8 : 10],
                         marginBottom: [marginSup ? 30 : grid_1.grid.unit * 2],
@@ -225,6 +225,8 @@ class PinCode extends React.PureComponent {
             attemptFailed: false,
             changeScreen: false
         };
+        this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4;
+        this._circleSizeFull = this.props.styleCircleSizeFull || 8;
         this.renderButtonNumber = this.renderButtonNumber.bind(this);
         this.renderCirclePassword = this.renderCirclePassword.bind(this);
         this.doShake = this.doShake.bind(this);
