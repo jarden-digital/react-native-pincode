@@ -168,9 +168,7 @@ class PinCode extends React.PureComponent {
             })));
         };
         this.renderButtonDelete = (opacity) => {
-            return (React.createElement(react_native_1.TouchableHighlight, { style: this.props.styleColumnDeleteButton
-                    ? this.props.styleColumnDeleteButton
-                    : styles.colIcon, disabled: this.state.password.length === 0, underlayColor: "transparent", onHideUnderlay: () => this.setState({
+            return (React.createElement(react_native_1.TouchableHighlight, { disabled: this.state.password.length === 0, underlayColor: "transparent", onHideUnderlay: () => this.setState({
                     colorDelete: this.props.styleDeleteButtonColorHideUnderlay
                         ? this.props.styleDeleteButtonColorHideUnderlay
                         : 'rgb(211, 213, 218)'
@@ -180,7 +178,9 @@ class PinCode extends React.PureComponent {
                         : colors_1.colors.turquoise
                 }), onPress: () => this.state.password.length > 0 &&
                     this.setState({ password: this.state.password.slice(0, -1) }) },
-                React.createElement(react_native_1.View, null,
+                React.createElement(react_native_1.View, { style: this.props.styleColumnDeleteButton
+                    ? this.props.styleColumnDeleteButton
+                    : styles.colIcon },
                     !this.props.iconButtonDeleteDisabled && (React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon
                             ? this.props.styleDeleteButtonIcon
                             : 'backspace', size: this.props.styleDeleteButtonSize
@@ -430,6 +430,7 @@ let styles = react_native_1.StyleSheet.create({
         height: grid_1.grid.unit * 4,
         marginLeft: grid_1.grid.unit / 2,
         marginRight: grid_1.grid.unit / 2,
+        alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column'
