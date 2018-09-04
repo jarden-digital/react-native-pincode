@@ -186,6 +186,8 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleButtonCircle={this.props.styleButtonCircle}
             styleTextButton={this.props.styleTextButton}
             styleCircleHiddenPassword={this.props.styleCircleHiddenPassword}
+            styleCircleSizeEmpty={this.props.styleCircleSizeEmpty}
+            styleCircleSizeFull={this.props.styleCircleSizeFull}
             iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
             styleRowButtons={this.props.styleRowButtons}
             styleColumnButtons={this.props.styleColumnButtons}
