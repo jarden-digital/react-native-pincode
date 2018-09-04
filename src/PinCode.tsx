@@ -405,11 +405,6 @@ class PinCode extends React.PureComponent<IProps, IState> {
   renderButtonDelete = (opacity: number) => {
     return (
       <TouchableHighlight
-        style={
-          this.props.styleColumnDeleteButton
-            ? this.props.styleColumnDeleteButton
-            : styles.colIcon
-        }
         disabled={this.state.password.length === 0}
         underlayColor="transparent"
         onHideUnderlay={() =>
@@ -430,7 +425,13 @@ class PinCode extends React.PureComponent<IProps, IState> {
           this.state.password.length > 0 &&
           this.setState({ password: this.state.password.slice(0, -1) })
         }>
-        <View>
+        <View
+          style={
+            this.props.styleColumnDeleteButton
+              ? this.props.styleColumnDeleteButton
+              : styles.colIcon
+          }
+        >
           {!this.props.iconButtonDeleteDisabled && (
             <Icon
               name={
@@ -767,6 +768,7 @@ let styles = StyleSheet.create({
     height: grid.unit * 4,
     marginLeft: grid.unit / 2,
     marginRight: grid.unit / 2,
+    alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column'
