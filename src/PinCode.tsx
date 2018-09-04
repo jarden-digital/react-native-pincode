@@ -100,8 +100,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
       moveData: { x: 0, y: 0 },
       showError: false,
       textButtonSelected: '',
-      colorDelete: this.props.styleDeleteButtonColorHideUnderlay ?
-        this.props.styleDeleteButtonColorHideUnderlay : 'rgb(211, 213, 218)',
+      colorDelete: this.props.styleDeleteButtonColorHideUnderlay
+        ? this.props.styleDeleteButtonColorHideUnderlay
+        : 'rgb(211, 213, 218)',
       attemptFailed: false,
       changeScreen: false
     }
@@ -322,8 +323,12 @@ class PinCode extends React.PureComponent<IProps, IState> {
               update={{
                 x: [moveData.x],
                 opacity: [lengthSup ? 1 : 0.5],
-                height: [lengthSup ? this._circleSizeFull : this._circleSizeEmpty],
-                width: [lengthSup ? this._circleSizeFull : this._circleSizeEmpty],
+                height: [
+                  lengthSup ? this._circleSizeFull : this._circleSizeEmpty
+                ],
+                width: [
+                  lengthSup ? this._circleSizeFull : this._circleSizeEmpty
+                ],
                 color: [
                   showError
                     ? this.props.colorPasswordError
@@ -333,11 +338,33 @@ class PinCode extends React.PureComponent<IProps, IState> {
                       ? this.props.colorPassword
                       : colors.turquoise
                 ],
-                borderRadius: [lengthSup ? this._circleSizeFull / 2 : this._circleSizeEmpty / 2],
-                marginRight: [lengthSup ? 8 : 10],
-                marginLeft: [lengthSup ? 8 : 10],
-                marginBottom: [marginSup ? 30 : grid.unit * 2],
-                marginTop: [marginSup ? 62 : grid.unit * 4],
+                borderRadius: [
+                  lengthSup
+                    ? this._circleSizeFull / 2
+                    : this._circleSizeEmpty / 2
+                ],
+                marginRight: [
+                  lengthSup
+                    ? 10 - (this._circleSizeFull - this._circleSizeEmpty) / 2
+                    : 10
+                ],
+                marginLeft: [
+                  lengthSup
+                    ? 10 - (this._circleSizeFull - this._circleSizeEmpty) / 2
+                    : 10
+                ],
+                marginBottom: [
+                  marginSup
+                    ? grid.unit * 2 -
+                      (this._circleSizeFull - this._circleSizeEmpty) / 2
+                    : grid.unit * 2
+                ],
+                marginTop: [
+                  marginSup
+                    ? grid.unit * 4 -
+                      (this._circleSizeFull - this._circleSizeEmpty) / 2
+                    : grid.unit * 4
+                ],
                 y: [moveData.y],
                 timing: { duration: 200, ease: easeLinear }
               }}>

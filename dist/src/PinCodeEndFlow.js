@@ -18,7 +18,7 @@ class PinCodeEndFlow extends React.PureComponent {
         this.closePage();
     }
     render() {
-        const textStyle = { paragraph: styles.text, strong: styles.textBold }; // todo Markdown broken on android for things like the pin code sentence
+        const textStyle = { paragraph: styles.text, strong: styles.textBold };
         return (React.createElement(react_native_1.View, { style: styles.container },
             React.createElement(react_native_1.Text, { style: styles.title }, "Thank you"),
             React.createElement(react_native_1.View, { style: styles.iconView },
