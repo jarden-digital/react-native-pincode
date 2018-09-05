@@ -768,6 +768,8 @@ let styles = StyleSheet.create({
     height: grid.unit * 4
   },
   colEmpty: {
+    marginLeft: grid.unit / 2,
+    marginRight: grid.unit / 2,
     width: grid.unit * 4,
     height: grid.unit * 4
   },

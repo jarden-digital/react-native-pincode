@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.6.3] - 2018-09-05
+### Fixed
+- Buttons layout broken.
+### Added
+- Added `stylePinCodeHiddenPasswordSizeEmpty` and `stylePinCodeHiddenPasswordSizeFull` properties. Related issue: [Issue 29](https://github.com/fnzc/react-native-pincode/issues/29).
+### Merged
+- Merged [Dimon70007](https://github.com/Dimon70007) pull request fixing the align center for the icon in the delete button.
+
+
 ## [1.6.2] - 2018-08-24
 ### Fixed
 - Fixed an issue with the stylePinCodeDeleteButtonColorHideUnderlay property. Related issue: [Issue 25](https://github.com/fnzc/react-native-pincode/issues/25).

@@ -454,6 +454,8 @@ let styles = react_native_1.StyleSheet.create({
         height: grid_1.grid.unit * 4
     },
     colEmpty: {
+        marginLeft: grid_1.grid.unit / 2,
+        marginRight: grid_1.grid.unit / 2,
         width: grid_1.grid.unit * 4,
         height: grid_1.grid.unit * 4
     },
