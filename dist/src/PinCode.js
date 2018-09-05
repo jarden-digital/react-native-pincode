@@ -406,7 +406,9 @@ class PinCode extends React.PureComponent {
                             : styles.colButtonCircle }, this.props.buttonNumberComponent
                         ? this.props.buttonNumberComponent("0", this.onPressButtonNumber)
                         : this.renderButtonNumber("0")),
-                    React.createElement(react_native_easy_grid_1.Col, null,
+                    React.createElement(react_native_easy_grid_1.Col, { style: this.props.styleColumnButtons
+                            ? this.props.styleColumnButtons
+                            : styles.colButtonCircle },
                         React.createElement(Animate_1.default, { show: true, start: {
                                 opacity: 0.5
                             }, update: {
@@ -448,17 +450,14 @@ let styles = react_native_1.StyleSheet.create({
         marginLeft: grid_1.grid.unit / 2,
         marginRight: grid_1.grid.unit / 2,
         alignItems: "center",
-        width: "auto"
+        width: grid_1.grid.unit * 4,
+        height: grid_1.grid.unit * 4
     },
     colEmpty: {
         width: grid_1.grid.unit * 4,
         height: grid_1.grid.unit * 4
     },
     colIcon: {
-        width: grid_1.grid.unit * 4,
-        height: grid_1.grid.unit * 4,
-        marginLeft: grid_1.grid.unit / 2,
-        marginRight: grid_1.grid.unit / 2,
         alignSelf: "center",
         justifyContent: "center",
         alignItems: "center",

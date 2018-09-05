@@ -700,7 +700,12 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 )
                 : this.renderButtonNumber("0")}
             </Col>
-            <Col>
+            <Col
+              style={
+                this.props.styleColumnButtons
+                  ? this.props.styleColumnButtons
+                  : styles.colButtonCircle
+              }>
               <Animate
                 show={true}
                 start={{
@@ -759,17 +764,14 @@ let styles = StyleSheet.create({
     marginLeft: grid.unit / 2,
     marginRight: grid.unit / 2,
     alignItems: "center",
-    width: "auto"
+    width: grid.unit * 4,
+    height: grid.unit * 4
   },
   colEmpty: {
     width: grid.unit * 4,
     height: grid.unit * 4
   },
   colIcon: {
-    width: grid.unit * 4,
-    height: grid.unit * 4,
-    marginLeft: grid.unit / 2,
-    marginRight: grid.unit / 2,
     alignSelf: "center",
     justifyContent: "center",
     alignItems: "center",
