@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
+## [1.6.4] - 2018-09-21
+### Added
+- Added `getCurrentLength` property to make the `passwordComponent` property usable. Related issue: [Issue 34](https://github.com/fnzc/react-native-pincode/issues/34).
+
+
 ## [1.6.3] - 2018-09-05
 ### Fixed
 - Buttons layout broken.
