@@ -35,6 +35,7 @@ export declare type IProps = {
     timePinLockedAsyncStorageName: string;
     pinAttemptsAsyncStorageName: string;
     touchIDDisabled: boolean;
+    getCurrentLength?: (length: number) => void;
     styleContainerPinCode?: StyleProp<ViewStyle>;
     styleColorTitle?: string;
     styleColorTitleError?: string;

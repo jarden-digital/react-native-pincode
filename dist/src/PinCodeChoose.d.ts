@@ -27,6 +27,7 @@ export declare type IProps = {
     titleComponent: any;
     subtitleComponent: any;
     pinCodeKeychainName: string;
+    getCurrentLength?: (length: number) => void;
     styleContainerPinCode?: StyleProp<ViewStyle>;
     styleColorTitle?: string;
     styleColorTitleError?: string;

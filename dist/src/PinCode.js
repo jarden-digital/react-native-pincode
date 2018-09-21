@@ -45,6 +45,8 @@ class PinCode extends React.PureComponent {
                 this.newAttempt();
             const currentPassword = this.state.password + text;
             this.setState({ password: currentPassword });
+            if (this.props.getCurrentLength)
+                this.props.getCurrentLength(currentPassword.length);
             if (currentPassword.length === this.props.passwordLength) {
                 switch (this.props.status) {
                     case PinStatus.choose:

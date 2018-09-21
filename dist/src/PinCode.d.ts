@@ -6,6 +6,7 @@ import { StyleProp, TextStyle, ViewStyle } from "react-native";
  */
 export declare type IProps = {
     endProcess: (pinCode: string) => void;
+    getCurrentLength?: (length: number) => void;
     sentenceTitle: string;
     subtitle: string;
     status: PinStatus;
