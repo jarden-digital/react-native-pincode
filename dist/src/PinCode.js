@@ -204,8 +204,14 @@ class PinCode extends React.PureComponent {
                     colorDelete: this.props.styleDeleteButtonColorShowUnderlay
                         ? this.props.styleDeleteButtonColorShowUnderlay
                         : colors_1.colors.turquoise
-                }), onPress: () => this.state.password.length > 0 &&
-                    this.setState({ password: this.state.password.slice(0, -1) }) },
+                }), onPress: () => {
+                    if (this.state.password.length > 0) {
+                        const newPass = this.state.password.slice(0, -1);
+                        this.setState({ password: newPass });
+                        if (this.props.getCurrentLength)
+                            this.props.getCurrentLength(newPass.length);
+                    }
+                } },
                 React.createElement(react_native_1.View, { style: this.props.styleColumnDeleteButton
                         ? this.props.styleColumnDeleteButton
                         : styles.colIcon },
@@ -291,6 +297,8 @@ class PinCode extends React.PureComponent {
         this.setState({ moveData: { x: -length / 4, y: 0 } });
         await delay_1.default(duration);
         this.setState({ moveData: { x: 0, y: 0 }, password: "" });
+        if (this.props.getCurrentLength)
+            this.props.getCurrentLength(0);
     }
     async showError() {
         this.setState({ changeScreen: true });
@@ -422,11 +430,14 @@ class PinCode extends React.PureComponent {
                                 ],
                                 timing: { duration: 400, ease: d3_ease_1.easeLinear }
                             } }, ({ opacity }) => this.props.buttonDeleteComponent
-                            ? this.props.buttonDeleteComponent(() => this.state.password.length > 0 &&
-                                this.setState({
-                                    password: this.state.password.slice(0, -1)
-                                }))
-                            : this.renderButtonDelete(opacity)))))));
+                            ? this.props.buttonDeleteComponent(() => {
+                                if (this.state.password.length > 0) {
+                                    const newPass = this.state.password.slice(0, -1);
+                                    this.setState({ password: newPass });
+                                    if (this.props.getCurrentLength)
+                                        this.props.getCurrentLength(newPass.length);
+                                }
+                            }) : this.renderButtonDelete(opacity)))))));
     }
 }
 exports.default = PinCode;

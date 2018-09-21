@@ -157,7 +157,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     const currentPassword = this.state.password + text;
     this.setState({ password: currentPassword });
     if (this.props.getCurrentLength)
-      this.props.getCurrentLength(currentPassword.length)
+      this.props.getCurrentLength(currentPassword.length);
     if (currentPassword.length === this.props.passwordLength) {
       switch (this.props.status) {
         case PinStatus.choose:
@@ -267,6 +267,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this.setState({ moveData: { x: -length / 4, y: 0 } });
     await delay(duration);
     this.setState({ moveData: { x: 0, y: 0 }, password: "" });
+    if (this.props.getCurrentLength)
+      this.props.getCurrentLength(0);
   }
 
   async showError() {
@@ -424,10 +426,14 @@ class PinCode extends React.PureComponent<IProps, IState> {
               : colors.turquoise
           })
         }
-        onPress={() =>
-          this.state.password.length > 0 &&
-          this.setState({ password: this.state.password.slice(0, -1) })
-        }>
+        onPress={() => {
+          if (this.state.password.length > 0) {
+            const newPass = this.state.password.slice(0, -1);
+            this.setState({ password: newPass });
+            if (this.props.getCurrentLength)
+              this.props.getCurrentLength(newPass.length);
+          }
+        }}>
         <View
           style={
             this.props.styleColumnDeleteButton
@@ -726,13 +732,14 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 {({ opacity }: any) =>
                   this.props.buttonDeleteComponent
                     ? this.props.buttonDeleteComponent(
-                    () =>
-                      this.state.password.length > 0 &&
-                      this.setState({
-                        password: this.state.password.slice(0, -1)
-                      })
-                    )
-                    : this.renderButtonDelete(opacity)
+                    () => {
+                      if (this.state.password.length > 0) {
+                        const newPass = this.state.password.slice(0, -1)
+                        this.setState({ password: newPass })
+                        if (this.props.getCurrentLength)
+                          this.props.getCurrentLength(newPass.length)
+                      }
+                    }) : this.renderButtonDelete(opacity)
                 }
               </Animate>
             </Col>
