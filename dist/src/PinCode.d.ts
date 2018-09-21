@@ -73,6 +73,7 @@ declare class PinCode extends React.PureComponent<IProps, IState> {
     _circleSizeEmpty: number;
     _circleSizeFull: number;
     constructor(props: IProps);
+    componentDidMount(): void;
     componentWillUpdate(nextProps: IProps): void;
     failedAttempt: () => Promise<void>;
     newAttempt: () => Promise<void>;

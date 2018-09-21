@@ -121,6 +121,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this.renderTitle = this.renderTitle.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.getCurrentLength)
+      this.props.getCurrentLength(0);
+  }
+
   componentWillUpdate(nextProps: IProps) {
     if (
       this.props.pinCodeStatus !== "failure" &&

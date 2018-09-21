@@ -273,6 +273,10 @@ class PinCode extends React.PureComponent {
         this.onPressButtonNumber = this.onPressButtonNumber.bind(this);
         this.renderTitle = this.renderTitle.bind(this);
     }
+    componentDidMount() {
+        if (this.props.getCurrentLength)
+            this.props.getCurrentLength(0);
+    }
     componentWillUpdate(nextProps) {
         if (this.props.pinCodeStatus !== "failure" &&
             nextProps.pinCodeStatus === "failure") {
