@@ -29,6 +29,7 @@ export type IProps = {
   titleComponent: any
   subtitleComponent: any
   pinCodeKeychainName: string
+  getCurrentLength?: (length: number) => void
   styleContainerPinCode?: StyleProp<ViewStyle>
   styleColorTitle?: string
   styleColorTitleError?: string
@@ -127,6 +128,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             subtitleComponent={this.props.subtitleComponent || null}
             styleButtonCircle={this.props.styleButtonCircle}
             iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
+            getCurrentLength={this.props.getCurrentLength}
             styleTextButton={this.props.styleTextButton}
             styleCircleHiddenPassword={this.props.styleCircleHiddenPassword}
             styleCircleSizeEmpty={this.props.styleCircleSizeEmpty}
@@ -185,6 +187,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             subtitleComponent={this.props.subtitleComponent || null}
             styleButtonCircle={this.props.styleButtonCircle}
             styleTextButton={this.props.styleTextButton}
+            getCurrentLength={this.props.getCurrentLength}
             styleCircleHiddenPassword={this.props.styleCircleHiddenPassword}
             styleCircleSizeEmpty={this.props.styleCircleSizeEmpty}
             styleCircleSizeFull={this.props.styleCircleSizeFull}

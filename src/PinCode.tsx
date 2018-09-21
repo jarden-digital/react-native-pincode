@@ -25,6 +25,7 @@ import delay from "./delay";
 
 export type IProps = {
   endProcess: (pinCode: string) => void
+  getCurrentLength?: (length: number) => void
   sentenceTitle: string
   subtitle: string
   status: PinStatus
@@ -155,6 +156,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
     if (this.state.showError && this.state.attemptFailed) this.newAttempt();
     const currentPassword = this.state.password + text;
     this.setState({ password: currentPassword });
+    if (this.props.getCurrentLength)
+      this.props.getCurrentLength(currentPassword.length)
     if (currentPassword.length === this.props.passwordLength) {
       switch (this.props.status) {
         case PinStatus.choose:

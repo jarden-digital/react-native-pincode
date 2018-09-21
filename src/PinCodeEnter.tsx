@@ -45,6 +45,7 @@ export type IProps = {
   timePinLockedAsyncStorageName: string
   pinAttemptsAsyncStorageName: string
   touchIDDisabled: boolean
+  getCurrentLength?: (length: number) => void
   styleContainerPinCode?: StyleProp<ViewStyle>
   styleColorTitle?: string
   styleColorTitleError?: string
@@ -202,6 +203,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
           titleComponent={this.props.titleComponent || null}
           subtitleComponent={this.props.subtitleComponent || null}
+          getCurrentLength={this.props.getCurrentLength}
           styleButtonCircle={this.props.styleButtonCircle}
           buttonDeleteText={this.props.buttonDeleteText}
           styleTextButton={this.props.styleTextButton}

@@ -15,6 +15,7 @@ export type IProps = {
   colorPassword?: string
   colorPasswordError?: string
   finishProcess?: any
+  getCurrentPinLength?: (length: number) => void
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
   iconButtonDeleteDisabled?: boolean
@@ -188,6 +189,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleComponent={this.props.titleComponent}
           buttonDeleteText={this.props.buttonDeleteText}
           subtitleComponent={this.props.subtitleComponent}
+          getCurrentLength={this.props.getCurrentPinLength}
           pinCodeKeychainName={this.props.pinCodeKeychainName || 'reactNativePinCode'}
           styleContainer={this.props.stylePinCodeChooseContainer}
           styleButtonCircle={this.props.stylePinCodeButtonCircle}
@@ -235,6 +237,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleAttemptFailed={this.props.titleAttemptFailed}
           titleConfirmFailed={this.props.titleConfirmFailed}
           iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
+          getCurrentLength={this.props.getCurrentPinLength}
           subtitleError={this.props.subtitleError}
           touchIDDisabled={this.props.touchIDDisabled || touchIDDisabledDefault}
           colorPassword={this.props.colorPassword}
