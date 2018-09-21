@@ -39,6 +39,9 @@ _Please note that you might have to link those libraries manually._
 **IMPORTANT:**
 _If you decide not to use `Keychain/Keystore`, you will have to provide a **`storePin`** property to the `PINCode` component._
 
+The library uses the `Vibration` from [React Native](https://facebook.github.io/react-native/docs/vibration).
+_Please note that on Android it requires the Vibrate permission as stated in the doc. (add <uses-permission android:name="android.permission.VIBRATE"/> to AndroidManifest.xml)_
+
 ## Demo
 
 ![choose-confirm](https://user-images.githubusercontent.com/10620919/37805052-bdefa610-2e9c-11e8-8290-fe2d695020a5.gif)   ![enter-locked](https://user-images.githubusercontent.com/10620919/37805092-f443c8fe-2e9c-11e8-9524-1e0b6a93fc78.gif)
