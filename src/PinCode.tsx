@@ -396,6 +396,10 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   marginLeft,
                   marginBottom
                 }: any) => (
+
+
+
+                <View>{(1 !== 1 || (1 === 1 && !lengthSup)) &&
                 <View
                   style={{
                     left: x,
@@ -409,8 +413,24 @@ class PinCode extends React.PureComponent<IProps, IState> {
                     marginTop: marginTop,
                     backgroundColor: color
                   }}
-                />
+                /> ||
+                <Text
+                  style={{
+                    left: x,
+                    opacity: opacity,
+                    marginLeft: marginLeft,
+                    marginRight: marginRight,
+                    marginBottom: marginBottom,
+                    marginTop: marginTop,
+                    color: color
+                  }}
+                >{this.state.password[val]}</Text>
+                }</View>
               )}
+
+
+
+
             </Animate>
           );
         })}

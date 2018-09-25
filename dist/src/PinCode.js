@@ -181,18 +181,28 @@ class PinCode extends React.PureComponent {
                         ],
                         y: [moveData.y],
                         timing: { duration: 200, ease: d3_ease_1.easeLinear }
-                    } }, ({ opacity, x, height, width, color, borderRadius, marginRight, marginTop, marginLeft, marginBottom }) => (React.createElement(react_native_1.View, { style: {
-                        left: x,
-                        opacity: opacity,
-                        height: height,
-                        width: width,
-                        borderRadius: borderRadius,
-                        marginLeft: marginLeft,
-                        marginRight: marginRight,
-                        marginBottom: marginBottom,
-                        marginTop: marginTop,
-                        backgroundColor: color
-                    } }))));
+                    } }, ({ opacity, x, height, width, color, borderRadius, marginRight, marginTop, marginLeft, marginBottom }) => (React.createElement(react_native_1.View, null, (1 !== 1 || (1 === 1 && !lengthSup)) &&
+                    React.createElement(react_native_1.View, { style: {
+                            left: x,
+                            opacity: opacity,
+                            height: height,
+                            width: width,
+                            borderRadius: borderRadius,
+                            marginLeft: marginLeft,
+                            marginRight: marginRight,
+                            marginBottom: marginBottom,
+                            marginTop: marginTop,
+                            backgroundColor: color
+                        } }) ||
+                    React.createElement(react_native_1.Text, { style: {
+                            left: x,
+                            opacity: opacity,
+                            marginLeft: marginLeft,
+                            marginRight: marginRight,
+                            marginBottom: marginBottom,
+                            marginTop: marginTop,
+                            color: color
+                        } }, this.state.password[val])))));
             })));
         };
         this.renderButtonDelete = (opacity) => {
