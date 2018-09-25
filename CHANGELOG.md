@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.6.5] - 2018-09-26
+### Fixed
+- Fixed an issue with the pin code not component not resetting after a lock. Fix provided by [marla-singer](https://github.com/marla-singer). Related issue: [Issue 38](https://github.com/fnzc/react-native-pincode/issues/38).
+
+
 ## [1.6.4] - 2018-09-21
 ### Added
 - Added `getCurrentPinLength` property to make the `passwordComponent` property usable. Related issue: [Issue 34](https://github.com/fnzc/react-native-pincode/issues/34).

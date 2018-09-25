@@ -133,6 +133,12 @@ class PinCode extends React.PureComponent<IProps, IState> {
     ) {
       this.failedAttempt();
     }
+    if (
+      this.props.pinCodeStatus !== 'locked' &&
+      nextProps.pinCodeStatus === 'locked'
+    ) {
+      this.setState({ password: '' })
+    }
   }
 
   failedAttempt = async () => {

@@ -282,6 +282,10 @@ class PinCode extends React.PureComponent {
             nextProps.pinCodeStatus === "failure") {
             this.failedAttempt();
         }
+        if (this.props.pinCodeStatus !== 'locked' &&
+            nextProps.pinCodeStatus === 'locked') {
+            this.setState({ password: '' });
+        }
     }
     async doShake() {
         const duration = 70;
