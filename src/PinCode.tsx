@@ -70,6 +70,9 @@ export type IProps = {
   styleColorSubtitleError?: string
   styleColorButtonTitle?: string
   styleColorButtonTitleSelected?: string
+
+  textPasswordVisibleSize?: number // default 22 (remove default from render function)
+  textPasswordVisibleFamily?: string // defaut font (remove default from render function)
 }
 
 export type IState = {
@@ -372,13 +375,13 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 marginBottom: [
                   marginSup
                     ? grid.unit * 2 -
-                    (this._circleSizeFull - this._circleSizeEmpty) / 2
+                    (22 - this._circleSizeEmpty) / 2
                     : grid.unit * 2
                 ],
                 marginTop: [
                   marginSup
                     ? grid.unit * 4 -
-                    (this._circleSizeFull - this._circleSizeEmpty) / 2
+                    (22 - this._circleSizeEmpty) / 2
                     : grid.unit * 4
                 ],
                 y: [moveData.y],
@@ -399,6 +402,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
 
 
 
+
+
+
+
+
                 <View>{(1 !== 1 || (1 === 1 && !lengthSup)) &&
                 <View
                   style={{
@@ -414,19 +422,31 @@ class PinCode extends React.PureComponent<IProps, IState> {
                     backgroundColor: color
                   }}
                 /> ||
-                <Text
-                  style={{
-                    left: x,
-                    opacity: opacity,
-                    marginLeft: marginLeft,
-                    marginRight: marginRight,
-                    marginBottom: marginBottom,
-                    marginTop: marginTop,
-                    color: color
-                  }}
-                >{this.state.password[val]}</Text>
+                <View style={{
+                  height: height,
+                  width: width,
+                  left: x,
+                  opacity: opacity,
+
+                  marginLeft: marginLeft,
+                  marginRight: marginRight,
+
+                  marginBottom: marginBottom,
+                  marginTop: marginTop,
+                }}>
+                  <Text
+                    style={{
+                      color: color,
+                      fontFamily: this.props.textPasswordVisibleFamily || 'system font',
+                      fontSize: this.props.textPasswordVisibleSize || 22
+                    }}
+                  >{this.state.password[val]}</Text></View>
                 }</View>
               )}
+
+
+
+
 
 
 

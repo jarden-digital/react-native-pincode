@@ -170,13 +170,13 @@ class PinCode extends React.PureComponent {
                         marginBottom: [
                             marginSup
                                 ? grid_1.grid.unit * 2 -
-                                    (this._circleSizeFull - this._circleSizeEmpty) / 2
+                                    (22 - this._circleSizeEmpty) / 2
                                 : grid_1.grid.unit * 2
                         ],
                         marginTop: [
                             marginSup
                                 ? grid_1.grid.unit * 4 -
-                                    (this._circleSizeFull - this._circleSizeEmpty) / 2
+                                    (22 - this._circleSizeEmpty) / 2
                                 : grid_1.grid.unit * 4
                         ],
                         y: [moveData.y],
@@ -194,15 +194,21 @@ class PinCode extends React.PureComponent {
                             marginTop: marginTop,
                             backgroundColor: color
                         } }) ||
-                    React.createElement(react_native_1.Text, { style: {
+                    React.createElement(react_native_1.View, { style: {
+                            height: height,
+                            width: width,
                             left: x,
                             opacity: opacity,
                             marginLeft: marginLeft,
                             marginRight: marginRight,
                             marginBottom: marginBottom,
                             marginTop: marginTop,
-                            color: color
-                        } }, this.state.password[val])))));
+                        } },
+                        React.createElement(react_native_1.Text, { style: {
+                                color: color,
+                                fontFamily: this.props.textPasswordVisibleFamily || 'system font',
+                                fontSize: this.props.textPasswordVisibleSize || 22
+                            } }, this.state.password[val]))))));
             })));
         };
         this.renderButtonDelete = (opacity) => {
