@@ -407,32 +407,25 @@ class PinCode extends React.PureComponent<IProps, IState> {
 
 
 
-                <View>{(1 !== 1 || (1 === 1 && !lengthSup)) &&
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>{(1 !== 1 || (1 === 1 && !lengthSup)) &&
                 <View
                   style={{
                     left: x,
-                    opacity: opacity,
                     height: height,
                     width: width,
+                    opacity: opacity,
                     borderRadius: borderRadius,
                     marginLeft: marginLeft,
                     marginRight: marginRight,
-                    marginBottom: marginBottom,
-                    marginTop: marginTop,
                     backgroundColor: color
                   }}
                 /> ||
                 <View style={{
-                  height: height,
-                  width: width,
                   left: x,
                   opacity: opacity,
-
                   marginLeft: marginLeft,
                   marginRight: marginRight,
 
-                  marginBottom: marginBottom,
-                  marginTop: marginTop,
                 }}>
                   <Text
                     style={{
@@ -652,13 +645,13 @@ class PinCode extends React.PureComponent<IProps, IState> {
             </View>
           )}
         </Animate>
-        <View>
+        <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
           {this.props.passwordComponent
             ? this.props.passwordComponent()
             : this.renderCirclePassword()}
         </View>
         <Grid
-          style={{ maxHeight: grid.unit * 22, maxWidth: grid.unit * 16.25 }}>
+          style={{ maxWidth: grid.unit * 16.25, flex: 7 }}>
           <Row
             style={
               this.props.styleRowButtons
@@ -811,9 +804,10 @@ let styles = StyleSheet.create({
   },
   viewTitle: {
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
-    minHeight: grid.unit * 4
+    flex: 2,
+    // minHeight: grid.unit * 4
   },
   row: {
     justifyContent: "center",
