@@ -71,6 +71,9 @@ export type IProps = {
   styleDeleteButtonText?: StyleProp<TextStyle>
   styleColorButtonTitle?: string
   styleColorButtonTitleSelected?: string
+  pinCodeVisible?: boolean
+  textPasswordVisibleSize?: number
+  textPasswordVisibleFamily?: string
 }
 
 export type IState = {
@@ -235,6 +238,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           styleColorButtonTitleSelected={
             this.props.styleColorButtonTitleSelected
           }
+          pinCodeVisible={this.props.pinCodeVisible}
+          textPasswordVisibleFamily={this.props.textPasswordVisibleFamily}
+          textPasswordVisibleSize={this.props.textPasswordVisibleSize}
         />
       </View>
     )

@@ -53,6 +53,9 @@ export declare type IProps = {
     styleDeleteButtonText?: StyleProp<TextStyle>;
     styleColorButtonTitle?: string;
     styleColorButtonTitleSelected?: string;
+    pinCodeVisible?: boolean;
+    textPasswordVisibleSize?: number;
+    textPasswordVisibleFamily?: string;
 };
 export declare type IState = {
     status: PinStatus;

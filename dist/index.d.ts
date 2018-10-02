@@ -23,6 +23,7 @@ export declare type IProps = {
     passwordLength?: number;
     pinAttemptsAsyncStorageName?: string;
     pinCodeKeychainName?: string;
+    pinCodeVisible?: boolean;
     pinStatus?: PinResultStatus;
     status: 'choose' | 'enter' | 'locked';
     storedPin?: string;
@@ -74,6 +75,8 @@ export declare type IProps = {
     subtitleError?: string;
     textButtonLockedPage?: string;
     textDescriptionLockedPage?: string;
+    textPasswordVisibleFamily?: string;
+    textPasswordVisibleSize?: number;
     textTitleLockedPage?: string;
     timeLocked?: number;
     timePinLockedAsyncStorageName?: string;
