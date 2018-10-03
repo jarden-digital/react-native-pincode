@@ -299,7 +299,7 @@ class PinCode extends React.PureComponent {
         await delay_1.default(duration);
         this.setState({ moveData: { x: -length / 4, y: 0 } });
         await delay_1.default(duration);
-        this.setState({ moveData: { x: 0, y: 0 }, password: '' });
+        this.setState({ moveData: { x: 0, y: 0 } });
         if (this.props.getCurrentLength)
             this.props.getCurrentLength(0);
     }
@@ -311,7 +311,7 @@ class PinCode extends React.PureComponent {
         await delay_1.default(3000);
         this.setState({ changeScreen: true });
         await delay_1.default(200);
-        this.setState({ showError: false });
+        this.setState({ showError: false, password: '' });
         await delay_1.default(200);
         this.props.endProcess(this.state.password);
     }
