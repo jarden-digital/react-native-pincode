@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import * as React from "react";
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import * as React from 'react';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 /**
  * Pin Code Component
  */
@@ -13,7 +13,7 @@ export declare type IProps = {
     buttonDeleteText?: string;
     cancelFunction?: () => void;
     previousPin?: string;
-    pinCodeStatus?: "initial" | "success" | "failure" | "locked";
+    pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
     buttonNumberComponent?: any;
     passwordLength: number;
     iconButtonDeleteDisabled?: boolean;
@@ -51,6 +51,9 @@ export declare type IProps = {
     styleColorSubtitleError?: string;
     styleColorButtonTitle?: string;
     styleColorButtonTitleSelected?: string;
+    pinCodeVisible?: boolean;
+    textPasswordVisibleSize?: number;
+    textPasswordVisibleFamily?: string;
 };
 export declare type IState = {
     password: string;

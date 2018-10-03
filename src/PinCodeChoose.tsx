@@ -55,6 +55,9 @@ export type IProps = {
   styleDeleteButtonText?: StyleProp<TextStyle>
   styleColorButtonTitle?: string
   styleColorButtonTitleSelected?: string
+  pinCodeVisible?: boolean
+  textPasswordVisibleSize?: number
+  textPasswordVisibleFamily?: string
 }
 
 export type IState = {
@@ -156,6 +159,9 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleDeleteButtonSize={this.props.styleDeleteButtonSize}
             styleDeleteButtonText={this.props.styleDeleteButtonText}
             styleColorButtonTitle={this.props.styleColorButtonTitle}
+            pinCodeVisible={this.props.pinCodeVisible}
+            textPasswordVisibleFamily={this.props.textPasswordVisibleFamily}
+            textPasswordVisibleSize={this.props.textPasswordVisibleSize}
           />
         )}
         {this.state.status === PinStatus.confirm && (
@@ -217,6 +223,9 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleColorButtonTitleSelected={
               this.props.styleColorButtonTitleSelected
             }
+            pinCodeVisible={this.props.pinCodeVisible}
+            textPasswordVisibleFamily={this.props.textPasswordVisibleFamily}
+            textPasswordVisibleSize={this.props.textPasswordVisibleSize}
           />
         )}
       </View>

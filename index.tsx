@@ -28,6 +28,7 @@ export type IProps = {
   passwordLength?: number
   pinAttemptsAsyncStorageName?: string
   pinCodeKeychainName?: string
+  pinCodeVisible?: boolean
   pinStatus?: PinResultStatus
   status: 'choose' | 'enter' | 'locked'
   storedPin?: string
@@ -79,6 +80,8 @@ export type IProps = {
   subtitleError?: string
   textButtonLockedPage?: string
   textDescriptionLockedPage?: string
+  textPasswordVisibleFamily?: string
+  textPasswordVisibleSize?: number
   textTitleLockedPage?: string
   timeLocked?: number
   timePinLockedAsyncStorageName?: string
@@ -216,6 +219,9 @@ class PINCode extends React.PureComponent<IProps, IState> {
           styleColorSubtitleError={this.props.stylePinCodeColorSubtitleError}
           styleColorButtonTitle={this.props.stylePinCodeButtonNumber}
           styleColorButtonTitleSelected={this.props.stylePinCodeButtonNumberPressed}
+          pinCodeVisible={this.props.pinCodeVisible}
+          textPasswordVisibleSize={this.props.textPasswordVisibleSize}
+          textPasswordVisibleFamily={this.props.textPasswordVisibleFamily}
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter
@@ -273,6 +279,9 @@ class PINCode extends React.PureComponent<IProps, IState> {
           styleColorSubtitleError={this.props.stylePinCodeColorSubtitleError}
           styleColorButtonTitle={this.props.stylePinCodeButtonNumber}
           styleColorButtonTitleSelected={this.props.stylePinCodeButtonNumberPressed}
+          pinCodeVisible={this.props.pinCodeVisible}
+          textPasswordVisibleSize={this.props.textPasswordVisibleSize}
+          textPasswordVisibleFamily={this.props.textPasswordVisibleFamily}
         />}
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||
