@@ -93,6 +93,7 @@ export type IProps = {
   titleConfirm?: string
   titleConfirmFailed?: string
   titleEnter?: string
+  titleValidationFailed?: string
   touchIDDisabled?: boolean
   touchIDSentence?: string
 }
@@ -222,6 +223,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           pinCodeVisible={this.props.pinCodeVisible}
           textPasswordVisibleSize={this.props.textPasswordVisibleSize}
           textPasswordVisibleFamily={this.props.textPasswordVisibleFamily}
+          titleValidationFailed={this.props.titleValidationFailed}
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter

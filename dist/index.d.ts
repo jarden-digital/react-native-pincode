@@ -88,6 +88,7 @@ export declare type IProps = {
     titleConfirm?: string;
     titleConfirmFailed?: string;
     titleEnter?: string;
+    titleValidationFailed?: string;
     touchIDDisabled?: boolean;
     touchIDSentence?: string;
 };

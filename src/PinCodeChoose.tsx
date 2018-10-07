@@ -58,6 +58,10 @@ export type IProps = {
   pinCodeVisible?: boolean
   textPasswordVisibleSize?: number
   textPasswordVisibleFamily?: string
+
+
+  // todo NEW
+  titleValidationFailed?: string
 }
 
 export type IState = {
@@ -114,13 +118,17 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             buttonNumberComponent={this.props.buttonNumberComponent || null}
             passwordLength={this.props.passwordLength || 4}
             passwordComponent={this.props.passwordComponent || null}
-            titleAttemptFailed={
-              this.props.titleAttemptFailed || 'Incorrect PIN Code'
-            }
-            titleConfirmFailed={
-              this.props.titleConfirmFailed || 'Your entries did not match'
+
+
+
+            // todo NEW
+            titleValidationFailed={
+              this.props.titleValidationFailed || 'PIN code unsafe'
             }
             subtitleError={this.props.subtitleError || 'Please try again'}
+
+
+
             colorPassword={this.props.colorPassword || undefined}
             colorPasswordError={this.props.colorPasswordError || undefined}
             numbersButtonOverlayColor={

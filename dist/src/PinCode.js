@@ -50,7 +50,13 @@ class PinCode extends React.PureComponent {
             if (currentPassword.length === this.props.passwordLength) {
                 switch (this.props.status) {
                     case PinStatus.choose:
-                        this.endProcess(currentPassword);
+                        // todo NEW
+                        if (this.props.validationRegex && this.props.validationRegex.test(currentPassword)) {
+                            this.showError();
+                        }
+                        else {
+                            this.endProcess(currentPassword);
+                        }
                         break;
                     case PinStatus.confirm:
                         if (currentPassword !== this.props.previousPin) {
@@ -231,6 +237,7 @@ class PinCode extends React.PureComponent {
                     { color: colorTitle, opacity: opacityTitle }
                 ] }, (attemptFailed && this.props.titleAttemptFailed) ||
                 (showError && this.props.titleConfirmFailed) ||
+                (showError && this.props.titleValidationFailed) ||
                 this.props.sentenceTitle));
         };
         this.renderSubtitle = (colorTitle, opacityTitle, attemptFailed, showError) => {

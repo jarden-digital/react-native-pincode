@@ -18,8 +18,8 @@ export declare type IProps = {
     passwordLength: number;
     iconButtonDeleteDisabled?: boolean;
     passwordComponent?: any;
-    titleAttemptFailed: string;
-    titleConfirmFailed: string;
+    titleAttemptFailed?: string;
+    titleConfirmFailed?: string;
     subtitleError: string;
     colorPassword?: string;
     colorPasswordError?: string;
@@ -54,6 +54,8 @@ export declare type IProps = {
     pinCodeVisible?: boolean;
     textPasswordVisibleSize?: number;
     textPasswordVisibleFamily?: string;
+    validationRegex?: RegExp;
+    titleValidationFailed?: string;
 };
 export declare type IState = {
     password: string;

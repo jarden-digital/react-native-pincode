@@ -37,8 +37,8 @@ export type IProps = {
   passwordLength: number
   iconButtonDeleteDisabled?: boolean
   passwordComponent?: any
-  titleAttemptFailed: string
-  titleConfirmFailed: string
+  titleAttemptFailed?: string
+  titleConfirmFailed?: string
   subtitleError: string
   colorPassword?: string
   colorPasswordError?: string
@@ -73,6 +73,10 @@ export type IProps = {
   pinCodeVisible?: boolean
   textPasswordVisibleSize?: number
   textPasswordVisibleFamily?: string
+
+  // todo NEW
+  validationRegex?: RegExp
+  titleValidationFailed?: string
 }
 
 export type IState = {
@@ -175,7 +179,18 @@ class PinCode extends React.PureComponent<IProps, IState> {
     if (currentPassword.length === this.props.passwordLength) {
       switch (this.props.status) {
         case PinStatus.choose:
-          this.endProcess(currentPassword)
+
+
+
+          // todo NEW
+          if (this.props.validationRegex && this.props.validationRegex.test(currentPassword)) {
+            this.showError()
+          } else {
+            this.endProcess(currentPassword)
+          }
+
+
+
           break
         case PinStatus.confirm:
           if (currentPassword !== this.props.previousPin) {
@@ -504,6 +519,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
         ]}>
         {(attemptFailed && this.props.titleAttemptFailed) ||
         (showError && this.props.titleConfirmFailed) ||
+        (showError && this.props.titleValidationFailed) ||
         this.props.sentenceTitle}
       </Text>
     )
