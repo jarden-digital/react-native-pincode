@@ -73,8 +73,6 @@ export type IProps = {
   pinCodeVisible?: boolean
   textPasswordVisibleSize?: number
   textPasswordVisibleFamily?: string
-
-  // todo NEW
   validationRegex?: RegExp
   titleValidationFailed?: string
 }
@@ -179,22 +177,15 @@ class PinCode extends React.PureComponent<IProps, IState> {
     if (currentPassword.length === this.props.passwordLength) {
       switch (this.props.status) {
         case PinStatus.choose:
-
-
-
-          // todo NEW
           if (this.props.validationRegex && this.props.validationRegex.test(currentPassword)) {
-            this.showError()
+            this.showError(false)
           } else {
             this.endProcess(currentPassword)
           }
-
-
-
           break
         case PinStatus.confirm:
           if (currentPassword !== this.props.previousPin) {
-            this.showError()
+            this.showError(false)
           } else {
             this.endProcess(currentPassword)
           }
@@ -299,7 +290,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     if (this.props.getCurrentLength) this.props.getCurrentLength(0)
   }
 
-  async showError() {
+  async showError(endProcess = true) {
     this.setState({ changeScreen: true })
     await delay(300)
     this.setState({ showError: true, changeScreen: false })
@@ -309,7 +300,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     await delay(200)
     this.setState({ showError: false, password: '' })
     await delay(200)
-    this.props.endProcess(this.state.password)
+    if (endProcess) this.props.endProcess(this.state.password)
   }
 
   renderCirclePassword = () => {
