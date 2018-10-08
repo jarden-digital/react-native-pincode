@@ -57,6 +57,7 @@ export declare type IProps = {
     textPasswordVisibleSize?: number;
     textPasswordVisibleFamily?: string;
     titleValidationFailed?: string;
+    validationRegex?: RegExp;
 };
 export declare type IState = {
     status: PinStatus;

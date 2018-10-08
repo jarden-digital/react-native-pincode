@@ -96,6 +96,7 @@ export type IProps = {
   titleValidationFailed?: string
   touchIDDisabled?: boolean
   touchIDSentence?: string
+  validationRegex?: RegExp
 }
 
 export type IState = {
@@ -224,6 +225,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           textPasswordVisibleSize={this.props.textPasswordVisibleSize}
           textPasswordVisibleFamily={this.props.textPasswordVisibleFamily}
           titleValidationFailed={this.props.titleValidationFailed}
+          validationRegex={this.props.validationRegex}
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter

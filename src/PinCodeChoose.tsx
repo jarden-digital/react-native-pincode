@@ -62,6 +62,7 @@ export type IProps = {
 
   // todo NEW
   titleValidationFailed?: string
+  validationRegex?: RegExp
 }
 
 export type IState = {
@@ -122,6 +123,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
 
 
             // todo NEW
+            validationRegex={this.props.validationRegex}
             titleValidationFailed={
               this.props.titleValidationFailed || 'PIN code unsafe'
             }
