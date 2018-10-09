@@ -111,8 +111,10 @@ await hasUserSetPinCode()
 |**`titleConfirm`**|String used as a title on the PIN confirm page|`2 - Confirm your PIN Code`|`false`|`string`|
 |**`titleConfirmFailed`**|String used as a title on the PIN confirm page when the user enters a wrong PIN code|`Your entries did not match`|`false`|`string`|
 |**`titleEnter`**|String used as a title on the PIN enter page|`Enter your PIN Code`|`false`|`string`|
+|**`titleValidationFailed`**|String used as a title on the PIN choose page when the PIN code entered by the user does not match the provided RegExp (use with `validationRegex` property|`PIN code unsafe`|`false`|`string`|
 |**`touchIDDisabled`**|Boolean disabling the TouchID/FaceID on the PIN code enter page|`false`|`false`|`boolean`|
 |**`touchIDSentence`**|String to be used in the TouchID/FaceID popup|`To unlock your application`|`false`|`string`|
+|**`validationRegex`**|Regex to be used to validate the PIN code entered by the user on `choose` mode|*None*|`false`|`RegExp`|
 
 ## Styles
 

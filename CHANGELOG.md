@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.7.0] - 2018-10-10
+### Added
+- Added `validationRegex` and `titleValidationFailed` properties to check the PIN code entered by the user against a provided RegExp. Related issue: [Issue 32](https://github.com/fnzc/react-native-pincode/issues/32).
+
+
 ## [1.6.6] - 2018-10-04
 ### Added
 - Added `pinCodeVisible`, `textPasswordVisibleFamily` and `textPasswordVisibleSize` properties to allow the user to see the PIN code they're entering. Related issue: [Issue 37](https://github.com/fnzc/react-native-pincode/issues/37).
