@@ -50,7 +50,13 @@ class PinCode extends React.PureComponent {
             if (currentPassword.length === this.props.passwordLength) {
                 switch (this.props.status) {
                     case PinStatus.choose:
-                        this.endProcess(currentPassword);
+                        if (this.props.validationRegex &&
+                            this.props.validationRegex.test(currentPassword)) {
+                            this.showError(true);
+                        }
+                        else {
+                            this.endProcess(currentPassword);
+                        }
                         break;
                     case PinStatus.confirm:
                         if (currentPassword !== this.props.previousPin) {
@@ -231,6 +237,7 @@ class PinCode extends React.PureComponent {
                     { color: colorTitle, opacity: opacityTitle }
                 ] }, (attemptFailed && this.props.titleAttemptFailed) ||
                 (showError && this.props.titleConfirmFailed) ||
+                (showError && this.props.titleValidationFailed) ||
                 this.props.sentenceTitle));
         };
         this.renderSubtitle = (colorTitle, opacityTitle, attemptFailed, showError) => {
@@ -303,7 +310,7 @@ class PinCode extends React.PureComponent {
         if (this.props.getCurrentLength)
             this.props.getCurrentLength(0);
     }
-    async showError() {
+    async showError(isErrorValidation = false) {
         this.setState({ changeScreen: true });
         await delay_1.default(300);
         this.setState({ showError: true, changeScreen: false });
@@ -313,7 +320,9 @@ class PinCode extends React.PureComponent {
         await delay_1.default(200);
         this.setState({ showError: false, password: '' });
         await delay_1.default(200);
-        this.props.endProcess(this.state.password);
+        this.props.endProcess(this.state.password, isErrorValidation);
+        if (isErrorValidation)
+            this.setState({ changeScreen: false });
     }
     render() {
         const { password, showError, attemptFailed, changeScreen } = this.state;

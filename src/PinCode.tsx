@@ -24,7 +24,7 @@ import delay from './delay'
  */
 
 export type IProps = {
-  endProcess: (pinCode: string) => void
+  endProcess: (pinCode: string, isErrorValidation?: boolean) => void
   getCurrentLength?: (length: number) => void
   sentenceTitle: string
   subtitle: string
@@ -37,8 +37,8 @@ export type IProps = {
   passwordLength: number
   iconButtonDeleteDisabled?: boolean
   passwordComponent?: any
-  titleAttemptFailed: string
-  titleConfirmFailed: string
+  titleAttemptFailed?: string
+  titleConfirmFailed?: string
   subtitleError: string
   colorPassword?: string
   colorPasswordError?: string
@@ -73,6 +73,8 @@ export type IProps = {
   pinCodeVisible?: boolean
   textPasswordVisibleSize?: number
   textPasswordVisibleFamily?: string
+  validationRegex?: RegExp
+  titleValidationFailed?: string
 }
 
 export type IState = {
@@ -175,7 +177,14 @@ class PinCode extends React.PureComponent<IProps, IState> {
     if (currentPassword.length === this.props.passwordLength) {
       switch (this.props.status) {
         case PinStatus.choose:
-          this.endProcess(currentPassword)
+          if (
+            this.props.validationRegex &&
+            this.props.validationRegex.test(currentPassword)
+          ) {
+            this.showError(true)
+          } else {
+            this.endProcess(currentPassword)
+          }
           break
         case PinStatus.confirm:
           if (currentPassword !== this.props.previousPin) {
@@ -239,11 +248,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   color:
                     this.state.textButtonSelected === text
                       ? this.props.styleColorButtonTitleSelected
-                      ? this.props.styleColorButtonTitleSelected
-                      : colors.white
+                        ? this.props.styleColorButtonTitleSelected
+                        : colors.white
                       : this.props.styleColorButtonTitle
-                      ? this.props.styleColorButtonTitle
-                      : colors.grey
+                        ? this.props.styleColorButtonTitle
+                        : colors.grey
                 }
               ]}>
               {text}
@@ -284,7 +293,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     if (this.props.getCurrentLength) this.props.getCurrentLength(0)
   }
 
-  async showError() {
+  async showError(isErrorValidation = false) {
     this.setState({ changeScreen: true })
     await delay(300)
     this.setState({ showError: true, changeScreen: false })
@@ -294,7 +303,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
     await delay(200)
     this.setState({ showError: false, password: '' })
     await delay(200)
-    this.props.endProcess(this.state.password)
+    this.props.endProcess(this.state.password, isErrorValidation)
+    if (isErrorValidation) this.setState({ changeScreen: false })
   }
 
   renderCirclePassword = () => {
@@ -345,11 +355,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 color: [
                   showError
                     ? this.props.colorPasswordError
-                    ? this.props.colorPasswordError
-                    : colors.alert
+                      ? this.props.colorPasswordError
+                      : colors.alert
                     : this.props.colorPassword
-                    ? this.props.colorPassword
-                    : colors.turquoise
+                      ? this.props.colorPassword
+                      : colors.turquoise
                 ],
                 borderRadius: [
                   lengthSup
@@ -370,15 +380,15 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 timing: { duration: 200, ease: easeLinear }
               }}>
               {({
-                  opacity,
-                  x,
-                  height,
-                  width,
-                  color,
-                  borderRadius,
-                  marginRight,
-                  marginLeft
-                }: any) => (
+                opacity,
+                x,
+                height,
+                width,
+                color,
+                borderRadius,
+                marginRight,
+                marginLeft
+              }: any) => (
                 <View style={styles.viewCircles}>
                   {((!this.props.pinCodeVisible ||
                     (this.props.pinCodeVisible && !lengthSup)) && (
@@ -503,8 +513,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
           { color: colorTitle, opacity: opacityTitle }
         ]}>
         {(attemptFailed && this.props.titleAttemptFailed) ||
-        (showError && this.props.titleConfirmFailed) ||
-        this.props.sentenceTitle}
+          (showError && this.props.titleConfirmFailed) ||
+          (showError && this.props.titleValidationFailed) ||
+          this.props.sentenceTitle}
       </Text>
     )
   }
@@ -571,20 +582,20 @@ class PinCode extends React.PureComponent<IProps, IState> {
             colorTitle: [
               showError || attemptFailed
                 ? this.props.styleColorTitleError
-                ? this.props.styleColorTitleError
-                : colors.alert
+                  ? this.props.styleColorTitleError
+                  : colors.alert
                 : this.props.styleColorTitle
-                ? this.props.styleColorTitle
-                : colors.grey
+                  ? this.props.styleColorTitle
+                  : colors.grey
             ],
             colorSubtitle: [
               showError || attemptFailed
                 ? this.props.styleColorSubtitleError
-                ? this.props.styleColorSubtitleError
-                : colors.alert
+                  ? this.props.styleColorSubtitleError
+                  : colors.alert
                 : this.props.styleColorSubtitle
-                ? this.props.styleColorSubtitle
-                : colors.grey
+                  ? this.props.styleColorSubtitle
+                  : colors.grey
             ],
             opacityTitle: [showError || attemptFailed ? grid.highOpacity : 1],
             timing: { duration: 200, ease: easeLinear }
@@ -600,19 +611,19 @@ class PinCode extends React.PureComponent<IProps, IState> {
               {this.props.titleComponent
                 ? this.props.titleComponent()
                 : this.renderTitle(
-                  colorTitle,
-                  opacityTitle,
-                  attemptFailed,
-                  showError
-                )}
+                    colorTitle,
+                    opacityTitle,
+                    attemptFailed,
+                    showError
+                  )}
               {this.props.subtitleComponent
                 ? this.props.subtitleComponent()
                 : this.renderSubtitle(
-                  colorSubtitle,
-                  opacityTitle,
-                  attemptFailed,
-                  showError
-                )}
+                    colorSubtitle,
+                    opacityTitle,
+                    attemptFailed,
+                    showError
+                  )}
             </View>
           )}
         </Animate>
@@ -639,9 +650,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   }>
                   {this.props.buttonNumberComponent
                     ? this.props.buttonNumberComponent(
-                      i,
-                      this.onPressButtonNumber
-                    )
+                        i,
+                        this.onPressButtonNumber
+                      )
                     : this.renderButtonNumber(i.toString())}
                 </Col>
               )
@@ -664,9 +675,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   }>
                   {this.props.buttonNumberComponent
                     ? this.props.buttonNumberComponent(
-                      i,
-                      this.onPressButtonNumber
-                    )
+                        i,
+                        this.onPressButtonNumber
+                      )
                     : this.renderButtonNumber(i.toString())}
                 </Col>
               )
@@ -689,9 +700,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   }>
                   {this.props.buttonNumberComponent
                     ? this.props.buttonNumberComponent(
-                      i,
-                      this.onPressButtonNumber
-                    )
+                        i,
+                        this.onPressButtonNumber
+                      )
                     : this.renderButtonNumber(i.toString())}
                 </Col>
               )
@@ -718,9 +729,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
               }>
               {this.props.buttonNumberComponent
                 ? this.props.buttonNumberComponent(
-                  '0',
-                  this.onPressButtonNumber
-                )
+                    '0',
+                    this.onPressButtonNumber
+                  )
                 : this.renderButtonNumber('0')}
             </Col>
             <Col
@@ -746,13 +757,13 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 {({ opacity }: any) =>
                   this.props.buttonDeleteComponent
                     ? this.props.buttonDeleteComponent(() => {
-                      if (this.state.password.length > 0) {
-                        const newPass = this.state.password.slice(0, -1)
-                        this.setState({ password: newPass })
-                        if (this.props.getCurrentLength)
-                          this.props.getCurrentLength(newPass.length)
-                      }
-                    })
+                        if (this.state.password.length > 0) {
+                          const newPass = this.state.password.slice(0, -1)
+                          this.setState({ password: newPass })
+                          if (this.props.getCurrentLength)
+                            this.props.getCurrentLength(newPass.length)
+                        }
+                      })
                     : this.renderButtonDelete(opacity)
                 }
               </Animate>

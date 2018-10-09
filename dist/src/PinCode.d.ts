@@ -5,7 +5,7 @@ import { StyleProp, TextStyle, ViewStyle } from 'react-native';
  * Pin Code Component
  */
 export declare type IProps = {
-    endProcess: (pinCode: string) => void;
+    endProcess: (pinCode: string, isErrorValidation?: boolean) => void;
     getCurrentLength?: (length: number) => void;
     sentenceTitle: string;
     subtitle: string;
@@ -18,8 +18,8 @@ export declare type IProps = {
     passwordLength: number;
     iconButtonDeleteDisabled?: boolean;
     passwordComponent?: any;
-    titleAttemptFailed: string;
-    titleConfirmFailed: string;
+    titleAttemptFailed?: string;
+    titleConfirmFailed?: string;
     subtitleError: string;
     colorPassword?: string;
     colorPasswordError?: string;
@@ -54,6 +54,8 @@ export declare type IProps = {
     pinCodeVisible?: boolean;
     textPasswordVisibleSize?: number;
     textPasswordVisibleFamily?: string;
+    validationRegex?: RegExp;
+    titleValidationFailed?: string;
 };
 export declare type IState = {
     password: string;
@@ -84,7 +86,7 @@ declare class PinCode extends React.PureComponent<IProps, IState> {
     renderButtonNumber: (text: string) => JSX.Element;
     endProcess: (pwd: string) => void;
     doShake(): Promise<void>;
-    showError(): Promise<void>;
+    showError(isErrorValidation?: boolean): Promise<void>;
     renderCirclePassword: () => JSX.Element;
     renderButtonDelete: (opacity: number) => JSX.Element;
     renderTitle: (colorTitle: string, opacityTitle: number, attemptFailed: boolean, showError: boolean) => JSX.Element;
