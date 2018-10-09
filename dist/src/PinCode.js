@@ -50,8 +50,9 @@ class PinCode extends React.PureComponent {
             if (currentPassword.length === this.props.passwordLength) {
                 switch (this.props.status) {
                     case PinStatus.choose:
-                        if (this.props.validationRegex && this.props.validationRegex.test(currentPassword)) {
-                            this.showError(false);
+                        if (this.props.validationRegex &&
+                            this.props.validationRegex.test(currentPassword)) {
+                            this.showError(true);
                         }
                         else {
                             this.endProcess(currentPassword);
@@ -59,7 +60,7 @@ class PinCode extends React.PureComponent {
                         break;
                     case PinStatus.confirm:
                         if (currentPassword !== this.props.previousPin) {
-                            this.showError(false);
+                            this.showError();
                         }
                         else {
                             this.endProcess(currentPassword);
@@ -309,7 +310,7 @@ class PinCode extends React.PureComponent {
         if (this.props.getCurrentLength)
             this.props.getCurrentLength(0);
     }
-    async showError(endProcess = true) {
+    async showError(isErrorValidation = false) {
         this.setState({ changeScreen: true });
         await delay_1.default(300);
         this.setState({ showError: true, changeScreen: false });
@@ -319,8 +320,9 @@ class PinCode extends React.PureComponent {
         await delay_1.default(200);
         this.setState({ showError: false, password: '' });
         await delay_1.default(200);
-        if (endProcess)
-            this.props.endProcess(this.state.password);
+        this.props.endProcess(this.state.password, isErrorValidation);
+        if (isErrorValidation)
+            this.setState({ changeScreen: false });
     }
     render() {
         const { password, showError, attemptFailed, changeScreen } = this.state;

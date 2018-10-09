@@ -59,7 +59,6 @@ export type IProps = {
   textPasswordVisibleSize?: number
   textPasswordVisibleFamily?: string
 
-
   // todo NEW
   titleValidationFailed?: string
   validationRegex?: RegExp
@@ -78,8 +77,11 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
     this.endProcessConfirm = this.endProcessConfirm.bind(this)
   }
 
-  endProcessCreation = (pinCode: string) => {
-    this.setState({ pinCode: pinCode, status: PinStatus.confirm })
+  endProcessCreation = (pinCode: string, isErrorValidation?: boolean) => {
+    this.setState({
+      pinCode: isErrorValidation ? '' : pinCode,
+      status: isErrorValidation ? PinStatus.choose : PinStatus.confirm
+    })
   }
 
   endProcessConfirm = async (pinCode: string) => {
@@ -119,18 +121,11 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             buttonNumberComponent={this.props.buttonNumberComponent || null}
             passwordLength={this.props.passwordLength || 4}
             passwordComponent={this.props.passwordComponent || null}
-
-
-
-            // todo NEW
             validationRegex={this.props.validationRegex}
             titleValidationFailed={
               this.props.titleValidationFailed || 'PIN code unsafe'
             }
             subtitleError={this.props.subtitleError || 'Please try again'}
-
-
-
             colorPassword={this.props.colorPassword || undefined}
             colorPasswordError={this.props.colorPasswordError || undefined}
             numbersButtonOverlayColor={
