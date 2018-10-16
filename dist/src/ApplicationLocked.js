@@ -67,7 +67,9 @@ class ApplicationLocked extends React.PureComponent {
                     React.createElement(react_native_1.Text, { style: this.props.styleText ? this.props.styleText : styles.text }, this.props.textDescription
                         ? this.props.textDescription
                         : `To protect your information, access has been locked for ${Math.ceil(this.props.timeToLock / 1000 / 60)} minutes.`),
-                    React.createElement(react_native_1.Text, { style: this.props.styleText ? this.props.styleText : styles.text }, "Come back later and try again.")))),
+                    React.createElement(react_native_1.Text, { style: this.props.styleText ? this.props.styleText : styles.text }, this.props.textSubDescription
+                        ? this.props.textSubDescription
+                        : 'Come back later and try again.')))),
                 React.createElement(Animate_1.default, { show: true, start: {
                         opacity: 0
                     }, enter: {

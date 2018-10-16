@@ -21,6 +21,7 @@ export type IProps = {
   textButton: string
   changeStatus: (status: PinResultStatus) => void
   textDescription?: string
+  textSubDescription?: string
   buttonComponent?: any
   timerComponent?: any
   textTitle?: string
@@ -204,7 +205,9 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                 style={
                   this.props.styleText ? this.props.styleText : styles.text
                 }>
-                Come back later and try again.
+                {this.props.textSubDescription
+                  ? this.props.textSubDescription 
+                  : 'Come back later and try again.'}
               </Text>
             </View>
           )}

@@ -75,6 +75,7 @@ export declare type IProps = {
     subtitleError?: string;
     textButtonLockedPage?: string;
     textDescriptionLockedPage?: string;
+    textSubDescriptionLockedPage?: string;
     textPasswordVisibleFamily?: string;
     textPasswordVisibleSize?: number;
     textTitleLockedPage?: string;
