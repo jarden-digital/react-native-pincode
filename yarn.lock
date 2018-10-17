@@ -4763,9 +4763,9 @@ react-move@^2.7.0:
     d3-interpolate "^1.1.6"
     d3-timer "^1.0.4"
 
-react-native-easy-grid@^0.1.17:
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/react-native-easy-grid/-/react-native-easy-grid-0.1.17.tgz#fad8cb371d465828c1c71daa4d8b513d33253452"
+react-native-easy-grid@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-easy-grid/-/react-native-easy-grid-0.2.0.tgz#4718031aa1baaa2613b829fc807da288eb0d2797"
   dependencies:
     lodash "^4.11.1"
 
@@ -4773,9 +4773,9 @@ react-native-keychain@^3.0.0-rc.3:
   version "3.0.0-rc.3"
   resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-3.0.0-rc.3.tgz#891ea07a564d1bf46b644bc615af21f15a04b12b"
 
-react-native-touch-id@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-touch-id/-/react-native-touch-id-4.0.4.tgz#7dbc051c9966bbcd33c2cfbb8d3bad171770b6b7"
+react-native-touch-id@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-touch-id/-/react-native-touch-id-4.1.0.tgz#7df3b5b0ab4d72765ca3fb760cb71cdec2ee14c4"
 
 react-native-vector-icons@^4.5.0:
   version "4.5.0"

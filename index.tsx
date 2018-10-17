@@ -80,6 +80,7 @@ export type IProps = {
   subtitleError?: string
   textButtonLockedPage?: string
   textDescriptionLockedPage?: string
+  textSubDescriptionLockedPage?: string
   textPasswordVisibleFamily?: string
   textPasswordVisibleSize?: number
   textTitleLockedPage?: string
@@ -142,6 +143,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
         textButton={this.props.textButtonLockedPage || 'Quit'}
         changeStatus={this.changeInternalStatus}
         textDescription={this.props.textDescriptionLockedPage || undefined}
+        textSubDescription={this.props.textSubDescriptionLockedPage || undefined}
         buttonComponent={this.props.buttonComponentLockedPage || null}
         timerComponent={this.props.timerComponentLockedPage || null}
         textTitle={this.props.textTitleLockedPage || undefined}
