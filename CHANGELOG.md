@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.7.2] - 2018-10-18
+### Merged
+- Merged [tskorupka](https://github.com/tskorupka) pull request adding a property to change the subtitle of the locked page. [Issue 41](https://github.com/fnzc/react-native-pincode/issues/41).
+
+
 ## [1.7.1] - 2018-10-13
 ### Updated
 - Updated react-native-touch-id version to 4.1.0 to get the localization fix. Related issue: [Issue 24](https://github.com/fnzc/react-native-pincode/issues/24).

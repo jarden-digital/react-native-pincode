@@ -98,6 +98,7 @@ await hasUserSetPinCode()
 |**`subtitleError`**|String used as a subtitle on the PIN code pages when an error occurs (wrong PIN code used for `enter` or `confirm` modes)|`Please try again`|`false`|`string`|
 |**`textButtonLockedPage`**|String to be used as text on the button in the locked application page|`Quit`|`false`|`string`|
 |**`textDescriptionLockedPage`**|String to be used as a description on the locked application page|`To protect your information, access has been locked for {timeLocked} minutes.`|`false`|`string`|
+|**`textSubDescriptionLockedPage`**|String to be used as a subtitle on the locked application page|`Come back later and try again.`|`false`|`string`|
 |**`textPasswordVisibleFamily`**|Font to be used for the PIN code numbers when `pinCodeVisible` is true|`system font`|`false`|`string`|
 |**`textPasswordVisibleSize`**|Size of the font used for the PIN code numbers when `pinCodeVisible` is true|`22`|`false`|`number`|
 |**`textTitleLockedPage`**|String to be used as a title on the locked application page|`Maximum attempts reached`|`false`|`string`|
