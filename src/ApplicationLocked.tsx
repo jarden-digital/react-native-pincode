@@ -73,7 +73,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
 
   async timer() {
     const timeDiff = +new Date(this.timeLocked) - +new Date()
-    this.setState({ timeDiff: timeDiff })
+    this.setState({ timeDiff: Math.max(0, timeDiff) })
     await delay(1000)
     if (timeDiff < 1000) {
       this.props.changeStatus(PinResultStatus.initial)
