@@ -164,6 +164,9 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleDeleteButtonSize={this.props.styleDeleteButtonSize}
             styleDeleteButtonText={this.props.styleDeleteButtonText}
             styleColorButtonTitle={this.props.styleColorButtonTitle}
+            styleColorButtonTitleSelected={
+              this.props.styleColorButtonTitleSelected
+            }
             pinCodeVisible={this.props.pinCodeVisible}
             textPasswordVisibleFamily={this.props.textPasswordVisibleFamily}
             textPasswordVisibleSize={this.props.textPasswordVisibleSize}
