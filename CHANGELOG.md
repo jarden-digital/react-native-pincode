@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.7.4] - 2018-10-23
+### Merged
+- Merged [Dimon70007](https://github.com/Dimon70007) pull request adding a missing property on PinCodeChoose file.
+
+
 ## [1.7.3] - 2018-10-19
 ### Merged
 - Merged [marla-singer](https://github.com/marla-singer) pull request fixing the timer of the locked page.
