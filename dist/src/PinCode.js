@@ -596,7 +596,6 @@ let styles = react_native_1.StyleSheet.create({
         maxWidth: grid_1.grid.unit * 16.25,
         flex: 7
     },
-    
     backgroundContainer: {
         width: '100%',
         height: grid_1.grid.unit * 12,
