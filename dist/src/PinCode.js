@@ -604,8 +604,8 @@ let styles = react_native_1.StyleSheet.create({
     },
     containerKeyboard: {
         width: '100%',
-        marginTop: grid_1.grid.unit*2 ,
-        marginBottom: grid_1.grid.unit ,
+        marginTop: grid_1.grid.unit*2,
+        marginBottom: grid_1.grid.unit,
         height: grid_1.grid.unit * 15,
         alignItems: 'center',
         justifyContent: 'center',
