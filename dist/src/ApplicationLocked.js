@@ -133,7 +133,7 @@ const styles = react_native_1.StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     text: {
         fontSize: grid_1.grid.unit,

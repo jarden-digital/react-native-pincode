@@ -14,7 +14,7 @@ const colors = {
     primary: '#799AE0',
     pink: '#FF87C3',
     grey: '#9dafc8',
-    turquoise: '#7BCDD0',
+    turquoise: '#8d96b1',
     darkBlue: '#1B4581',
     cash: '#FF87C3',
     nzSecurities: '#799AE0',
@@ -23,7 +23,7 @@ const colors = {
     ausEquities: '#DECD58',
     globalEquities: '#FFAA4A',
     altStrategies: '#FC4349',
-    globalDebtSecurities: '#213249'
+    globalDebtSecurities: '#213249',
 };
 exports.colors = colors;
 const documentColor = (docType) => {

@@ -36,7 +36,8 @@ let styles = react_native_1.StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: grid_1.grid.unit * 3
+        padding: grid_1.grid.unit * 3,
+        width: '100%',
     },
     viewElements: {
         justifyContent: 'center',
