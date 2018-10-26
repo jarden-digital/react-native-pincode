@@ -524,7 +524,7 @@ let styles = react_native_1.StyleSheet.create({
         // backgroundColor: 'red',
         alignItems: "center",
         width: 300,
-        height: grid_1.grid.unit * 5.5
+        height: grid_1.grid.unit * 5,
     },
     colButtonCircle: {
         marginLeft: grid_1.grid.unit /1.5,
