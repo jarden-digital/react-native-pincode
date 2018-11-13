@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.7.5] - 2018-11-13
+### Fixed
+- Fixed an issue where the onFail and the handleResultPin functions where not triggered as expected. Related issue: [Issue 48](https://github.com/fnzc/react-native-pincode/issues/48).
+
+
 ## [1.7.4] - 2018-10-23
 ### Merged
 - Merged [Dimon70007](https://github.com/Dimon70007) pull request adding a missing property on PinCodeChoose file.

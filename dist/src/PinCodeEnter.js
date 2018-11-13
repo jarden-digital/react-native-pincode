@@ -12,7 +12,6 @@ class PinCodeEnter extends React.PureComponent {
         this.endProcess = async (pinCode) => {
             if (this.props.handleResult) {
                 this.props.handleResult(pinCode);
-                return;
             }
             this.setState({ pinCodeStatus: index_1.PinResultStatus.initial });
             this.props.changeInternalStatus(index_1.PinResultStatus.initial);
