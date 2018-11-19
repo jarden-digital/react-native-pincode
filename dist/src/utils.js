@@ -8,3 +8,6 @@ exports.hasPinCode = async () => {
                 .password);
     });
 };
+exports.deletePinCode = () => {
+    Keychain.resetGenericPassword();
+};

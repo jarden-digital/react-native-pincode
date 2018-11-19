@@ -1,7 +1,7 @@
 /// <reference path="../src/types.d.ts" />
 /// <reference types="react" />
-import * as React from 'react';
-import { StyleProp, ViewStyle, TextStyle } from 'react-native';
+import * as React from "react";
+import { StyleProp, ViewStyle, TextStyle } from "react-native";
 export declare type IProps = {
     buttonComponentLockedPage?: any;
     buttonDeleteComponent?: any;
@@ -25,7 +25,7 @@ export declare type IProps = {
     pinCodeKeychainName?: string;
     pinCodeVisible?: boolean;
     pinStatus?: PinResultStatus;
-    status: 'choose' | 'enter' | 'locked';
+    status: "choose" | "enter" | "locked";
     storedPin?: string;
     storePin?: any;
     styleMainContainer?: StyleProp<ViewStyle>;
@@ -112,4 +112,5 @@ declare class PINCode extends React.PureComponent<IProps, IState> {
     render(): JSX.Element;
 }
 export declare function hasUserSetPinCode(): Promise<boolean>;
+export declare function deleteUserPinCode(): void;
 export default PINCode;

@@ -1,11 +1,11 @@
 /// <reference path='./src/types.d.ts'/>
-import * as React from 'react'
-import PinCodeChoose from './src/PinCodeChoose'
-import {PinStatus} from './src/PinCode'
-import PinCodeEnter from './src/PinCodeEnter'
-import {View, StyleSheet, AsyncStorage, StyleProp, ViewStyle, TextStyle} from 'react-native'
-import ApplicationLocked from './src/ApplicationLocked'
-import { hasPinCode } from './src/utils'
+import * as React from "react";
+import PinCodeChoose from "./src/PinCodeChoose";
+import { PinStatus } from "./src/PinCode";
+import PinCodeEnter from "./src/PinCodeEnter";
+import { View, StyleSheet, AsyncStorage, StyleProp, ViewStyle, TextStyle } from "react-native";
+import ApplicationLocked from "./src/ApplicationLocked";
+import { hasPinCode, deletePinCode } from "./src/utils";
 
 export type IProps = {
   buttonComponentLockedPage?: any
@@ -30,7 +30,7 @@ export type IProps = {
   pinCodeKeychainName?: string
   pinCodeVisible?: boolean
   pinStatus?: PinResultStatus
-  status: 'choose' | 'enter' | 'locked'
+  status: "choose" | "enter" | "locked"
   storedPin?: string
   storePin?: any
   styleMainContainer?: StyleProp<ViewStyle>
@@ -106,41 +106,42 @@ export type IState = {
 }
 
 export enum PinResultStatus {
-  initial = 'initial',
-  success = 'success',
-  failure = 'failure',
-  locked = 'locked'
+  initial = "initial",
+  success = "success",
+  failure = "failure",
+  locked = "locked"
 }
 
-const timePinLockedAsyncStorageNameDefault = 'timePinLockedRNPin'
-const pinAttemptsAsyncStorageNameDefault = 'pinAttemptsRNPin'
-const touchIDDisabledDefault = false
+const timePinLockedAsyncStorageNameDefault = "timePinLockedRNPin";
+const pinAttemptsAsyncStorageNameDefault = "pinAttemptsRNPin";
+const pinCodeKeychainNameDefault = "reactNativePinCode";
+const touchIDDisabledDefault = false;
 
 class PINCode extends React.PureComponent<IProps, IState> {
 
   constructor(props: IProps) {
-    super(props)
-    this.state = {internalPinStatus: PinResultStatus.initial, pinLocked: false}
-    this.changeInternalStatus = this.changeInternalStatus.bind(this)
-    this.renderLockedPage = this.renderLockedPage.bind(this)
+    super(props);
+    this.state = { internalPinStatus: PinResultStatus.initial, pinLocked: false };
+    this.changeInternalStatus = this.changeInternalStatus.bind(this);
+    this.renderLockedPage = this.renderLockedPage.bind(this);
   }
 
   async componentWillMount() {
     await AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault).then((val) => {
-      this.setState({pinLocked: !!val})
-    })
+      this.setState({ pinLocked: !!val });
+    });
   }
 
   changeInternalStatus = (status: PinResultStatus) => {
-    if (status === PinResultStatus.initial) this.setState({pinLocked: false})
-    this.setState({internalPinStatus: status})
-  }
+    if (status === PinResultStatus.initial) this.setState({ pinLocked: false });
+    this.setState({ internalPinStatus: status });
+  };
 
   renderLockedPage = () => {
     return (
       <ApplicationLocked
         timeToLock={this.props.timeLocked || 300000}
-        textButton={this.props.textButtonLockedPage || 'Quit'}
+        textButton={this.props.textButtonLockedPage || "Quit"}
         changeStatus={this.changeInternalStatus}
         textDescription={this.props.textDescriptionLockedPage || undefined}
         textSubDescription={this.props.textSubDescriptionLockedPage || undefined}
@@ -152,7 +153,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
         timePinLockedAsyncStorageName={this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault}
         pinAttemptsAsyncStorageName={this.props.pinAttemptsAsyncStorageName || pinAttemptsAsyncStorageNameDefault}
         onClickButton={this.props.onClickButtonLockedPage || (() => {
-          throw ('Quit application')
+          throw ("Quit application");
         })}
         styleButton={this.props.styleLockScreenButton}
         styleTextButton={this.props.styleLockScreenTextButton}
@@ -167,20 +168,20 @@ class PINCode extends React.PureComponent<IProps, IState> {
         styleMainContainer={this.props.styleLockScreenMainContainer}
         styleText={this.props.styleLockScreenText}
         styleViewButton={this.props.styleLockScreenViewCloseButton}/>
-    )
-  }
+    );
+  };
 
   render() {
-    const {status, pinStatus, styleMainContainer} = this.props
+    const { status, pinStatus, styleMainContainer } = this.props;
     return (
       <View style={styleMainContainer ? styleMainContainer : styles.container}>
         {status === PinStatus.choose &&
         <PinCodeChoose
           storePin={this.props.storePin || null}
-          titleChoose={this.props.titleChoose || '1 - Enter a PIN Code'}
-          subtitleChoose={this.props.subtitleChoose || 'to keep your information secure'}
-          titleConfirm={this.props.titleConfirm || '2 - Confirm your PIN Code'}
-          subtitleConfirm={this.props.subtitleConfirm || ''}
+          titleChoose={this.props.titleChoose || "1 - Enter a PIN Code"}
+          subtitleChoose={this.props.subtitleChoose || "to keep your information secure"}
+          titleConfirm={this.props.titleConfirm || "2 - Confirm your PIN Code"}
+          subtitleConfirm={this.props.subtitleConfirm || ""}
           passwordComponent={this.props.passwordComponent}
           finishProcess={this.props.finishProcess || null}
           buttonNumberComponent={this.props.buttonNumberComponent}
@@ -197,7 +198,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           buttonDeleteText={this.props.buttonDeleteText}
           subtitleComponent={this.props.subtitleComponent}
           getCurrentLength={this.props.getCurrentPinLength}
-          pinCodeKeychainName={this.props.pinCodeKeychainName || 'reactNativePinCode'}
+          pinCodeKeychainName={this.props.pinCodeKeychainName || pinCodeKeychainNameDefault}
           styleContainer={this.props.stylePinCodeChooseContainer}
           styleButtonCircle={this.props.stylePinCodeButtonCircle}
           styleTextButton={this.props.stylePinCodeTextButtonCircle}
@@ -231,15 +232,15 @@ class PINCode extends React.PureComponent<IProps, IState> {
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter
-          title={this.props.titleEnter || 'Enter your PIN Code'}
-          subtitle={this.props.subtitleEnter || ''}
+          title={this.props.titleEnter || "Enter your PIN Code"}
+          subtitle={this.props.subtitleEnter || ""}
           handleResult={this.props.handleResultEnterPin || null}
           maxAttempts={this.props.maxAttempts || 3}
           changeInternalStatus={this.changeInternalStatus}
           buttonDeleteText={this.props.buttonDeleteText}
           pinStatusExternal={this.props.pinStatus || PinResultStatus.initial}
           storedPin={this.props.storedPin || null}
-          touchIDSentence={this.props.touchIDSentence || 'To unlock your application'}
+          touchIDSentence={this.props.touchIDSentence || "To unlock your application"}
           status={PinStatus.enter}
           finishProcess={this.props.finishProcess || null}
           onFail={this.props.onFail || null}
@@ -294,17 +295,24 @@ class PINCode extends React.PureComponent<IProps, IState> {
           this.state.pinLocked) &&
         (this.props.lockedPage ? this.props.lockedPage() : this.renderLockedPage())}
       </View>
-    )
+    );
   }
 }
 
-export function hasUserSetPinCode() {return hasPinCode()}
-export default PINCode
+export function hasUserSetPinCode() {
+  return hasPinCode();
+}
+
+export function deleteUserPinCode() {
+  return deletePinCode();
+}
+
+export default PINCode;
 
 let styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   }
-})
+});

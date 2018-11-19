@@ -206,7 +206,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                   this.props.styleText ? this.props.styleText : styles.text
                 }>
                 {this.props.textSubDescription
-                  ? this.props.textSubDescription 
+                  ? this.props.textSubDescription
                   : 'Come back later and try again.'}
               </Text>
             </View>

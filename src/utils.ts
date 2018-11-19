@@ -13,3 +13,7 @@ export const hasPinCode = async () => {
     }
   )
 }
+
+export const deletePinCode = () => {
+  Keychain.resetGenericPassword()
+}
