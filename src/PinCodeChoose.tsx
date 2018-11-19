@@ -58,8 +58,6 @@ export type IProps = {
   pinCodeVisible?: boolean
   textPasswordVisibleSize?: number
   textPasswordVisibleFamily?: string
-
-  // todo NEW
   titleValidationFailed?: string
   validationRegex?: RegExp
 }
