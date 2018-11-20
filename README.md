@@ -76,6 +76,7 @@ deleteUserPinCode()
 
 | Key | Description | Default | Required | Type |
 |---|---|---|---|---|
+|**`bottomLeftComponent`**|Component to replace the empty space at the bottom left of the numpad|Empty space|`false`|`any`|
 |**`buttonComponentLockedPage`**|Button component to be used at the bottom of the page on the locked application page|TouchableOpacity exit button killing the application|`false`|`any`|
 |**`buttonDeleteComponent`**|Button component to be used at the bottom right of the PIN panel to delete a previous entry|TouchableHighlight button with a `delete` text and the `backspace` material icon|`false`|`any`|
 |**`buttonDeleteText`**|Text of the of the button used to delete a previous entry on the PIN panel|`delete`|`false`|`string`|

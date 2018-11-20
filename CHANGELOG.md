@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.9.0] - 2018-11-21
+### Added
+- Added an attribute to provide a custom component to replace the bottom left empty space. Related issue: [Issue 49](https://github.com/fnzc/react-native-pincode/issues/49).
+
+
 ## [1.8.0] - 2018-11-20
 ### Added
 - Added a function to allow the user to delete the PIN code stored in the Keychain. Related issue: [Issue 50](https://github.com/fnzc/react-native-pincode/issues/50).
