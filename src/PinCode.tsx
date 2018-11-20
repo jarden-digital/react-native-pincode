@@ -25,6 +25,7 @@ import delay from './delay'
 
 export type IProps = {
   endProcess: (pinCode: string, isErrorValidation?: boolean) => void
+  emptyColumnComponent: any
   getCurrentLength?: (length: number) => void
   sentenceTitle: string
   subtitle: string
@@ -719,8 +720,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 this.props.styleEmptyColumn
                   ? this.props.styleEmptyColumn
                   : styles.colEmpty
-              }
-            />
+              }>
+              {this.props.emptyColumnComponent || null}
+            </Col>
             <Col
               style={
                 this.props.styleColumnButtons

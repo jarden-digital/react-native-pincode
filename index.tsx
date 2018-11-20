@@ -8,6 +8,7 @@ import ApplicationLocked from "./src/ApplicationLocked";
 import { hasPinCode, deletePinCode } from "./src/utils";
 
 export type IProps = {
+  bottomLeftComponent?: any
   buttonComponentLockedPage?: any
   buttonDeleteComponent?: any
   buttonDeleteText?: string
@@ -182,6 +183,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           subtitleChoose={this.props.subtitleChoose || "to keep your information secure"}
           titleConfirm={this.props.titleConfirm || "2 - Confirm your PIN Code"}
           subtitleConfirm={this.props.subtitleConfirm || ""}
+          emptyColumnComponent={this.props.bottomLeftComponent}
           passwordComponent={this.props.passwordComponent}
           finishProcess={this.props.finishProcess || null}
           buttonNumberComponent={this.props.buttonNumberComponent}
@@ -238,6 +240,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           maxAttempts={this.props.maxAttempts || 3}
           changeInternalStatus={this.changeInternalStatus}
           buttonDeleteText={this.props.buttonDeleteText}
+          emptyColumnComponent={this.props.bottomLeftComponent}
           pinStatusExternal={this.props.pinStatus || PinResultStatus.initial}
           storedPin={this.props.storedPin || null}
           touchIDSentence={this.props.touchIDSentence || "To unlock your application"}

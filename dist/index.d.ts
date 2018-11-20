@@ -3,6 +3,7 @@
 import * as React from "react";
 import { StyleProp, ViewStyle, TextStyle } from "react-native";
 export declare type IProps = {
+    bottomLeftComponent?: any;
     buttonComponentLockedPage?: any;
     buttonDeleteComponent?: any;
     buttonDeleteText?: string;

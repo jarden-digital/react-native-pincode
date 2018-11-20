@@ -34,6 +34,7 @@ export type IProps = {
   styleColorTitle?: string
   styleColorTitleError?: string
   styleColorSubtitle?: string
+  emptyColumnComponent: any
   styleColorSubtitleError?: string
   styleButtonCircle?: StyleProp<ViewStyle>
   styleTextButton?: StyleProp<TextStyle>
@@ -120,6 +121,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             passwordLength={this.props.passwordLength || 4}
             passwordComponent={this.props.passwordComponent || null}
             validationRegex={this.props.validationRegex}
+            emptyColumnComponent={this.props.emptyColumnComponent}
             titleValidationFailed={
               this.props.titleValidationFailed || 'PIN code unsafe'
             }
@@ -179,6 +181,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             subtitle={this.props.subtitleConfirm}
             previousPin={this.state.pinCode}
             buttonNumberComponent={this.props.buttonNumberComponent || null}
+            emptyColumnComponent={this.props.emptyColumnComponent}
             passwordLength={this.props.passwordLength || 4}
             passwordComponent={this.props.passwordComponent || null}
             titleAttemptFailed={

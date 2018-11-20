@@ -41,6 +41,7 @@ export declare type IProps = {
     styleColorTitleError?: string;
     styleColorSubtitle?: string;
     styleColorSubtitleError?: string;
+    emptyColumnComponent: any;
     styleButtonCircle?: StyleProp<ViewStyle>;
     styleTextButton?: StyleProp<TextStyle>;
     styleCircleHiddenPassword?: StyleProp<ViewStyle>;
