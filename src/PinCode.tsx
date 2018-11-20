@@ -25,7 +25,7 @@ import delay from './delay'
 
 export type IProps = {
   endProcess: (pinCode: string, isErrorValidation?: boolean) => void
-  emptyColumnComponent: Comp
+  emptyColumnComponent: any
   getCurrentLength?: (length: number) => void
   sentenceTitle: string
   subtitle: string

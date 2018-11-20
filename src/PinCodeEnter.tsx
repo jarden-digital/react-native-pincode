@@ -51,6 +51,7 @@ export type IProps = {
   styleColorTitleError?: string
   styleColorSubtitle?: string
   styleColorSubtitleError?: string
+  emptyColumnComponent: any
   styleButtonCircle?: StyleProp<ViewStyle>
   styleTextButton?: StyleProp<TextStyle>
   styleCircleHiddenPassword?: StyleProp<ViewStyle>
@@ -185,6 +186,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           subtitle={this.props.subtitle}
           status={PinStatus.enter}
           previousPin={pin}
+          emptyColumnComponent={this.props.emptyColumnComponent}
           pinCodeStatus={this.state.pinCodeStatus}
           buttonNumberComponent={this.props.buttonNumberComponent || null}
           passwordLength={this.props.passwordLength || 4}

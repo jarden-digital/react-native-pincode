@@ -422,7 +422,7 @@ class PinCode extends React.PureComponent {
                         : styles.row },
                     React.createElement(react_native_easy_grid_1.Col, { style: this.props.styleEmptyColumn
                             ? this.props.styleEmptyColumn
-                            : styles.colEmpty }),
+                            : styles.colEmpty }, this.props.emptyColumnComponent || null),
                     React.createElement(react_native_easy_grid_1.Col, { style: this.props.styleColumnButtons
                             ? this.props.styleColumnButtons
                             : styles.colButtonCircle }, this.props.buttonNumberComponent
