@@ -8,6 +8,7 @@ import { PinResultStatus } from '../index';
  */
 export declare type IProps = {
     storedPin: string | null;
+    disableLockScreen: boolean;
     touchIDSentence: string;
     handleResult: any;
     title: string;

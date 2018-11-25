@@ -18,6 +18,7 @@ import { PinResultStatus } from '../index'
 
 export type IProps = {
   storedPin: string | null
+  disableLockScreen: boolean
   touchIDSentence: string
   handleResult: any
   title: string
@@ -142,7 +143,10 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       if (this.props.onFail) {
         this.props.onFail(pinAttempts)
       }
-      if (+pinAttempts >= this.props.maxAttempts) {
+      if (
+        +pinAttempts >= this.props.maxAttempts &&
+        !this.props.disableLockScreen
+      ) {
         await AsyncStorage.setItem(
           this.props.timePinLockedAsyncStorageName,
           new Date().toISOString()

@@ -10,6 +10,7 @@ export declare type IProps = {
     buttonNumberComponent?: any;
     colorPassword?: string;
     colorPasswordError?: string;
+    disableLockScreen?: boolean;
     finishProcess?: any;
     getCurrentPinLength?: (length: number) => void;
     handleResultEnterPin?: any;

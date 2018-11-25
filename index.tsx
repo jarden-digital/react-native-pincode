@@ -15,6 +15,7 @@ export type IProps = {
   buttonNumberComponent?: any
   colorPassword?: string
   colorPasswordError?: string
+  disableLockScreen?: boolean
   finishProcess?: any
   getCurrentPinLength?: (length: number) => void
   handleResultEnterPin?: any
@@ -113,6 +114,7 @@ export enum PinResultStatus {
   locked = "locked"
 }
 
+const disableLockScreenDefault = false;
 const timePinLockedAsyncStorageNameDefault = "timePinLockedRNPin";
 const pinAttemptsAsyncStorageNameDefault = "pinAttemptsRNPin";
 const pinCodeKeychainNameDefault = "reactNativePinCode";
@@ -234,6 +236,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter
+          disableLockScreen={this.props.disableLockScreen || disableLockScreenDefault}
           title={this.props.titleEnter || "Enter your PIN Code"}
           subtitle={this.props.subtitleEnter || ""}
           handleResult={this.props.handleResultEnterPin || null}
