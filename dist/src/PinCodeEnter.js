@@ -30,9 +30,6 @@ class PinCodeEnter extends React.PureComponent {
             }
             else {
                 pinAttempts++;
-                if (this.props.onFail) {
-                    this.props.onFail(pinAttempts);
-                }
                 if (+pinAttempts >= this.props.maxAttempts &&
                     !this.props.disableLockScreen) {
                     await react_native_1.AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
@@ -43,6 +40,9 @@ class PinCodeEnter extends React.PureComponent {
                     await react_native_1.AsyncStorage.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString());
                     this.setState({ pinCodeStatus: index_1.PinResultStatus.failure });
                     this.props.changeInternalStatus(index_1.PinResultStatus.failure);
+                }
+                if (this.props.onFail) {
+                    this.props.onFail(pinAttempts);
                 }
             }
         };

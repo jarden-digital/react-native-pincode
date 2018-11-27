@@ -140,9 +140,6 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       if (this.props.finishProcess) this.props.finishProcess()
     } else {
       pinAttempts++
-      if (this.props.onFail) {
-        this.props.onFail(pinAttempts)
-      }
       if (
         +pinAttempts >= this.props.maxAttempts &&
         !this.props.disableLockScreen
@@ -160,6 +157,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
         )
         this.setState({ pinCodeStatus: PinResultStatus.failure })
         this.props.changeInternalStatus(PinResultStatus.failure)
+      }
+      if (this.props.onFail) {
+        this.props.onFail(pinAttempts)
       }
     }
   }
