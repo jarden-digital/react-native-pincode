@@ -11,6 +11,7 @@ import PinCode, { PinStatus } from './PinCode'
 import TouchID from 'react-native-touch-id'
 import * as Keychain from 'react-native-keychain'
 import { PinResultStatus } from '../index'
+import delay from './delay'
 
 /**
  * Pin Code Enter PIN Page
@@ -159,6 +160,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
         this.props.changeInternalStatus(PinResultStatus.failure)
       }
       if (this.props.onFail) {
+        await delay(1500)
         this.props.onFail(pinAttempts)
       }
     }

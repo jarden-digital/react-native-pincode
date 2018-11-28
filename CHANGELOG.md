@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.10.1] - 2018-11-29
+### Fixed
+- Fixed an issue caused by the `onFail` property. If the component gets unmounted in the `onFail` method it would result in a warning about setting the state on an unmounted component because of the animation of failure (shake). Added a 1500ms delay to prevent this issue. Related issue: [Issue 54](https://github.com/fnzc/react-native-pincode/issues/54).
+
+
 ## [1.10.0] - 2018-11-26
 ### Added
 - Added an property to disable the lock screen. Related issue: [Issue 51](https://github.com/fnzc/react-native-pincode/issues/51).
