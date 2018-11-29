@@ -16,6 +16,7 @@ export declare type IProps = {
     handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
     iconButtonDeleteDisabled?: boolean;
+    keychainServiceName?: string;
     lockedPage?: any;
     maxAttempts?: number;
     numbersButtonOverlayColor?: string;
@@ -113,6 +114,6 @@ declare class PINCode extends React.PureComponent<IProps, IState> {
     renderLockedPage: () => JSX.Element;
     render(): JSX.Element;
 }
-export declare function hasUserSetPinCode(): Promise<boolean>;
+export declare function hasUserSetPinCode(serviceName?: string): Promise<boolean>;
 export declare function deleteUserPinCode(): void;
 export default PINCode;

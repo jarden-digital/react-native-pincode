@@ -33,6 +33,7 @@ export type IProps = {
   passwordComponent: any
   titleAttemptFailed?: string
   finishProcess?: any
+  pinCodeKeychainName: string
   onFail?: any
   iconButtonDeleteDisabled?: boolean
   titleConfirmFailed?: string
@@ -102,7 +103,8 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
 
   async componentWillMount() {
     if (!this.props.storedPin) {
-      this.keyChainResult = await Keychain.getGenericPassword()
+      const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName)
+      this.keyChainResult = result.password
     }
   }
 

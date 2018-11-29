@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.10.2] - 2018-11-30
+### Fixed
+- Fixed the way Keychain was used. `setGenericPassword()` and `getGenericPassword()`. Those functions do not allow the user to provide a service name to store the pincode under, resolving in conflicts if using the Keychain somewhere else in the app. Fixed by using `setInternetCredentials()` and `getInternetCredentials()`. Related issue: [Issue 55](https://github.com/fnzc/react-native-pincode/issues/55).
+
+
 ## [1.10.1] - 2018-11-29
 ### Fixed
 - Fixed an issue caused by the `onFail` property. If the component gets unmounted in the `onFail` method it would result in a warning about setting the state on an unmounted component because of the animation of failure (shake). Added a 1500ms delay to prevent this issue. Related issue: [Issue 54](https://github.com/fnzc/react-native-pincode/issues/54).

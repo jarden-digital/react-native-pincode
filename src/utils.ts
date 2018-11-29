@@ -1,17 +1,9 @@
 import * as Keychain from 'react-native-keychain'
 
-export const hasPinCode = async () => {
-  return await Keychain.getGenericPassword().then(
-    (
-      res: boolean | { service: string; username: string; password: string }
-    ) => {
-      return (
-        !!res &&
-        !!(res as { service: string; username: string; password: string })
-          .password
-      )
-    }
-  )
+export const hasPinCode = async (serviceName: string) => {
+  return await Keychain.getInternetCredentials(serviceName).then(res => {
+    return !!res && !!res.password
+  })
 }
 
 export const deletePinCode = () => {

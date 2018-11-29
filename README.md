@@ -59,10 +59,11 @@ import PINCode from '@haskkor/react-native-pincode'
 ```
 
 Package provides a promise to know if a PIN code has been set by the user.
+The service name parameter is optional. If provided, it should match the `pinCodeKeychainName` property.
 
 ```
 import {hasUserSetPinCode} from '@haskkor/react-native-pincode'
-await hasUserSetPinCode()
+await hasUserSetPinCode(serviceName)
 ```
 
 One can also use a provided function to delete a PIN code previously set in the Keychain.

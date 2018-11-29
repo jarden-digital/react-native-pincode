@@ -1,7 +1,7 @@
 /// <reference types="react" />
-import * as React from 'react';
-import { StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { PinStatus } from './PinCode';
+import * as React from "react";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { PinStatus } from "./PinCode";
 /**
  * Pin Code Choose PIN Page
  */

@@ -21,6 +21,7 @@ export type IProps = {
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
   iconButtonDeleteDisabled?: boolean
+  keychainServiceName?: string
   lockedPage?: any
   maxAttempts?: number
   numbersButtonOverlayColor?: string
@@ -267,6 +268,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           subtitleComponent={this.props.subtitleComponent}
           timePinLockedAsyncStorageName={this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault}
           pinAttemptsAsyncStorageName={this.props.pinAttemptsAsyncStorageName || pinAttemptsAsyncStorageNameDefault}
+          pinCodeKeychainName={this.props.pinCodeKeychainName || pinCodeKeychainNameDefault}
           styleContainer={this.props.stylePinCodeEnterContainer}
           styleButtonCircle={this.props.stylePinCodeButtonCircle}
           styleTextButton={this.props.stylePinCodeTextButtonCircle}
@@ -305,8 +307,8 @@ class PINCode extends React.PureComponent<IProps, IState> {
   }
 }
 
-export function hasUserSetPinCode() {
-  return hasPinCode();
+export function hasUserSetPinCode(serviceName?: string) {
+  return hasPinCode(serviceName || pinCodeKeychainNameDefault);
 }
 
 export function deleteUserPinCode() {

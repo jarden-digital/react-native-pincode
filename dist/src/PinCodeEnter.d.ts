@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import * as React from "react";
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
-import { PinStatus } from "./PinCode";
-import { PinResultStatus } from "../index";
+import * as React from 'react';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { PinStatus } from './PinCode';
+import { PinResultStatus } from '../index';
 /**
  * Pin Code Enter PIN Page
  */
@@ -22,6 +22,7 @@ export declare type IProps = {
     passwordComponent: any;
     titleAttemptFailed?: string;
     finishProcess?: any;
+    pinCodeKeychainName: string;
     onFail?: any;
     iconButtonDeleteDisabled?: boolean;
     titleConfirmFailed?: string;

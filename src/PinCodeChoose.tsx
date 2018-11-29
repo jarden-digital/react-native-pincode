@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
-import PinCode, { PinStatus } from './PinCode'
-import * as Keychain from 'react-native-keychain'
+import * as React from "react";
+import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
+import PinCode, { PinStatus } from "./PinCode";
+import * as Keychain from "react-native-keychain";
 
 /**
  * Pin Code Choose PIN Page
@@ -70,38 +70,38 @@ export type IState = {
 
 class PinCodeChoose extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
-    super(props)
-    this.state = { status: PinStatus.choose, pinCode: '' }
-    this.endProcessCreation = this.endProcessCreation.bind(this)
-    this.endProcessConfirm = this.endProcessConfirm.bind(this)
+    super(props);
+    this.state = { status: PinStatus.choose, pinCode: "" };
+    this.endProcessCreation = this.endProcessCreation.bind(this);
+    this.endProcessConfirm = this.endProcessConfirm.bind(this);
   }
 
   endProcessCreation = (pinCode: string, isErrorValidation?: boolean) => {
     this.setState({
-      pinCode: isErrorValidation ? '' : pinCode,
+      pinCode: isErrorValidation ? "" : pinCode,
       status: isErrorValidation ? PinStatus.choose : PinStatus.confirm
-    })
-  }
+    });
+  };
 
   endProcessConfirm = async (pinCode: string) => {
     if (pinCode === this.state.pinCode) {
       if (this.props.storePin) {
-        this.props.storePin(pinCode)
+        this.props.storePin(pinCode);
       } else {
-        await Keychain.setGenericPassword(
+        await Keychain.setInternetCredentials(
           this.props.pinCodeKeychainName,
-          pinCode
-        )
+          this.props.pinCodeKeychainName,
+          pinCode);
       }
-      if (this.props.finishProcess) this.props.finishProcess()
+      if (this.props.finishProcess) this.props.finishProcess();
     } else {
-      this.setState({ status: PinStatus.choose })
+      this.setState({ status: PinStatus.choose });
     }
-  }
+  };
 
   cancelConfirm = () => {
-    this.setState({ status: PinStatus.choose })
-  }
+    this.setState({ status: PinStatus.choose });
+  };
 
   render() {
     return (
@@ -123,9 +123,9 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             validationRegex={this.props.validationRegex}
             emptyColumnComponent={this.props.emptyColumnComponent}
             titleValidationFailed={
-              this.props.titleValidationFailed || 'PIN code unsafe'
+              this.props.titleValidationFailed || "PIN code unsafe"
             }
-            subtitleError={this.props.subtitleError || 'Please try again'}
+            subtitleError={this.props.subtitleError || "Please try again"}
             colorPassword={this.props.colorPassword || undefined}
             colorPasswordError={this.props.colorPasswordError || undefined}
             numbersButtonOverlayColor={
@@ -185,12 +185,12 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             passwordLength={this.props.passwordLength || 4}
             passwordComponent={this.props.passwordComponent || null}
             titleAttemptFailed={
-              this.props.titleAttemptFailed || 'Incorrect PIN Code'
+              this.props.titleAttemptFailed || "Incorrect PIN Code"
             }
             titleConfirmFailed={
-              this.props.titleConfirmFailed || 'Your entries did not match'
+              this.props.titleConfirmFailed || "Your entries did not match"
             }
-            subtitleError={this.props.subtitleError || 'Please try again'}
+            subtitleError={this.props.subtitleError || "Please try again"}
             colorPassword={this.props.colorPassword || undefined}
             colorPasswordError={this.props.colorPasswordError || undefined}
             numbersButtonOverlayColor={
@@ -238,16 +238,16 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
           />
         )}
       </View>
-    )
+    );
   }
 }
 
-export default PinCodeChoose
+export default PinCodeChoose;
 
 let styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   }
-})
+});
