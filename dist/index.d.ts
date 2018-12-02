@@ -16,7 +16,6 @@ export declare type IProps = {
     handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
     iconButtonDeleteDisabled?: boolean;
-    keychainServiceName?: string;
     lockedPage?: any;
     maxAttempts?: number;
     numbersButtonOverlayColor?: string;
