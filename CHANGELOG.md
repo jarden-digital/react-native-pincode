@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.10.5] - 2018-12-06
+### Merged
+- Merged [tombaki](https://github.com/tombaki) pull request fixing a couple of issues.
+
+
 ## [1.10.4] - 2018-12-05
 ### Fixed
 - Fixed an issue after the Keychain function change.
