@@ -59,8 +59,8 @@ function hasUserSetPinCode(serviceName) {
     return utils_1.hasPinCode(serviceName || pinCodeKeychainNameDefault);
 }
 exports.hasUserSetPinCode = hasUserSetPinCode;
-function deleteUserPinCode() {
-    return utils_1.deletePinCode();
+function deleteUserPinCode(serviceName) {
+    return utils_1.deletePinCode(serviceName);
 }
 exports.deleteUserPinCode = deleteUserPinCode;
 exports.default = PINCode;
