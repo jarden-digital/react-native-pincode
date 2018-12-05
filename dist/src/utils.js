@@ -6,6 +6,6 @@ exports.hasPinCode = async (serviceName) => {
         return !!res && !!res.password;
     });
 };
-exports.deletePinCode = () => {
-    Keychain.resetGenericPassword();
+exports.deletePinCode = async (serviceName) => {
+    return await Keychain.resetInternetCredentials(serviceName);
 };
