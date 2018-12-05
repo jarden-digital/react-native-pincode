@@ -169,8 +169,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
 
   async launchTouchID() {
     try {
-      await TouchID.authenticate(this.props.touchIDSentence)
-      this.endProcess(this.props.storedPin || this.keyChainResult.password)
+      await TouchID.authenticate(this.props.touchIDSentence).then((success: any) => {
+        this.endProcess(this.props.storedPin || this.keyChainResult.password)
+      })
     } catch (e) {
       console.warn('TouchID error', e)
     }
