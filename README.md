@@ -71,10 +71,9 @@ await hasUserSetPinCode(serviceName)
 
 One can also use a provided function to delete a PIN code previously set in the Keychain.
 
-```
-Fixed 
+``` 
 import {deleteUserPinCode} from '@haskkor/react-native-pincode'
-deleteUserPinCode(serviceName)
+await deleteUserPinCode(serviceName)
 ```
 
 ## Options
