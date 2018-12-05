@@ -18,8 +18,7 @@ class PinCodeEnter extends React.PureComponent {
             this.props.changeInternalStatus(index_1.PinResultStatus.initial);
             const pinAttemptsStr = await react_native_1.AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName);
             let pinAttempts = +pinAttemptsStr;
-            const pin = this.props.storedPin || this.keyChainResult;
-
+            const pin = this.props.storedPin || this.keyChainResult.password;
             if (pin === pinCode) {
                 this.setState({ pinCodeStatus: index_1.PinResultStatus.success });
                 react_native_1.AsyncStorage.multiRemove([
@@ -60,28 +59,16 @@ class PinCodeEnter extends React.PureComponent {
     }
     async componentWillMount() {
         if (!this.props.storedPin) {
-            const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName);
-
-            this.keyChainResult = result.password;
-
+            this.keyChainResult = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName);
         }
     }
     componentDidMount() {
         if (!this.props.touchIDDisabled) {
-          const optionalConfigObject = {
-  unifiedErrors: false // use unified error messages (default false)
-}
-            react_native_touch_id_1.default.isSupported(optionalConfigObject)
-                .then(biometryType=> {
-                  if (biometryType === 'FaceID') {
-                    setTimeout(() => {
-                        this.launchTouchID();
-                    });
-    } else {
+            react_native_touch_id_1.default.isSupported()
+                .then(() => {
                 setTimeout(() => {
                     this.launchTouchID();
                 });
-              }
             })
                 .catch((error) => {
                 console.warn('TouchID error', error);
@@ -90,28 +77,9 @@ class PinCodeEnter extends React.PureComponent {
     }
     async launchTouchID() {
         try {
-          //alert(this.keyChainResult)
-        const optionalConfigObject = {
-  title: "Authentication Required", // Android
-  imageColor: "#e00606", // Android
-  imageErrorColor: "#ff0000", // Android
-  sensorDescription: "Touch sensor", // Android
-  sensorErrorDescription: "Failed", // Android
-  cancelText: "Cancel", // Android
-  fallbackLabel: "Show Passcode", // iOS (if empty, then label is hidden)
-  unifiedErrors: false, // use unified error messages (default false)
-  passcodeFallback: false // iOS
-}
-//alert(this.props.storedPin)
-
-            await react_native_touch_id_1.default.authenticate(this.props.touchIDSentence,optionalConfigObject).
-            then(success => {
-    this.endProcess(this.props.storedPin || this.keyChainResult);
-  })
-  .catch(error => {
-    //alert('Authentication Failed');
-  });
-
+            await react_native_touch_id_1.default.authenticate(this.props.touchIDSentence).then((success) => {
+                this.endProcess(this.props.storedPin || this.keyChainResult.password);
+            });
         }
         catch (e) {
             console.warn('TouchID error', e);
@@ -119,7 +87,7 @@ class PinCodeEnter extends React.PureComponent {
     }
     render() {
         const pin = this.props.storedPin ||
-            (this.keyChainResult && this.keyChainResult);
+            (this.keyChainResult && this.keyChainResult.password);
         return (React.createElement(react_native_1.View, { style: this.props.styleContainer
                 ? this.props.styleContainer
                 : styles.container },

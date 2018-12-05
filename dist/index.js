@@ -60,7 +60,7 @@ function hasUserSetPinCode(serviceName) {
 }
 exports.hasUserSetPinCode = hasUserSetPinCode;
 function deleteUserPinCode(serviceName) {
-    return utils_1.deletePinCode(serviceName);
+    return utils_1.deletePinCode(serviceName || pinCodeKeychainNameDefault);
 }
 exports.deleteUserPinCode = deleteUserPinCode;
 exports.default = PINCode;
