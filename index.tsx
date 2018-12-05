@@ -310,8 +310,8 @@ export function hasUserSetPinCode(serviceName?: string) {
   return hasPinCode(serviceName || pinCodeKeychainNameDefault);
 }
 
-export function deleteUserPinCode() {
-  return deletePinCode();
+export function deleteUserPinCode(serviceName?: string) {
+  return deletePinCode(serviceName || pinCodeKeychainNameDefault);
 }
 
 export default PINCode;

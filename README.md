@@ -33,10 +33,14 @@ If you wish to use `Keychain/Keystore` to store the PIN code you will have to li
 ```
 react-native link react-native-keychain
 ```
-add to info.plist
+
+If you wish to use FaceID you'll need to add the permission in your info.plist
+
 ```
-<key>NSFaceIDUsageDescription</key> <string>Enabling Face ID allows you quick and secure access to your account.</string>
+<key>NSFaceIDUsageDescription</key>
+<string>Enabling Face ID allows you quick and secure access to your account.</string>
 ```
+
 _Please note that you might have to link those libraries manually._
 
 **IMPORTANT:**
@@ -62,7 +66,7 @@ import PINCode from '@haskkor/react-native-pincode'
 ```
 
 Package provides a promise to know if a PIN code has been set by the user.
-The service name parameter is optional. If provided, it should match the `pinCodeKeychainName` property.
+The `serviceName` parameter is optional. If provided, it should match the `pinCodeKeychainName` property.
 
 ```
 import {hasUserSetPinCode} from '@haskkor/react-native-pincode'
@@ -70,6 +74,7 @@ await hasUserSetPinCode(serviceName)
 ```
 
 One can also use a provided function to delete a PIN code previously set in the Keychain.
+The `service name` parameter is optional. If provided, it should match the `pinCodeKeychainName` property.
 
 ``` 
 import {deleteUserPinCode} from '@haskkor/react-native-pincode'

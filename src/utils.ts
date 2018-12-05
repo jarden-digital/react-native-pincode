@@ -6,6 +6,6 @@ export const hasPinCode = async (serviceName: string) => {
   })
 }
 
-export const deletePinCode = async (serviceNmae: string) => {
+export const deletePinCode = async (serviceName: string) => {
   return await Keychain.resetInternetCredentials(serviceName)
 }
