@@ -97,8 +97,8 @@ export enum PinStatus {
 const textDeleteButtonDefault = 'delete'
 
 class PinCode extends React.PureComponent<IProps, IState> {
-  _circleSizeEmpty: number
-  _circleSizeFull: number
+  private readonly _circleSizeEmpty: number
+  private readonly _circleSizeFull: number
 
   constructor(props: IProps) {
     super(props)
@@ -116,32 +116,22 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4
     this._circleSizeFull =
       this.props.styleCircleSizeFull || (this.props.pinCodeVisible ? 6 : 8)
-    this.renderButtonNumber = this.renderButtonNumber.bind(this)
-    this.renderCirclePassword = this.renderCirclePassword.bind(this)
-    this.doShake = this.doShake.bind(this)
-    this.showError = this.showError.bind(this)
-    this.endProcess = this.endProcess.bind(this)
-    this.failedAttempt = this.failedAttempt.bind(this)
-    this.newAttempt = this.newAttempt.bind(this)
-    this.renderButtonDelete = this.renderButtonDelete.bind(this)
-    this.onPressButtonNumber = this.onPressButtonNumber.bind(this)
-    this.renderTitle = this.renderTitle.bind(this)
   }
 
   componentDidMount() {
     if (this.props.getCurrentLength) this.props.getCurrentLength(0)
   }
 
-  componentWillUpdate(nextProps: IProps) {
+  componentDidUpdate(prevProps: Readonly<IProps>): void {
     if (
-      this.props.pinCodeStatus !== 'failure' &&
-      nextProps.pinCodeStatus === 'failure'
+      prevProps.pinCodeStatus !== 'failure' &&
+      this.props.pinCodeStatus === 'failure'
     ) {
       this.failedAttempt()
     }
     if (
-      this.props.pinCodeStatus !== 'locked' &&
-      nextProps.pinCodeStatus === 'locked'
+      prevProps.pinCodeStatus !== 'locked' &&
+      this.props.pinCodeStatus === 'locked'
     ) {
       this.setState({ password: '' })
     }

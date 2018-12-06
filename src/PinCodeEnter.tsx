@@ -95,6 +95,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     this.launchTouchID = this.launchTouchID.bind(this)
   }
 
+  // todo REMOVE DEPRECATED REACT METHOD
   componentWillReceiveProps(nextProps: IProps) {
     if (nextProps.pinStatusExternal !== this.props.pinStatusExternal) {
       this.setState({ pinCodeStatus: nextProps.pinStatusExternal })
