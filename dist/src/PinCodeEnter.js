@@ -10,6 +10,7 @@ const delay_1 = require("./delay");
 class PinCodeEnter extends React.PureComponent {
     constructor(props) {
         super(props);
+        this.keyChainResult = undefined;
         this.endProcess = async (pinCode) => {
             if (this.props.handleResult) {
                 this.props.handleResult(pinCode);
@@ -18,7 +19,7 @@ class PinCodeEnter extends React.PureComponent {
             this.props.changeInternalStatus(index_1.PinResultStatus.initial);
             const pinAttemptsStr = await react_native_1.AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName);
             let pinAttempts = +pinAttemptsStr;
-            const pin = this.props.storedPin || this.keyChainResult.password;
+            const pin = this.props.storedPin || this.keyChainResult;
             if (pin === pinCode) {
                 this.setState({ pinCodeStatus: index_1.PinResultStatus.success });
                 react_native_1.AsyncStorage.multiRemove([
@@ -59,7 +60,8 @@ class PinCodeEnter extends React.PureComponent {
     }
     async componentWillMount() {
         if (!this.props.storedPin) {
-            this.keyChainResult = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName);
+            const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName);
+            this.keyChainResult = result.password || undefined;
         }
     }
     componentDidMount() {
@@ -78,7 +80,7 @@ class PinCodeEnter extends React.PureComponent {
     async launchTouchID() {
         try {
             await react_native_touch_id_1.default.authenticate(this.props.touchIDSentence).then((success) => {
-                this.endProcess(this.props.storedPin || this.keyChainResult.password);
+                this.endProcess(this.props.storedPin || this.keyChainResult);
             });
         }
         catch (e) {
@@ -87,7 +89,7 @@ class PinCodeEnter extends React.PureComponent {
     }
     render() {
         const pin = this.props.storedPin ||
-            (this.keyChainResult && this.keyChainResult.password);
+            (this.keyChainResult && this.keyChainResult);
         return (React.createElement(react_native_1.View, { style: this.props.styleContainer
                 ? this.props.styleContainer
                 : styles.container },

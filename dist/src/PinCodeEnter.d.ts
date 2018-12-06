@@ -73,7 +73,7 @@ export declare type IState = {
     locked: boolean;
 };
 declare class PinCodeEnter extends React.PureComponent<IProps, IState> {
-    keyChainResult: any;
+    keyChainResult: string | undefined;
     constructor(props: IProps);
     componentWillReceiveProps(nextProps: IProps): void;
     componentWillMount(): Promise<void>;

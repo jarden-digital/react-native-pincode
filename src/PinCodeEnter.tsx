@@ -86,7 +86,7 @@ export type IState = {
 }
 
 class PinCodeEnter extends React.PureComponent<IProps, IState> {
-  keyChainResult: any
+  keyChainResult: string | undefined = undefined
 
   constructor(props: IProps) {
     super(props)
@@ -103,7 +103,8 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
 
   async componentWillMount() {
     if (!this.props.storedPin) {
-      this.keyChainResult = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName)
+      const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName)
+      this.keyChainResult = result.password || undefined
     }
   }
 
@@ -131,7 +132,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       this.props.pinAttemptsAsyncStorageName
     )
     let pinAttempts = +pinAttemptsStr
-    const pin = this.props.storedPin || this.keyChainResult.password
+    const pin = this.props.storedPin || this.keyChainResult
     if (pin === pinCode) {
       this.setState({ pinCodeStatus: PinResultStatus.success })
       AsyncStorage.multiRemove([
@@ -170,7 +171,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   async launchTouchID() {
     try {
       await TouchID.authenticate(this.props.touchIDSentence).then((success: any) => {
-        this.endProcess(this.props.storedPin || this.keyChainResult.password)
+        this.endProcess(this.props.storedPin || this.keyChainResult)
       })
     } catch (e) {
       console.warn('TouchID error', e)
@@ -180,7 +181,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   render() {
     const pin =
       this.props.storedPin ||
-      (this.keyChainResult && this.keyChainResult.password)
+      (this.keyChainResult && this.keyChainResult)
     return (
       <View
         style={
