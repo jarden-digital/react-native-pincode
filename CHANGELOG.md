@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.10.6] - 2018-12-07
+### Fixed
+- Changed the way the password coming from the keychain is handled. Related issue: [Issue 56](https://github.com/fnzc/react-native-pincode/issues/56)
+
+
 ## [1.10.5] - 2018-12-06
 ### Merged
 - Merged [tombaki](https://github.com/tombaki) pull request fixing a couple of issues.
