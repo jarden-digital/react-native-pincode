@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.11.0] - 2018-12-10
+### Added
+- Added an attribute to handle the end process. Related issue: [Issue 59](https://github.com/fnzc/react-native-pincode/issues/59).
+
+
 ## [1.10.8] - 2018-12-09
 ### Fixed
 - Removed unused dependency. Related issue: [Issue 60](https://github.com/fnzc/react-native-pincode/issues/60)

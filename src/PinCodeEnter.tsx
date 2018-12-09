@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 import {
   AsyncStorage,
   StyleProp,
@@ -6,12 +6,12 @@ import {
   TextStyle,
   View,
   ViewStyle
-} from 'react-native'
-import PinCode, { PinStatus } from './PinCode'
-import TouchID from 'react-native-touch-id'
-import * as Keychain from 'react-native-keychain'
-import { PinResultStatus } from '../index'
-import delay from './delay'
+} from "react-native";
+import PinCode, { PinStatus } from "./PinCode";
+import TouchID from "react-native-touch-id";
+import * as Keychain from "react-native-keychain";
+import { PinResultStatus } from "../index";
+import delay from "./delay";
 
 /**
  * Pin Code Enter PIN Page
@@ -78,6 +78,7 @@ export type IProps = {
   pinCodeVisible?: boolean
   textPasswordVisibleSize?: number
   textPasswordVisibleFamily?: string
+  endProcessFunction?: (pinCode: string) => void
 }
 
 export type IState = {
@@ -86,19 +87,19 @@ export type IState = {
 }
 
 class PinCodeEnter extends React.PureComponent<IProps, IState> {
-  keyChainResult: string | undefined = undefined
+  keyChainResult: string | undefined = undefined;
 
   constructor(props: IProps) {
-    super(props)
-    this.state = { pinCodeStatus: PinResultStatus.initial, locked: false }
-    this.endProcess = this.endProcess.bind(this)
-    this.launchTouchID = this.launchTouchID.bind(this)
+    super(props);
+    this.state = { pinCodeStatus: PinResultStatus.initial, locked: false };
+    this.endProcess = this.endProcess.bind(this);
+    this.launchTouchID = this.launchTouchID.bind(this);
   }
 
   async componentWillMount() {
     if (!this.props.storedPin) {
-      const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName)
-      this.keyChainResult = result.password || undefined
+      const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName);
+      this.keyChainResult = result.password || undefined;
     }
   }
 
@@ -107,81 +108,85 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       TouchID.isSupported()
         .then(() => {
           setTimeout(() => {
-            this.launchTouchID()
-          })
+            this.launchTouchID();
+          });
         })
         .catch((error: any) => {
-          console.warn('TouchID error', error)
-        })
+          console.warn("TouchID error", error);
+        });
     }
   }
 
   componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, prevContext: any): void {
     if (prevProps.pinStatusExternal !== this.props.pinStatusExternal) {
-      this.setState({ pinCodeStatus: this.props.pinStatusExternal })
+      this.setState({ pinCodeStatus: this.props.pinStatusExternal });
     }
   }
 
   endProcess = async (pinCode?: string) => {
-    if (this.props.handleResult) {
-      this.props.handleResult(pinCode)
-    }
-    this.setState({ pinCodeStatus: PinResultStatus.initial })
-    this.props.changeInternalStatus(PinResultStatus.initial)
-    const pinAttemptsStr = await AsyncStorage.getItem(
-      this.props.pinAttemptsAsyncStorageName
-    )
-    let pinAttempts = +pinAttemptsStr
-    const pin = this.props.storedPin || this.keyChainResult
-    if (pin === pinCode) {
-      this.setState({ pinCodeStatus: PinResultStatus.success })
-      AsyncStorage.multiRemove([
-        this.props.pinAttemptsAsyncStorageName,
-        this.props.timePinLockedAsyncStorageName
-      ])
-      this.props.changeInternalStatus(PinResultStatus.success)
-      if (this.props.finishProcess) this.props.finishProcess()
+    if (!!this.props.endProcessFunction) {
+      this.props.endProcessFunction(pinCode as string)
     } else {
-      pinAttempts++
-      if (
-        +pinAttempts >= this.props.maxAttempts &&
-        !this.props.disableLockScreen
-      ) {
-        await AsyncStorage.setItem(
-          this.props.timePinLockedAsyncStorageName,
-          new Date().toISOString()
-        )
-        this.setState({ locked: true, pinCodeStatus: PinResultStatus.locked })
-        this.props.changeInternalStatus(PinResultStatus.locked)
-      } else {
-        await AsyncStorage.setItem(
-          this.props.pinAttemptsAsyncStorageName,
-          pinAttempts.toString()
-        )
-        this.setState({ pinCodeStatus: PinResultStatus.failure })
-        this.props.changeInternalStatus(PinResultStatus.failure)
+      if (this.props.handleResult) {
+        this.props.handleResult(pinCode);
       }
-      if (this.props.onFail) {
-        await delay(1500)
-        this.props.onFail(pinAttempts)
+      this.setState({ pinCodeStatus: PinResultStatus.initial });
+      this.props.changeInternalStatus(PinResultStatus.initial);
+      const pinAttemptsStr = await AsyncStorage.getItem(
+        this.props.pinAttemptsAsyncStorageName
+      );
+      let pinAttempts = +pinAttemptsStr;
+      const pin = this.props.storedPin || this.keyChainResult;
+      if (pin === pinCode) {
+        this.setState({ pinCodeStatus: PinResultStatus.success });
+        AsyncStorage.multiRemove([
+          this.props.pinAttemptsAsyncStorageName,
+          this.props.timePinLockedAsyncStorageName
+        ]);
+        this.props.changeInternalStatus(PinResultStatus.success);
+        if (this.props.finishProcess) this.props.finishProcess();
+      } else {
+        pinAttempts++;
+        if (
+          +pinAttempts >= this.props.maxAttempts &&
+          !this.props.disableLockScreen
+        ) {
+          await AsyncStorage.setItem(
+            this.props.timePinLockedAsyncStorageName,
+            new Date().toISOString()
+          );
+          this.setState({ locked: true, pinCodeStatus: PinResultStatus.locked });
+          this.props.changeInternalStatus(PinResultStatus.locked);
+        } else {
+          await AsyncStorage.setItem(
+            this.props.pinAttemptsAsyncStorageName,
+            pinAttempts.toString()
+          );
+          this.setState({ pinCodeStatus: PinResultStatus.failure });
+          this.props.changeInternalStatus(PinResultStatus.failure);
+        }
+        if (this.props.onFail) {
+          await delay(1500);
+          this.props.onFail(pinAttempts);
+        }
       }
     }
-  }
+  };
 
   async launchTouchID() {
     try {
       await TouchID.authenticate(this.props.touchIDSentence).then((success: any) => {
-        this.endProcess(this.props.storedPin || this.keyChainResult)
-      })
+        this.endProcess(this.props.storedPin || this.keyChainResult);
+      });
     } catch (e) {
-      console.warn('TouchID error', e)
+      console.warn("TouchID error", e);
     }
   }
 
   render() {
     const pin =
       this.props.storedPin ||
-      (this.keyChainResult && this.keyChainResult)
+      (this.keyChainResult && this.keyChainResult);
     return (
       <View
         style={
@@ -202,12 +207,12 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
           passwordComponent={this.props.passwordComponent || null}
           titleAttemptFailed={
-            this.props.titleAttemptFailed || 'Incorrect PIN Code'
+            this.props.titleAttemptFailed || "Incorrect PIN Code"
           }
           titleConfirmFailed={
-            this.props.titleConfirmFailed || 'Your entries did not match'
+            this.props.titleConfirmFailed || "Your entries did not match"
           }
-          subtitleError={this.props.subtitleError || 'Please try again'}
+          subtitleError={this.props.subtitleError || "Please try again"}
           colorPassword={this.props.colorPassword || undefined}
           colorPasswordError={this.props.colorPasswordError || undefined}
           numbersButtonOverlayColor={
@@ -253,16 +258,16 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           textPasswordVisibleSize={this.props.textPasswordVisibleSize}
         />
       </View>
-    )
+    );
   }
 }
 
-export default PinCodeEnter
+export default PinCodeEnter;
 
 let styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   }
-})
+});

@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import * as React from 'react';
-import { StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { PinStatus } from './PinCode';
-import { PinResultStatus } from '../index';
+import * as React from "react";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { PinStatus } from "./PinCode";
+import { PinResultStatus } from "../index";
 /**
  * Pin Code Enter PIN Page
  */
@@ -67,6 +67,7 @@ export declare type IProps = {
     pinCodeVisible?: boolean;
     textPasswordVisibleSize?: number;
     textPasswordVisibleFamily?: string;
+    endProcessFunction?: (pinCode: string) => void;
 };
 export declare type IState = {
     pinCodeStatus: PinResultStatus;
