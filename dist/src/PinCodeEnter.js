@@ -53,11 +53,6 @@ class PinCodeEnter extends React.PureComponent {
         this.endProcess = this.endProcess.bind(this);
         this.launchTouchID = this.launchTouchID.bind(this);
     }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.pinStatusExternal !== this.props.pinStatusExternal) {
-            this.setState({ pinCodeStatus: nextProps.pinStatusExternal });
-        }
-    }
     async componentWillMount() {
         if (!this.props.storedPin) {
             const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName);
@@ -75,6 +70,11 @@ class PinCodeEnter extends React.PureComponent {
                 .catch((error) => {
                 console.warn('TouchID error', error);
             });
+        }
+    }
+    componentDidUpdate(prevProps, prevState, prevContext) {
+        if (prevProps.pinStatusExternal !== this.props.pinStatusExternal) {
+            this.setState({ pinCodeStatus: this.props.pinStatusExternal });
         }
     }
     async launchTouchID() {

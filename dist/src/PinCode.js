@@ -264,28 +264,18 @@ class PinCode extends React.PureComponent {
         this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4;
         this._circleSizeFull =
             this.props.styleCircleSizeFull || (this.props.pinCodeVisible ? 6 : 8);
-        this.renderButtonNumber = this.renderButtonNumber.bind(this);
-        this.renderCirclePassword = this.renderCirclePassword.bind(this);
-        this.doShake = this.doShake.bind(this);
-        this.showError = this.showError.bind(this);
-        this.endProcess = this.endProcess.bind(this);
-        this.failedAttempt = this.failedAttempt.bind(this);
-        this.newAttempt = this.newAttempt.bind(this);
-        this.renderButtonDelete = this.renderButtonDelete.bind(this);
-        this.onPressButtonNumber = this.onPressButtonNumber.bind(this);
-        this.renderTitle = this.renderTitle.bind(this);
     }
     componentDidMount() {
         if (this.props.getCurrentLength)
             this.props.getCurrentLength(0);
     }
-    componentWillUpdate(nextProps) {
-        if (this.props.pinCodeStatus !== 'failure' &&
-            nextProps.pinCodeStatus === 'failure') {
+    componentDidUpdate(prevProps) {
+        if (prevProps.pinCodeStatus !== 'failure' &&
+            this.props.pinCodeStatus === 'failure') {
             this.failedAttempt();
         }
-        if (this.props.pinCodeStatus !== 'locked' &&
-            nextProps.pinCodeStatus === 'locked') {
+        if (prevProps.pinCodeStatus !== 'locked' &&
+            this.props.pinCodeStatus === 'locked') {
             this.setState({ password: '' });
         }
     }

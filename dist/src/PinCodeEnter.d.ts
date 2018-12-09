@@ -75,9 +75,9 @@ export declare type IState = {
 declare class PinCodeEnter extends React.PureComponent<IProps, IState> {
     keyChainResult: string | undefined;
     constructor(props: IProps);
-    componentWillReceiveProps(nextProps: IProps): void;
     componentWillMount(): Promise<void>;
     componentDidMount(): void;
+    componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, prevContext: any): void;
     endProcess: (pinCode?: string | undefined) => Promise<void>;
     launchTouchID(): Promise<void>;
     render(): JSX.Element;

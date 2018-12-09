@@ -95,13 +95,6 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     this.launchTouchID = this.launchTouchID.bind(this)
   }
 
-  // todo REMOVE DEPRECATED REACT METHOD
-  componentWillReceiveProps(nextProps: IProps) {
-    if (nextProps.pinStatusExternal !== this.props.pinStatusExternal) {
-      this.setState({ pinCodeStatus: nextProps.pinStatusExternal })
-    }
-  }
-
   async componentWillMount() {
     if (!this.props.storedPin) {
       const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName)
@@ -120,6 +113,12 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
         .catch((error: any) => {
           console.warn('TouchID error', error)
         })
+    }
+  }
+
+  componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, prevContext: any): void {
+    if (prevProps.pinStatusExternal !== this.props.pinStatusExternal) {
+      this.setState({ pinCodeStatus: this.props.pinStatusExternal })
     }
   }
 
