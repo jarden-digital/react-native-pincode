@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.12.0] - 2019-01-24
+### Added
+- Added an attribute to the `finishProcess` function to return the pinCode to the user. Related issue: [Issue 63](https://github.com/fnzc/react-native-pincode/issues/63).
+
+
 ## [1.11.0] - 2018-12-10
 ### Added
 - Added an attribute to handle the end process. Related issue: [Issue 59](https://github.com/fnzc/react-native-pincode/issues/59).

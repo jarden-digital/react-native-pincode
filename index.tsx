@@ -17,7 +17,7 @@ export type IProps = {
   colorPasswordError?: string
   disableLockScreen?: boolean
   endProcessFunction?: (pinCode: string) => void
-  finishProcess?: any
+  finishProcess?: (pinCode?: string) => void
   getCurrentPinLength?: (length: number) => void
   handleResultEnterPin?: any
   iconComponentLockedPage?: any

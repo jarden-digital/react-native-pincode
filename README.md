@@ -92,7 +92,7 @@ await deleteUserPinCode(serviceName)
 |**`buttonNumberComponent`**|Button component to be used on the PIN panel to select a character for the PIN|TouchableHighlight button with a number text|`false`|`any`|
 |**`disableLockScreen`**|Boolean to disable the lock screen|`false`|`false`|`boolean`|
 |**`endProcessFunction`**|Function to handle the end of the process|`None`|`false`|`(pinCode: string) => void`|
-|**`finishProcess`**|Function to be used when the user enters the right PIN code|Removes the values in AsyncStorage and set the status to `success`|`false`|`any`|
+|**`finishProcess`**|Function to be used when the user enters the right PIN code|Removes the values in AsyncStorage and set the status to `success`|`false`|`(pinCode?: string) => void`|
 |**`getCurrentPinLength`**|Function returning the length of the current PIN code|`None`|`false`|`(length: number) => void`|
 |**`handleResultEnterPin`**|Function to be used to handle the PIN code entered by the user. To be used with the **`pinStatus`** props|Functions that checks the validity of the give PIN code, stores the number of failed attempts in the `AsyncStorage` and the time the application was locked if needed|`false`|`any`|
 |**`iconComponentLockedPage`**|View component to be used between the timer and the text on the locked application page|A circular red View using the `lock` material icon|`false`|`any`|

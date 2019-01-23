@@ -32,7 +32,7 @@ export type IProps = {
   passwordLength?: number
   passwordComponent: any
   titleAttemptFailed?: string
-  finishProcess?: any
+  finishProcess?: (pinCode: string) => void
   pinCodeKeychainName: string
   onFail?: any
   iconButtonDeleteDisabled?: boolean
@@ -144,7 +144,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           this.props.timePinLockedAsyncStorageName
         ]);
         this.props.changeInternalStatus(PinResultStatus.success);
-        if (this.props.finishProcess) this.props.finishProcess();
+        if (!!this.props.finishProcess) this.props.finishProcess(pinCode as string);
       } else {
         pinAttempts++;
         if (
