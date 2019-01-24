@@ -21,7 +21,7 @@ export declare type IProps = {
     passwordLength?: number;
     passwordComponent: any;
     titleAttemptFailed?: string;
-    finishProcess?: any;
+    finishProcess?: (pinCode: string) => void;
     pinCodeKeychainName: string;
     onFail?: any;
     iconButtonDeleteDisabled?: boolean;

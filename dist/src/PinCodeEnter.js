@@ -31,8 +31,8 @@ class PinCodeEnter extends React.PureComponent {
                         this.props.timePinLockedAsyncStorageName
                     ]);
                     this.props.changeInternalStatus(index_1.PinResultStatus.success);
-                    if (this.props.finishProcess)
-                        this.props.finishProcess();
+                    if (!!this.props.finishProcess)
+                        this.props.finishProcess(pinCode);
                 }
                 else {
                     pinAttempts++;

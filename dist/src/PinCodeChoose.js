@@ -21,8 +21,8 @@ class PinCodeChoose extends React.PureComponent {
                 else {
                     await Keychain.setInternetCredentials(this.props.pinCodeKeychainName, this.props.pinCodeKeychainName, pinCode);
                 }
-                if (this.props.finishProcess)
-                    this.props.finishProcess();
+                if (!!this.props.finishProcess)
+                    this.props.finishProcess(pinCode);
             }
             else {
                 this.setState({ status: PinCode_1.PinStatus.choose });
