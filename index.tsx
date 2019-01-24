@@ -188,7 +188,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           subtitleConfirm={this.props.subtitleConfirm || ""}
           emptyColumnComponent={this.props.bottomLeftComponent}
           passwordComponent={this.props.passwordComponent}
-          finishProcess={this.props.finishProcess || null}
+          finishProcess={this.props.finishProcess}
           buttonNumberComponent={this.props.buttonNumberComponent}
           passwordLength={this.props.passwordLength}
           iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}
@@ -249,7 +249,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           storedPin={this.props.storedPin || null}
           touchIDSentence={this.props.touchIDSentence || "To unlock your application"}
           status={PinStatus.enter}
-          finishProcess={this.props.finishProcess || null}
+          finishProcess={this.props.finishProcess}
           onFail={this.props.onFail || null}
           buttonNumberComponent={this.props.buttonNumberComponent}
           passwordLength={this.props.passwordLength}
