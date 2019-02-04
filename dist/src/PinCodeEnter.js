@@ -65,22 +65,27 @@ class PinCodeEnter extends React.PureComponent {
         }
     }
     componentDidMount() {
-        if (!this.props.touchIDDisabled) {
-            react_native_touch_id_1.default.isSupported()
-                .then(() => {
-                setTimeout(() => {
-                    this.launchTouchID();
-                });
-            })
-                .catch((error) => {
-                console.warn("TouchID error", error);
-            });
-        }
+        if (!this.props.touchIDDisabled)
+            this.triggerTouchID();
     }
     componentDidUpdate(prevProps, prevState, prevContext) {
         if (prevProps.pinStatusExternal !== this.props.pinStatusExternal) {
             this.setState({ pinCodeStatus: this.props.pinStatusExternal });
         }
+        if (prevProps.touchIDDisabled && !this.props.touchIDDisabled) {
+            this.triggerTouchID();
+        }
+    }
+    triggerTouchID() {
+        react_native_touch_id_1.default.isSupported()
+            .then(() => {
+            setTimeout(() => {
+                this.launchTouchID();
+            });
+        })
+            .catch((error) => {
+            console.warn("TouchID error", error);
+        });
     }
     async launchTouchID() {
         try {

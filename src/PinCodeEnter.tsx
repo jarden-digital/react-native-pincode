@@ -104,28 +104,34 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   }
 
   componentDidMount() {
-    if (!this.props.touchIDDisabled) {
-      TouchID.isSupported()
-        .then(() => {
-          setTimeout(() => {
-            this.launchTouchID();
-          });
-        })
-        .catch((error: any) => {
-          console.warn("TouchID error", error);
-        });
-    }
+    if (!this.props.touchIDDisabled) this.triggerTouchID()
   }
+
 
   componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IState>, prevContext: any): void {
     if (prevProps.pinStatusExternal !== this.props.pinStatusExternal) {
       this.setState({ pinCodeStatus: this.props.pinStatusExternal });
     }
+    if (prevProps.touchIDDisabled && !this.props.touchIDDisabled) {
+      this.triggerTouchID()
+    }
+  }
+
+  triggerTouchID() {
+    TouchID.isSupported()
+      .then(() => {
+        setTimeout(() => {
+          this.launchTouchID();
+        });
+      })
+      .catch((error: any) => {
+        console.warn("TouchID error", error);
+      });
   }
 
   endProcess = async (pinCode?: string) => {
     if (!!this.props.endProcessFunction) {
-      this.props.endProcessFunction(pinCode as string)
+      this.props.endProcessFunction(pinCode as string);
     } else {
       if (this.props.handleResult) {
         this.props.handleResult(pinCode);
