@@ -95,6 +95,7 @@ export declare type IProps = {
     titleValidationFailed?: string;
     touchIDDisabled?: boolean;
     touchIDSentence?: string;
+    touchIDTitle?: string;
     validationRegex?: RegExp;
 };
 export declare type IState = {

@@ -88,8 +88,18 @@ class PinCodeEnter extends React.PureComponent {
         });
     }
     async launchTouchID() {
+        const optionalConfigObject = {
+            imageColor: '#e00606',
+            imageErrorColor: '#ff0000',
+            sensorDescription: 'Touch sensor',
+            sensorErrorDescription: 'Failed',
+            cancelText: 'Cancel',
+            fallbackLabel: 'Show Passcode',
+            unifiedErrors: false,
+            passcodeFallback: false
+        };
         try {
-            await react_native_touch_id_1.default.authenticate(this.props.touchIDSentence).then((success) => {
+            await react_native_touch_id_1.default.authenticate(this.props.touchIDSentence, Object.assign({}, optionalConfigObject, { title: this.props.touchIDTitle })).then((success) => {
                 this.endProcess(this.props.storedPin || this.keyChainResult);
             });
         }

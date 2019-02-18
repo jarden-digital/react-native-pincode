@@ -10,6 +10,7 @@ export declare type IProps = {
     storedPin: string | null;
     disableLockScreen: boolean;
     touchIDSentence: string;
+    touchIDTitle?: string;
     handleResult: any;
     title: string;
     subtitle: string;
