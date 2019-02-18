@@ -100,6 +100,7 @@ export type IProps = {
   titleValidationFailed?: string
   touchIDDisabled?: boolean
   touchIDSentence?: string
+  touchIDTitle?: string
   validationRegex?: RegExp
 }
 
@@ -120,6 +121,7 @@ const timePinLockedAsyncStorageNameDefault = "timePinLockedRNPin";
 const pinAttemptsAsyncStorageNameDefault = "pinAttemptsRNPin";
 const pinCodeKeychainNameDefault = "reactNativePinCode";
 const touchIDDisabledDefault = false;
+const touchIDTitleDefault = 'Authentication Required';
 
 class PINCode extends React.PureComponent<IProps, IState> {
 
@@ -248,6 +250,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           pinStatusExternal={this.props.pinStatus || PinResultStatus.initial}
           storedPin={this.props.storedPin || null}
           touchIDSentence={this.props.touchIDSentence || "To unlock your application"}
+          touchIDTitle={this.props.touchIDTitle || touchIDTitleDefault}
           status={PinStatus.enter}
           finishProcess={this.props.finishProcess}
           onFail={this.props.onFail || null}

@@ -21,6 +21,7 @@ export type IProps = {
   storedPin: string | null
   disableLockScreen: boolean
   touchIDSentence: string
+  touchIDTitle?: string
   handleResult: any
   title: string
   subtitle: string
@@ -180,8 +181,19 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   };
 
   async launchTouchID() {
+    const optionalConfigObject = {
+      imageColor: '#e00606',
+      imageErrorColor: '#ff0000',
+      sensorDescription: 'Touch sensor',
+      sensorErrorDescription: 'Failed',
+      cancelText: 'Cancel',
+      fallbackLabel: 'Show Passcode',
+      unifiedErrors: false,
+      passcodeFallback: false
+    };
     try {
-      await TouchID.authenticate(this.props.touchIDSentence).then((success: any) => {
+      await TouchID.authenticate(this.props.touchIDSentence,
+        Object.assign({}, optionalConfigObject, {title: this.props.touchIDTitle})).then((success: any) => {
         this.endProcess(this.props.storedPin || this.keyChainResult);
       });
     } catch (e) {
