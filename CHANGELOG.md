@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.13.1] - 2019-02-22
+### Updated
+- Update react-native-touch-id to v4.4.1
+
+
 ## [1.13.0] - 2019-02-18
 ### Added
 - Added an attribute to change the title of the touchID popup on Android. Related issue: [Issue 65](https://github.com/fnzc/react-native-pincode/issues/65).
