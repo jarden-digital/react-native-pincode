@@ -81,6 +81,13 @@ import {deleteUserPinCode} from '@haskkor/react-native-pincode'
 await deleteUserPinCode(serviceName)
 ```
 
+If needed, the internal states that record `the number of attemps` and `time of last attempt` can be reset in addition to user pin code deletion.
+
+``` 
+import {resetPinCodeInternStates} from '@haskkor/react-native-pincode'
+await resetPinCodeInternStates()
+```
+
 ## Options
 
 | Key | Description | Default | Required | Type |
