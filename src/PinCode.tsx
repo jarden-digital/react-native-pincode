@@ -28,6 +28,7 @@ export type IProps = {
   buttonDeleteText?: string
   buttonNumberComponent?: any
   cancelFunction?: () => void
+  colorCircleButtons?: string
   colorPassword?: string
   colorPasswordError?: string
   emptyColumnComponent: any
@@ -213,11 +214,16 @@ class PinCode extends React.PureComponent<IProps, IState> {
         }}>
         {({ opacity }: any) => (
           <TouchableHighlight
-            style={
+            style={[
               this.props.styleButtonCircle
                 ? this.props.styleButtonCircle
-                : styles.buttonCircle
-            }
+                : styles.buttonCircle,
+              {
+                backgroundColor: this.props.colorCircleButtons
+                  ? this.props.colorCircleButtons
+                  : 'rgb(242, 245, 251)'
+              }
+            ]}
             underlayColor={
               this.props.numbersButtonOverlayColor
                 ? this.props.numbersButtonOverlayColor

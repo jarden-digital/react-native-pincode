@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import * as React from "react";
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
-import { PinStatus } from "./PinCode";
-import { PinResultStatus } from "../index";
+import * as React from 'react';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { PinStatus } from './PinCode';
+import { PinResultStatus } from '../index';
 /**
  * Pin Code Enter PIN Page
  */
@@ -12,6 +12,7 @@ export declare type IProps = {
     buttonNumberComponent: any;
     callbackErrorTouchId?: (e: Error) => void;
     changeInternalStatus: (status: PinResultStatus) => void;
+    colorCircleButtons?: string;
     colorPassword?: string;
     colorPasswordError?: string;
     disableLockScreen: boolean;

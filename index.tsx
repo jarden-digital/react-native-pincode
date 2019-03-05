@@ -14,6 +14,7 @@ export type IProps = {
   buttonDeleteText?: string
   buttonNumberComponent?: any
   callbackErrorTouchId?: (error: Error) => void
+  colorCircleButtons?: string
   colorPassword?: string
   colorPasswordError?: string
   disableLockScreen?: boolean
@@ -187,6 +188,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           buttonDeleteComponent={this.props.buttonDeleteComponent}
           buttonDeleteText={this.props.buttonDeleteText}
           buttonNumberComponent={this.props.buttonNumberComponent}
+          colorCircleButtons={this.props.colorCircleButtons}
           colorPassword={this.props.colorPassword}
           colorPasswordError={this.props.colorPasswordError}
           emptyColumnComponent={this.props.bottomLeftComponent}
@@ -245,6 +247,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           buttonNumberComponent={this.props.buttonNumberComponent}
           callbackErrorTouchId={this.props.callbackErrorTouchId}
           changeInternalStatus={this.changeInternalStatus}
+          colorCircleButtons={this.props.colorCircleButtons}
           colorPassword={this.props.colorPassword}
           colorPasswordError={this.props.colorPasswordError}
           disableLockScreen={this.props.disableLockScreen || disableLockScreenDefault}

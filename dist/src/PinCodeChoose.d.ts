@@ -1,7 +1,7 @@
 /// <reference types="react" />
-import * as React from "react";
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
-import { PinStatus } from "./PinCode";
+import * as React from 'react';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { PinStatus } from './PinCode';
 /**
  * Pin Code Choose PIN Page
  */
@@ -9,6 +9,7 @@ export declare type IProps = {
     buttonDeleteComponent: any;
     buttonDeleteText?: string;
     buttonNumberComponent: any;
+    colorCircleButtons?: string;
     colorPassword?: string;
     colorPasswordError?: string;
     emptyColumnComponent: any;
