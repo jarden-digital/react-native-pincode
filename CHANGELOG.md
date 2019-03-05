@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.16.0] - 2019-03-06
+### Added
+- Added a property to change the color of the circle buttons. Related issue: [Issue 69](https://github.com/fnzc/react-native-pincode/issues/69).
+
+
 ## [1.15.0] - 2019-03-06
 ### Added
 - Added a property to trigger a callback on TouchID error. Related issue: [Issue 67](https://github.com/fnzc/react-native-pincode/issues/67).
