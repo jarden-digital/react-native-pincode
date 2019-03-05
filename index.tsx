@@ -319,10 +319,11 @@ export function deleteUserPinCode(serviceName?: string) {
   return deletePinCode(serviceName || pinCodeKeychainNameDefault);
 }
 
-export function resetPinCodeInternStates() {
+export function resetPinCodeInternalStates(pinAttempsStorageName?: string,
+                                           timePinLockedStorageName?: string) {
   return resetInternalStates([
-    pinAttemptsAsyncStorageNameDefault,
-    timePinLockedAsyncStorageNameDefault
+    pinAttempsStorageName || pinAttemptsAsyncStorageNameDefault,
+    timePinLockedStorageName || timePinLockedAsyncStorageNameDefault
   ]);
 }
 

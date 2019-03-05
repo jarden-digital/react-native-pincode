@@ -64,6 +64,13 @@ function deleteUserPinCode(serviceName) {
     return utils_1.deletePinCode(serviceName || pinCodeKeychainNameDefault);
 }
 exports.deleteUserPinCode = deleteUserPinCode;
+function resetPinCodeInternalStates(pinAttempsStorageName, timePinLockedStorageName) {
+    return utils_1.resetInternalStates([
+        pinAttempsStorageName || pinAttemptsAsyncStorageNameDefault,
+        timePinLockedStorageName || timePinLockedAsyncStorageNameDefault
+    ]);
+}
+exports.resetPinCodeInternalStates = resetPinCodeInternalStates;
 exports.default = PINCode;
 let styles = react_native_1.StyleSheet.create({
     container: {
