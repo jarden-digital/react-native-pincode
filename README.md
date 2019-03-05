@@ -84,8 +84,8 @@ await deleteUserPinCode(serviceName)
 If needed, the internal states that record `the number of attemps` and `time of last attempt` can be reset in addition to user pin code deletion.
 
 ``` 
-import {resetPinCodeInternStates} from '@haskkor/react-native-pincode'
-await resetPinCodeInternStates()
+import {resetPinCodeInternalStates} from '@haskkor/react-native-pincode'
+await resetPinCodeInternalStates()
 ```
 
 ## Options
