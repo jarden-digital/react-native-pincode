@@ -104,7 +104,12 @@ class PinCodeEnter extends React.PureComponent {
             });
         }
         catch (e) {
-            console.warn("TouchID error", e);
+            if (!!this.props.callbackErrorTouchId) {
+                this.props.callbackErrorTouchId(e);
+            }
+            else {
+                console.log("TouchID error", e);
+            }
         }
     }
     render() {

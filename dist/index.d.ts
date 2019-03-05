@@ -8,6 +8,7 @@ export declare type IProps = {
     buttonDeleteComponent?: any;
     buttonDeleteText?: string;
     buttonNumberComponent?: any;
+    callbackErrorTouchId?: (error: Error) => void;
     colorPassword?: string;
     colorPasswordError?: string;
     disableLockScreen?: boolean;
