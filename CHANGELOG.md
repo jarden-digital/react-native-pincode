@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.15.0] - 2019-03-06
+### Added
+- Added a property to trigger a callback on TouchID error. Related issue: [Issue 67](https://github.com/fnzc/react-native-pincode/issues/67).
+
+
 ## [1.14.0] - 2019-03-05
 ### Merged
 - Merged [Will](https://github.com/shuchenliu) pull request adding a function to delete the internal states ([PR 71](https://github.com/fnzc/react-native-pincode/pull/71)).
