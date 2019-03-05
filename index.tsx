@@ -5,7 +5,7 @@ import { PinStatus } from "./src/PinCode";
 import PinCodeEnter from "./src/PinCodeEnter";
 import { View, StyleSheet, AsyncStorage, StyleProp, ViewStyle, TextStyle } from "react-native";
 import ApplicationLocked from "./src/ApplicationLocked";
-import { hasPinCode, deletePinCode } from "./src/utils";
+import { hasPinCode, deletePinCode, resetInternalStates } from "./src/utils";
 
 export type IProps = {
   bottomLeftComponent?: any
@@ -317,6 +317,13 @@ export function hasUserSetPinCode(serviceName?: string) {
 
 export function deleteUserPinCode(serviceName?: string) {
   return deletePinCode(serviceName || pinCodeKeychainNameDefault);
+}
+
+export function resetPinCodeInternStates() {
+  return resetInternalStates([
+    pinAttemptsAsyncStorageNameDefault,
+    timePinLockedAsyncStorageNameDefault
+  ]);
 }
 
 export default PINCode;

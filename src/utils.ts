@@ -1,4 +1,5 @@
 import * as Keychain from 'react-native-keychain'
+import { AsyncStorage } from "react-native";
 
 export const hasPinCode = async (serviceName: string) => {
   return await Keychain.getInternetCredentials(serviceName).then(res => {
@@ -8,4 +9,8 @@ export const hasPinCode = async (serviceName: string) => {
 
 export const deletePinCode = async (serviceName: string) => {
   return await Keychain.resetInternetCredentials(serviceName)
+}
+
+export const resetInternalStates = async (asyncStorageKeys: string[]) => {
+  return await AsyncStorage.multiRemove(asyncStorageKeys)
 }
