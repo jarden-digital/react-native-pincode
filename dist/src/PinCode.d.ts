@@ -11,6 +11,7 @@ export declare type IProps = {
     cancelFunction?: () => void;
     colorCircleButtons?: string;
     colorPassword?: string;
+    colorPasswordEmpty?: string;
     colorPasswordError?: string;
     emptyColumnComponent: any;
     endProcess: (pinCode: string, isErrorValidation?: boolean) => void;

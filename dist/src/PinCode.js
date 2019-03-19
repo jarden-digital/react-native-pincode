@@ -126,6 +126,9 @@ class PinCode extends React.PureComponent {
         };
         this.renderCirclePassword = () => {
             const { password, moveData, showError, changeScreen, attemptFailed } = this.state;
+            const colorPwdErr = this.props.colorPasswordError || colors_1.colors.alert;
+            const colorPwd = this.props.colorPassword || colors_1.colors.turquoise;
+            const colorPwdEmp = this.props.colorPasswordEmpty || colorPwd;
             return (React.createElement(react_native_1.View, { style: this.props.styleCircleHiddenPassword
                     ? this.props.styleCircleHiddenPassword
                     : styles.topViewCirclePassword }, _.range(this.props.passwordLength).map((val) => {
@@ -154,12 +157,10 @@ class PinCode extends React.PureComponent {
                         ],
                         color: [
                             showError
-                                ? this.props.colorPasswordError
-                                    ? this.props.colorPasswordError
-                                    : colors_1.colors.alert
-                                : this.props.colorPassword
-                                    ? this.props.colorPassword
-                                    : colors_1.colors.turquoise
+                                ? colorPwdErr
+                                : lengthSup
+                                    ? colorPwd
+                                    : colorPwdEmp
                         ],
                         borderRadius: [
                             lengthSup

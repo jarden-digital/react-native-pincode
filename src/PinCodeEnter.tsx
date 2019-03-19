@@ -25,6 +25,7 @@ export type IProps = {
   changeInternalStatus: (status: PinResultStatus) => void
   colorCircleButtons?: string
   colorPassword?: string
+  colorPasswordEmpty?: string
   colorPasswordError?: string
   disableLockScreen: boolean
   emptyColumnComponent: any
@@ -234,6 +235,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           buttonNumberComponent={this.props.buttonNumberComponent || null}
           colorCircleButtons={this.props.colorCircleButtons}
           colorPassword={this.props.colorPassword || undefined}
+          colorPasswordEmpty={this.props.colorPasswordEmpty}
           colorPasswordError={this.props.colorPasswordError || undefined}
           emptyColumnComponent={this.props.emptyColumnComponent}
           endProcess={this.endProcess}

@@ -30,6 +30,7 @@ export type IProps = {
   cancelFunction?: () => void
   colorCircleButtons?: string
   colorPassword?: string
+  colorPasswordEmpty?: string
   colorPasswordError?: string
   emptyColumnComponent: any
   endProcess: (pinCode: string, isErrorValidation?: boolean) => void
@@ -313,6 +314,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
       changeScreen,
       attemptFailed
     } = this.state
+    const colorPwdErr = this.props.colorPasswordError || colors.alert
+    const colorPwd = this.props.colorPassword || colors.turquoise
+    const colorPwdEmp = this.props.colorPasswordEmpty || colorPwd
     return (
       <View
         style={
@@ -352,12 +356,10 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 ],
                 color: [
                   showError
-                    ? this.props.colorPasswordError
-                      ? this.props.colorPasswordError
-                      : colors.alert
-                    : this.props.colorPassword
-                      ? this.props.colorPassword
-                      : colors.turquoise
+                    ? colorPwdErr
+                    : lengthSup
+                      ? colorPwd
+                      : colorPwdEmp
                 ],
                 borderRadius: [
                   lengthSup

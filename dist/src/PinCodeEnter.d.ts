@@ -14,6 +14,7 @@ export declare type IProps = {
     changeInternalStatus: (status: PinResultStatus) => void;
     colorCircleButtons?: string;
     colorPassword?: string;
+    colorPasswordEmpty?: string;
     colorPasswordError?: string;
     disableLockScreen: boolean;
     emptyColumnComponent: any;

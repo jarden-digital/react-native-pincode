@@ -13,6 +13,7 @@ export type IProps = {
   buttonNumberComponent: any
   colorCircleButtons?: string
   colorPassword?: string
+  colorPasswordEmpty?: string
   colorPasswordError?: string
   emptyColumnComponent: any
   finishProcess?: (pinCode: string) => void
@@ -121,6 +122,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             buttonNumberComponent={this.props.buttonNumberComponent || null}
             colorCircleButtons={this.props.colorCircleButtons}
             colorPassword={this.props.colorPassword || undefined}
+            colorPasswordEmpty={this.props.colorPasswordEmpty}
             colorPasswordError={this.props.colorPasswordError || undefined}
             emptyColumnComponent={this.props.emptyColumnComponent}
             endProcess={this.endProcessCreation}
@@ -185,6 +187,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             cancelFunction={this.cancelConfirm}
             colorCircleButtons={this.props.colorCircleButtons}
             colorPassword={this.props.colorPassword || undefined}
+            colorPasswordEmpty={this.props.colorPasswordEmpty}
             colorPasswordError={this.props.colorPasswordError || undefined}
             emptyColumnComponent={this.props.emptyColumnComponent}
             endProcess={this.endProcessConfirm}

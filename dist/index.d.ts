@@ -11,6 +11,7 @@ export declare type IProps = {
     callbackErrorTouchId?: (error: Error) => void;
     colorCircleButtons?: string;
     colorPassword?: string;
+    colorPasswordEmpty?: string;
     colorPasswordError?: string;
     disableLockScreen?: boolean;
     endProcessFunction?: (pinCode: string) => void;
