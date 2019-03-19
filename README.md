@@ -151,6 +151,7 @@ await resetPinCodeInternalStates()
 |---|---|---|---|
 |**`colorCircleButtons`**|Color of the circle buttons|`rgb(242, 245, 251)`|`string`|
 |**`colorPassword`**|Color of the dots used for the password component|`turquoise`|`string`|
+|**`colorPasswordEmpty`**|Color of the dots used for the password component when small|`turquoise`|`string`|
 |**`colorPasswordError`**|Color of the dots used for the password component on error state|`#9DAFC8`|`string`|
 |**`numbersButtonOverlayColor`**|Color of the PIN panel buttons when `highlighted`|`turquoise`|`string`|
 |**`styleMainContainer`**|Main container of index file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|`StyleProp<ViewStyle>`|

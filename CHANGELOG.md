@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.18.0] - 2019-03-19
+### Added
+- Added `colorPasswordEmpty` property. Related issue: ([Issue 52](https://github.com/fnzc/react-native-pincode/issues/52)).
+
+
 ## [1.17.0] - 2019-03-19
 ### Added
 - Added `stylePinCodeCircle` property. Related issue: ([Issue 74](https://github.com/fnzc/react-native-pincode/issues/74)).
