@@ -5,7 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [1.16.1] - 2019-03-8
+## [1.17.0] - 2019-03-19
+### Added
+- Added `stylePinCodeCircle` property. Related issue: ([Issue 74](https://github.com/fnzc/react-native-pincode/issues/74)).
+
+
+## [1.16.1] - 2019-03-08
 ### Merged
 - Merged [Kevin Wolf](https://github.com/kevinwolfcr) pull request trying to fix an issue with Keychain ([PR 72](https://github.com/fnzc/react-native-pincode/pull/72)).
 

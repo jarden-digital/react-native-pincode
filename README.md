@@ -172,6 +172,7 @@ await resetPinCodeInternalStates()
 |**`stylePinCodeButtonCircle`**|Circle button TouchableHighlight of the PinCode file|`alignItems: 'center', justifyContent: 'center', width: grid.unit * 4, height: grid.unit * 4, backgroundColor: 'rgb(242, 245, 251)', borderRadius: grid.unit * 2`|`StyleProp<ViewStyle>`|
 |**`stylePinCodeButtonNumber`**|Color of the number buttons on the Pin code page|'white'|`string`|
 |**`stylePinCodeButtonNumberPressed`**|Color of the number buttons on the Pin code page when pressed|`#9DAFC8`|`string`|
+|**`stylePinCodeCircle`**|Style of the pinCode dots|`left, height, width, opacity, borderRadius, marginLeft, marginRight, and backgroundColor inherited from the animation`|`StyleProp<ViewStyle>`|
 |**`stylePinCodeColorSubtitle`**|Color of the PinCode page subtitle in normal state|`#9DAFC8`|`string`|
 |**`stylePinCodeColorSubtitleError`**|Color of the the PinCode page subtitle in error state|`#FC4349`|`string`|
 |**`stylePinCodeColorTitle`**|Color of the the PinCode page title in normal state|`#9DAFC8`|`string`|
