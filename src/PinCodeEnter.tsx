@@ -64,6 +64,7 @@ export type IProps = {
   styleDeleteButtonSize?: number
   styleDeleteButtonText?: StyleProp<TextStyle>
   styleEmptyColumn?: StyleProp<ViewStyle>
+  stylePinCodeCircle?: StyleProp<ViewStyle>
   styleRowButtons?: StyleProp<ViewStyle>
   styleTextButton?: StyleProp<TextStyle>
   styleTextSubtitle?: StyleProp<TextStyle>
@@ -273,6 +274,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           styleDeleteButtonSize={this.props.styleDeleteButtonSize}
           styleDeleteButtonText={this.props.styleDeleteButtonText}
           styleEmptyColumn={this.props.styleEmptyColumn}
+          stylePinCodeCircle={this.props.stylePinCodeCircle}
           styleRowButtons={this.props.styleRowButtons}
           styleTextButton={this.props.styleTextButton}
           styleTextSubtitle={this.props.styleTextSubtitle}

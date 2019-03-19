@@ -43,6 +43,7 @@ export declare type IProps = {
     styleDeleteButtonSize?: number;
     styleDeleteButtonText?: StyleProp<TextStyle>;
     styleEmptyColumn?: StyleProp<ViewStyle>;
+    stylePinCodeCircle?: StyleProp<ViewStyle>;
     styleRowButtons?: StyleProp<ViewStyle>;
     styleTextButton?: StyleProp<TextStyle>;
     styleTextSubtitle?: StyleProp<TextStyle>;

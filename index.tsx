@@ -57,6 +57,7 @@ export type IProps = {
   stylePinCodeButtonCircle?: StyleProp<ViewStyle>
   stylePinCodeButtonNumber?: string
   stylePinCodeButtonNumberPressed?: string
+  stylePinCodeCircle?: StyleProp<ViewStyle>
   stylePinCodeColorSubtitle?: string
   stylePinCodeColorSubtitleError?: string
   stylePinCodeColorTitle?: string
@@ -221,6 +222,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           styleDeleteButtonSize={this.props.stylePinCodeDeleteButtonSize}
           styleDeleteButtonText={this.props.stylePinCodeDeleteButtonText}
           styleEmptyColumn={this.props.stylePinCodeEmptyColumn}
+          stylePinCodeCircle={this.props.stylePinCodeCircle}
           styleRowButtons={this.props.stylePinCodeRowButtons}
           styleTextButton={this.props.stylePinCodeTextButtonCircle}
           styleTextSubtitle={this.props.stylePinCodeTextSubtitle}
@@ -288,6 +290,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           styleDeleteButtonSize={this.props.stylePinCodeDeleteButtonSize}
           styleDeleteButtonText={this.props.stylePinCodeDeleteButtonText}
           styleEmptyColumn={this.props.stylePinCodeEmptyColumn}
+          stylePinCodeCircle={this.props.stylePinCodeCircle}
           styleRowButtons={this.props.stylePinCodeRowButtons}
           styleTextButton={this.props.stylePinCodeTextButtonCircle}
           styleTextSubtitle={this.props.stylePinCodeTextSubtitle}

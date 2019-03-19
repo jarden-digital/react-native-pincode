@@ -179,16 +179,16 @@ class PinCode extends React.PureComponent {
                         y: [moveData.y],
                         timing: { duration: 200, ease: d3_ease_1.easeLinear }
                     } }, ({ opacity, x, height, width, color, borderRadius, marginRight, marginLeft }) => (React.createElement(react_native_1.View, { style: styles.viewCircles }, ((!this.props.pinCodeVisible ||
-                    (this.props.pinCodeVisible && !lengthSup)) && (React.createElement(react_native_1.View, { style: {
-                        left: x,
-                        height: height,
-                        width: width,
-                        opacity: opacity,
-                        borderRadius: borderRadius,
-                        marginLeft: marginLeft,
-                        marginRight: marginRight,
-                        backgroundColor: color
-                    } }))) || (React.createElement(react_native_1.View, { style: {
+                    (this.props.pinCodeVisible && !lengthSup)) && (React.createElement(react_native_1.View, { style: [{
+                            left: x,
+                            height: height,
+                            width: width,
+                            opacity: opacity,
+                            borderRadius: borderRadius,
+                            marginLeft: marginLeft,
+                            marginRight: marginRight,
+                            backgroundColor: color
+                        }, this.props.stylePinCodeCircle] }))) || (React.createElement(react_native_1.View, { style: {
                         left: x,
                         opacity: opacity,
                         marginLeft: marginLeft,

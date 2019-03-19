@@ -62,6 +62,7 @@ export type IProps = {
   styleDeleteButtonSize?: number
   styleDeleteButtonText?: StyleProp<TextStyle>
   styleEmptyColumn?: StyleProp<ViewStyle>
+  stylePinCodeCircle?: StyleProp<ViewStyle>
   styleRowButtons?: StyleProp<ViewStyle>
   styleTextButton?: StyleProp<TextStyle>
   styleTextSubtitle?: StyleProp<TextStyle>
@@ -390,7 +391,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   {((!this.props.pinCodeVisible ||
                     (this.props.pinCodeVisible && !lengthSup)) && (
                     <View
-                      style={{
+                      style={[{
                         left: x,
                         height: height,
                         width: width,
@@ -399,7 +400,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                         marginLeft: marginLeft,
                         marginRight: marginRight,
                         backgroundColor: color
-                      }}
+                      }, this.props.stylePinCodeCircle]}
                     />
                   )) || (
                     <View

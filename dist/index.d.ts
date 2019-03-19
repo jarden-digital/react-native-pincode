@@ -52,6 +52,7 @@ export declare type IProps = {
     stylePinCodeButtonCircle?: StyleProp<ViewStyle>;
     stylePinCodeButtonNumber?: string;
     stylePinCodeButtonNumberPressed?: string;
+    stylePinCodeCircle?: StyleProp<ViewStyle>;
     stylePinCodeColorSubtitle?: string;
     stylePinCodeColorSubtitleError?: string;
     stylePinCodeColorTitle?: string;
