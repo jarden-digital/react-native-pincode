@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.19.1] - 2019-04-04
+### Fixed
+- Fixed a require cycles warning. Related issue: ([Issue 77](https://github.com/fnzc/react-native-pincode/issues/77)).
+
+
 ## [1.19.0] - 2019-04-04
 ### Changed
 - Changed AsyncStorage to use the react-native-community module. Related issue: ([Issue 76](https://github.com/fnzc/react-native-pincode/issues/76)).
