@@ -1,5 +1,6 @@
 /// <reference path="../src/types.d.ts" />
 /// <reference types="react" />
+import { PinResultStatus } from "./src/utils";
 import * as React from "react";
 import { StyleProp, ViewStyle, TextStyle } from "react-native";
 export declare type IProps = {
@@ -106,12 +107,6 @@ export declare type IState = {
     internalPinStatus: PinResultStatus;
     pinLocked: boolean;
 };
-export declare enum PinResultStatus {
-    initial = "initial",
-    success = "success",
-    failure = "failure",
-    locked = "locked",
-}
 declare class PINCode extends React.PureComponent<IProps, IState> {
     constructor(props: IProps);
     componentWillMount(): Promise<void>;

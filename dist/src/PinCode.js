@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const delay_1 = require("./delay");
+const colors_1 = require("./design/colors");
+const grid_1 = require("./design/grid");
+const d3_ease_1 = require("d3-ease");
+const _ = require("lodash");
 const React = require("react");
+const Animate_1 = require("react-move/Animate");
 const react_native_1 = require("react-native");
 const react_native_easy_grid_1 = require("react-native-easy-grid");
-const grid_1 = require("./design/grid");
-const colors_1 = require("./design/colors");
 const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
-const _ = require("lodash");
-const Animate_1 = require("react-move/Animate");
-const d3_ease_1 = require("d3-ease");
-const delay_1 = require("./delay");
 var PinStatus;
 (function (PinStatus) {
     PinStatus["choose"] = "choose";

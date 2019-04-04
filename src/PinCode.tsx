@@ -1,4 +1,11 @@
+import delay from './delay'
+import { colors } from './design/colors'
+import { grid } from './design/grid'
+
+import { easeLinear } from 'd3-ease'
+import * as _ from 'lodash'
 import * as React from 'react'
+import Animate from 'react-move/Animate'
 import {
   Dimensions,
   StyleProp,
@@ -11,13 +18,7 @@ import {
   ViewStyle
 } from 'react-native'
 import { Col, Row, Grid } from 'react-native-easy-grid'
-import { grid } from './design/grid'
-import { colors } from './design/colors'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import * as _ from 'lodash'
-import Animate from 'react-move/Animate'
-import { easeLinear } from 'd3-ease'
-import delay from './delay'
 
 /**
  * Pin Code Component

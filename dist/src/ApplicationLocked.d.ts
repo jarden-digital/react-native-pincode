@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { PinResultStatus } from '../index';
+import { PinResultStatus } from "./utils";
 import * as React from 'react';
 export declare type IProps = {
     timeToLock: number;

@@ -1,6 +1,6 @@
-import { PinResultStatus } from '../index'
 import delay from './delay'
 import PinCode, { PinStatus } from './PinCode'
+import { PinResultStatus } from './utils'
 
 import AsyncStorage from '@react-native-community/async-storage'
 import * as React from 'react'

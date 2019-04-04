@@ -1,6 +1,7 @@
+import PinCode, { PinStatus } from './PinCode'
+
 import * as React from 'react'
 import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
-import PinCode, { PinStatus } from './PinCode'
 import * as Keychain from 'react-native-keychain'
 
 /**

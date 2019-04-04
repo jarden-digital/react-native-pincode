@@ -1,7 +1,7 @@
-import { PinResultStatus } from '../index'
 import { colors } from './design/colors'
 import { grid } from './design/grid'
 import delay from './delay'
+import { PinResultStatus } from "./utils";
 
 import AsyncStorage from '@react-native-community/async-storage'
 import { easeLinear } from 'd3-ease'

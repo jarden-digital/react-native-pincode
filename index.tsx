@@ -3,7 +3,7 @@ import ApplicationLocked from "./src/ApplicationLocked";
 import { PinStatus } from "./src/PinCode";
 import PinCodeChoose from "./src/PinCodeChoose";
 import PinCodeEnter from "./src/PinCodeEnter";
-import { hasPinCode, deletePinCode, resetInternalStates } from "./src/utils";
+import { hasPinCode, deletePinCode, resetInternalStates, PinResultStatus } from "./src/utils";
 
 import AsyncStorage from '@react-native-community/async-storage'
 import * as React from "react";
@@ -113,13 +113,6 @@ export type IProps = {
 export type IState = {
   internalPinStatus: PinResultStatus
   pinLocked: boolean
-}
-
-export enum PinResultStatus {
-  initial = "initial",
-  success = "success",
-  failure = "failure",
-  locked = "locked"
 }
 
 const disableLockScreenDefault = false;

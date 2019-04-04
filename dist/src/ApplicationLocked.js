@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const index_1 = require("../index");
 const colors_1 = require("./design/colors");
 const grid_1 = require("./design/grid");
 const delay_1 = require("./delay");
+const utils_1 = require("./utils");
 const async_storage_1 = require("@react-native-community/async-storage");
 const d3_ease_1 = require("d3-ease");
 const React = require("react");
@@ -103,7 +103,7 @@ class ApplicationLocked extends React.PureComponent {
         this.setState({ timeDiff: Math.max(0, timeDiff) });
         await delay_1.default(1000);
         if (timeDiff < 1000) {
-            this.props.changeStatus(index_1.PinResultStatus.initial);
+            this.props.changeStatus(utils_1.PinResultStatus.initial);
             async_storage_1.default.multiRemove([
                 this.props.timePinLockedAsyncStorageName,
                 this.props.pinAttemptsAsyncStorageName

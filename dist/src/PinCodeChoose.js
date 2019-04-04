@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const PinCode_1 = require("./PinCode");
 const React = require("react");
 const react_native_1 = require("react-native");
-const PinCode_1 = require("./PinCode");
 const Keychain = require("react-native-keychain");
 class PinCodeChoose extends React.PureComponent {
     constructor(props) {
