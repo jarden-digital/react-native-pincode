@@ -130,6 +130,7 @@ await resetPinCodeInternalStates()
 |**`subtitleEnter`**|String used as a subtitle on the PIN code enter page|`None`|`false`|`string`|
 |**`subtitleError`**|String used as a subtitle on the PIN code pages when an error occurs (wrong PIN code used for `enter` or `confirm` modes)|`Please try again`|`false`|`string`|
 |**`textButtonLockedPage`**|String to be used as text on the button in the locked application page|`Quit`|`false`|`string`|
+|**`textCancelButtonTouchID`**|String to be used as text on the cancel button of the touchID popup. Only for Android|`Cancel`|`false`|`string`|
 |**`textDescriptionLockedPage`**|String to be used as a description on the locked application page|`To protect your information, access has been locked for {timeLocked} minutes.`|`false`|`string`|
 |**`textSubDescriptionLockedPage`**|String to be used as a subtitle on the locked application page|`Come back later and try again.`|`false`|`string`|
 |**`textPasswordVisibleFamily`**|Font to be used for the PIN code numbers when `pinCodeVisible` is true|`system font`|`false`|`string`|

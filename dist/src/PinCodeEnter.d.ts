@@ -63,6 +63,7 @@ export declare type IProps = {
     subtitle: string;
     subtitleComponent: any;
     subtitleError?: string;
+    textCancelButtonTouchID?: string;
     textPasswordVisibleFamily?: string;
     textPasswordVisibleSize?: number;
     timePinLockedAsyncStorageName: string;
