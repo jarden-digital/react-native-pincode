@@ -1,17 +1,18 @@
+import { PinResultStatus } from '../index'
+import delay from './delay'
+import PinCode, { PinStatus } from './PinCode'
+
+import AsyncStorage from '@react-native-community/async-storage'
 import * as React from 'react'
 import {
-  AsyncStorage,
   StyleProp,
   StyleSheet,
   TextStyle,
   View,
   ViewStyle
 } from 'react-native'
-import PinCode, { PinStatus } from './PinCode'
-import TouchID from 'react-native-touch-id'
 import * as Keychain from 'react-native-keychain'
-import { PinResultStatus } from '../index'
-import delay from './delay'
+import TouchID from 'react-native-touch-id'
 
 /**
  * Pin Code Enter PIN Page
@@ -151,7 +152,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       const pinAttemptsStr = await AsyncStorage.getItem(
         this.props.pinAttemptsAsyncStorageName
       )
-      let pinAttempts = +pinAttemptsStr
+      let pinAttempts = pinAttemptsStr ? +pinAttemptsStr : 0
       const pin = this.props.storedPin || this.keyChainResult
       if (pin === pinCode) {
         this.setState({ pinCodeStatus: PinResultStatus.success })

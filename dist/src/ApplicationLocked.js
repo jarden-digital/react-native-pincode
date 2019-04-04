@@ -1,14 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const react_native_1 = require("react-native");
+const index_1 = require("../index");
 const colors_1 = require("./design/colors");
 const grid_1 = require("./design/grid");
-const Animate_1 = require("react-move/Animate");
-const d3_ease_1 = require("d3-ease");
 const delay_1 = require("./delay");
+const async_storage_1 = require("@react-native-community/async-storage");
+const d3_ease_1 = require("d3-ease");
+const React = require("react");
+const Animate_1 = require("react-move/Animate");
+const react_native_1 = require("react-native");
 const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
-const index_1 = require("../index");
 class ApplicationLocked extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -92,8 +93,8 @@ class ApplicationLocked extends React.PureComponent {
         this.renderTitle = this.renderTitle.bind(this);
     }
     componentDidMount() {
-        react_native_1.AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName).then(val => {
-            this.timeLocked = new Date(val).getTime() + this.props.timeToLock;
+        async_storage_1.default.getItem(this.props.timePinLockedAsyncStorageName).then(val => {
+            this.timeLocked = new Date(val ? val : '').getTime() + this.props.timeToLock;
             this.timer();
         });
     }
@@ -103,7 +104,7 @@ class ApplicationLocked extends React.PureComponent {
         await delay_1.default(1000);
         if (timeDiff < 1000) {
             this.props.changeStatus(index_1.PinResultStatus.initial);
-            react_native_1.AsyncStorage.multiRemove([
+            async_storage_1.default.multiRemove([
                 this.props.timePinLockedAsyncStorageName,
                 this.props.pinAttemptsAsyncStorageName
             ]);

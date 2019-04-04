@@ -1,19 +1,20 @@
+import { PinResultStatus } from '../index'
+import { colors } from './design/colors'
+import { grid } from './design/grid'
+import delay from './delay'
+
+import AsyncStorage from '@react-native-community/async-storage'
+import { easeLinear } from 'd3-ease'
 import * as React from 'react'
+import Animate from 'react-move/Animate'
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
-  AsyncStorage,
   Platform
 } from 'react-native'
-import { colors } from './design/colors'
-import { grid } from './design/grid'
-import Animate from 'react-move/Animate'
-import { easeLinear } from 'd3-ease'
-import delay from './delay'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { PinResultStatus } from '../index'
 
 export type IProps = {
   timeToLock: number
@@ -66,7 +67,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
 
   componentDidMount() {
     AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName).then(val => {
-      this.timeLocked = new Date(val).getTime() + this.props.timeToLock
+      this.timeLocked = new Date(val ? val : '').getTime() + this.props.timeToLock
       this.timer()
     })
   }

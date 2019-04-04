@@ -22,6 +22,12 @@ yarn add @haskkor/react-native-pincode
 
 **Please note that:**
 
+Async storage uses the [react-native-async-storage](https://github.com/react-native-community/react-native-async-storage) library which has to be linked
+
+```
+react-native link @react-native-community/async-storage
+```
+
 If you wish to use the `TouchID/FaceID` authentication you will have to link the [library](https://github.com/naoufal/react-native-touch-id):
 
 ```

@@ -486,6 +486,10 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@react-native-community/async-storage@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.2.2.tgz#1f9851a6dd2b0af08ed3ab69b7f7353c4e85ea1d"
+
 "@types/d3-ease@^1.0.7":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@types/d3-ease/-/d3-ease-1.0.7.tgz#93a301868be9e15061f3d44343b1ab3f8acb6f09"
@@ -4762,9 +4766,9 @@ react-native-easy-grid@^0.2.0:
   dependencies:
     lodash "^4.11.1"
 
-react-native-keychain@^3.0.0-rc.3:
-  version "3.0.0-rc.3"
-  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-3.0.0-rc.3.tgz#891ea07a564d1bf46b644bc615af21f15a04b12b"
+react-native-keychain@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-3.0.0.tgz#29da1dfa43c2581f76bf9420914fd38a1558cf18"
 
 react-native-touch-id@^4.4.1:
   version "4.4.1"

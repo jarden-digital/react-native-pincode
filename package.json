@@ -45,6 +45,7 @@
     "typescript": "^2.7.2"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.2.2",
     "d3-ease": "^1.0.3",
     "lodash": "^4.17.5",
     "react-move": "^2.7.0",

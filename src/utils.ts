@@ -1,5 +1,5 @@
+import AsyncStorage from '@react-native-community/async-storage'
 import * as Keychain from 'react-native-keychain'
-import { AsyncStorage } from 'react-native'
 
 export const hasPinCode = async (serviceName: string) => {
   return await Keychain.getInternetCredentials(serviceName).then(res => {

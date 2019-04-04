@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const react_native_1 = require("react-native");
-const PinCode_1 = require("./PinCode");
-const react_native_touch_id_1 = require("react-native-touch-id");
-const Keychain = require("react-native-keychain");
 const index_1 = require("../index");
 const delay_1 = require("./delay");
+const PinCode_1 = require("./PinCode");
+const async_storage_1 = require("@react-native-community/async-storage");
+const React = require("react");
+const react_native_1 = require("react-native");
+const Keychain = require("react-native-keychain");
+const react_native_touch_id_1 = require("react-native-touch-id");
 class PinCodeEnter extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -21,12 +22,12 @@ class PinCodeEnter extends React.PureComponent {
                 }
                 this.setState({ pinCodeStatus: index_1.PinResultStatus.initial });
                 this.props.changeInternalStatus(index_1.PinResultStatus.initial);
-                const pinAttemptsStr = await react_native_1.AsyncStorage.getItem(this.props.pinAttemptsAsyncStorageName);
-                let pinAttempts = +pinAttemptsStr;
+                const pinAttemptsStr = await async_storage_1.default.getItem(this.props.pinAttemptsAsyncStorageName);
+                let pinAttempts = pinAttemptsStr ? +pinAttemptsStr : 0;
                 const pin = this.props.storedPin || this.keyChainResult;
                 if (pin === pinCode) {
                     this.setState({ pinCodeStatus: index_1.PinResultStatus.success });
-                    react_native_1.AsyncStorage.multiRemove([
+                    async_storage_1.default.multiRemove([
                         this.props.pinAttemptsAsyncStorageName,
                         this.props.timePinLockedAsyncStorageName
                     ]);
@@ -38,12 +39,12 @@ class PinCodeEnter extends React.PureComponent {
                     pinAttempts++;
                     if (+pinAttempts >= this.props.maxAttempts &&
                         !this.props.disableLockScreen) {
-                        await react_native_1.AsyncStorage.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
+                        await async_storage_1.default.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
                         this.setState({ locked: true, pinCodeStatus: index_1.PinResultStatus.locked });
                         this.props.changeInternalStatus(index_1.PinResultStatus.locked);
                     }
                     else {
-                        await react_native_1.AsyncStorage.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString());
+                        await async_storage_1.default.setItem(this.props.pinAttemptsAsyncStorageName, pinAttempts.toString());
                         this.setState({ pinCodeStatus: index_1.PinResultStatus.failure });
                         this.props.changeInternalStatus(index_1.PinResultStatus.failure);
                     }

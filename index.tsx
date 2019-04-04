@@ -1,11 +1,13 @@
 /// <reference path='./src/types.d.ts'/>
-import * as React from "react";
-import PinCodeChoose from "./src/PinCodeChoose";
-import { PinStatus } from "./src/PinCode";
-import PinCodeEnter from "./src/PinCodeEnter";
-import { View, StyleSheet, AsyncStorage, StyleProp, ViewStyle, TextStyle } from "react-native";
 import ApplicationLocked from "./src/ApplicationLocked";
+import { PinStatus } from "./src/PinCode";
+import PinCodeChoose from "./src/PinCodeChoose";
+import PinCodeEnter from "./src/PinCodeEnter";
 import { hasPinCode, deletePinCode, resetInternalStates } from "./src/utils";
+
+import AsyncStorage from '@react-native-community/async-storage'
+import * as React from "react";
+import { View, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
 
 export type IProps = {
   bottomLeftComponent?: any
