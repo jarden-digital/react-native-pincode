@@ -21,15 +21,15 @@ class PinCode extends React.PureComponent {
     constructor(props) {
         super(props);
         this.failedAttempt = async () => {
-            this.setState({ changeScreen: true });
             await delay_1.default(300);
             this.setState({
                 showError: true,
                 attemptFailed: true,
                 changeScreen: false,
-                password: ''
             });
             this.doShake();
+            await delay_1.default(3000);
+            this.newAttempt();
         };
         this.newAttempt = async () => {
             this.setState({ changeScreen: true });
@@ -37,12 +37,11 @@ class PinCode extends React.PureComponent {
             this.setState({
                 changeScreen: false,
                 showError: false,
-                attemptFailed: false
+                attemptFailed: false,
+                password: ''
             });
         };
         this.onPressButtonNumber = async (text) => {
-            if (this.state.showError && this.state.attemptFailed)
-                this.newAttempt();
             const currentPassword = this.state.password + text;
             this.setState({ password: currentPassword });
             if (this.props.getCurrentLength)

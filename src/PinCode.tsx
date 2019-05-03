@@ -142,15 +142,15 @@ class PinCode extends React.PureComponent<IProps, IState> {
   }
 
   failedAttempt = async () => {
-    this.setState({ changeScreen: true })
     await delay(300)
     this.setState({
       showError: true,
       attemptFailed: true,
       changeScreen: false,
-      password: ''
     })
     this.doShake()
+    await delay(3000)
+    this.newAttempt()
   }
 
   newAttempt = async () => {
@@ -159,12 +159,12 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this.setState({
       changeScreen: false,
       showError: false,
-      attemptFailed: false
+      attemptFailed: false,
+      password: ''
     })
   }
 
   onPressButtonNumber = async (text: string) => {
-    if (this.state.showError && this.state.attemptFailed) this.newAttempt()
     const currentPassword = this.state.password + text
     this.setState({ password: currentPassword })
     if (this.props.getCurrentLength)
