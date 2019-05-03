@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.20.2] - 2019-05-03
+### Fixed
+- Change the behaviour of the error handling in PinEnter to be consistent with PinChoose. Related issue: ([Issue 82](https://github.com/fnzc/react-native-pincode/issues/82)).
+
+
 ## [1.20.1] - 2019-05-02
 ### Fixed
 - Change the TouchID config to allow the `passcodeFallback`. Related issue: ([Issue 83](https://github.com/fnzc/react-native-pincode/issues/83)).
