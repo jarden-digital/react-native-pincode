@@ -783,7 +783,8 @@ let styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '100%'
   },
   viewTitle: {
     flexDirection: 'column',
@@ -792,9 +793,7 @@ let styles = StyleSheet.create({
     flex: 2
   },
   row: {
-    justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
     height: grid.unit * 5.5
   },
   colButtonCircle: {
@@ -858,7 +857,7 @@ let styles = StyleSheet.create({
     marginTop: 5
   },
   grid: {
-    maxWidth: grid.unit * 16.25,
+    width: '100%',
     flex: 7
   }
 })

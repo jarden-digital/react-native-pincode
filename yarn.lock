@@ -486,6 +486,19 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@haskkor/react-native-pincode@^1.20.2":
+  version "1.20.2"
+  resolved "https://registry.yarnpkg.com/@haskkor/react-native-pincode/-/react-native-pincode-1.20.2.tgz#ed5bd760697236aa147e774c231e83eaa60edd55"
+  dependencies:
+    "@react-native-community/async-storage" "^1.2.2"
+    d3-ease "^1.0.3"
+    lodash "^4.17.5"
+    react-move "^2.7.0"
+    react-native-easy-grid "^0.2.0"
+    react-native-keychain "3.0.0"
+    react-native-touch-id "^4.4.1"
+    react-native-vector-icons "^4.5.0"
+
 "@react-native-community/async-storage@^1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.2.2.tgz#1f9851a6dd2b0af08ed3ab69b7f7353c4e85ea1d"

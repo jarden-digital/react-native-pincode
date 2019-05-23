@@ -455,7 +455,8 @@ let styles = react_native_1.StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '100%'
     },
     viewTitle: {
         flexDirection: 'column',
@@ -464,9 +465,7 @@ let styles = react_native_1.StyleSheet.create({
         flex: 2
     },
     row: {
-        justifyContent: 'center',
         alignItems: 'center',
-        width: '100%',
         height: grid_1.grid.unit * 5.5
     },
     colButtonCircle: {
@@ -530,7 +529,7 @@ let styles = react_native_1.StyleSheet.create({
         marginTop: 5
     },
     grid: {
-        maxWidth: grid_1.grid.unit * 16.25,
+        width: '100%',
         flex: 7
     }
 });
