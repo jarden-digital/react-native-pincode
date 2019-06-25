@@ -179,6 +179,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
               this.props.titleValidationFailed || 'PIN code unsafe'
             }
             validationRegex={this.props.validationRegex}
+            customBackSpaceIcon={this.props.customBackSpaceIcon}
           />
         )}
         {this.state.status === PinStatus.confirm && (
@@ -247,6 +248,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleTextSubtitle={this.props.styleTextSubtitle}
             styleTextTitle={this.props.styleTextTitle}
             styleViewTitle={this.props.styleViewTitle}
+            customBackSpaceIcon={this.props.customBackSpaceIcon}
           />
         )}
       </View>

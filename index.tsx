@@ -242,6 +242,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleConfirmFailed={this.props.titleConfirmFailed}
           titleValidationFailed={this.props.titleValidationFailed}
           validationRegex={this.props.validationRegex}
+          customBackSpaceIcon={this.props.customBackSpaceIcon}
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter
