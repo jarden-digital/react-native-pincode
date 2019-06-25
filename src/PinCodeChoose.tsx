@@ -65,6 +65,7 @@ export type IProps = {
   titleConfirmFailed?: string
   titleValidationFailed?: string
   validationRegex?: RegExp
+  customBackSpaceIcon?: any
 }
 
 export type IState = {
