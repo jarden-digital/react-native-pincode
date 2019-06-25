@@ -9,7 +9,6 @@ const d3_ease_1 = require("d3-ease");
 const React = require("react");
 const Animate_1 = require("react-move/Animate");
 const react_native_1 = require("react-native");
-const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
 class ApplicationLocked extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -38,8 +37,7 @@ class ApplicationLocked extends React.PureComponent {
             return (React.createElement(react_native_1.Text, { style: this.props.styleTitle ? this.props.styleTitle : styles.title }, this.props.textTitle || 'Maximum attempts reached'));
         };
         this.renderIcon = () => {
-            return (React.createElement(react_native_1.View, { style: this.props.styleViewIcon ? this.props.styleViewIcon : styles.viewIcon },
-                React.createElement(MaterialIcons_1.default, { name: this.props.nameIcon ? this.props.nameIcon : 'lock', size: this.props.sizeIcon ? this.props.sizeIcon : 24, color: this.props.colorIcon ? this.props.colorIcon : colors_1.colors.white })));
+            return (React.createElement(react_native_1.View, { style: this.props.styleViewIcon ? this.props.styleViewIcon : styles.viewIcon }, this.props.lockedIconComponent));
         };
         this.renderErrorLocked = () => {
             const minutes = Math.floor(this.state.timeDiff / 1000 / 60);

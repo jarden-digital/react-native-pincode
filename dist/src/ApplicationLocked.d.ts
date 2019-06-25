@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { PinResultStatus } from "./utils";
 import * as React from 'react';
 export declare type IProps = {
@@ -28,6 +27,7 @@ export declare type IProps = {
     styleMainContainer?: any;
     styleText?: any;
     styleViewButton?: any;
+    lockedIconComponent?: any;
 };
 export declare type IState = {
     timeDiff: number;
