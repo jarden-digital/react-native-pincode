@@ -14,7 +14,6 @@ import {
   Text,
   Platform
 } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export type IProps = {
   timeToLock: number
@@ -43,6 +42,7 @@ export type IProps = {
   styleMainContainer?: any
   styleText?: any
   styleViewButton?: any
+  lockedIconComponent?: any
 }
 
 export type IState = {
@@ -152,11 +152,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
         style={
           this.props.styleViewIcon ? this.props.styleViewIcon : styles.viewIcon
         }>
-        <Icon
-          name={this.props.nameIcon ? this.props.nameIcon : 'lock'}
-          size={this.props.sizeIcon ? this.props.sizeIcon : 24}
-          color={this.props.colorIcon ? this.props.colorIcon : colors.white}
-        />
+        {this.props.lockedIconComponent}
       </View>
     )
   }

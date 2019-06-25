@@ -109,6 +109,8 @@ export type IProps = {
   touchIDSentence?: string
   touchIDTitle?: string
   validationRegex?: RegExp
+  lockedIconComponent?: any
+  customBackSpaceIcon?: any
 }
 
 export type IState = {
@@ -173,7 +175,8 @@ class PINCode extends React.PureComponent<IProps, IState> {
         timePinLockedAsyncStorageName={this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault}
         timerComponent={this.props.timerComponentLockedPage || null}
         timeToLock={this.props.timeLocked || 300000}
-        titleComponent={this.props.titleComponentLockedPage || undefined}/>
+        titleComponent={this.props.titleComponentLockedPage || undefined}
+        lockedIconComponent={this.props.lockedIconComponent}/>
     );
   };
 
@@ -309,6 +312,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           touchIDDisabled={this.props.touchIDDisabled || touchIDDisabledDefault}
           touchIDSentence={this.props.touchIDSentence || "To unlock your application"}
           touchIDTitle={this.props.touchIDTitle || touchIDTitleDefault}
+          customBackSpaceIcon={this.props.customBackSpaceIcon}
         />}
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||

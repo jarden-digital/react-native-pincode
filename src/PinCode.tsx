@@ -18,7 +18,6 @@ import {
   ViewStyle
 } from 'react-native'
 import { Col, Row, Grid } from 'react-native-easy-grid'
-import Icon from 'react-native-vector-icons/MaterialIcons'
 
 /**
  * Pin Code Component
@@ -80,6 +79,7 @@ export type IProps = {
   titleConfirmFailed?: string
   titleValidationFailed?: string
   validationRegex?: RegExp
+  customBackSpaceIcon?: any
 }
 
 export type IState = {
@@ -468,20 +468,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
               : styles.colIcon
           }>
           {!this.props.iconButtonDeleteDisabled && (
-            <Icon
-              name={
-                this.props.styleDeleteButtonIcon
-                  ? this.props.styleDeleteButtonIcon
-                  : 'backspace'
-              }
-              size={
-                this.props.styleDeleteButtonSize
-                  ? this.props.styleDeleteButtonSize
-                  : 30
-              }
-              color={this.state.colorDelete}
-              style={{ opacity: opacity }}
-            />
+            this.props.customBackSpaceIcon
           )}
           <Text
             style={[

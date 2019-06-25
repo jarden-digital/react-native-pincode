@@ -86,6 +86,7 @@ export type IProps = {
   touchIDDisabled: boolean
   touchIDSentence: string
   touchIDTitle?: string
+  customBackSpaceIcon?: any
 }
 
 export type IState = {
@@ -296,6 +297,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           titleConfirmFailed={
             this.props.titleConfirmFailed || 'Your entries did not match'
           }
+          customBackSpaceIcon={this.props.customBackSpaceIcon}
         />
       </View>
     )
