@@ -73,7 +73,6 @@ export declare type IProps = {
     touchIDDisabled: boolean;
     touchIDSentence: string;
     touchIDTitle?: string;
-    customBackSpaceIcon?: any;
 };
 export declare type IState = {
     pinCodeStatus: PinResultStatus;
