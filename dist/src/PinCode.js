@@ -138,9 +138,7 @@ class PinCode extends React.PureComponent {
                         height: this._circleSizeEmpty,
                         width: this._circleSizeEmpty,
                         borderRadius: this._circleSizeEmpty / 2,
-                        color: this.props.colorPassword
-                            ? this.props.colorPassword
-                            : colors_1.colors.turquoise,
+                        color: colorPwdEmp,
                         marginRight: 10,
                         marginLeft: 10,
                         x: 0,
