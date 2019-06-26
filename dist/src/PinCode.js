@@ -155,7 +155,7 @@ class PinCode extends React.PureComponent {
                         color: [
                             showError
                                 ? colorPwdErr
-                                : lengthSup
+                                : (lengthSup && password.length > 0)
                                     ? colorPwd
                                     : colorPwdEmp
                         ],
