@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.20.4] - 2019-06-27
+### Fixed
+- Fixed an issue with the `colorPasswordEmpty` property. Related issue: ([Issue 98](https://github.com/fnzc/react-native-pincode/issues/98)).
+
 
 ## [1.20.3] - 2019-05-23
 ### Fixed
