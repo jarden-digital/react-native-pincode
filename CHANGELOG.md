@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+
+## [1.21.0] - 2019-06-27
+### Added
+- Added `customBackSpaceIcon` and `lockedIconComponent` properties after [Galimpian](https://github.com/galimpian) pull request. Related issue and pull request: ([Issue 99](https://github.com/jarden-digital/react-native-pincode/issues/99)) ([PR 100](https://github.com/jarden-digital/react-native-pincode/pull/100))
+
+
 ## [1.20.41] - 2019-06-27
 ### Fixed
 - Made an mistake in the previous bug fix.

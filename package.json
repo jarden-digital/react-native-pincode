@@ -1,6 +1,6 @@
 {
   "name": "@haskkor/react-native-pincode",
-  "version": "1.20.41",
+  "version": "1.21.0",
   "description": "React native PIN code component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
