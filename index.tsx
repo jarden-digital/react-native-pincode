@@ -20,6 +20,7 @@ export type IProps = {
   colorPassword?: string
   colorPasswordEmpty?: string
   colorPasswordError?: string
+  customBackSpaceIcon?: any
   disableLockScreen?: boolean
   endProcessFunction?: (pinCode: string) => void
   finishProcess?: (pinCode?: string) => void
@@ -27,6 +28,7 @@ export type IProps = {
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
   iconButtonDeleteDisabled?: boolean
+  lockedIconComponent?: any
   lockedPage?: any
   maxAttempts?: number
   numbersButtonOverlayColor?: string
@@ -150,6 +152,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
         changeStatus={this.changeInternalStatus}
         colorIcon={this.props.styleLockScreenColorIcon}
         iconComponent={this.props.iconComponentLockedPage || null}
+        lockedIconComponent={this.props.lockedIconComponent}
         nameIcon={this.props.styleLockScreenNameIcon}
         onClickButton={this.props.onClickButtonLockedPage || (() => {
           throw ("Quit application");
@@ -190,6 +193,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           colorPassword={this.props.colorPassword}
           colorPasswordEmpty={this.props.colorPasswordEmpty}
           colorPasswordError={this.props.colorPasswordError}
+          customBackSpaceIcon={this.props.customBackSpaceIcon}
           emptyColumnComponent={this.props.bottomLeftComponent}
           finishProcess={this.props.finishProcess}
           getCurrentLength={this.props.getCurrentPinLength}
@@ -251,6 +255,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           colorPassword={this.props.colorPassword}
           colorPasswordEmpty={this.props.colorPasswordEmpty}
           colorPasswordError={this.props.colorPasswordError}
+          customBackSpaceIcon={this.props.customBackSpaceIcon}
           disableLockScreen={this.props.disableLockScreen || disableLockScreenDefault}
           emptyColumnComponent={this.props.bottomLeftComponent}
           endProcessFunction={this.props.endProcessFunction}

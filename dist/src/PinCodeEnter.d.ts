@@ -16,6 +16,7 @@ export declare type IProps = {
     colorPassword?: string;
     colorPasswordEmpty?: string;
     colorPasswordError?: string;
+    customBackSpaceIcon?: any;
     disableLockScreen: boolean;
     emptyColumnComponent: any;
     endProcessFunction?: (pinCode: string) => void;

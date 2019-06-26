@@ -16,6 +16,7 @@ export type IProps = {
   colorPassword?: string
   colorPasswordEmpty?: string
   colorPasswordError?: string
+  customBackSpaceIcon?: any
   emptyColumnComponent: any
   finishProcess?: (pinCode: string) => void
   getCurrentLength?: (length: number) => void
@@ -125,6 +126,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             colorPassword={this.props.colorPassword || undefined}
             colorPasswordEmpty={this.props.colorPasswordEmpty}
             colorPasswordError={this.props.colorPasswordError || undefined}
+            customBackSpaceIcon={this.props.customBackSpaceIcon}
             emptyColumnComponent={this.props.emptyColumnComponent}
             endProcess={this.endProcessCreation}
             getCurrentLength={this.props.getCurrentLength}
@@ -190,6 +192,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             colorPassword={this.props.colorPassword || undefined}
             colorPasswordEmpty={this.props.colorPasswordEmpty}
             colorPasswordError={this.props.colorPasswordError || undefined}
+            customBackSpaceIcon={this.props.customBackSpaceIcon}
             emptyColumnComponent={this.props.emptyColumnComponent}
             endProcess={this.endProcessConfirm}
             getCurrentLength={this.props.getCurrentLength}

@@ -1,48 +1,49 @@
-import { colors } from './design/colors'
-import { grid } from './design/grid'
-import delay from './delay'
+import { colors } from "./design/colors";
+import { grid } from "./design/grid";
+import delay from "./delay";
 import { PinResultStatus } from "./utils";
 
-import AsyncStorage from '@react-native-community/async-storage'
-import { easeLinear } from 'd3-ease'
-import * as React from 'react'
-import Animate from 'react-move/Animate'
+import AsyncStorage from "@react-native-community/async-storage";
+import { easeLinear } from "d3-ease";
+import * as React from "react";
+import Animate from "react-move/Animate";
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
   Platform
-} from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 export type IProps = {
-  timeToLock: number
-  onClickButton: any
-  textButton: string
-  changeStatus: (status: PinResultStatus) => void
-  textDescription?: string
-  textSubDescription?: string
   buttonComponent?: any
-  timerComponent?: any
-  textTitle?: string
-  titleComponent?: any
-  iconComponent?: any
-  timePinLockedAsyncStorageName: string
-  pinAttemptsAsyncStorageName: string
-  styleButton?: any
-  styleTextButton?: any
-  styleViewTimer?: any
-  styleTextTimer?: any
-  styleTitle?: any
-  styleViewTextLock?: any
-  styleViewIcon?: any
+  changeStatus: (status: PinResultStatus) => void
   colorIcon?: string
+  iconComponent?: any
+  lockedIconComponent?: any
   nameIcon?: string
+  onClickButton: any
+  pinAttemptsAsyncStorageName: string
   sizeIcon?: number
+  styleButton?: any
   styleMainContainer?: any
   styleText?: any
+  styleTextButton?: any
+  styleTextTimer?: any
+  styleTitle?: any
   styleViewButton?: any
+  styleViewIcon?: any
+  styleViewTextLock?: any
+  styleViewTimer?: any
+  textButton: string
+  textDescription?: string
+  textSubDescription?: string
+  textTitle?: string
+  timePinLockedAsyncStorageName: string
+  timeToLock: number
+  timerComponent?: any
+  titleComponent?: any
 }
 
 export type IState = {
@@ -50,46 +51,46 @@ export type IState = {
 }
 
 class ApplicationLocked extends React.PureComponent<IProps, IState> {
-  timeLocked: number
-  isUnmounted: boolean
+  timeLocked: number;
+  isUnmounted: boolean;
 
   constructor(props: IProps) {
-    super(props)
+    super(props);
     this.state = {
       timeDiff: 0
-    }
-    this.isUnmounted = false
-    this.timeLocked = 0
-    this.timer = this.timer.bind(this)
-    this.renderButton = this.renderButton.bind(this)
-    this.renderTitle = this.renderTitle.bind(this)
+    };
+    this.isUnmounted = false;
+    this.timeLocked = 0;
+    this.timer = this.timer.bind(this);
+    this.renderButton = this.renderButton.bind(this);
+    this.renderTitle = this.renderTitle.bind(this);
   }
 
   componentDidMount() {
     AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName).then(val => {
-      this.timeLocked = new Date(val ? val : '').getTime() + this.props.timeToLock
-      this.timer()
-    })
+      this.timeLocked = new Date(val ? val : "").getTime() + this.props.timeToLock;
+      this.timer();
+    });
   }
 
   async timer() {
-    const timeDiff = +new Date(this.timeLocked) - +new Date()
-    this.setState({ timeDiff: Math.max(0, timeDiff) })
-    await delay(1000)
+    const timeDiff = +new Date(this.timeLocked) - +new Date();
+    this.setState({ timeDiff: Math.max(0, timeDiff) });
+    await delay(1000);
     if (timeDiff < 1000) {
-      this.props.changeStatus(PinResultStatus.initial)
+      this.props.changeStatus(PinResultStatus.initial);
       AsyncStorage.multiRemove([
         this.props.timePinLockedAsyncStorageName,
         this.props.pinAttemptsAsyncStorageName
-      ])
+      ]);
     }
     if (!this.isUnmounted) {
-      this.timer()
+      this.timer();
     }
   }
 
   componentWillUnmount() {
-    this.isUnmounted = true
+    this.isUnmounted = true;
   }
 
   renderButton = () => {
@@ -97,9 +98,9 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
       <TouchableOpacity
         onPress={() => {
           if (this.props.onClickButton) {
-            this.props.onClickButton()
+            this.props.onClickButton();
           } else {
-            throw 'Quit application'
+            throw "Quit application";
           }
         }}
         style={this.props.styleButton ? this.props.styleButton : styles.button}>
@@ -112,8 +113,8 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
           {this.props.textButton}
         </Text>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   renderTimer = (minutes: number, seconds: number) => {
     return (
@@ -129,22 +130,22 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
               ? this.props.styleTextTimer
               : styles.textTimer
           }>
-          {`${minutes < 10 ? '0' + minutes : minutes}:${
-            seconds < 10 ? '0' + seconds : seconds
-          }`}
+          {`${minutes < 10 ? "0" + minutes : minutes}:${
+            seconds < 10 ? "0" + seconds : seconds
+            }`}
         </Text>
       </View>
-    )
-  }
+    );
+  };
 
   renderTitle = () => {
     return (
       <Text
         style={this.props.styleTitle ? this.props.styleTitle : styles.title}>
-        {this.props.textTitle || 'Maximum attempts reached'}
+        {this.props.textTitle || "Maximum attempts reached"}
       </Text>
-    )
-  }
+    );
+  };
 
   renderIcon = () => {
     return (
@@ -152,18 +153,20 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
         style={
           this.props.styleViewIcon ? this.props.styleViewIcon : styles.viewIcon
         }>
-        <Icon
-          name={this.props.nameIcon ? this.props.nameIcon : 'lock'}
-          size={this.props.sizeIcon ? this.props.sizeIcon : 24}
-          color={this.props.colorIcon ? this.props.colorIcon : colors.white}
-        />
+        {this.props.lockedIconComponent ?
+          this.props.lockedIconComponent :
+          <Icon
+            name={this.props.nameIcon ? this.props.nameIcon : "lock"}
+            size={this.props.sizeIcon ? this.props.sizeIcon : 24}
+            color={this.props.colorIcon ? this.props.colorIcon : colors.white}
+          />}
       </View>
-    )
-  }
+    );
+  };
 
   renderErrorLocked = () => {
-    const minutes = Math.floor(this.state.timeDiff / 1000 / 60)
-    const seconds = Math.floor(this.state.timeDiff / 1000) % 60
+    const minutes = Math.floor(this.state.timeDiff / 1000 / 60);
+    const seconds = Math.floor(this.state.timeDiff / 1000) % 60;
     return (
       <View>
         <Animate
@@ -199,8 +202,8 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                 {this.props.textDescription
                   ? this.props.textDescription
                   : `To protect your information, access has been locked for ${Math.ceil(
-                      this.props.timeToLock / 1000 / 60
-                    )} minutes.`}
+                    this.props.timeToLock / 1000 / 60
+                  )} minutes.`}
               </Text>
               <Text
                 style={
@@ -208,7 +211,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                 }>
                 {this.props.textSubDescription
                   ? this.props.textSubDescription
-                  : 'Come back later and try again.'}
+                  : "Come back later and try again."}
               </Text>
             </View>
           )}
@@ -238,8 +241,8 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
           )}
         </Animate>
       </View>
-    )
-  }
+    );
+  };
 
   render() {
     return (
@@ -251,40 +254,40 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
         }>
         {this.renderErrorLocked()}
       </View>
-    )
+    );
   }
 }
 
-export default ApplicationLocked
+export default ApplicationLocked;
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     backgroundColor: colors.background,
     flexBasis: 0,
     left: 0,
-    height: '100%',
-    width: '100%',
-    alignItems: 'center',
+    height: "100%",
+    width: "100%",
+    alignItems: "center",
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: "center"
   },
   text: {
     fontSize: grid.unit,
     color: colors.base,
     lineHeight: grid.unit * grid.lineHeight,
-    textAlign: 'center'
+    textAlign: "center"
   },
   viewTextLock: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingLeft: grid.unit * 3,
     paddingRight: grid.unit * 3,
     flex: 3
   },
   textTimer: {
-    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
+    fontFamily: Platform.OS === "ios" ? "Courier" : "monospace",
     fontSize: 20,
     color: colors.base
   },
@@ -292,18 +295,18 @@ const styles = StyleSheet.create({
     fontSize: grid.navIcon,
     color: colors.base,
     opacity: grid.mediumOpacity,
-    fontWeight: '200',
+    fontWeight: "200",
     marginBottom: grid.unit * 4
   },
   viewIcon: {
     width: grid.unit * 4,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     height: grid.unit * 4,
     borderRadius: grid.unit * 2,
     opacity: grid.mediumOpacity,
     backgroundColor: colors.alert,
-    overflow: 'hidden',
+    overflow: "hidden",
     marginBottom: grid.unit * 4
   },
   viewTimer: {
@@ -313,13 +316,13 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: 'rgb(230, 231, 233)',
+    borderColor: "rgb(230, 231, 233)",
     marginBottom: grid.unit * 4
   },
   viewCloseButton: {
-    alignItems: 'center',
+    alignItems: "center",
     opacity: grid.mediumOpacity,
-    justifyContent: 'center',
+    justifyContent: "center",
     marginTop: grid.unit * 2
   },
   button: {
@@ -332,7 +335,7 @@ const styles = StyleSheet.create({
   },
   closeButtonText: {
     color: colors.white,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 14
   }
-})
+});

@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import * as React from 'react';
-import { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import * as React from "react";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
 /**
  * Pin Code Component
  */
@@ -13,6 +13,7 @@ export declare type IProps = {
     colorPassword?: string;
     colorPasswordEmpty?: string;
     colorPasswordError?: string;
+    customBackSpaceIcon?: any;
     emptyColumnComponent: any;
     endProcess: (pinCode: string, isErrorValidation?: boolean) => void;
     getCurrentLength?: (length: number) => void;
@@ -20,7 +21,7 @@ export declare type IProps = {
     numbersButtonOverlayColor?: string;
     passwordComponent?: any;
     passwordLength: number;
-    pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked';
+    pinCodeStatus?: "initial" | "success" | "failure" | "locked";
     pinCodeVisible?: boolean;
     previousPin?: string;
     sentenceTitle: string;
