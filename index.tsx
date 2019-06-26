@@ -182,7 +182,6 @@ class PINCode extends React.PureComponent<IProps, IState> {
 
   render() {
     const { status, pinStatus, styleMainContainer } = this.props;
-    console.log(this.props.customBackSpaceIcon)
     return (
       <View style={styleMainContainer ? styleMainContainer : styles.container}>
         {status === PinStatus.choose &&

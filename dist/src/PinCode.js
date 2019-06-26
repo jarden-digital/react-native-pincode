@@ -220,8 +220,8 @@ class PinCode extends React.PureComponent {
                 } },
                 React.createElement(react_native_1.View, { style: this.props.styleColumnDeleteButton
                         ? this.props.styleColumnDeleteButton
-                        : styles.colIcon },
-                    !this.props.iconButtonDeleteDisabled && (this.props.customBackSpaceIcon),
+                        : styles.colIcon }, this.props.customBackSpaceIcon ?
+                    (!this.props.iconButtonDeleteDisabled && (this.props.customBackSpaceIcon)) :
                     React.createElement(react_native_1.Text, { style: [
                             this.props.styleDeleteButtonText
                                 ? this.props.styleDeleteButtonText
