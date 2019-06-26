@@ -14,6 +14,7 @@ export declare type IProps = {
     colorPassword?: string;
     colorPasswordEmpty?: string;
     colorPasswordError?: string;
+    customBackSpaceIcon?: any;
     disableLockScreen?: boolean;
     endProcessFunction?: (pinCode: string) => void;
     finishProcess?: (pinCode?: string) => void;
@@ -21,6 +22,7 @@ export declare type IProps = {
     handleResultEnterPin?: any;
     iconComponentLockedPage?: any;
     iconButtonDeleteDisabled?: boolean;
+    lockedIconComponent?: any;
     lockedPage?: any;
     maxAttempts?: number;
     numbersButtonOverlayColor?: string;

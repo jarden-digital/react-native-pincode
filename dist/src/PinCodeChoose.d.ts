@@ -13,6 +13,7 @@ export declare type IProps = {
     colorPassword?: string;
     colorPasswordEmpty?: string;
     colorPasswordError?: string;
+    customBackSpaceIcon?: any;
     emptyColumnComponent: any;
     finishProcess?: (pinCode: string) => void;
     getCurrentLength?: (length: number) => void;

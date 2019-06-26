@@ -28,6 +28,7 @@ export type IProps = {
   colorPassword?: string
   colorPasswordEmpty?: string
   colorPasswordError?: string
+  customBackSpaceIcon?: any
   disableLockScreen: boolean
   emptyColumnComponent: any
   endProcessFunction?: (pinCode: string) => void
@@ -239,6 +240,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           colorPassword={this.props.colorPassword || undefined}
           colorPasswordEmpty={this.props.colorPasswordEmpty}
           colorPasswordError={this.props.colorPasswordError || undefined}
+          customBackSpaceIcon={this.props.customBackSpaceIcon}
           emptyColumnComponent={this.props.emptyColumnComponent}
           endProcess={this.endProcess}
           getCurrentLength={this.props.getCurrentLength}
