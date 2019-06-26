@@ -437,6 +437,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
   renderButtonDelete = (opacity: number) => {
     return (
       <TouchableHighlight
+        activeOpacity={0.8}
         disabled={this.state.password.length === 0}
         underlayColor="transparent"
         onHideUnderlay={() =>
