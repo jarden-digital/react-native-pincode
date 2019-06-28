@@ -1,4 +1,3 @@
-/// <reference path='./src/types.d.ts'/>
 import ApplicationLocked from "./src/ApplicationLocked";
 import { PinStatus } from "./src/PinCode";
 import PinCodeChoose from "./src/PinCodeChoose";
