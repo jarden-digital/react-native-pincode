@@ -104,6 +104,7 @@ export declare type IProps = {
     touchIDSentence?: string;
     touchIDTitle?: string;
     validationRegex?: RegExp;
+    passcodeFallback?: string;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;
