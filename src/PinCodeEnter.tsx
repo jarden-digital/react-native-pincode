@@ -87,6 +87,7 @@ export type IProps = {
   touchIDDisabled: boolean
   touchIDSentence: string
   touchIDTitle?: string
+  passcodeFallback?: boolean
 }
 
 export type IState = {
@@ -96,6 +97,10 @@ export type IState = {
 
 class PinCodeEnter extends React.PureComponent<IProps, IState> {
   keyChainResult: string | undefined = undefined
+
+  static defaultProps = {
+    passcodeFallback: true,
+  }
 
   constructor(props: IProps) {
     super(props)
@@ -202,7 +207,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       cancelText: this.props.textCancelButtonTouchID || 'Cancel',
       fallbackLabel: 'Show Passcode',
       unifiedErrors: false,
-      passcodeFallback: true
+      passcodeFallback: this.props.passcodeFallback
     }
     try {
       await TouchID.authenticate(
