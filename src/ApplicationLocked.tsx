@@ -51,6 +51,22 @@ export type IState = {
 }
 
 class ApplicationLocked extends React.PureComponent<IProps, IState> {
+  static defaultProps: Partial<IProps> = {
+    styleButton: null,
+    styleTextButton: null,
+    styleViewTimer: null,
+    styleTextTimer: null,
+    styleTitle: null,
+    styleViewIcon: null,
+    nameIcon: "lock",
+    sizeIcon: 24,
+    colorIcon: colors.white,
+    styleViewTextLock: null,
+    styleText: null,
+    styleViewButton: null,
+    styleMainContainer: null,
+
+  }
   timeLocked: number;
   isUnmounted: boolean;
 
@@ -103,15 +119,14 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
             throw "Quit application";
           }
         }}
-        style={this.props.styleButton ? this.props.styleButton : styles.button}
+        style={[styles.button, this.props.styleButton]}
         accessible
         accessibilityLabel={this.props.textButton}>
         <Text
-          style={
+          style={[
+            styles.closeButtonText,
             this.props.styleTextButton
-              ? this.props.styleTextButton
-              : styles.closeButtonText
-          }>
+          ]}>
           {this.props.textButton}
         </Text>
       </TouchableOpacity>
@@ -121,17 +136,15 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
   renderTimer = (minutes: number, seconds: number) => {
     return (
       <View
-        style={
+        style={[
+          styles.viewTimer,
           this.props.styleViewTimer
-            ? this.props.styleViewTimer
-            : styles.viewTimer
-        }>
+        ]}>
         <Text
-          style={
+          style={[
+            styles.textTimer,
             this.props.styleTextTimer
-              ? this.props.styleTextTimer
-              : styles.textTimer
-          }>
+          ]}>
           {`${minutes < 10 ? "0" + minutes : minutes}:${
             seconds < 10 ? "0" + seconds : seconds
             }`}
@@ -143,7 +156,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
   renderTitle = () => {
     return (
       <Text
-        style={this.props.styleTitle ? this.props.styleTitle : styles.title}>
+        style={[ styles.title, this.props.styleTitle]}>
         {this.props.textTitle || "Maximum attempts reached"}
       </Text>
     );
@@ -153,14 +166,14 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
     return (
       <View
         style={
-          this.props.styleViewIcon ? this.props.styleViewIcon : styles.viewIcon
+          [ styles.viewIcon, this.props.styleViewIcon]
         }>
         {this.props.lockedIconComponent ?
           this.props.lockedIconComponent :
           <Icon
-            name={this.props.nameIcon ? this.props.nameIcon : "lock"}
-            size={this.props.sizeIcon ? this.props.sizeIcon : 24}
-            color={this.props.colorIcon ? this.props.colorIcon : colors.white}
+            name={this.props.nameIcon}
+            size={this.props.sizeIcon}
+            color={this.props.colorIcon}
           />}
       </View>
     );
@@ -183,9 +196,8 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
           {(state: any) => (
             <View
               style={[
-                this.props.styleViewTextLock
-                  ? this.props.styleViewTextLock
-                  : styles.viewTextLock,
+                styles.viewTextLock,
+                this.props.styleViewTextLock,
                 { opacity: state.opacity }
               ]}>
               {this.props.titleComponent
@@ -198,9 +210,10 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                 ? this.props.iconComponent()
                 : this.renderIcon()}
               <Text
-                style={
-                  this.props.styleText ? this.props.styleText : styles.text
-                }>
+                style={[
+                   styles.text,
+                  this.props.styleText
+                ]}>
                 {this.props.textDescription
                   ? this.props.textDescription
                   : `To protect your information, access has been locked for ${Math.ceil(
@@ -208,9 +221,10 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
                   )} minutes.`}
               </Text>
               <Text
-                style={
-                  this.props.styleText ? this.props.styleText : styles.text
-                }>
+              style={[
+                 styles.text,
+                this.props.styleText
+              ]}>
                 {this.props.textSubDescription
                   ? this.props.textSubDescription
                   : "Come back later and try again."}
@@ -230,11 +244,10 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
           {(state: any) => (
             <View style={{ opacity: state.opacity, flex: 1 }}>
               <View
-                style={
+                style={[
+                  styles.viewCloseButton,
                   this.props.styleViewButton
-                    ? this.props.styleViewButton
-                    : styles.viewCloseButton
-                }>
+                ]}>
                 {this.props.buttonComponent
                   ? this.props.buttonComponent()
                   : this.renderButton()}
@@ -249,18 +262,15 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
   render() {
     return (
       <View
-        style={
+        style={[
+          styles.container,
           this.props.styleMainContainer
-            ? this.props.styleMainContainer
-            : styles.container
-        }>
+        ]}>
         {this.renderErrorLocked()}
       </View>
     );
   }
 }
-
-export default ApplicationLocked;
 
 const styles = StyleSheet.create({
   container: {
@@ -341,3 +351,5 @@ const styles = StyleSheet.create({
     fontSize: 14
   }
 });
+
+export default ApplicationLocked;
