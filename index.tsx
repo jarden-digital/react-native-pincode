@@ -126,6 +126,9 @@ const touchIDDisabledDefault = false;
 const touchIDTitleDefault = 'Authentication Required';
 
 class PINCode extends React.PureComponent<IProps, IState> {
+  static defaultProps: Partial<IProps> = {
+    styleMainContainer: null
+  }
 
   constructor(props: IProps) {
     super(props);
@@ -183,7 +186,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
   render() {
     const { status, pinStatus, styleMainContainer } = this.props;
     return (
-      <View style={styleMainContainer ? styleMainContainer : styles.container}>
+      <View style={[styles.container, styleMainContainer]}>
         {status === PinStatus.choose &&
         <PinCodeChoose
           buttonDeleteComponent={this.props.buttonDeleteComponent}

@@ -1,24 +1,23 @@
-/// <reference types="react" />
 import * as React from "react";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 /**
  * Pin Code Component
  */
-export declare type IProps = {
+export interface IProps {
     buttonDeleteComponent?: any;
     buttonDeleteText?: string;
     buttonNumberComponent?: any;
     cancelFunction?: () => void;
     colorCircleButtons?: string;
-    colorPassword?: string;
+    colorPassword: string;
     colorPasswordEmpty?: string;
-    colorPasswordError?: string;
+    colorPasswordError: string;
     customBackSpaceIcon?: any;
     emptyColumnComponent: any;
     endProcess: (pinCode: string, isErrorValidation?: boolean) => void;
     getCurrentLength?: (length: number) => void;
     iconButtonDeleteDisabled?: boolean;
-    numbersButtonOverlayColor?: string;
+    numbersButtonOverlayColor: string;
     passwordComponent?: any;
     passwordLength: number;
     pinCodeStatus?: "initial" | "success" | "failure" | "locked";
@@ -32,17 +31,17 @@ export declare type IProps = {
     styleCircleSizeFull?: number;
     styleColorButtonTitle?: string;
     styleColorButtonTitleSelected?: string;
-    styleColorSubtitle?: string;
-    styleColorSubtitleError?: string;
-    styleColorTitle?: string;
-    styleColorTitleError?: string;
+    styleColorSubtitle: string;
+    styleColorSubtitleError: string;
+    styleColorTitle: string;
+    styleColorTitleError: string;
     styleColumnButtons?: StyleProp<ViewStyle>;
     styleColumnDeleteButton?: StyleProp<ViewStyle>;
     styleContainer?: StyleProp<ViewStyle>;
-    styleDeleteButtonColorHideUnderlay?: string;
-    styleDeleteButtonColorShowUnderlay?: string;
-    styleDeleteButtonIcon?: string;
-    styleDeleteButtonSize?: number;
+    styleDeleteButtonColorHideUnderlay: string;
+    styleDeleteButtonColorShowUnderlay: string;
+    styleDeleteButtonIcon: string;
+    styleDeleteButtonSize: number;
     styleDeleteButtonText?: StyleProp<TextStyle>;
     styleEmptyColumn?: StyleProp<ViewStyle>;
     stylePinCodeCircle?: StyleProp<ViewStyle>;
@@ -54,32 +53,33 @@ export declare type IProps = {
     subtitle: string;
     subtitleComponent?: any;
     subtitleError: string;
-    textPasswordVisibleFamily?: string;
-    textPasswordVisibleSize?: number;
+    textPasswordVisibleFamily: string;
+    textPasswordVisibleSize: number;
     titleAttemptFailed?: string;
     titleComponent?: any;
     titleConfirmFailed?: string;
     titleValidationFailed?: string;
     validationRegex?: RegExp;
-};
-export declare type IState = {
+}
+export interface IState {
     password: string;
     moveData: {
         x: number;
         y: number;
     };
-    showError: boolean;
+    showError?: boolean;
     textButtonSelected: string;
     colorDelete: string;
-    attemptFailed: boolean;
-    changeScreen: boolean;
-};
+    attemptFailed?: boolean;
+    changeScreen?: boolean;
+}
 export declare enum PinStatus {
     choose = "choose",
     confirm = "confirm",
-    enter = "enter",
+    enter = "enter"
 }
 declare class PinCode extends React.PureComponent<IProps, IState> {
+    static defaultProps: Partial<IProps>;
     private readonly _circleSizeEmpty;
     private readonly _circleSizeFull;
     constructor(props: IProps);
@@ -94,8 +94,8 @@ declare class PinCode extends React.PureComponent<IProps, IState> {
     showError(isErrorValidation?: boolean): Promise<void>;
     renderCirclePassword: () => JSX.Element;
     renderButtonDelete: (opacity: number) => JSX.Element;
-    renderTitle: (colorTitle: string, opacityTitle: number, attemptFailed: boolean, showError: boolean) => JSX.Element;
-    renderSubtitle: (colorTitle: string, opacityTitle: number, attemptFailed: boolean, showError: boolean) => JSX.Element;
+    renderTitle: (colorTitle: string, opacityTitle: number, attemptFailed?: boolean, showError?: boolean) => JSX.Element;
+    renderSubtitle: (colorTitle: string, opacityTitle: number, attemptFailed?: boolean, showError?: boolean) => JSX.Element;
     render(): JSX.Element;
 }
 export default PinCode;

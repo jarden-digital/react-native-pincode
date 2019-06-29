@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { PinResultStatus } from "./src/utils";
 import * as React from "react";
 import { StyleProp, ViewStyle, TextStyle } from "react-native";
@@ -104,13 +103,14 @@ export declare type IProps = {
     touchIDSentence?: string;
     touchIDTitle?: string;
     validationRegex?: RegExp;
-    passcodeFallback?: string;
+    passcodeFallback?: boolean;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;
     pinLocked: boolean;
 };
 declare class PINCode extends React.PureComponent<IProps, IState> {
+    static defaultProps: Partial<IProps>;
     constructor(props: IProps);
     componentWillMount(): Promise<void>;
     changeInternalStatus: (status: PinResultStatus) => void;

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { PinResultStatus } from "./utils";
 import * as React from "react";
 export declare type IProps = {
@@ -34,6 +33,7 @@ export declare type IState = {
     timeDiff: number;
 };
 declare class ApplicationLocked extends React.PureComponent<IProps, IState> {
+    static defaultProps: Partial<IProps>;
     timeLocked: number;
     isUnmounted: boolean;
     constructor(props: IProps);
