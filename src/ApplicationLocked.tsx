@@ -103,7 +103,9 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
             throw "Quit application";
           }
         }}
-        style={this.props.styleButton ? this.props.styleButton : styles.button}>
+        style={this.props.styleButton ? this.props.styleButton : styles.button}
+        accessible
+        accessibilityLabel={this.props.textButton}>
         <Text
           style={
             this.props.styleTextButton

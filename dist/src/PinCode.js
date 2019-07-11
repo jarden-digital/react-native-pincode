@@ -98,7 +98,7 @@ class PinCode extends React.PureComponent {
                     ? this.props.numbersButtonOverlayColor
                     : colors_1.colors.turquoise, disabled: disabled, onShowUnderlay: () => this.setState({ textButtonSelected: text }), onHideUnderlay: () => this.setState({ textButtonSelected: "" }), onPress: () => {
                     this.onPressButtonNumber(text);
-                } },
+                }, accessible: true, accessibilityLabel: text },
                 React.createElement(react_native_1.Text, { style: [
                         this.props.styleTextButton
                             ? this.props.styleTextButton
@@ -216,7 +216,9 @@ class PinCode extends React.PureComponent {
                         if (this.props.getCurrentLength)
                             this.props.getCurrentLength(newPass.length);
                     }
-                } },
+                }, accessible: true, accessibilityLabel: this.props.buttonDeleteText
+                    ? this.props.buttonDeleteText
+                    : textDeleteButtonDefault },
                 React.createElement(react_native_1.View, { style: this.props.styleColumnDeleteButton
                         ? this.props.styleColumnDeleteButton
                         : styles.colIcon }, this.props.customBackSpaceIcon ?
