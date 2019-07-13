@@ -21,7 +21,7 @@ class ApplicationLocked extends React.PureComponent {
                     else {
                         throw "Quit application";
                     }
-                }, style: this.props.styleButton ? this.props.styleButton : styles.button },
+                }, style: this.props.styleButton ? this.props.styleButton : styles.button, accessible: true, accessibilityLabel: this.props.textButton },
                 React.createElement(react_native_1.Text, { style: this.props.styleTextButton
                         ? this.props.styleTextButton
                         : styles.closeButtonText }, this.props.textButton)));

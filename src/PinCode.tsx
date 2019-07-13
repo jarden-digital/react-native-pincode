@@ -238,7 +238,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
             onHideUnderlay={() => this.setState({ textButtonSelected: "" })}
             onPress={() => {
               this.onPressButtonNumber(text);
-            }}>
+            }}
+            accessible
+            accessibilityLabel={text}>
             <Text
               style={[
                 this.props.styleTextButton
@@ -460,7 +462,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
             if (this.props.getCurrentLength)
               this.props.getCurrentLength(newPass.length);
           }
-        }}>
+        }}
+        accessible
+        accessibilityLabel={this.props.buttonDeleteText
+                  ? this.props.buttonDeleteText
+                  : textDeleteButtonDefault}>
         <View
           style={
             this.props.styleColumnDeleteButton
