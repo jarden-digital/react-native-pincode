@@ -1,20 +1,15 @@
-import { colors } from "./design/colors";
-import { grid } from "./design/grid";
+import {colors} from "./design/colors";
+import {grid} from "./design/grid";
 import delay from "./delay";
-import { PinResultStatus } from "./utils";
+import {PinResultStatus} from "./utils";
 
 import AsyncStorage from "@react-native-community/async-storage";
-import { easeLinear } from "d3-ease";
+import {easeLinear} from "d3-ease";
 import * as React from "react";
 import Animate from "react-move/Animate";
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  Platform
-} from "react-native";
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import time, {TimeType} from "./time";
 
 export type IProps = {
   buttonComponent?: any
@@ -41,6 +36,7 @@ export type IProps = {
   textSubDescription?: string
   textTitle?: string
   timePinLockedAsyncStorageName: string
+  timeType: TimeType
   timeToLock: number
   timerComponent?: any
   titleComponent?: any
@@ -74,7 +70,7 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
   }
 
   async timer() {
-    const timeDiff = +new Date(this.timeLocked) - +new Date();
+    const timeDiff = +new Date(this.timeLocked) - +await time(this.props.timeType);
     this.setState({ timeDiff: Math.max(0, timeDiff) });
     await delay(1000);
     if (timeDiff < 1000) {

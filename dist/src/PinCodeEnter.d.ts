@@ -3,6 +3,7 @@ import { PinStatus } from './PinCode';
 import { PinResultStatus } from './utils';
 import * as React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import { TimeType } from "./time";
 /**
  * Pin Code Enter PIN Page
  */
@@ -68,6 +69,7 @@ export declare type IProps = {
     textPasswordVisibleFamily?: string;
     textPasswordVisibleSize?: number;
     timePinLockedAsyncStorageName: string;
+    timeType: TimeType;
     title: string;
     titleAttemptFailed?: string;
     titleComponent: any;

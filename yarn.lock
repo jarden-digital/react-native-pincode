@@ -4259,6 +4259,11 @@ nth-check@~1.0.1:
   dependencies:
     boolbase "~1.0.0"
 
+ntp-client@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/ntp-client/-/ntp-client-0.5.3.tgz#03c0c8da67e3f4997da083d4682dcce0d9208a35"
+  integrity sha1-A8DI2mfj9Jl9oIPUaC3M4NkgijU=
+
 number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"

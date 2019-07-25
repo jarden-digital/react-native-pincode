@@ -2,7 +2,8 @@
 /// <reference types="react" />
 import { PinResultStatus } from "./src/utils";
 import * as React from "react";
-import { StyleProp, ViewStyle, TextStyle } from "react-native";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import { TimeType } from "./src/time";
 export declare type IProps = {
     bottomLeftComponent?: any;
     buttonComponentLockedPage?: any;
@@ -92,6 +93,7 @@ export declare type IProps = {
     textTitleLockedPage?: string;
     timeLocked?: number;
     timePinLockedAsyncStorageName?: string;
+    timeType?: TimeType;
     timerComponentLockedPage?: any;
     titleAttemptFailed?: string;
     titleChoose?: string;

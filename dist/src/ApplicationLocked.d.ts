@@ -1,6 +1,7 @@
 /// <reference types="react" />
 import { PinResultStatus } from "./utils";
 import * as React from "react";
+import { TimeType } from "./time";
 export declare type IProps = {
     buttonComponent?: any;
     changeStatus: (status: PinResultStatus) => void;
@@ -26,6 +27,7 @@ export declare type IProps = {
     textSubDescription?: string;
     textTitle?: string;
     timePinLockedAsyncStorageName: string;
+    timeType: TimeType;
     timeToLock: number;
     timerComponent?: any;
     titleComponent?: any;

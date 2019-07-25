@@ -48,6 +48,7 @@
     "@react-native-community/async-storage": "^1.2.2",
     "d3-ease": "^1.0.3",
     "lodash": "^4.17.5",
+    "ntp-client": "^0.5.3",
     "react-move": "^2.7.0",
     "react-native-easy-grid": "^0.2.0",
     "react-native-keychain": "^3.1.3",

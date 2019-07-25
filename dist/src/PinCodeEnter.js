@@ -8,6 +8,7 @@ const React = require("react");
 const react_native_1 = require("react-native");
 const Keychain = require("react-native-keychain");
 const react_native_touch_id_1 = require("react-native-touch-id");
+const time_1 = require("./time");
 class PinCodeEnter extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -39,7 +40,7 @@ class PinCodeEnter extends React.PureComponent {
                     pinAttempts++;
                     if (+pinAttempts >= this.props.maxAttempts &&
                         !this.props.disableLockScreen) {
-                        await async_storage_1.default.setItem(this.props.timePinLockedAsyncStorageName, new Date().toISOString());
+                        await async_storage_1.default.setItem(this.props.timePinLockedAsyncStorageName, (await time_1.default(this.props.timeType)).toISOString());
                         this.setState({ locked: true, pinCodeStatus: utils_1.PinResultStatus.locked });
                         this.props.changeInternalStatus(utils_1.PinResultStatus.locked);
                     }

@@ -1,13 +1,14 @@
 /// <reference path='./src/types.d.ts'/>
 import ApplicationLocked from "./src/ApplicationLocked";
-import { PinStatus } from "./src/PinCode";
+import {PinStatus} from "./src/PinCode";
 import PinCodeChoose from "./src/PinCodeChoose";
 import PinCodeEnter from "./src/PinCodeEnter";
-import { hasPinCode, deletePinCode, resetInternalStates, PinResultStatus } from "./src/utils";
+import {deletePinCode, hasPinCode, PinResultStatus, resetInternalStates} from "./src/utils";
 
 import AsyncStorage from '@react-native-community/async-storage'
 import * as React from "react";
-import { View, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
+import {StyleProp, StyleSheet, TextStyle, View, ViewStyle} from "react-native";
+import {TimeType} from "./src/time";
 
 export type IProps = {
   bottomLeftComponent?: any
@@ -98,6 +99,7 @@ export type IProps = {
   textTitleLockedPage?: string
   timeLocked?: number
   timePinLockedAsyncStorageName?: string
+  timeType?: TimeType
   timerComponentLockedPage?: any
   titleAttemptFailed?: string
   titleChoose?: string
@@ -176,6 +178,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
         timePinLockedAsyncStorageName={this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault}
         timerComponent={this.props.timerComponentLockedPage || null}
         timeToLock={this.props.timeLocked || 300000}
+        timeType={this.props.timeType || TimeType.device}
         titleComponent={this.props.titleComponentLockedPage || undefined}/>
     );
   };
@@ -311,6 +314,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleComponent={this.props.titleComponent}
           titleConfirmFailed={this.props.titleConfirmFailed}
           timePinLockedAsyncStorageName={this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault}
+          timeType={this.props.timeType || TimeType.device}
           touchIDDisabled={this.props.touchIDDisabled || touchIDDisabledDefault}
           touchIDSentence={this.props.touchIDSentence || "To unlock your application"}
           touchIDTitle={this.props.touchIDTitle || touchIDTitleDefault}

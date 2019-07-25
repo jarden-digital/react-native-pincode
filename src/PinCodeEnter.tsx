@@ -13,6 +13,7 @@ import {
 } from 'react-native'
 import * as Keychain from 'react-native-keychain'
 import TouchID from 'react-native-touch-id'
+import time, {TimeType} from "./time";
 
 /**
  * Pin Code Enter PIN Page
@@ -80,6 +81,7 @@ export type IProps = {
   textPasswordVisibleFamily?: string
   textPasswordVisibleSize?: number
   timePinLockedAsyncStorageName: string
+  timeType: TimeType
   title: string
   titleAttemptFailed?: string
   titleComponent: any
@@ -173,7 +175,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
         ) {
           await AsyncStorage.setItem(
             this.props.timePinLockedAsyncStorageName,
-            new Date().toISOString()
+            (await time(this.props.timeType)).toISOString()
           )
           this.setState({ locked: true, pinCodeStatus: PinResultStatus.locked })
           this.props.changeInternalStatus(PinResultStatus.locked)
@@ -203,7 +205,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       fallbackLabel: 'Show Passcode',
       unifiedErrors: false,
       passcodeFallback: true
-    }
+    };
     try {
       await TouchID.authenticate(
         this.props.touchIDSentence,

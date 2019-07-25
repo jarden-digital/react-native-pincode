@@ -10,6 +10,7 @@ const React = require("react");
 const Animate_1 = require("react-move/Animate");
 const react_native_1 = require("react-native");
 const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
+const time_1 = require("./time");
 class ApplicationLocked extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -100,7 +101,7 @@ class ApplicationLocked extends React.PureComponent {
         });
     }
     async timer() {
-        const timeDiff = +new Date(this.timeLocked) - +new Date();
+        const timeDiff = +new Date(this.timeLocked) - +await time_1.default(this.props.timeType);
         this.setState({ timeDiff: Math.max(0, timeDiff) });
         await delay_1.default(1000);
         if (timeDiff < 1000) {
