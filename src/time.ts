@@ -1,5 +1,5 @@
 // @ts-ignore
-import ntpClient from 'react-native-ntp-client';
+import * as ntpClient from 'react-native-ntp-client';
 
 export enum TimeType {
     device = "device",
