@@ -9,6 +9,8 @@ Using:
 * _**[react-native-touch-id](https://github.com/naoufal/react-native-touch-id)**_ to authenticate users with FaceID/TouchID
 * _**[react-move](https://github.com/react-tools/react-move)**_ for animations
 * _**[react-native-vector-icons](https://github.com/oblador/react-native-vector-icons)**_ to use the material icons
+* _**[react-native-ntp-client](https://github.com/artem-russkikh/react-native-ntp-client)**_ to use ntp time (provides security, blocks brute force)
+* _**[react-native-udp](https://github.com/tradle/react-native-udp)**_ adapter for [dgram](https://nodejs.org/api/dgram.html)
 
 ## Installation
 
@@ -21,6 +23,12 @@ yarn add @haskkor/react-native-pincode
 ```
 
 **Please note that:**
+
+NTP Client uses the [react-native-udp](https://github.com/tradle/react-native-udp) library which has to be linked
+
+```
+react-native link react-native-udp
+```
 
 Async storage uses the [react-native-async-storage](https://github.com/react-native-community/react-native-async-storage) library which has to be linked
 
@@ -141,6 +149,7 @@ await resetPinCodeInternalStates()
 |**`timeLocked`**|Number of milliseconds where the application should be locked after `maxAttempts` failed attempts from the user|`300000` (5 minutes)|`false`|`number`|
 |**`timePinLockedAsyncStorageName`**|String to be used as a key in AsyncStorage to store the time when the user locks the application|`timePinLockedRNPin`|`false`|`string`|
 |**`timerComponentLockedPage`**|Component to be used on the application locked page to indicates the remaining locked time to the user|A Text component displaying a timer with the remaining locked time on the application locked page|`false`|`any`|
+|**`timeType`**| Time type to be used to determine from what place would date be taken to save the time of failed code and then to diff two times between each other|`device` - uses device time|`false`|`TimeType` enum|
 |**`titleAttemptFailed`**|String used as a title on the PIN enter page when the user enters a wrong PIN code|`Incorrect PIN Code`|`false`|`string`|
 |**`titleChoose`**|String used as a title on the PIN choose page|`1 - Enter a PIN Code`|`false`|`string`|
 |**`titleComponent`**|Component to be used as a title on all the PIN code pages|Light grey Text component|`false`|`any`|
@@ -204,6 +213,12 @@ await resetPinCodeInternalStates()
 |**`stylePinCodeTextSubtitle`**|Title of the PinCode file|`fontSize: 20, fontWeight: '200', lineHeight: grid.unit * 2.5`|`StyleProp<TextStyle>`|
 |**`stylePinCodeTextTitle`**|Subtitle of the PinCode file|`fontSize: grid.unit, fontWeight: '200', textAlign: 'center'`|`StyleProp<TextStyle>`|
 |**`stylePinCodeViewTitle`**|View of the title of the PinCode file|`flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: grid.unit * 4`|`StyleProp<TextStyle>`|
+
+### Option enum types
+
+| Enum | Values |
+| --- | --- |
+| TimeType | `device`,`ntp`,`ntpForce` |
 
 ## [Changelog](https://github.com/Haskkor/react-native-pincode/blob/master/CHANGELOG.md)
 
