@@ -1,5 +1,5 @@
 {
-  "name": "@haskkor/react-native-pincode",
+  "name": "@kenetto/react-native-pincode",
   "version": "1.21.1",
   "description": "React native PIN code component",
   "main": "dist/index.js",
@@ -17,14 +17,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Haskkor/react-native-pincode.git"
+    "url": "git+https://github.com/kenettotech/react-native-pincode.git"
   },
-  "author": "Jeremy Farnault",
-  "license": "MIT",
+  "author": "KNT",
   "bugs": {
-    "url": "https://github.com/Haskkor/react-native-pincode/issues"
+    "url": "https://github.com/kenettotech/react-native-pincode/issues"
   },
-  "homepage": "https://github.com/Haskkor/react-native-pincode#readme",
+  "homepage": "https://github.com/kenettotech/react-native-pincode#readme",
   "devDependencies": {
     "@types/d3-ease": "^1.0.7",
     "@types/lodash": "^4.14.104",
@@ -57,5 +56,8 @@
   "peerDependencies": {
     "react": "*",
     "react-native": "*"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
