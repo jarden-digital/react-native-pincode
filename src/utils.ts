@@ -2,10 +2,10 @@ import AsyncStorage from '@react-native-community/async-storage'
 import * as Keychain from 'react-native-keychain'
 
 export enum PinResultStatus {
-  initial = "initial",
-  success = "success",
-  failure = "failure",
-  locked = "locked"
+  initial = 'initial',
+  success = 'success',
+  failure = 'failure',
+  locked = 'locked'
 }
 
 export const hasPinCode = async (serviceName: string) => {

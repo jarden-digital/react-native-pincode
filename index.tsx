@@ -188,7 +188,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
                     this.state.internalPinStatus === PinResultStatus.locked ||
                     this.state.pinLocked) &&
                 (this.props.lockedPage ? this.props.lockedPage() : this.renderLockedPage())}
-                {status === PinStatus.choose && pinStatus !== PinResultStatus.locked &&
+                {status === PinStatus.choose && this.state.internalPinStatus !== PinResultStatus.locked &&
                 <PinCodeChoose
                   buttonDeleteComponent={this.props.buttonDeleteComponent}
                   buttonDeleteText={this.props.buttonDeleteText}
@@ -248,7 +248,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
                   titleValidationFailed={this.props.titleValidationFailed}
                   validationRegex={this.props.validationRegex}
                 />}
-                {status === PinStatus.enter && pinStatus !== PinResultStatus.locked &&
+                {status === PinStatus.enter && this.state.internalPinStatus !== PinResultStatus.locked &&
                 <PinCodeEnter
                   buttonDeleteComponent={this.props.buttonDeleteComponent}
                   buttonDeleteText={this.props.buttonDeleteText}
