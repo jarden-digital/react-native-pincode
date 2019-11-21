@@ -1,11 +1,11 @@
-import delay from "./delay";
-import { colors } from "./design/colors";
-import { grid } from "./design/grid";
+import delay from './delay'
+import { colors } from './design/colors'
+import { grid } from './design/grid'
 
-import { easeLinear } from "d3-ease";
-import * as _ from "lodash";
-import * as React from "react";
-import Animate from "react-move/Animate";
+import { easeLinear } from 'd3-ease'
+import * as _ from 'lodash'
+import * as React from 'react'
+import Animate from 'react-move/Animate'
 import {
   Dimensions,
   StyleProp,
@@ -16,9 +16,9 @@ import {
   Vibration,
   View,
   ViewStyle
-} from "react-native";
-import { Col, Row, Grid } from "react-native-easy-grid";
-import Icon from "react-native-vector-icons/MaterialIcons";
+} from 'react-native'
+import { Col, Row, Grid } from 'react-native-easy-grid'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 /**
  * Pin Code Component
@@ -41,7 +41,7 @@ export type IProps = {
   numbersButtonOverlayColor?: string
   passwordComponent?: any
   passwordLength: number
-  pinCodeStatus?: "initial" | "success" | "failure" | "locked"
+  pinCodeStatus?: 'initial' | 'success' | 'failure' | 'locked'
   pinCodeVisible?: boolean
   previousPin?: string
   sentenceTitle: string
@@ -94,82 +94,86 @@ export type IState = {
 }
 
 export enum PinStatus {
-  choose = "choose",
-  confirm = "confirm",
-  enter = "enter"
+  choose = 'choose',
+  confirm = 'confirm',
+  enter = 'enter'
 }
 
-const textDeleteButtonDefault = "delete";
+const delayAfterError: number = 1500
+
+const delayAfterFailedAttempt: number = delayAfterError
+
+const textDeleteButtonDefault = 'delete'
 
 class PinCode extends React.PureComponent<IProps, IState> {
-  private readonly _circleSizeEmpty: number;
-  private readonly _circleSizeFull: number;
+  private readonly _circleSizeEmpty: number
+  private readonly _circleSizeFull: number
 
   constructor(props: IProps) {
-    super(props);
+    super(props)
     this.state = {
-      password: "",
+      password: '',
       moveData: { x: 0, y: 0 },
       showError: false,
-      textButtonSelected: "",
+      textButtonSelected: '',
       colorDelete: this.props.styleDeleteButtonColorHideUnderlay
         ? this.props.styleDeleteButtonColorHideUnderlay
-        : "rgb(211, 213, 218)",
+        : 'rgb(211, 213, 218)',
       attemptFailed: false,
       changeScreen: false
-    };
-    this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4;
+    }
+    this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4
     this._circleSizeFull =
-      this.props.styleCircleSizeFull || (this.props.pinCodeVisible ? 6 : 8);
+      this.props.styleCircleSizeFull || (this.props.pinCodeVisible ? 6 : 8)
   }
 
   componentDidMount() {
-    if (this.props.getCurrentLength) this.props.getCurrentLength(0);
+    if (this.props.getCurrentLength) this.props.getCurrentLength(0)
   }
 
   componentDidUpdate(prevProps: Readonly<IProps>): void {
     if (
-      prevProps.pinCodeStatus !== "failure" &&
-      this.props.pinCodeStatus === "failure"
+      prevProps.pinCodeStatus !== 'failure' &&
+      this.props.pinCodeStatus === 'failure'
     ) {
-      this.failedAttempt();
+      this.failedAttempt()
     }
     if (
-      prevProps.pinCodeStatus !== "locked" &&
-      this.props.pinCodeStatus === "locked"
+      prevProps.pinCodeStatus !== 'locked' &&
+      this.props.pinCodeStatus === 'locked'
     ) {
-      this.setState({ password: "" });
+      this.setState({ password: '' })
     }
   }
 
   failedAttempt = async () => {
-    await delay(300);
+    await delay(300)
     this.setState({
       showError: true,
       attemptFailed: true,
       changeScreen: false
-    });
-    this.doShake();
-    await delay(3000);
-    this.newAttempt();
-  };
+    })
+    this.doShake()
+    await delay(delayAfterFailedAttempt)
+    this.newAttempt()
+  }
 
   newAttempt = async () => {
-    this.setState({ changeScreen: true });
-    await delay(200);
+    this.setState({ changeScreen: true })
+    await delay(200)
     this.setState({
       changeScreen: false,
       showError: false,
       attemptFailed: false,
-      password: ""
-    });
-  };
+      password: ''
+    })
+  }
 
   onPressButtonNumber = async (text: string) => {
-    const currentPassword = this.state.password + text;
-    this.setState({ password: currentPassword });
+    const currentPassword = this.state.password + text
+    this.setState({ password: currentPassword })
     if (this.props.getCurrentLength)
-      this.props.getCurrentLength(currentPassword.length);
+      this.props.getCurrentLength(currentPassword.length)
     if (currentPassword.length === this.props.passwordLength) {
       switch (this.props.status) {
         case PinStatus.choose:
@@ -177,33 +181,33 @@ class PinCode extends React.PureComponent<IProps, IState> {
             this.props.validationRegex &&
             this.props.validationRegex.test(currentPassword)
           ) {
-            this.showError(true);
+            this.showError(true)
           } else {
-            this.endProcess(currentPassword);
+            this.endProcess(currentPassword)
           }
-          break;
+          break
         case PinStatus.confirm:
           if (currentPassword !== this.props.previousPin) {
-            this.showError();
+            this.showError()
           } else {
-            this.endProcess(currentPassword);
+            this.endProcess(currentPassword)
           }
-          break;
+          break
         case PinStatus.enter:
-          this.props.endProcess(currentPassword);
-          await delay(300);
-          break;
+          this.props.endProcess(currentPassword)
+          await delay(300)
+          break
         default:
-          break;
+          break
       }
     }
-  };
+  }
 
   renderButtonNumber = (text: string) => {
     const disabled =
       (this.state.password.length === this.props.passwordLength ||
         this.state.showError) &&
-      !this.state.attemptFailed;
+      !this.state.attemptFailed
     return (
       <Animate
         show={true}
@@ -225,7 +229,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
               {
                 backgroundColor: this.props.colorCircleButtons
                   ? this.props.colorCircleButtons
-                  : "rgb(242, 245, 251)"
+                  : 'rgb(242, 245, 251)'
               }
             ]}
             underlayColor={
@@ -235,9 +239,9 @@ class PinCode extends React.PureComponent<IProps, IState> {
             }
             disabled={disabled}
             onShowUnderlay={() => this.setState({ textButtonSelected: text })}
-            onHideUnderlay={() => this.setState({ textButtonSelected: "" })}
+            onHideUnderlay={() => this.setState({ textButtonSelected: '' })}
             onPress={() => {
-              this.onPressButtonNumber(text);
+              this.onPressButtonNumber(text)
             }}
             accessible
             accessibilityLabel={text}>
@@ -263,51 +267,51 @@ class PinCode extends React.PureComponent<IProps, IState> {
           </TouchableHighlight>
         )}
       </Animate>
-    );
-  };
+    )
+  }
 
   endProcess = (pwd: string) => {
     setTimeout(() => {
-      this.setState({ changeScreen: true });
+      this.setState({ changeScreen: true })
       setTimeout(() => {
-        this.props.endProcess(pwd);
-      }, 500);
-    }, 400);
-  };
+        this.props.endProcess(pwd)
+      }, 500)
+    }, 400)
+  }
 
   async doShake() {
-    const duration = 70;
-    Vibration.vibrate(500, false);
-    const length = Dimensions.get("window").width / 3;
-    await delay(duration);
-    this.setState({ moveData: { x: length, y: 0 } });
-    await delay(duration);
-    this.setState({ moveData: { x: -length, y: 0 } });
-    await delay(duration);
-    this.setState({ moveData: { x: length / 2, y: 0 } });
-    await delay(duration);
-    this.setState({ moveData: { x: -length / 2, y: 0 } });
-    await delay(duration);
-    this.setState({ moveData: { x: length / 4, y: 0 } });
-    await delay(duration);
-    this.setState({ moveData: { x: -length / 4, y: 0 } });
-    await delay(duration);
-    this.setState({ moveData: { x: 0, y: 0 } });
-    if (this.props.getCurrentLength) this.props.getCurrentLength(0);
+    const duration = 70
+    Vibration.vibrate(500, false)
+    const length = Dimensions.get('window').width / 3
+    await delay(duration)
+    this.setState({ moveData: { x: length, y: 0 } })
+    await delay(duration)
+    this.setState({ moveData: { x: -length, y: 0 } })
+    await delay(duration)
+    this.setState({ moveData: { x: length / 2, y: 0 } })
+    await delay(duration)
+    this.setState({ moveData: { x: -length / 2, y: 0 } })
+    await delay(duration)
+    this.setState({ moveData: { x: length / 4, y: 0 } })
+    await delay(duration)
+    this.setState({ moveData: { x: -length / 4, y: 0 } })
+    await delay(duration)
+    this.setState({ moveData: { x: 0, y: 0 } })
+    if (this.props.getCurrentLength) this.props.getCurrentLength(0)
   }
 
   async showError(isErrorValidation = false) {
-    this.setState({ changeScreen: true });
-    await delay(300);
-    this.setState({ showError: true, changeScreen: false });
-    this.doShake();
-    await delay(3000);
-    this.setState({ changeScreen: true });
-    await delay(200);
-    this.setState({ showError: false, password: "" });
-    await delay(200);
-    this.props.endProcess(this.state.password, isErrorValidation);
-    if (isErrorValidation) this.setState({ changeScreen: false });
+    this.setState({ changeScreen: true })
+    await delay(300)
+    this.setState({ showError: true, changeScreen: false })
+    this.doShake()
+    await delay(delayAfterError)
+    this.setState({ changeScreen: true })
+    await delay(200)
+    this.setState({ showError: false, password: '' })
+    await delay(200)
+    this.props.endProcess(this.state.password, isErrorValidation)
+    if (isErrorValidation) this.setState({ changeScreen: false })
   }
 
   renderCirclePassword = () => {
@@ -317,10 +321,10 @@ class PinCode extends React.PureComponent<IProps, IState> {
       showError,
       changeScreen,
       attemptFailed
-    } = this.state;
-    const colorPwdErr = this.props.colorPasswordError || colors.alert;
-    const colorPwd = this.props.colorPassword || colors.turquoise;
-    const colorPwdEmp = this.props.colorPasswordEmpty || colorPwd;
+    } = this.state
+    const colorPwdErr = this.props.colorPasswordError || colors.alert
+    const colorPwd = this.props.colorPassword || colors.turquoise
+    const colorPwdEmp = this.props.colorPasswordEmpty || colorPwd
     return (
       <View
         style={
@@ -331,7 +335,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
         {_.range(this.props.passwordLength).map((val: number) => {
           const lengthSup =
             ((password.length >= val + 1 && !changeScreen) || showError) &&
-            !attemptFailed;
+            !attemptFailed
           return (
             <Animate
               key={val}
@@ -359,7 +363,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 color: [
                   showError
                     ? colorPwdErr
-                    : (lengthSup && password.length > 0)
+                    : lengthSup && password.length > 0
                     ? colorPwd
                     : colorPwdEmp
                 ],
@@ -395,16 +399,19 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   {((!this.props.pinCodeVisible ||
                     (this.props.pinCodeVisible && !lengthSup)) && (
                     <View
-                      style={[{
-                        left: x,
-                        height: height,
-                        width: width,
-                        opacity: opacity,
-                        borderRadius: borderRadius,
-                        marginLeft: marginLeft,
-                        marginRight: marginRight,
-                        backgroundColor: color
-                      }, this.props.stylePinCodeCircle]}
+                      style={[
+                        {
+                          left: x,
+                          height: height,
+                          width: width,
+                          opacity: opacity,
+                          borderRadius: borderRadius,
+                          marginLeft: marginLeft,
+                          marginRight: marginRight,
+                          backgroundColor: color
+                        },
+                        this.props.stylePinCodeCircle
+                      ]}
                     />
                   )) || (
                     <View
@@ -419,7 +426,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                           color: color,
                           fontFamily:
                             this.props.textPasswordVisibleFamily ||
-                            "system font",
+                            'system font',
                           fontSize: this.props.textPasswordVisibleSize || 22
                         }}>
                         {this.state.password[val]}
@@ -429,23 +436,23 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 </View>
               )}
             </Animate>
-          );
+          )
         })}
       </View>
-    );
-  };
+    )
+  }
 
   renderButtonDelete = (opacity: number) => {
     return (
       <TouchableHighlight
-        activeOpacity={this.props.customBackSpaceIcon ? .5 : 1}
+        activeOpacity={this.props.customBackSpaceIcon ? 0.5 : 1}
         disabled={this.state.password.length === 0}
         underlayColor="transparent"
         onHideUnderlay={() =>
           this.setState({
             colorDelete: this.props.styleDeleteButtonColorHideUnderlay
               ? this.props.styleDeleteButtonColorHideUnderlay
-              : "rgb(211, 213, 218)"
+              : 'rgb(211, 213, 218)'
           })
         }
         onShowUnderlay={() =>
@@ -457,31 +464,34 @@ class PinCode extends React.PureComponent<IProps, IState> {
         }
         onPress={() => {
           if (this.state.password.length > 0) {
-            const newPass = this.state.password.slice(0, -1);
-            this.setState({ password: newPass });
+            const newPass = this.state.password.slice(0, -1)
+            this.setState({ password: newPass })
             if (this.props.getCurrentLength)
-              this.props.getCurrentLength(newPass.length);
+              this.props.getCurrentLength(newPass.length)
           }
         }}
         accessible
-        accessibilityLabel={this.props.buttonDeleteText
-                  ? this.props.buttonDeleteText
-                  : textDeleteButtonDefault}>
+        accessibilityLabel={
+          this.props.buttonDeleteText
+            ? this.props.buttonDeleteText
+            : textDeleteButtonDefault
+        }>
         <View
           style={
             this.props.styleColumnDeleteButton
               ? this.props.styleColumnDeleteButton
               : styles.colIcon
           }>
-          {this.props.customBackSpaceIcon ?
-            this.props.customBackSpaceIcon :
+          {this.props.customBackSpaceIcon ? (
+            this.props.customBackSpaceIcon
+          ) : (
             <View>
               {!this.props.iconButtonDeleteDisabled && (
                 <Icon
                   name={
                     this.props.styleDeleteButtonIcon
                       ? this.props.styleDeleteButtonIcon
-                      : "backspace"
+                      : 'backspace'
                   }
                   size={
                     this.props.styleDeleteButtonSize
@@ -504,11 +514,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   : textDeleteButtonDefault}
               </Text>
             </View>
-          }
+          )}
         </View>
       </TouchableHighlight>
-    );
-  };
+    )
+  }
 
   renderTitle = (
     colorTitle: string,
@@ -529,8 +539,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
         (showError && this.props.titleValidationFailed) ||
         this.props.sentenceTitle}
       </Text>
-    );
-  };
+    )
+  }
 
   renderSubtitle = (
     colorTitle: string,
@@ -550,11 +560,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
           ? this.props.subtitleError
           : this.props.subtitle}
       </Text>
-    );
-  };
+    )
+  }
 
   render() {
-    const { password, showError, attemptFailed, changeScreen } = this.state;
+    const { password, showError, attemptFailed, changeScreen } = this.state
     return (
       <View
         style={
@@ -667,7 +677,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                     )
                     : this.renderButtonNumber(i.toString())}
                 </Col>
-              );
+              )
             })}
           </Row>
           <Row
@@ -692,7 +702,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                     )
                     : this.renderButtonNumber(i.toString())}
                 </Col>
-              );
+              )
             })}
           </Row>
           <Row
@@ -717,7 +727,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                     )
                     : this.renderButtonNumber(i.toString())}
                 </Col>
-              );
+              )
             })}
           </Row>
           <Row
@@ -742,10 +752,10 @@ class PinCode extends React.PureComponent<IProps, IState> {
               }>
               {this.props.buttonNumberComponent
                 ? this.props.buttonNumberComponent(
-                  "0",
+                  '0',
                   this.onPressButtonNumber
                 )
-                : this.renderButtonNumber("0")}
+                : this.renderButtonNumber('0')}
             </Col>
             <Col
               style={
@@ -771,10 +781,10 @@ class PinCode extends React.PureComponent<IProps, IState> {
                   this.props.buttonDeleteComponent
                     ? this.props.buttonDeleteComponent(() => {
                       if (this.state.password.length > 0) {
-                        const newPass = this.state.password.slice(0, -1);
-                        this.setState({ password: newPass });
+                        const newPass = this.state.password.slice(0, -1)
+                        this.setState({ password: newPass })
                         if (this.props.getCurrentLength)
-                          this.props.getCurrentLength(newPass.length);
+                          this.props.getCurrentLength(newPass.length)
                       }
                     })
                     : this.renderButtonDelete(opacity)
@@ -784,33 +794,33 @@ class PinCode extends React.PureComponent<IProps, IState> {
           </Row>
         </Grid>
       </View>
-    );
+    )
   }
 }
 
-export default PinCode;
+export default PinCode
 
 let styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%"
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%'
   },
   viewTitle: {
-    flexDirection: "column",
-    justifyContent: "flex-end",
-    alignItems: "center",
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
     flex: 2
   },
   row: {
-    alignItems: "center",
+    alignItems: 'center',
     height: grid.unit * 5.5
   },
   colButtonCircle: {
     marginLeft: grid.unit / 2,
     marginRight: grid.unit / 2,
-    alignItems: "center",
+    alignItems: 'center',
     width: grid.unit * 4,
     height: grid.unit * 4
   },
@@ -821,54 +831,54 @@ let styles = StyleSheet.create({
     height: grid.unit * 4
   },
   colIcon: {
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column"
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
   },
   text: {
     fontSize: grid.unit * 2,
-    fontWeight: "200"
+    fontWeight: '200'
   },
   buttonCircle: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     width: grid.unit * 4,
     height: grid.unit * 4,
-    backgroundColor: "rgb(242, 245, 251)",
+    backgroundColor: 'rgb(242, 245, 251)',
     borderRadius: grid.unit * 2
   },
   textTitle: {
     fontSize: 20,
-    fontWeight: "200",
+    fontWeight: '200',
     lineHeight: grid.unit * 2.5
   },
   textSubtitle: {
     fontSize: grid.unit,
-    fontWeight: "200",
-    textAlign: "center"
+    fontWeight: '200',
+    textAlign: 'center'
   },
   flexCirclePassword: {
     flex: 2,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   topViewCirclePassword: {
-    flexDirection: "row",
-    height: "auto",
-    justifyContent: "center",
-    alignItems: "center"
+    flexDirection: 'row',
+    height: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   viewCircles: {
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   textDeleteButton: {
-    fontWeight: "200",
+    fontWeight: '200',
     marginTop: 5
   },
   grid: {
-    width: "100%",
+    width: '100%',
     flex: 7
   }
-});
+})
