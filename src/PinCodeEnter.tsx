@@ -4,13 +4,7 @@ import { PinResultStatus } from './utils'
 
 import AsyncStorage from '@react-native-community/async-storage'
 import * as React from 'react'
-import {
-  StyleProp,
-  StyleSheet,
-  TextStyle,
-  View,
-  ViewStyle
-} from 'react-native'
+import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
 import * as Keychain from 'react-native-keychain'
 import TouchID from 'react-native-touch-id'
 
@@ -175,7 +169,10 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
             this.props.timePinLockedAsyncStorageName,
             new Date().toISOString()
           )
-          this.setState({ locked: true, pinCodeStatus: PinResultStatus.locked })
+          this.setState({
+            locked: true,
+            pinCodeStatus: PinResultStatus.locked
+          })
           this.props.changeInternalStatus(PinResultStatus.locked)
         } else {
           await AsyncStorage.setItem(
