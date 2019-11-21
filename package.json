@@ -10,7 +10,7 @@
     "compile": "npm run build",
     "addlocal": "yarn add file:./local_modules/react-native-pincode",
     "test": "jest",
-    "pretty": "prettier --single-quote --no-semi --jsx-bracket-same-line --write \"src/**/*.{ts, tsx}\""
+    "pretty": "prettier --write \"src/**\""
   },
   "jest": {
     "preset": "react-native"
@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/kenettotech/react-native-pincode.git"
   },
-  "author": "KNT",
+  "author": "Kenetto",
   "bugs": {
     "url": "https://github.com/kenettotech/react-native-pincode/issues"
   },
@@ -35,7 +35,7 @@
     "enzyme": "3.3.0",
     "jest": "23.3",
     "jest-serializer-enzyme": "1.0.0",
-    "prettier": "1.13.7",
+    "prettier": "1.19.1",
     "react": "16.2.0",
     "react-addons-test-utils": "15.6.2",
     "react-dom": "16.4.1",
