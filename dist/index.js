@@ -30,10 +30,10 @@ class PINCode extends React.PureComponent {
         this.state = { internalPinStatus: utils_1.PinResultStatus.initial, pinLocked: false };
         this.changeInternalStatus = this.changeInternalStatus.bind(this);
         this.renderLockedPage = this.renderLockedPage.bind(this);
-    }
-    async componentWillMount() {
-        await async_storage_1.default.getItem(this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault).then((val) => {
+        async_storage_1.default.getItem(this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault).then((val) => {
             this.setState({ pinLocked: !!val });
+        }).catch(error => {
+            console.log('PINCode: ', error);
         });
     }
     render() {

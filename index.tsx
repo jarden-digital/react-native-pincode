@@ -135,12 +135,11 @@ class PINCode extends React.PureComponent<IProps, IState> {
     this.state = { internalPinStatus: PinResultStatus.initial, pinLocked: false };
     this.changeInternalStatus = this.changeInternalStatus.bind(this);
     this.renderLockedPage = this.renderLockedPage.bind(this);
-  }
-
-  async componentWillMount() {
-    await AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault).then((val) => {
-      this.setState({ pinLocked: !!val });
-    });
+      AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault).then((val) => {
+        this.setState({ pinLocked: !!val });
+      }).catch(error => {
+      console.log('PINCode: ', error)
+    })
   }
 
   changeInternalStatus = (status: PinResultStatus) => {

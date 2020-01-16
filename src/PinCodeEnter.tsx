@@ -108,14 +108,14 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     this.state = { pinCodeStatus: PinResultStatus.initial, locked: false }
     this.endProcess = this.endProcess.bind(this)
     this.launchTouchID = this.launchTouchID.bind(this)
-  }
-
-  async componentWillMount() {
     if (!this.props.storedPin) {
-      const result = await Keychain.getInternetCredentials(
+      Keychain.getInternetCredentials(
         this.props.pinCodeKeychainName
-      )
-      this.keyChainResult = result && result.password || undefined
+      ).then(result => {
+        this.keyChainResult = result && result.password || undefined        
+      }).catch(error => {
+        console.log('PinCodeEnter: ', error)
+      })
     }
   }
 
@@ -230,7 +230,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
 
   render() {
     const pin =
-      this.props.storedPin || (this.keyChainResult && this.keyChainResult)
+      this.props.storedPin || this.keyChainResult
     return (
       <View
         style={[

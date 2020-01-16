@@ -58,11 +58,12 @@ class PinCodeEnter extends React.PureComponent {
         this.state = { pinCodeStatus: utils_1.PinResultStatus.initial, locked: false };
         this.endProcess = this.endProcess.bind(this);
         this.launchTouchID = this.launchTouchID.bind(this);
-    }
-    async componentWillMount() {
         if (!this.props.storedPin) {
-            const result = await Keychain.getInternetCredentials(this.props.pinCodeKeychainName);
-            this.keyChainResult = result && result.password || undefined;
+            Keychain.getInternetCredentials(this.props.pinCodeKeychainName).then(result => {
+                this.keyChainResult = result && result.password || undefined;
+            }).catch(error => {
+                console.log('PinCodeEnter: ', error);
+            });
         }
     }
     componentDidMount() {
@@ -116,7 +117,7 @@ class PinCodeEnter extends React.PureComponent {
         }
     }
     render() {
-        const pin = this.props.storedPin || (this.keyChainResult && this.keyChainResult);
+        const pin = this.props.storedPin || this.keyChainResult;
         return (React.createElement(react_native_1.View, { style: [
                 styles.container,
                 this.props.styleContainer
