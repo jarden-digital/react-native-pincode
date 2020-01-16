@@ -467,9 +467,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
           }
         }}
         accessible
-        accessibilityLabel={this.props.buttonDeleteText
-                  ? this.props.buttonDeleteText
-                  : textDeleteButtonDefault}>
+        accessibilityLabel={this.props.buttonDeleteText}>
         <View
           style={[styles.colIcon, this.props.styleColumnDeleteButton]}>
           {this.props.customBackSpaceIcon ?

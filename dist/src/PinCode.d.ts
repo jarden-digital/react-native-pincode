@@ -13,7 +13,7 @@ export interface IProps {
     colorPassword: string;
     colorPasswordEmpty?: string;
     colorPasswordError: string;
-    customBackSpaceIcon?: any;
+    customBackSpaceIcon?: Function;
     emptyColumnComponent: any;
     endProcess: (pinCode: string, isErrorValidation?: boolean) => void;
     getCurrentLength?: (length: number) => void;

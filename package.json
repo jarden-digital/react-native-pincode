@@ -45,14 +45,14 @@
     "typescript": "^2.7.2"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.2.2",
+    "@react-native-community/async-storage": "^1.7.1",
     "d3-ease": "^1.0.3",
     "lodash": "^4.17.5",
     "react-move": "^2.7.0",
-    "react-native-easy-grid": "^0.2.0",
-    "react-native-keychain": "^3.1.3",
-    "react-native-touch-id": "https://github.com/naoufal/react-native-touch-id.git#83d18af151be661e54149509b062a6ad06820eab",
-    "react-native-vector-icons": "^4.5.0"
+    "react-native-easy-grid": "^0.2.2",
+    "react-native-keychain": "^4.0.5",
+    "react-native-touch-id": "^4.4.1",
+    "react-native-vector-icons": "^6.6.0"
   },
   "peerDependencies": {
     "react": "*",

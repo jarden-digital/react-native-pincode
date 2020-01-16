@@ -185,7 +185,7 @@ class PinCode extends React.PureComponent {
             })));
         };
         this.renderButtonDelete = (opacity) => {
-            return (React.createElement(react_native_1.TouchableHighlight, { activeOpacity: this.props.customBackSpaceIcon ? .5 : 1, disabled: this.state.password.length === 0, underlayColor: "transparent", onHideUnderlay: () => this.setState({
+            return (React.createElement(react_native_1.TouchableHighlight, { activeOpacity: 1, disabled: this.state.password.length === 0, underlayColor: "transparent", onHideUnderlay: () => this.setState({
                     colorDelete: this.props.styleDeleteButtonColorHideUnderlay
                 }), onShowUnderlay: () => this.setState({
                     colorDelete: this.props.styleDeleteButtonColorShowUnderlay
@@ -196,15 +196,17 @@ class PinCode extends React.PureComponent {
                         if (this.props.getCurrentLength)
                             this.props.getCurrentLength(newPass.length);
                     }
-                } },
-                React.createElement(react_native_1.View, { style: [styles.colIcon, this.props.styleColumnDeleteButton] }, this.props.customBackSpaceIcon ||
-                    React.createElement(react_native_1.View, null,
-                        !this.props.iconButtonDeleteDisabled && (React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon, size: this.props.styleDeleteButtonSize, color: this.state.colorDelete, style: { opacity: opacity } })),
-                        React.createElement(react_native_1.Text, { style: [
-                                styles.textDeleteButton,
-                                this.props.styleDeleteButtonText,
-                                { color: this.state.colorDelete, opacity: opacity }
-                            ] }, this.props.buttonDeleteText)))));
+                }, accessible: true, accessibilityLabel: this.props.buttonDeleteText },
+                React.createElement(react_native_1.View, { style: [styles.colIcon, this.props.styleColumnDeleteButton] }, this.props.customBackSpaceIcon ?
+                    this.props.customBackSpaceIcon({ colorDelete: this.state.colorDelete, opacity })
+                    :
+                        React.createElement(react_native_1.View, null,
+                            !this.props.iconButtonDeleteDisabled && (React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon, size: this.props.styleDeleteButtonSize, color: this.state.colorDelete, style: { opacity: opacity } })),
+                            React.createElement(react_native_1.Text, { style: [
+                                    styles.textDeleteButton,
+                                    this.props.styleDeleteButtonText,
+                                    { color: this.state.colorDelete, opacity: opacity }
+                                ] }, this.props.buttonDeleteText)))));
         };
         this.renderTitle = (colorTitle, opacityTitle, attemptFailed, showError) => {
             return (React.createElement(react_native_1.Text, { style: [
