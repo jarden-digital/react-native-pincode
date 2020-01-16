@@ -115,7 +115,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       const result = await Keychain.getInternetCredentials(
         this.props.pinCodeKeychainName
       )
-      this.keyChainResult = result.password || undefined
+      this.keyChainResult = result && result.password || undefined
     }
   }
 
