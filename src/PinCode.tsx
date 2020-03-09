@@ -473,7 +473,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
           {this.props.customBackSpaceIcon ?
             this.props.customBackSpaceIcon({colorDelete: this.state.colorDelete, opacity })
             :
-            <View>
+            <>
               {!this.props.iconButtonDeleteDisabled && (
                 <Icon
                   name={this.props.styleDeleteButtonIcon}
@@ -490,7 +490,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 ]}>
                 {this.props.buttonDeleteText}
               </Text>
-            </View>
+            </>
           }
         </View>
       </TouchableHighlight>
