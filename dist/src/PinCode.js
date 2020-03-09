@@ -16,7 +16,6 @@ var PinStatus;
     PinStatus["confirm"] = "confirm";
     PinStatus["enter"] = "enter";
 })(PinStatus = exports.PinStatus || (exports.PinStatus = {}));
-const textDeleteButtonDefault = "delete";
 class PinCode extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -86,32 +85,20 @@ class PinCode extends React.PureComponent {
                     ],
                     timing: { duration: 200, ease: d3_ease_1.easeLinear }
                 } }, ({ opacity }) => (React.createElement(react_native_1.TouchableHighlight, { style: [
-                    this.props.styleButtonCircle
-                        ? this.props.styleButtonCircle
-                        : styles.buttonCircle,
-                    {
-                        backgroundColor: this.props.colorCircleButtons
-                            ? this.props.colorCircleButtons
-                            : "rgb(242, 245, 251)"
-                    }
-                ], underlayColor: this.props.numbersButtonOverlayColor
-                    ? this.props.numbersButtonOverlayColor
-                    : colors_1.colors.turquoise, disabled: disabled, onShowUnderlay: () => this.setState({ textButtonSelected: text }), onHideUnderlay: () => this.setState({ textButtonSelected: "" }), onPress: () => {
+                    styles.buttonCircle,
+                    { backgroundColor: this.props.colorCircleButtons },
+                    this.props.styleButtonCircle,
+                ], underlayColor: this.props.numbersButtonOverlayColor, disabled: disabled, onShowUnderlay: () => this.setState({ textButtonSelected: text }), onHideUnderlay: () => this.setState({ textButtonSelected: "" }), onPress: () => {
                     this.onPressButtonNumber(text);
                 }, accessible: true, accessibilityLabel: text },
                 React.createElement(react_native_1.Text, { style: [
-                        this.props.styleTextButton
-                            ? this.props.styleTextButton
-                            : styles.text,
+                        styles.text,
+                        this.props.styleTextButton,
                         {
                             opacity: opacity,
                             color: this.state.textButtonSelected === text
                                 ? this.props.styleColorButtonTitleSelected
-                                    ? this.props.styleColorButtonTitleSelected
-                                    : colors_1.colors.white
                                 : this.props.styleColorButtonTitle
-                                    ? this.props.styleColorButtonTitle
-                                    : colors_1.colors.grey
                         }
                     ] }, text)))));
         };
@@ -125,12 +112,10 @@ class PinCode extends React.PureComponent {
         };
         this.renderCirclePassword = () => {
             const { password, moveData, showError, changeScreen, attemptFailed } = this.state;
-            const colorPwdErr = this.props.colorPasswordError || colors_1.colors.alert;
-            const colorPwd = this.props.colorPassword || colors_1.colors.turquoise;
+            const colorPwdErr = this.props.colorPasswordError;
+            const colorPwd = this.props.colorPassword;
             const colorPwdEmp = this.props.colorPasswordEmpty || colorPwd;
-            return (React.createElement(react_native_1.View, { style: this.props.styleCircleHiddenPassword
-                    ? this.props.styleCircleHiddenPassword
-                    : styles.topViewCirclePassword }, _.range(this.props.passwordLength).map((val) => {
+            return (React.createElement(react_native_1.View, { style: [styles.topViewCirclePassword, this.props.styleCircleHiddenPassword] }, _.range(this.props.passwordLength).map((val) => {
                 const lengthSup = ((password.length >= val + 1 && !changeScreen) || showError) &&
                     !attemptFailed;
                 return (React.createElement(Animate_1.default, { key: val, show: true, start: {
@@ -194,21 +179,16 @@ class PinCode extends React.PureComponent {
                     } },
                     React.createElement(react_native_1.Text, { style: {
                             color: color,
-                            fontFamily: this.props.textPasswordVisibleFamily ||
-                                "system font",
-                            fontSize: this.props.textPasswordVisibleSize || 22
+                            fontFamily: this.props.textPasswordVisibleFamily,
+                            fontSize: this.props.textPasswordVisibleSize
                         } }, this.state.password[val])))))));
             })));
         };
         this.renderButtonDelete = (opacity) => {
-            return (React.createElement(react_native_1.TouchableHighlight, { activeOpacity: this.props.customBackSpaceIcon ? .5 : 1, disabled: this.state.password.length === 0, underlayColor: "transparent", onHideUnderlay: () => this.setState({
+            return (React.createElement(react_native_1.TouchableHighlight, { activeOpacity: 1, disabled: this.state.password.length === 0, underlayColor: "transparent", onHideUnderlay: () => this.setState({
                     colorDelete: this.props.styleDeleteButtonColorHideUnderlay
-                        ? this.props.styleDeleteButtonColorHideUnderlay
-                        : "rgb(211, 213, 218)"
                 }), onShowUnderlay: () => this.setState({
                     colorDelete: this.props.styleDeleteButtonColorShowUnderlay
-                        ? this.props.styleDeleteButtonColorShowUnderlay
-                        : colors_1.colors.turquoise
                 }), onPress: () => {
                     if (this.state.password.length > 0) {
                         const newPass = this.state.password.slice(0, -1);
@@ -216,33 +196,22 @@ class PinCode extends React.PureComponent {
                         if (this.props.getCurrentLength)
                             this.props.getCurrentLength(newPass.length);
                     }
-                }, accessible: true, accessibilityLabel: this.props.buttonDeleteText
-                    ? this.props.buttonDeleteText
-                    : textDeleteButtonDefault },
-                React.createElement(react_native_1.View, { style: this.props.styleColumnDeleteButton
-                        ? this.props.styleColumnDeleteButton
-                        : styles.colIcon }, this.props.customBackSpaceIcon ?
-                    this.props.customBackSpaceIcon :
-                    React.createElement(react_native_1.View, null,
-                        !this.props.iconButtonDeleteDisabled && (React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon
-                                ? this.props.styleDeleteButtonIcon
-                                : "backspace", size: this.props.styleDeleteButtonSize
-                                ? this.props.styleDeleteButtonSize
-                                : 30, color: this.state.colorDelete, style: { opacity: opacity } })),
-                        React.createElement(react_native_1.Text, { style: [
-                                this.props.styleDeleteButtonText
-                                    ? this.props.styleDeleteButtonText
-                                    : styles.textDeleteButton,
-                                { color: this.state.colorDelete, opacity: opacity }
-                            ] }, this.props.buttonDeleteText
-                            ? this.props.buttonDeleteText
-                            : textDeleteButtonDefault)))));
+                }, accessible: true, accessibilityLabel: this.props.buttonDeleteText },
+                React.createElement(react_native_1.View, { style: [styles.colIcon, this.props.styleColumnDeleteButton] }, this.props.customBackSpaceIcon ?
+                    this.props.customBackSpaceIcon({ colorDelete: this.state.colorDelete, opacity })
+                    :
+                        React.createElement(react_native_1.View, null,
+                            !this.props.iconButtonDeleteDisabled && (React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon, size: this.props.styleDeleteButtonSize, color: this.state.colorDelete, style: { opacity: opacity } })),
+                            React.createElement(react_native_1.Text, { style: [
+                                    styles.textDeleteButton,
+                                    this.props.styleDeleteButtonText,
+                                    { color: this.state.colorDelete, opacity: opacity }
+                                ] }, this.props.buttonDeleteText)))));
         };
         this.renderTitle = (colorTitle, opacityTitle, attemptFailed, showError) => {
             return (React.createElement(react_native_1.Text, { style: [
-                    this.props.styleTextTitle
-                        ? this.props.styleTextTitle
-                        : styles.textTitle,
+                    styles.textTitle,
+                    this.props.styleTextTitle,
                     { color: colorTitle, opacity: opacityTitle }
                 ] }, (attemptFailed && this.props.titleAttemptFailed) ||
                 (showError && this.props.titleConfirmFailed) ||
@@ -251,9 +220,8 @@ class PinCode extends React.PureComponent {
         };
         this.renderSubtitle = (colorTitle, opacityTitle, attemptFailed, showError) => {
             return (React.createElement(react_native_1.Text, { style: [
-                    this.props.styleTextSubtitle
-                        ? this.props.styleTextSubtitle
-                        : styles.textSubtitle,
+                    styles.textSubtitle,
+                    this.props.styleTextSubtitle,
                     { color: colorTitle, opacity: opacityTitle }
                 ] }, attemptFailed || showError
                 ? this.props.subtitleError
@@ -264,9 +232,7 @@ class PinCode extends React.PureComponent {
             moveData: { x: 0, y: 0 },
             showError: false,
             textButtonSelected: "",
-            colorDelete: this.props.styleDeleteButtonColorHideUnderlay
-                ? this.props.styleDeleteButtonColorHideUnderlay
-                : "rgb(211, 213, 218)",
+            colorDelete: this.props.styleDeleteButtonColorHideUnderlay,
             attemptFailed: false,
             changeScreen: false
         };
@@ -325,29 +291,22 @@ class PinCode extends React.PureComponent {
     }
     render() {
         const { password, showError, attemptFailed, changeScreen } = this.state;
-        return (React.createElement(react_native_1.View, { style: this.props.styleContainer
-                ? this.props.styleContainer
-                : styles.container },
+        return (React.createElement(react_native_1.View, { style: [
+                styles.container,
+                this.props.styleContainer
+            ] },
             React.createElement(Animate_1.default, { show: true, start: {
                     opacity: 0,
-                    colorTitle: this.props.styleColorTitle
-                        ? this.props.styleColorTitle
-                        : colors_1.colors.grey,
-                    colorSubtitle: this.props.styleColorSubtitle
-                        ? this.props.styleColorSubtitle
-                        : colors_1.colors.grey,
+                    colorTitle: this.props.styleColorTitle,
+                    colorSubtitle: this.props.styleColorSubtitle,
                     opacityTitle: 1
                 }, enter: {
                     opacity: [1],
                     colorTitle: [
                         this.props.styleColorTitle
-                            ? this.props.styleColorTitle
-                            : colors_1.colors.grey
                     ],
                     colorSubtitle: [
                         this.props.styleColorSubtitle
-                            ? this.props.styleColorSubtitle
-                            : colors_1.colors.grey
                     ],
                     opacityTitle: [1],
                     timing: { duration: 200, ease: d3_ease_1.easeLinear }
@@ -356,27 +315,18 @@ class PinCode extends React.PureComponent {
                     colorTitle: [
                         showError || attemptFailed
                             ? this.props.styleColorTitleError
-                                ? this.props.styleColorTitleError
-                                : colors_1.colors.alert
                             : this.props.styleColorTitle
-                                ? this.props.styleColorTitle
-                                : colors_1.colors.grey
                     ],
                     colorSubtitle: [
                         showError || attemptFailed
                             ? this.props.styleColorSubtitleError
-                                ? this.props.styleColorSubtitleError
-                                : colors_1.colors.alert
                             : this.props.styleColorSubtitle
-                                ? this.props.styleColorSubtitle
-                                : colors_1.colors.grey
                     ],
                     opacityTitle: [showError || attemptFailed ? grid_1.grid.highOpacity : 1],
                     timing: { duration: 200, ease: d3_ease_1.easeLinear }
                 } }, ({ opacity, colorTitle, colorSubtitle, opacityTitle }) => (React.createElement(react_native_1.View, { style: [
-                    this.props.styleViewTitle
-                        ? this.props.styleViewTitle
-                        : styles.viewTitle,
+                    styles.viewTitle,
+                    this.props.styleViewTitle,
                     { opacity: opacity }
                 ] },
                 this.props.titleComponent
@@ -389,47 +339,58 @@ class PinCode extends React.PureComponent {
                 ? this.props.passwordComponent()
                 : this.renderCirclePassword()),
             React.createElement(react_native_easy_grid_1.Grid, { style: styles.grid },
-                React.createElement(react_native_easy_grid_1.Row, { style: this.props.styleRowButtons
-                        ? this.props.styleRowButtons
-                        : styles.row }, _.range(1, 4).map((i) => {
-                    return (React.createElement(react_native_easy_grid_1.Col, { key: i, style: this.props.styleColumnButtons
-                            ? this.props.styleColumnButtons
-                            : styles.colButtonCircle }, this.props.buttonNumberComponent
+                React.createElement(react_native_easy_grid_1.Row, { style: [
+                        styles.row,
+                        this.props.styleRowButtons
+                    ] }, _.range(1, 4).map((i) => {
+                    return (React.createElement(react_native_easy_grid_1.Col, { key: i, style: [
+                            styles.colButtonCircle,
+                            this.props.styleColumnButtons
+                        ] }, this.props.buttonNumberComponent
                         ? this.props.buttonNumberComponent(i, this.onPressButtonNumber)
                         : this.renderButtonNumber(i.toString())));
                 })),
-                React.createElement(react_native_easy_grid_1.Row, { style: this.props.styleRowButtons
-                        ? this.props.styleRowButtons
-                        : styles.row }, _.range(4, 7).map((i) => {
-                    return (React.createElement(react_native_easy_grid_1.Col, { key: i, style: this.props.styleColumnButtons
-                            ? this.props.styleColumnButtons
-                            : styles.colButtonCircle }, this.props.buttonNumberComponent
+                React.createElement(react_native_easy_grid_1.Row, { style: [
+                        styles.row,
+                        this.props.styleRowButtons
+                    ] }, _.range(4, 7).map((i) => {
+                    return (React.createElement(react_native_easy_grid_1.Col, { key: i, style: [
+                            styles.colButtonCircle,
+                            this.props.styleColumnButtons
+                        ] }, this.props.buttonNumberComponent
                         ? this.props.buttonNumberComponent(i, this.onPressButtonNumber)
                         : this.renderButtonNumber(i.toString())));
                 })),
-                React.createElement(react_native_easy_grid_1.Row, { style: this.props.styleRowButtons
-                        ? this.props.styleRowButtons
-                        : styles.row }, _.range(7, 10).map((i) => {
-                    return (React.createElement(react_native_easy_grid_1.Col, { key: i, style: this.props.styleColumnButtons
-                            ? this.props.styleColumnButtons
-                            : styles.colButtonCircle }, this.props.buttonNumberComponent
+                React.createElement(react_native_easy_grid_1.Row, { style: [
+                        styles.row,
+                        this.props.styleRowButtons
+                    ] }, _.range(7, 10).map((i) => {
+                    return (React.createElement(react_native_easy_grid_1.Col, { key: i, style: [
+                            styles.colButtonCircle,
+                            this.props.styleColumnButtons
+                        ] }, this.props.buttonNumberComponent
                         ? this.props.buttonNumberComponent(i, this.onPressButtonNumber)
                         : this.renderButtonNumber(i.toString())));
                 })),
-                React.createElement(react_native_easy_grid_1.Row, { style: this.props.styleRowButtons
-                        ? this.props.styleRowButtons
-                        : styles.row },
-                    React.createElement(react_native_easy_grid_1.Col, { style: this.props.styleEmptyColumn
-                            ? this.props.styleEmptyColumn
-                            : styles.colEmpty }, this.props.emptyColumnComponent || null),
-                    React.createElement(react_native_easy_grid_1.Col, { style: this.props.styleColumnButtons
-                            ? this.props.styleColumnButtons
-                            : styles.colButtonCircle }, this.props.buttonNumberComponent
+                React.createElement(react_native_easy_grid_1.Row, { style: [
+                        styles.row,
+                        styles.rowWithEmpty,
+                        this.props.styleRowButtons
+                    ] },
+                    React.createElement(react_native_easy_grid_1.Col, { style: [
+                            styles.colEmpty,
+                            this.props.styleEmptyColumn
+                        ] }, this.props.emptyColumnComponent || null),
+                    React.createElement(react_native_easy_grid_1.Col, { style: [
+                            styles.colButtonCircle,
+                            this.props.styleColumnButtons
+                        ] }, this.props.buttonNumberComponent
                         ? this.props.buttonNumberComponent("0", this.onPressButtonNumber)
                         : this.renderButtonNumber("0")),
-                    React.createElement(react_native_easy_grid_1.Col, { style: this.props.styleColumnButtons
-                            ? this.props.styleColumnButtons
-                            : styles.colButtonCircle },
+                    React.createElement(react_native_easy_grid_1.Col, { style: [
+                            styles.colButtonCircle,
+                            this.props.styleColumnButtons
+                        ] },
                         React.createElement(Animate_1.default, { show: true, start: {
                                 opacity: 0.5
                             }, update: {
@@ -452,8 +413,38 @@ class PinCode extends React.PureComponent {
                             : this.renderButtonDelete(opacity)))))));
     }
 }
-exports.default = PinCode;
-let styles = react_native_1.StyleSheet.create({
+PinCode.defaultProps = {
+    styleButtonCircle: null,
+    colorCircleButtons: "rgb(242, 245, 251)",
+    styleDeleteButtonColorHideUnderlay: "rgb(211, 213, 218)",
+    numbersButtonOverlayColor: colors_1.colors.turquoise,
+    styleDeleteButtonColorShowUnderlay: colors_1.colors.turquoise,
+    styleTextButton: null,
+    styleColorButtonTitleSelected: colors_1.colors.white,
+    styleColorButtonTitle: colors_1.colors.grey,
+    colorPasswordError: colors_1.colors.alert,
+    colorPassword: colors_1.colors.turquoise,
+    styleCircleHiddenPassword: null,
+    styleColumnDeleteButton: null,
+    styleDeleteButtonIcon: "backspace",
+    styleDeleteButtonSize: 30,
+    styleDeleteButtonText: null,
+    buttonDeleteText: "delete",
+    styleTextTitle: null,
+    styleTextSubtitle: null,
+    styleContainer: null,
+    styleColorTitle: colors_1.colors.grey,
+    styleColorSubtitle: colors_1.colors.grey,
+    styleColorTitleError: colors_1.colors.alert,
+    styleColorSubtitleError: colors_1.colors.alert,
+    styleViewTitle: null,
+    styleRowButtons: null,
+    styleColumnButtons: null,
+    styleEmptyColumn: null,
+    textPasswordVisibleFamily: "system font",
+    textPasswordVisibleSize: 22
+};
+const styles = react_native_1.StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: "center",
@@ -467,10 +458,17 @@ let styles = react_native_1.StyleSheet.create({
         flex: 2
     },
     row: {
+        flex: 0,
+        flexShrink: 1,
         alignItems: "center",
         height: grid_1.grid.unit * 5.5
     },
+    rowWithEmpty: {
+        flexShrink: 0,
+        justifyContent: 'flex-end',
+    },
     colButtonCircle: {
+        flex: 0,
         marginLeft: grid_1.grid.unit / 2,
         marginRight: grid_1.grid.unit / 2,
         alignItems: "center",
@@ -478,6 +476,7 @@ let styles = react_native_1.StyleSheet.create({
         height: grid_1.grid.unit * 4
     },
     colEmpty: {
+        flex: 0,
         marginLeft: grid_1.grid.unit / 2,
         marginRight: grid_1.grid.unit / 2,
         width: grid_1.grid.unit * 4,
@@ -531,7 +530,9 @@ let styles = react_native_1.StyleSheet.create({
         marginTop: 5
     },
     grid: {
+        justifyContent: 'flex-start',
         width: "100%",
         flex: 7
     }
 });
+exports.default = PinCode;

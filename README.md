@@ -104,7 +104,7 @@ await resetPinCodeInternalStates()
 |**`buttonDeleteText`**|Text of the of the button used to delete a previous entry on the PIN panel|`delete`|`false`|`string`|
 |**`buttonNumberComponent`**|Button component to be used on the PIN panel to select a character for the PIN|TouchableHighlight button with a number text|`false`|`any`|
 |**`callbackErrorTouchId`**|Callback to be used when the TouchID authenticate method throws an error|`console.log('TouchID error', e)`|`false`|`(error: Error) => void`|
-|**`customBackSpaceIcon`**|Icon to be used to replace the default backspace one on the PIN screen|`Material back icon`|`false`|`any`|
+|**`customBackSpaceIcon`**|Function, that returns custom backspace component to be used to replace the default backspace one on the PIN screen|`Function`|
 |**`disableLockScreen`**|Boolean to disable the lock screen|`false`|`false`|`boolean`|
 |**`endProcessFunction`**|Function to handle the end of the process|`None`|`false`|`(pinCode: string) => void`|
 |**`finishProcess`**|Function to be used when the user enters the right PIN code|Removes the values in AsyncStorage and set the status to `success`|`false`|`(pinCode?: string) => void`|

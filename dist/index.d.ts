@@ -1,4 +1,3 @@
-/// <reference path="../src/types.d.ts" />
 /// <reference types="react" />
 import { PinResultStatus } from "./src/utils";
 import * as React from "react";
@@ -105,14 +104,15 @@ export declare type IProps = {
     touchIDSentence?: string;
     touchIDTitle?: string;
     validationRegex?: RegExp;
+    passcodeFallback?: boolean;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;
     pinLocked: boolean;
 };
 declare class PINCode extends React.PureComponent<IProps, IState> {
+    static defaultProps: Partial<IProps>;
     constructor(props: IProps);
-    componentWillMount(): Promise<void>;
     changeInternalStatus: (status: PinResultStatus) => void;
     renderLockedPage: () => JSX.Element;
     render(): JSX.Element;

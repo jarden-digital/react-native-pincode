@@ -8,7 +8,7 @@ import * as Keychain from 'react-native-keychain'
  * Pin Code Choose PIN Page
  */
 
-export type IProps = {
+export interface IProps {
   buttonDeleteComponent: any
   buttonDeleteText?: string
   buttonNumberComponent: any
@@ -39,7 +39,7 @@ export type IProps = {
   styleColorTitleError?: string
   styleColumnButtons?: StyleProp<ViewStyle>
   styleColumnDeleteButton?: StyleProp<ViewStyle>
-  styleContainer?: StyleProp<ViewStyle>
+  styleContainer: StyleProp<ViewStyle>
   styleContainerPinCode?: StyleProp<ViewStyle>
   styleDeleteButtonColorHideUnderlay?: string
   styleDeleteButtonColorShowUnderlay?: string
@@ -74,6 +74,9 @@ export type IState = {
 }
 
 class PinCodeChoose extends React.PureComponent<IProps, IState> {
+  static defaultProps: Partial<IProps> = {
+    styleContainer: null
+  }
   constructor(props: IProps) {
     super(props)
     this.state = { status: PinStatus.choose, pinCode: '' }
@@ -112,11 +115,10 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
   render() {
     return (
       <View
-        style={
-          this.props.styleContainer
-            ? this.props.styleContainer
-            : styles.container
-        }>
+        style={[
+            styles.container,
+            this.props.styleContainer
+       ]}>
         {this.state.status === PinStatus.choose && (
           <PinCode
             buttonDeleteComponent={this.props.buttonDeleteComponent || null}
@@ -256,12 +258,13 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default PinCodeChoose
 
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   }
 })
+
+export default PinCodeChoose
