@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { PinStatus } from './PinCode';
 import * as React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
@@ -74,6 +73,6 @@ declare class PinCodeChoose extends React.PureComponent<IProps, IState> {
     endProcessCreation: (pinCode: string, isErrorValidation?: boolean) => void;
     endProcessConfirm: (pinCode: string) => Promise<void>;
     cancelConfirm: () => void;
-    render(): JSX.Element;
+    render(): any;
 }
 export default PinCodeChoose;
