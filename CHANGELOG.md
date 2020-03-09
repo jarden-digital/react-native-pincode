@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.22.2] - 2020-03-09
+### Fixed
+- Fixed the delete button issue [Issue 130](https://github.com/jarden-digital/react-native-pincode/issues/130)
+
+
+## [1.22.1] - 2020-03-09
+### Bumped
+- Bumped react-native-keychain to 5.0.1
+
+
 ## [1.22.0] - 2020-03-09
 ### Merged
 - Merged rn0.61 PR [PR 127](https://github.com/jarden-digital/react-native-pincode/pull/127)
