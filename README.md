@@ -153,6 +153,7 @@ await resetPinCodeInternalStates()
 |**`touchIDSentence`**|String to be used in the TouchID/FaceID popup|`To unlock your application`|`false`|`string`|
 |**`touchIDTitle`**|ANDROID ONLY. String to be used in the TouchID/FaceID popup title.|`Authentication Required`|`false`|`string`|
 |**`validationRegex`**|Regex to be used to validate the PIN code entered by the user on `choose` mode|*None*|`false`|`RegExp`|
+|**`vibrationEnabled`**|Boolean enabling vibration feedback when an incorrect PIN is entered|`true`|`false`|`boolean`
 
 ## Styles
 

@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import * as React from "react";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 /**
@@ -60,6 +61,7 @@ export interface IProps {
     titleConfirmFailed?: string;
     titleValidationFailed?: string;
     validationRegex?: RegExp;
+    vibrationEnabled?: boolean;
 }
 export interface IState {
     password: string;
@@ -76,7 +78,7 @@ export interface IState {
 export declare enum PinStatus {
     choose = "choose",
     confirm = "confirm",
-    enter = "enter"
+    enter = "enter",
 }
 declare class PinCode extends React.PureComponent<IProps, IState> {
     static defaultProps: Partial<IProps>;
@@ -88,14 +90,14 @@ declare class PinCode extends React.PureComponent<IProps, IState> {
     failedAttempt: () => Promise<void>;
     newAttempt: () => Promise<void>;
     onPressButtonNumber: (text: string) => Promise<void>;
-    renderButtonNumber: (text: string) => any;
+    renderButtonNumber: (text: string) => JSX.Element;
     endProcess: (pwd: string) => void;
     doShake(): Promise<void>;
     showError(isErrorValidation?: boolean): Promise<void>;
-    renderCirclePassword: () => any;
-    renderButtonDelete: (opacity: number) => any;
-    renderTitle: (colorTitle: string, opacityTitle: number, attemptFailed?: boolean, showError?: boolean) => any;
-    renderSubtitle: (colorTitle: string, opacityTitle: number, attemptFailed?: boolean, showError?: boolean) => any;
-    render(): any;
+    renderCirclePassword: () => JSX.Element;
+    renderButtonDelete: (opacity: number) => JSX.Element;
+    renderTitle: (colorTitle: string, opacityTitle: number, attemptFailed?: boolean, showError?: boolean) => JSX.Element;
+    renderSubtitle: (colorTitle: string, opacityTitle: number, attemptFailed?: boolean, showError?: boolean) => JSX.Element;
+    render(): JSX.Element;
 }
 export default PinCode;

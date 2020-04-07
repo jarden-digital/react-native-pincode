@@ -81,6 +81,7 @@ export interface IProps {
   titleConfirmFailed?: string
   titleValidationFailed?: string
   validationRegex?: RegExp
+  vibrationEnabled?: boolean
 }
 
 export interface IState {
@@ -129,7 +130,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
     styleColumnButtons: null,
     styleEmptyColumn: null,
     textPasswordVisibleFamily: "system font",
-    textPasswordVisibleSize: 22
+    textPasswordVisibleSize: 22,
+    vibrationEnabled: true,
   }
 
   private readonly _circleSizeEmpty: number;
@@ -290,7 +292,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
 
   async doShake() {
     const duration = 70;
-    Vibration.vibrate(500, false);
+    if (this.props.vibrationEnabled) Vibration.vibrate(500, false);
     const length = Dimensions.get("window").width / 3;
     await delay(duration);
     this.setState({ moveData: { x: length, y: 0 } });

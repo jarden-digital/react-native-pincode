@@ -88,6 +88,7 @@ export interface IProps {
   touchIDSentence: string
   touchIDTitle?: string
   passcodeFallback?: boolean
+  vibrationEnabled?: boolean
 }
 
 export interface IState {
@@ -303,6 +304,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           titleConfirmFailed={
             this.props.titleConfirmFailed || 'Your entries did not match'
           }
+          vibrationEnabled={this.props.vibrationEnabled}
         />
       </View>
     )

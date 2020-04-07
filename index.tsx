@@ -111,6 +111,7 @@ export type IProps = {
   touchIDTitle?: string
   validationRegex?: RegExp
   passcodeFallback?: boolean
+  vibrationEnabled?: boolean
 }
 
 export type IState = {
@@ -245,6 +246,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           titleConfirmFailed={this.props.titleConfirmFailed}
           titleValidationFailed={this.props.titleValidationFailed}
           validationRegex={this.props.validationRegex}
+          vibrationEnabled={this.props.vibrationEnabled}
         />}
         {status === PinStatus.enter &&
         <PinCodeEnter
@@ -317,6 +319,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           touchIDDisabled={this.props.touchIDDisabled || touchIDDisabledDefault}
           touchIDSentence={this.props.touchIDSentence || "To unlock your application"}
           touchIDTitle={this.props.touchIDTitle || touchIDTitleDefault}
+          vibrationEnabled={this.props.vibrationEnabled}
         />}
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||
