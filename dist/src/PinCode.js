@@ -256,7 +256,8 @@ class PinCode extends React.PureComponent {
     }
     async doShake() {
         const duration = 70;
-        react_native_1.Vibration.vibrate(500, false);
+        if (this.props.vibrationEnabled)
+            react_native_1.Vibration.vibrate(500, false);
         const length = react_native_1.Dimensions.get("window").width / 3;
         await delay_1.default(duration);
         this.setState({ moveData: { x: length, y: 0 } });
@@ -442,7 +443,8 @@ PinCode.defaultProps = {
     styleColumnButtons: null,
     styleEmptyColumn: null,
     textPasswordVisibleFamily: "system font",
-    textPasswordVisibleSize: 22
+    textPasswordVisibleSize: 22,
+    vibrationEnabled: true,
 };
 const styles = react_native_1.StyleSheet.create({
     container: {
