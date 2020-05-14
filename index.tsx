@@ -180,7 +180,9 @@ class PINCode extends React.PureComponent<IProps, IState> {
         timePinLockedAsyncStorageName={this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault}
         timerComponent={this.props.timerComponentLockedPage || null}
         timeToLock={this.props.timeLocked || 300000}
-        titleComponent={this.props.titleComponentLockedPage || undefined} />
+        titleComponent={this.props.titleComponentLockedPage || undefined}
+        delayBetweenAttempts={this.props.delayBetweenAttempts || 3000}
+      />
     );
   };
 
@@ -248,6 +250,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             titleValidationFailed={this.props.titleValidationFailed}
             validationRegex={this.props.validationRegex}
             vibrationEnabled={this.props.vibrationEnabled}
+            delayBetweenAttempts={this.props.delayBetweenAttempts || 3000}
           />}
         {status === PinStatus.enter &&
           <PinCodeEnter
@@ -321,6 +324,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             touchIDSentence={this.props.touchIDSentence || "To unlock your application"}
             touchIDTitle={this.props.touchIDTitle || touchIDTitleDefault}
             vibrationEnabled={this.props.vibrationEnabled}
+            delayBetweenAttempts={this.props.delayBetweenAttempts || 3000}
           />}
         {(pinStatus === PinResultStatus.locked ||
           this.state.internalPinStatus === PinResultStatus.locked ||
