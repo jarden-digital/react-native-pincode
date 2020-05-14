@@ -76,6 +76,7 @@ export interface IProps {
     touchIDTitle?: string;
     passcodeFallback?: boolean;
     vibrationEnabled?: boolean;
+    delayBetweenAttempts?: number;
 }
 export interface IState {
     pinCodeStatus: PinResultStatus;

@@ -181,7 +181,6 @@ class PINCode extends React.PureComponent<IProps, IState> {
         timerComponent={this.props.timerComponentLockedPage || null}
         timeToLock={this.props.timeLocked || 300000}
         titleComponent={this.props.titleComponentLockedPage || undefined}
-        delayBetweenAttempts={this.props.delayBetweenAttempts || 3000}
       />
     );
   };

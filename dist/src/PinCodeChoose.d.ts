@@ -63,6 +63,7 @@ export interface IProps {
     titleValidationFailed?: string;
     validationRegex?: RegExp;
     vibrationEnabled?: boolean;
+    delayBetweenAttempts?: number;
 }
 export declare type IState = {
     status: PinStatus;
