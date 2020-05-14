@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { PinResultStatus } from "./src/utils";
 import * as React from "react";
 import { StyleProp, ViewStyle, TextStyle } from "react-native";
@@ -106,6 +105,7 @@ export declare type IProps = {
     validationRegex?: RegExp;
     passcodeFallback?: boolean;
     vibrationEnabled?: boolean;
+    delayBetweenAttempts?: number;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;
