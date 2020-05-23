@@ -27,7 +27,7 @@ class PinCode extends React.PureComponent {
                 changeScreen: false
             });
             this.doShake();
-            await delay_1.default(3000);
+            await delay_1.default(this.props.delayBetweenAttempts);
             this.newAttempt();
         };
         this.newAttempt = async () => {
@@ -445,6 +445,7 @@ PinCode.defaultProps = {
     textPasswordVisibleFamily: "system font",
     textPasswordVisibleSize: 22,
     vibrationEnabled: true,
+    delayBetweenAttempts: 3000,
 };
 const styles = react_native_1.StyleSheet.create({
     container: {

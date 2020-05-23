@@ -89,6 +89,7 @@ export interface IProps {
   touchIDTitle?: string
   passcodeFallback?: boolean
   vibrationEnabled?: boolean
+  delayBetweenAttempts?: number
 }
 
 export interface IState {
@@ -113,7 +114,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       Keychain.getInternetCredentials(
         this.props.pinCodeKeychainName
       ).then(result => {
-        this.keyChainResult = result && result.password || undefined        
+        this.keyChainResult = result && result.password || undefined
       }).catch(error => {
         console.log('PinCodeEnter: ', error)
       })
@@ -305,6 +306,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
             this.props.titleConfirmFailed || 'Your entries did not match'
           }
           vibrationEnabled={this.props.vibrationEnabled}
+          delayBetweenAttempts={this.props.delayBetweenAttempts}
         />
       </View>
     )

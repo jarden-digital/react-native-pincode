@@ -67,6 +67,7 @@ export interface IProps {
   titleValidationFailed?: string
   validationRegex?: RegExp
   vibrationEnabled?: boolean
+  delayBetweenAttempts?: number
 }
 
 export type IState = {
@@ -117,9 +118,9 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
     return (
       <View
         style={[
-            styles.container,
-            this.props.styleContainer
-       ]}>
+          styles.container,
+          this.props.styleContainer
+        ]}>
         {this.state.status === PinStatus.choose && (
           <PinCode
             buttonDeleteComponent={this.props.buttonDeleteComponent || null}
@@ -254,6 +255,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleTextTitle={this.props.styleTextTitle}
             styleViewTitle={this.props.styleViewTitle}
             vibrationEnabled={this.props.vibrationEnabled}
+            delayBetweenAttempts={this.props.delayBetweenAttempts}
           />
         )}
       </View>
