@@ -15,6 +15,7 @@ export interface IProps {
     customBackSpaceIcon?: Function;
     emptyColumnComponent: any;
     endProcess: (pinCode: string, isErrorValidation?: boolean) => void;
+    launchTouchID?: () => void;
     getCurrentLength?: (length: number) => void;
     iconButtonDeleteDisabled?: boolean;
     numbersButtonOverlayColor: string;
