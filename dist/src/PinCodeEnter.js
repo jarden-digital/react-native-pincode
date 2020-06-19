@@ -79,7 +79,7 @@ class PinCodeEnter extends React.PureComponent {
         }
     }
     triggerTouchID() {
-        react_native_touch_id_1.default.isSupported()
+        !!react_native_touch_id_1.default && react_native_touch_id_1.default.isSupported()
             .then(() => {
             setTimeout(() => {
                 this.launchTouchID();

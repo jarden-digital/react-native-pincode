@@ -139,7 +139,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   }
 
   triggerTouchID() {
-    TouchID.isSupported()
+    !!TouchID && TouchID.isSupported()
       .then(() => {
         setTimeout(() => {
           this.launchTouchID()
