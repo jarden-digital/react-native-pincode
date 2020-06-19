@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.22.3] - 2020-06-19
+### Merged
+- Merged `Feature launch touch id from pin pad` PR [PR 142](https://github.com/jarden-digital/react-native-pincode/pull/142) from [NetPumi2](https://github.com/NetPumi2)
+- Merged `Fix keychain error android` [PR 144](https://github.com/jarden-digital/react-native-pincode/pull/144) from [szlezak](https://github.com/szlezak)
+### Fixed
+- Added a test to prevent TouchID being undefined [Issue 141](https://github.com/jarden-digital/react-native-pincode/issues/141)
+
+
 ## [1.22.2] - 2020-03-09
 ### Fixed
 - Fixed the delete button issue [Issue 130](https://github.com/jarden-digital/react-native-pincode/issues/130)

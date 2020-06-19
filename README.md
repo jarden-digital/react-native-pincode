@@ -112,6 +112,7 @@ await resetPinCodeInternalStates()
 |**`handleResultEnterPin`**|Function to be used to handle the PIN code entered by the user. To be used with the **`pinStatus`** props|Functions that checks the validity of the give PIN code, stores the number of failed attempts in the `AsyncStorage` and the time the application was locked if needed|`false`|`any`|
 |**`iconComponentLockedPage`**|View component to be used between the timer and the text on the locked application page|A circular red View using the `lock` material icon|`false`|`any`|
 |**`iconButtonDeleteDisabled`**|Boolean to remove the icon on the delete button of the PIN panel|`false`|`false`|`boolean`|
+|**`launchTouchID`**|Function to manually trigger the touchID|`undefined`|`false`|`() => void`|
 |**`lockedIconComponent`**|Component to replace the locked icon on the locked application page|`Material lock icon`|`false`|`any`|
 |**`lockedPage`**|View component used as a locked page if the user fails to provide the correct PIN code `maxAttempts` times|A application locked page with a timer indicating to the user the remaining time locked and a button closing the application|`false`|`any`|
 |**`maxAttempts`**|Number of attempts the user is given before locking the application|`3`|`false`|`number`|
