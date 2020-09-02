@@ -1,4 +1,5 @@
 import PinCode, { PinStatus } from './PinCode'
+import { noBiometricsConfig } from './utils'
 
 import * as React from 'react'
 import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
@@ -101,7 +102,8 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
         await Keychain.setInternetCredentials(
           this.props.pinCodeKeychainName,
           this.props.pinCodeKeychainName,
-          pinCode
+          pinCode,
+          noBiometricsConfig
         )
       }
       if (!!this.props.finishProcess) this.props.finishProcess(pinCode)
