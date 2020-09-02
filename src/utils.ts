@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import * as Keychain from 'react-native-keychain'
 
@@ -21,3 +22,10 @@ export const deletePinCode = async (serviceName: string) => {
 export const resetInternalStates = async (asyncStorageKeys: string[]) => {
   return await AsyncStorage.multiRemove(asyncStorageKeys)
 }
+
+export const noBiometricsConfig = Platform.select({
+    android: {
+        accessControl: Keychain.ACCESS_CONTROL.APPLICATION_PASSWORD,
+    },
+    ios: {}
+})
