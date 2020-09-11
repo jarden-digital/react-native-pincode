@@ -1,6 +1,6 @@
 import delay from './delay'
 import PinCode, { PinStatus } from './PinCode'
-import { PinResultStatus } from './utils'
+import { PinResultStatus, noBiometricsConfig } from './utils'
 
 import AsyncStorage from '@react-native-community/async-storage'
 import * as React from 'react'
@@ -112,7 +112,8 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     this.launchTouchID = this.launchTouchID.bind(this)
     if (!this.props.storedPin) {
       Keychain.getInternetCredentials(
-        this.props.pinCodeKeychainName
+        this.props.pinCodeKeychainName,
+        noBiometricsConfig
       ).then(result => {
         this.keyChainResult = result && result.password || undefined
       }).catch(error => {
