@@ -25,6 +25,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
  */
 
 export interface IProps {
+  alphabetCharsVisible?: boolean
   buttonDeleteComponent?: any
   buttonDeleteText?: string
   buttonNumberComponent?: any
@@ -47,6 +48,7 @@ export interface IProps {
   previousPin?: string
   sentenceTitle: string
   status: PinStatus
+  styleAlphabet?: StyleProp<TextStyle>
   styleButtonCircle?: StyleProp<ViewStyle>
   styleCircleHiddenPassword?: StyleProp<ViewStyle>
   styleCircleSizeEmpty?: number
@@ -104,6 +106,7 @@ export enum PinStatus {
 
 class PinCode extends React.PureComponent<IProps, IState> {
   static defaultProps: Partial<IProps> = {
+    alphabetCharsVisible: false,
     styleButtonCircle: null,
     colorCircleButtons: "rgb(242, 245, 251)",
     styleDeleteButtonColorHideUnderlay: "rgb(211, 213, 218)",
@@ -233,6 +236,18 @@ class PinCode extends React.PureComponent<IProps, IState> {
   };
 
   renderButtonNumber = (text: string) => {
+    let alphanumericMap = new Map([
+      ["1", " "],
+      ["2", "ABC"],
+      ["3", "DEF"],
+      ["4", "GHI"],
+      ["5", "JKL"],
+      ["6", "MNO"],
+      ["7", "PQRS"],
+      ["8", "TUV"],
+      ["9", "WXYZ"],
+      ["0", " "]
+  ]); 
     const disabled =
       (this.state.password.length === this.props.passwordLength ||
         this.state.showError) &&
@@ -265,6 +280,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
             }}
             accessible
             accessibilityLabel={text}>
+            <View>
             <Text
               style={[
                 styles.text,
@@ -278,6 +294,22 @@ class PinCode extends React.PureComponent<IProps, IState> {
               ]}>
               {text}
             </Text>
+            {((this.props.alphabetCharsVisible) &&
+              <Text
+                style={[
+                  styles.tinytext,
+                  this.props.styleAlphabet,
+                {
+                  opacity: opacity,
+                  color: this.state.textButtonSelected === text
+                    ? this.props.styleColorButtonTitleSelected
+                    : this.props.styleColorButtonTitle
+                }
+                ]}>
+                {alphanumericMap.get(text)}
+              </Text>
+            )}
+            </View>
           </TouchableHighlight>
         )}
       </Animate>
@@ -801,6 +833,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: grid.unit * 2,
     fontWeight: "200"
+  },
+  tinytext: {
+    fontSize: grid.unit/2,
+    fontWeight: "300"
   },
   buttonCircle: {
     alignItems: "center",
