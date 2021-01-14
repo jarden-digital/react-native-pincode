@@ -19,7 +19,7 @@ class PinCodeEnter extends React.PureComponent {
             else {
                 let pinValidOverride = undefined;
                 if (this.props.handleResult) {
-                    pinValidOverride = Promise.resolve(this.props.handleResult(pinCode));
+                    pinValidOverride = await Promise.resolve(this.props.handleResult(pinCode));
                 }
                 this.setState({ pinCodeStatus: utils_1.PinResultStatus.initial });
                 this.props.changeInternalStatus(utils_1.PinResultStatus.initial);
