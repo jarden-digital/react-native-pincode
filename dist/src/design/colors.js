@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.documentColor = exports.colors = void 0;
 const colors = {
     red: '#FC4349',
     alert: '#FC4349',

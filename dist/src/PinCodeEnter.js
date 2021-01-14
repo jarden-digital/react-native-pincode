@@ -17,15 +17,16 @@ class PinCodeEnter extends React.PureComponent {
                 this.props.endProcessFunction(pinCode);
             }
             else {
+                let pinValidOverride = undefined;
                 if (this.props.handleResult) {
-                    this.props.handleResult(pinCode);
+                    pinValidOverride = Promise.resolve(this.props.handleResult(pinCode));
                 }
                 this.setState({ pinCodeStatus: utils_1.PinResultStatus.initial });
                 this.props.changeInternalStatus(utils_1.PinResultStatus.initial);
                 const pinAttemptsStr = await async_storage_1.default.getItem(this.props.pinAttemptsAsyncStorageName);
                 let pinAttempts = pinAttemptsStr ? +pinAttemptsStr : 0;
                 const pin = this.props.storedPin || this.keyChainResult;
-                if (pin === pinCode) {
+                if (pinValidOverride !== undefined ? pinValidOverride : pin === pinCode) {
                     this.setState({ pinCodeStatus: utils_1.PinResultStatus.success });
                     async_storage_1.default.multiRemove([
                         this.props.pinAttemptsAsyncStorageName,
