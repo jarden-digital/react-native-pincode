@@ -19,6 +19,7 @@ import TouchID from 'react-native-touch-id'
  */
 
 export interface IProps {
+  alphabetCharsVisible?: boolean
   buttonDeleteComponent: any
   buttonDeleteText?: string
   buttonNumberComponent: any
@@ -47,6 +48,7 @@ export interface IProps {
   pinStatusExternal: PinResultStatus
   status: PinStatus
   storedPin: string | null
+  styleAlphabet?: StyleProp<TextStyle>
   styleButtonCircle?: StyleProp<ViewStyle>
   styleCircleHiddenPassword?: StyleProp<ViewStyle>
   styleCircleSizeEmpty?: number
@@ -241,6 +243,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           this.props.styleContainer
         ]}>
         <PinCode
+          alphabetCharsVisible={this.props.alphabetCharsVisible}
           buttonDeleteComponent={this.props.buttonDeleteComponent || null}
           buttonDeleteText={this.props.buttonDeleteText}
           buttonNumberComponent={this.props.buttonNumberComponent || null}
@@ -264,6 +267,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           previousPin={pin}
           sentenceTitle={this.props.title}
           status={PinStatus.enter}
+          styleAlphabet={this.props.styleAlphabet}
           styleButtonCircle={this.props.styleButtonCircle}
           styleCircleHiddenPassword={this.props.styleCircleHiddenPassword}
           styleCircleSizeEmpty={this.props.styleCircleSizeEmpty}

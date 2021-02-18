@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PinStatus = void 0;
 const delay_1 = require("./delay");
 const colors_1 = require("./design/colors");
 const grid_1 = require("./design/grid");
@@ -75,6 +74,18 @@ class PinCode extends React.PureComponent {
             }
         };
         this.renderButtonNumber = (text) => {
+            let alphanumericMap = new Map([
+                ["1", " "],
+                ["2", "ABC"],
+                ["3", "DEF"],
+                ["4", "GHI"],
+                ["5", "JKL"],
+                ["6", "MNO"],
+                ["7", "PQRS"],
+                ["8", "TUV"],
+                ["9", "WXYZ"],
+                ["0", " "]
+            ]);
             const disabled = (this.state.password.length === this.props.passwordLength ||
                 this.state.showError) &&
                 !this.state.attemptFailed;
@@ -92,16 +103,28 @@ class PinCode extends React.PureComponent {
                 ], underlayColor: this.props.numbersButtonOverlayColor, disabled: disabled, onShowUnderlay: () => this.setState({ textButtonSelected: text }), onHideUnderlay: () => this.setState({ textButtonSelected: "" }), onPress: () => {
                     this.onPressButtonNumber(text);
                 }, accessible: true, accessibilityLabel: text },
-                React.createElement(react_native_1.Text, { style: [
-                        styles.text,
-                        this.props.styleTextButton,
-                        {
-                            opacity: opacity,
-                            color: this.state.textButtonSelected === text
-                                ? this.props.styleColorButtonTitleSelected
-                                : this.props.styleColorButtonTitle
-                        }
-                    ] }, text)))));
+                React.createElement(react_native_1.View, null,
+                    React.createElement(react_native_1.Text, { style: [
+                            styles.text,
+                            this.props.styleTextButton,
+                            {
+                                opacity: opacity,
+                                color: this.state.textButtonSelected === text
+                                    ? this.props.styleColorButtonTitleSelected
+                                    : this.props.styleColorButtonTitle
+                            }
+                        ] }, text),
+                    ((this.props.alphabetCharsVisible) &&
+                        React.createElement(react_native_1.Text, { style: [
+                                styles.tinytext,
+                                this.props.styleAlphabet,
+                                {
+                                    opacity: opacity,
+                                    color: this.state.textButtonSelected === text
+                                        ? this.props.styleColorButtonTitleSelected
+                                        : this.props.styleColorButtonTitle
+                                }
+                            ] }, alphanumericMap.get(text))))))));
         };
         this.endProcess = (pwd) => {
             setTimeout(() => {
@@ -418,6 +441,7 @@ class PinCode extends React.PureComponent {
     }
 }
 PinCode.defaultProps = {
+    alphabetCharsVisible: false,
     styleButtonCircle: null,
     colorCircleButtons: "rgb(242, 245, 251)",
     styleDeleteButtonColorHideUnderlay: "rgb(211, 213, 218)",
@@ -497,6 +521,10 @@ const styles = react_native_1.StyleSheet.create({
     text: {
         fontSize: grid_1.grid.unit * 2,
         fontWeight: "200"
+    },
+    tinytext: {
+        fontSize: grid_1.grid.unit / 2,
+        fontWeight: "300"
     },
     buttonCircle: {
         alignItems: "center",
