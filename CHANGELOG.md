@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
+## [1.22.6] - 2021-03-12
+### Merged
+- Merged `Support external pin validation` PR [PR 170](https://github.com/jarden-digital/react-native-pincode/pull/170) from [leo-maidea](https://github.com/leo-maidea)
+### Merged
+- Merged `Toggle English alphabet appearing on PIN pad` PR [PR 167](https://github.com/jarden-digital/react-native-pincode/pull/167) from [omorkved](https://github.com/omorkved)
+
+
 ## [1.22.5] - 2020-09-12
 ### Merged
 - Merged `Changes to avoid Keychain Prompt on Login screen (Android)` PR [PR 154](https://github.com/jarden-digital/react-native-pincode/pull/154) from [BeInLife](https://github.com/BeInLife)
