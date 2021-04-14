@@ -78,6 +78,7 @@ export interface IProps {
   subtitle: string
   subtitleComponent: any
   subtitleError?: string
+  textErrorDescriptionTouchID?: string
   textCancelButtonTouchID?: string
   textPasswordVisibleFamily?: string
   textPasswordVisibleSize?: number
@@ -210,7 +211,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       imageColor: '#e00606',
       imageErrorColor: '#ff0000',
       sensorDescription: 'Touch sensor',
-      sensorErrorDescription: 'Failed',
+      sensorErrorDescription: this.props.textErrorDescriptionTouchID || 'Failed',
       cancelText: this.props.textCancelButtonTouchID || 'Cancel',
       fallbackLabel: 'Show Passcode',
       unifiedErrors: false,
