@@ -1,6 +1,6 @@
 {
   "name": "@haskkor/react-native-pincode",
-  "version": "1.22.6",
+  "version": "1.23.0",
   "description": "React native PIN code component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,7 +45,7 @@
     "typescript": "^2.7.2"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.7.1",
+    "@react-native-async-storage/async-storage": "^1.15.8",
     "d3-ease": "^1.0.3",
     "lodash": "^4.17.5",
     "react-move": "^2.7.0",
