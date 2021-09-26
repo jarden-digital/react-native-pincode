@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { PinResultStatus } from "./src/utils";
 import * as React from "react";
 import { StyleProp, ViewStyle, TextStyle } from "react-native";
@@ -117,10 +118,10 @@ declare class PINCode extends React.PureComponent<IProps, IState> {
     static defaultProps: Partial<IProps>;
     constructor(props: IProps);
     changeInternalStatus: (status: PinResultStatus) => void;
-    renderLockedPage: () => any;
-    render(): any;
+    renderLockedPage: () => JSX.Element;
+    render(): JSX.Element;
 }
-export declare function hasUserSetPinCode(serviceName?: string): Promise<any>;
-export declare function deleteUserPinCode(serviceName?: string): Promise<any>;
-export declare function resetPinCodeInternalStates(pinAttempsStorageName?: string, timePinLockedStorageName?: string): Promise<any>;
+export declare function hasUserSetPinCode(serviceName?: string): Promise<boolean>;
+export declare function deleteUserPinCode(serviceName?: string): Promise<void>;
+export declare function resetPinCodeInternalStates(pinAttempsStorageName?: string, timePinLockedStorageName?: string): Promise<void>;
 export default PINCode;

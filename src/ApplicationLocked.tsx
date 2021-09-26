@@ -3,7 +3,7 @@ import { grid } from "./design/grid";
 import delay from "./delay";
 import { PinResultStatus } from "./utils";
 
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { easeLinear } from "d3-ease";
 import * as React from "react";
 import Animate from "react-move/Animate";
