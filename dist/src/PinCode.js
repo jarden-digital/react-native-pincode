@@ -537,7 +537,8 @@ const styles = react_native_1.StyleSheet.create({
     textTitle: {
         fontSize: 20,
         fontWeight: "200",
-        lineHeight: grid_1.grid.unit * 2.5
+        lineHeight: grid_1.grid.unit * 2.5,
+        textAlign: 'center'
     },
     textSubtitle: {
         fontSize: grid_1.grid.unit,

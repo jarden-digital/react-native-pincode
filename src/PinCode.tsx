@@ -849,7 +849,8 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: 20,
     fontWeight: "200",
-    lineHeight: grid.unit * 2.5
+    lineHeight: grid.unit * 2.5,
+    textAlign: 'center'
   },
   textSubtitle: {
     fontSize: grid.unit,
