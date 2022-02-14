@@ -1,2 +1,2 @@
-declare const delay: (ms: number) => Promise<{}>;
+declare const delay: (ms: number) => Promise<unknown>;
 export default delay;
