@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { PinResultStatus } from "./utils";
 import * as React from "react";
 export declare type IProps = {

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import * as React from "react";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 /**
@@ -83,7 +82,7 @@ export interface IState {
 export declare enum PinStatus {
     choose = "choose",
     confirm = "confirm",
-    enter = "enter",
+    enter = "enter"
 }
 declare class PinCode extends React.PureComponent<IProps, IState> {
     static defaultProps: Partial<IProps>;
@@ -103,6 +102,6 @@ declare class PinCode extends React.PureComponent<IProps, IState> {
     renderButtonDelete: (opacity: number) => any;
     renderTitle: (colorTitle: string, opacityTitle: number, attemptFailed?: boolean, showError?: boolean) => any;
     renderSubtitle: (colorTitle: string, opacityTitle: number, attemptFailed?: boolean, showError?: boolean) => any;
-    render(): JSX.Element;
+    render(): any;
 }
 export default PinCode;

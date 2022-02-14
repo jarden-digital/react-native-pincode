@@ -1,9 +1,8 @@
-import * as Keychain from 'react-native-keychain';
 export declare enum PinResultStatus {
     initial = "initial",
     success = "success",
     failure = "failure",
-    locked = "locked",
+    locked = "locked"
 }
 export declare const hasPinCode: (serviceName: string) => Promise<any>;
 export declare const deletePinCode: (serviceName: string) => Promise<any>;
