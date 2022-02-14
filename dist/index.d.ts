@@ -73,6 +73,7 @@ export declare type IProps = {
     stylePinCodeHiddenPasswordSizeEmpty?: number;
     stylePinCodeHiddenPasswordSizeFull?: number;
     stylePinCodeMainContainer?: StyleProp<ViewStyle>;
+    stylePinCodeGrid?: StyleProp<ViewStyle>;
     stylePinCodeRowButtons?: StyleProp<ViewStyle>;
     stylePinCodeTextButtonCircle?: StyleProp<TextStyle>;
     stylePinCodeTextSubtitle?: StyleProp<TextStyle>;

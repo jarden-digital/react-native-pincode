@@ -204,6 +204,7 @@ await resetPinCodeInternalStates()
 |**`stylePinCodeHiddenPasswordSizeEmpty`**|Size of the circle representing the hidden password of the PinCode file when empty|`4`|`number`|
 |**`stylePinCodeHiddenPasswordSizeFull`**|Size of the circle representing the hidden password of the PinCode file when full|`8`|`number`|
 |**`stylePinCodeMainContainer`**|Main container of the PinCode file|`flex: 1, justifyContent: 'center', alignItems: 'center'`|`StyleProp<ViewStyle>`|
+|**`stylePinCodeGrid`**|Grid of container of the PinCode file|`justifyContent: 'center', alignItems: 'center',`|`StyleProp<ViewStyle>`|
 |**`stylePinCodeRowButtons`**|Row of buttons of the PinCode file|`justifyContent: 'center', alignItems: 'center', width: '100%', height: grid.unit * 5.5`|`StyleProp<ViewStyle>`|
 |**`stylePinCodeTextButtonCircle`**|Text of circle button TouchableHighlight of the PinCode file|`fontSize: grid.unit * 2, fontWeight: '200'`|`StyleProp<TextStyle>`|
 |**`stylePinCodeTextSubtitle`**|Title of the PinCode file|`fontSize: 20, fontWeight: '200', lineHeight: grid.unit * 2.5`|`StyleProp<TextStyle>`|
