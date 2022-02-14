@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { PinStatus } from './PinCode';
 import * as React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
@@ -46,6 +47,7 @@ export interface IProps {
     styleDeleteButtonText?: StyleProp<TextStyle>;
     styleEmptyColumn?: StyleProp<ViewStyle>;
     stylePinCodeCircle?: StyleProp<ViewStyle>;
+    styleGridButtons?: StyleProp<ViewStyle>;
     styleRowButtons?: StyleProp<ViewStyle>;
     styleTextButton?: StyleProp<TextStyle>;
     styleTextSubtitle?: StyleProp<TextStyle>;
@@ -77,6 +79,6 @@ declare class PinCodeChoose extends React.PureComponent<IProps, IState> {
     endProcessCreation: (pinCode: string, isErrorValidation?: boolean) => void;
     endProcessConfirm: (pinCode: string) => Promise<void>;
     cancelConfirm: () => void;
-    render(): any;
+    render(): JSX.Element;
 }
 export default PinCodeChoose;

@@ -363,7 +363,10 @@ class PinCode extends React.PureComponent {
             React.createElement(react_native_1.View, { style: styles.flexCirclePassword }, this.props.passwordComponent
                 ? this.props.passwordComponent()
                 : this.renderCirclePassword()),
-            React.createElement(react_native_easy_grid_1.Grid, { style: styles.grid },
+            React.createElement(react_native_easy_grid_1.Grid, { style: [
+                    styles.grid,
+                    this.props.styleGridButtons
+                ] },
                 React.createElement(react_native_easy_grid_1.Row, { style: [
                         styles.row,
                         this.props.styleRowButtons
@@ -466,6 +469,7 @@ PinCode.defaultProps = {
     styleColorTitleError: colors_1.colors.alert,
     styleColorSubtitleError: colors_1.colors.alert,
     styleViewTitle: null,
+    styleGridButtons: null,
     styleRowButtons: null,
     styleColumnButtons: null,
     styleEmptyColumn: null,

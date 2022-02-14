@@ -51,6 +51,7 @@ export interface IProps {
   styleDeleteButtonText?: StyleProp<TextStyle>
   styleEmptyColumn?: StyleProp<ViewStyle>
   stylePinCodeCircle?: StyleProp<ViewStyle>
+  styleGridButtons?: StyleProp<ViewStyle>
   styleRowButtons?: StyleProp<ViewStyle>
   styleTextButton?: StyleProp<TextStyle>
   styleTextSubtitle?: StyleProp<TextStyle>
@@ -175,6 +176,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleDeleteButtonText={this.props.styleDeleteButtonText}
             styleEmptyColumn={this.props.styleEmptyColumn}
             stylePinCodeCircle={this.props.stylePinCodeCircle}
+            styleGridButtons={this.props.styleGridButtons}
             styleRowButtons={this.props.styleRowButtons}
             styleTextButton={this.props.styleTextButton}
             styleTextSubtitle={this.props.styleTextSubtitle}
@@ -257,6 +259,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleDeleteButtonText={this.props.styleDeleteButtonText}
             styleEmptyColumn={this.props.styleEmptyColumn}
             stylePinCodeCircle={this.props.stylePinCodeCircle}
+            styleGridButtons={this.props.styleGridButtons}
             styleRowButtons={this.props.styleRowButtons}
             styleTextButton={this.props.styleTextButton}
             styleTextSubtitle={this.props.styleTextSubtitle}

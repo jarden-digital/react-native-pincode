@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { PinStatus } from './PinCode';
 import { PinResultStatus } from './utils';
 import * as React from 'react';
@@ -57,6 +58,7 @@ export interface IProps {
     styleDeleteButtonText?: StyleProp<TextStyle>;
     styleEmptyColumn?: StyleProp<ViewStyle>;
     stylePinCodeCircle?: StyleProp<ViewStyle>;
+    styleGridButtons?: StyleProp<ViewStyle>;
     styleRowButtons?: StyleProp<ViewStyle>;
     styleTextButton?: StyleProp<TextStyle>;
     styleTextSubtitle?: StyleProp<TextStyle>;
@@ -96,6 +98,6 @@ declare class PinCodeEnter extends React.PureComponent<IProps, IState> {
     triggerTouchID(): void;
     endProcess: (pinCode?: string) => Promise<void>;
     launchTouchID(): Promise<void>;
-    render(): any;
+    render(): JSX.Element;
 }
 export default PinCodeEnter;
