@@ -235,9 +235,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             styleDeleteButtonText={this.props.stylePinCodeDeleteButtonText}
             styleEmptyColumn={this.props.stylePinCodeEmptyColumn}
             stylePinCodeCircle={this.props.stylePinCodeCircle}
-            
             styleGridButtons={this.props.stylePinCodeGrid}
-
             styleRowButtons={this.props.stylePinCodeRowButtons}
             styleTextButton={this.props.stylePinCodeTextButtonCircle}
             styleTextSubtitle={this.props.stylePinCodeTextSubtitle}
@@ -313,10 +311,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             styleDeleteButtonText={this.props.stylePinCodeDeleteButtonText}
             styleEmptyColumn={this.props.stylePinCodeEmptyColumn}
             stylePinCodeCircle={this.props.stylePinCodeCircle}
-
-            
             styleGridButtons={this.props.stylePinCodeGrid}
-
             styleRowButtons={this.props.stylePinCodeRowButtons}
             styleTextButton={this.props.stylePinCodeTextButtonCircle}
             styleTextSubtitle={this.props.stylePinCodeTextSubtitle}
