@@ -195,6 +195,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             }
             validationRegex={this.props.validationRegex}
             vibrationEnabled={this.props.vibrationEnabled}
+            footerComponent={this.props.footerComponent}
             fontFamily={this.props.fontFamily}
           />
         )}
@@ -269,11 +270,10 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleViewTitle={this.props.styleViewTitle}
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
+            footerComponent={this.props.footerComponent}
             fontFamily={this.props.fontFamily}
           />
         )}
-        {this.props.footerComponent &&
-          this.props.footerComponent(this.props, this.state)}
       </View>
     );
   }

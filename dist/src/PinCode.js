@@ -60,9 +60,9 @@ class PinCode extends React.PureComponent {
                         if (currentPassword !== this.props.previousPin) {
                             this.showError();
                         }
-                        else {
-                            this.endProcess(currentPassword);
-                        }
+                        // else {
+                        //   this.endProcess(currentPassword);
+                        // }
                         break;
                     case PinStatus.enter:
                         this.props.endProcess(currentPassword);
@@ -426,7 +426,9 @@ class PinCode extends React.PureComponent {
                                         this.props.getCurrentLength(newPass.length);
                                 }
                             })
-                            : this.renderButtonDelete(opacity)))))));
+                            : this.renderButtonDelete(opacity))))),
+            this.props.footerComponent &&
+                this.props.footerComponent(this.props, this.state)));
     }
 }
 PinCode.defaultProps = {

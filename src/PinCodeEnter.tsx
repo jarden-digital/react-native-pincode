@@ -319,10 +319,9 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           }
           vibrationEnabled={this.props.vibrationEnabled}
           delayBetweenAttempts={this.props.delayBetweenAttempts}
+          footerComponent={this.props.footerComponent}
           fontFamily={this.props.fontFamily}
         />
-        {this.props.footerComponent &&
-          this.props.footerComponent(this.props, this.state)}
       </View>
     );
   }
