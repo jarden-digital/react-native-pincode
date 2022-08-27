@@ -80,6 +80,7 @@ export interface IProps {
     vibrationEnabled?: boolean;
     delayBetweenAttempts?: number;
     footerComponent?: any;
+    fontFamily?: string;
 }
 export interface IState {
     pinCodeStatus: PinResultStatus;

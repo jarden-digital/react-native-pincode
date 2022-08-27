@@ -29,6 +29,7 @@ export declare type IProps = {
     timerComponent?: any;
     titleComponent?: any;
     footerComponent?: any;
+    fontFamily?: string;
 };
 export declare type IState = {
     timeDiff: number;

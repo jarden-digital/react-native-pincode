@@ -44,6 +44,7 @@ export type IProps = {
   timerComponent?: any;
   titleComponent?: any;
   footerComponent?: any;
+  fontFamily?: string;
 };
 
 export type IState = {
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     top: 0,
-    backgroundColor: colors.background,
+    backgroundColor: colors.white,
     flexBasis: 0,
     left: 0,
     height: '100%',
@@ -259,7 +260,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: grid.unit,
-    color: colors.base,
+    color: colors.grey800,
     lineHeight: grid.unit * grid.lineHeight,
     textAlign: 'center',
   },
@@ -273,11 +274,11 @@ const styles = StyleSheet.create({
   textTimer: {
     fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
     fontSize: 20,
-    color: colors.base,
+    color: colors.grey800,
   },
   title: {
     fontSize: grid.navIcon,
-    color: colors.base,
+    color: colors.grey800,
     opacity: grid.mediumOpacity,
     fontWeight: '200',
     marginBottom: grid.unit * 4,
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
     height: grid.unit * 4,
     borderRadius: grid.unit * 2,
     opacity: grid.mediumOpacity,
-    backgroundColor: colors.alert,
+    backgroundColor: colors.grey100,
     overflow: 'hidden',
     marginBottom: grid.unit * 4,
   },
@@ -310,7 +311,7 @@ const styles = StyleSheet.create({
     marginTop: grid.unit * 2,
   },
   button: {
-    backgroundColor: colors.turquoise,
+    backgroundColor: colors.grey100,
     borderRadius: grid.border,
     paddingLeft: grid.unit * 2,
     paddingRight: grid.unit * 2,

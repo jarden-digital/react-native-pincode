@@ -8,7 +8,7 @@
     "dev": "yarn build -watch",
     "build": "tsc",
     "compile": "npm run build",
-    "addlocal": "yarn add file:./local_modules/react-native-pincode",
+    "addlocal": "yarn add file:./local_modules/react-native-pincode/src",
     "test": "jest",
     "pretty": "prettier --single-quote --no-semi --jsx-bracket-same-line --write \"src/**/*.{ts, tsx}\""
   },

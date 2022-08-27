@@ -132,7 +132,7 @@ const styles = react_native_1.StyleSheet.create({
     container: {
         position: 'absolute',
         top: 0,
-        backgroundColor: colors_1.colors.background,
+        backgroundColor: colors_1.colors.white,
         flexBasis: 0,
         left: 0,
         height: '100%',
@@ -143,7 +143,7 @@ const styles = react_native_1.StyleSheet.create({
     },
     text: {
         fontSize: grid_1.grid.unit,
-        color: colors_1.colors.base,
+        color: colors_1.colors.grey800,
         lineHeight: grid_1.grid.unit * grid_1.grid.lineHeight,
         textAlign: 'center',
     },
@@ -157,11 +157,11 @@ const styles = react_native_1.StyleSheet.create({
     textTimer: {
         fontFamily: react_native_1.Platform.OS === 'ios' ? 'Courier' : 'monospace',
         fontSize: 20,
-        color: colors_1.colors.base,
+        color: colors_1.colors.grey800,
     },
     title: {
         fontSize: grid_1.grid.navIcon,
-        color: colors_1.colors.base,
+        color: colors_1.colors.grey800,
         opacity: grid_1.grid.mediumOpacity,
         fontWeight: '200',
         marginBottom: grid_1.grid.unit * 4,
@@ -173,7 +173,7 @@ const styles = react_native_1.StyleSheet.create({
         height: grid_1.grid.unit * 4,
         borderRadius: grid_1.grid.unit * 2,
         opacity: grid_1.grid.mediumOpacity,
-        backgroundColor: colors_1.colors.alert,
+        backgroundColor: colors_1.colors.grey100,
         overflow: 'hidden',
         marginBottom: grid_1.grid.unit * 4,
     },
@@ -194,7 +194,7 @@ const styles = react_native_1.StyleSheet.create({
         marginTop: grid_1.grid.unit * 2,
     },
     button: {
-        backgroundColor: colors_1.colors.turquoise,
+        backgroundColor: colors_1.colors.grey100,
         borderRadius: grid_1.grid.border,
         paddingLeft: grid_1.grid.unit * 2,
         paddingRight: grid_1.grid.unit * 2,

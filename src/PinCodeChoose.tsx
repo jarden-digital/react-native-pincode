@@ -78,6 +78,7 @@ export interface IProps {
   vibrationEnabled?: boolean;
   delayBetweenAttempts?: number;
   footerComponent?: any;
+  fontFamily?: string;
 }
 
 export type IState = {
@@ -194,6 +195,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             }
             validationRegex={this.props.validationRegex}
             vibrationEnabled={this.props.vibrationEnabled}
+            fontFamily={this.props.fontFamily}
           />
         )}
         {this.state.status === PinStatus.confirm && (
@@ -267,6 +269,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             styleViewTitle={this.props.styleViewTitle}
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
+            fontFamily={this.props.fontFamily}
           />
         )}
         {this.props.footerComponent &&

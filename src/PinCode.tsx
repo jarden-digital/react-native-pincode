@@ -85,6 +85,7 @@ export interface IProps {
   validationRegex?: RegExp;
   vibrationEnabled?: boolean;
   delayBetweenAttempts?: number;
+  fontFamily?: string;
 }
 
 export interface IState {
@@ -107,15 +108,15 @@ class PinCode extends React.PureComponent<IProps, IState> {
   static defaultProps: Partial<IProps> = {
     alphabetCharsVisible: false,
     styleButtonCircle: null,
-    colorCircleButtons: 'rgb(242, 245, 251)',
-    styleDeleteButtonColorHideUnderlay: 'rgb(211, 213, 218)',
-    numbersButtonOverlayColor: colors.turquoise,
-    styleDeleteButtonColorShowUnderlay: colors.turquoise,
+    colorCircleButtons: colors.transparent,
+    styleDeleteButtonColorHideUnderlay: colors.transparent,
+    numbersButtonOverlayColor: colors.grey100,
+    styleDeleteButtonColorShowUnderlay: colors.grey100,
     styleTextButton: null,
-    styleColorButtonTitleSelected: colors.white,
-    styleColorButtonTitle: colors.grey,
-    colorPasswordError: colors.alert,
-    colorPassword: colors.turquoise,
+    styleColorButtonTitleSelected: colors.black,
+    styleColorButtonTitle: colors.black,
+    colorPasswordError: colors.black,
+    colorPassword: colors.black,
     styleCircleHiddenPassword: null,
     styleColumnDeleteButton: null,
     styleDeleteButtonIcon: 'backspace',
@@ -125,18 +126,19 @@ class PinCode extends React.PureComponent<IProps, IState> {
     styleTextTitle: null,
     styleTextSubtitle: null,
     styleContainer: null,
-    styleColorTitle: colors.grey,
-    styleColorSubtitle: colors.grey,
-    styleColorTitleError: colors.alert,
-    styleColorSubtitleError: colors.alert,
+    styleColorTitle: colors.black,
+    styleColorSubtitle: colors.black,
+    styleColorTitleError: colors.black,
+    styleColorSubtitleError: colors.black,
     styleViewTitle: null,
     styleRowButtons: null,
     styleColumnButtons: null,
     styleEmptyColumn: null,
     textPasswordVisibleFamily: 'system font',
-    textPasswordVisibleSize: 22,
+    textPasswordVisibleSize: 26,
     vibrationEnabled: true,
     delayBetweenAttempts: 3000,
+    fontFamily: 'system font',
   };
 
   private readonly _circleSizeEmpty: number;
@@ -153,9 +155,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
       attemptFailed: false,
       changeScreen: false,
     };
-    this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4;
-    this._circleSizeFull =
-      this.props.styleCircleSizeFull || (this.props.pinCodeVisible ? 6 : 8);
+    this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 14;
+    this._circleSizeFull = this.props.styleCircleSizeFull || 14;
   }
 
   componentDidMount() {
@@ -293,6 +294,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                         ? this.props.styleColorButtonTitleSelected
                         : this.props.styleColorButtonTitle,
                   },
+                  { fontFamily: this.props.fontFamily },
                 ]}
               >
                 {text}
@@ -309,6 +311,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                           ? this.props.styleColorButtonTitleSelected
                           : this.props.styleColorButtonTitle,
                     },
+                    { fontFamily: this.props.fontFamily },
                   ]}
                 >
                   {alphanumericMap.get(text)}
@@ -464,17 +467,21 @@ class PinCode extends React.PureComponent<IProps, IState> {
                     <View
                       style={{
                         left: x,
+                        width: this._circleSizeFull,
                         opacity: opacity,
                         marginLeft: marginLeft,
                         marginRight: marginRight,
                       }}
                     >
                       <Text
-                        style={{
-                          color: color,
-                          fontFamily: this.props.textPasswordVisibleFamily,
-                          fontSize: this.props.textPasswordVisibleSize,
-                        }}
+                        style={[
+                          {
+                            color: color,
+                            fontFamily: this.props.fontFamily,
+                            fontSize: this.props.textPasswordVisibleSize,
+                          },
+                          { fontFamily: this.props.fontFamily },
+                        ]}
                       >
                         {this.state.password[val]}
                       </Text>
@@ -492,9 +499,13 @@ class PinCode extends React.PureComponent<IProps, IState> {
   renderButtonDelete = (opacity: number) => {
     return (
       <TouchableHighlight
-        activeOpacity={1}
+        style={[
+          styles.buttonCircle,
+          { backgroundColor: this.props.colorCircleButtons },
+          this.props.styleButtonCircle,
+        ]}
         disabled={this.state.password.length === 0}
-        underlayColor="transparent"
+        underlayColor={this.props.numbersButtonOverlayColor}
         onHideUnderlay={() =>
           this.setState({
             colorDelete: this.props.styleDeleteButtonColorHideUnderlay,
@@ -527,12 +538,13 @@ class PinCode extends React.PureComponent<IProps, IState> {
               {!this.props.iconButtonDeleteDisabled && null}
               <Text
                 style={[
-                  styles.textDeleteButton,
-                  this.props.styleDeleteButtonText,
-                  { color: this.state.colorDelete, opacity: opacity },
+                  styles.text,
+                  // this.props.styleDeleteButtonText,
+                  { opacity: opacity },
+                  { fontFamily: this.props.fontFamily },
                 ]}
               >
-                {this.props.buttonDeleteText}
+                {'<'}
               </Text>
             </>
           )}
@@ -553,6 +565,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
           styles.textTitle,
           this.props.styleTextTitle,
           { color: colorTitle, opacity: opacityTitle },
+          { fontFamily: this.props.fontFamily },
         ]}
       >
         {(attemptFailed && this.props.titleAttemptFailed) ||
@@ -575,6 +588,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
           styles.textSubtitle,
           this.props.styleTextSubtitle,
           { color: colorTitle, opacity: opacityTitle },
+          { fontFamily: this.props.fontFamily },
         ]}
       >
         {attemptFailed || showError
@@ -740,14 +754,11 @@ class PinCode extends React.PureComponent<IProps, IState> {
               <Animate
                 show={true}
                 start={{
-                  opacity: 0.5,
+                  opacity: 1,
                 }}
                 update={{
                   opacity: [
-                    password.length === 0 ||
-                    password.length === this.props.passwordLength
-                      ? 0.5
-                      : 1,
+                    this.state.showError && !this.state.attemptFailed ? 0.5 : 1,
                   ],
                   timing: { duration: 400, ease: easeLinear },
                 }}
@@ -801,6 +812,7 @@ const styles = StyleSheet.create({
     marginLeft: grid.unit / 2,
     marginRight: grid.unit / 2,
     alignItems: 'center',
+    justifyContent: 'center',
     width: grid.unit * 4,
     height: grid.unit * 4,
   },
@@ -818,8 +830,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   text: {
-    fontSize: grid.unit * 2,
-    fontWeight: '200',
+    fontSize: 26,
+    lineHeight: 32,
+    fontWeight: '400',
+    fontFamily: 'CircularStd-Book',
   },
   tinytext: {
     fontSize: grid.unit / 2,
@@ -834,14 +848,16 @@ const styles = StyleSheet.create({
     borderRadius: grid.unit * 2,
   },
   textTitle: {
-    fontSize: 20,
-    fontWeight: '200',
-    lineHeight: grid.unit * 2.5,
+    fontSize: 26,
+    fontWeight: '400',
+    lineHeight: 32,
   },
   textSubtitle: {
-    fontSize: grid.unit,
-    fontWeight: '200',
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: '400',
     textAlign: 'center',
+    marginTop: 16,
   },
   flexCirclePassword: {
     flex: 2,
@@ -855,6 +871,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   viewCircles: {
+    height: 32,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -865,7 +882,7 @@ const styles = StyleSheet.create({
   grid: {
     justifyContent: 'flex-start',
     width: '100%',
-    flex: 7,
+    flex: 5,
   },
 });
 

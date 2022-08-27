@@ -67,6 +67,7 @@ export interface IProps {
     vibrationEnabled?: boolean;
     delayBetweenAttempts?: number;
     footerComponent?: any;
+    fontFamily?: string;
 }
 export declare type IState = {
     status: PinStatus;

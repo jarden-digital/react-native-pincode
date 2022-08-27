@@ -93,6 +93,7 @@ export interface IProps {
   vibrationEnabled?: boolean;
   delayBetweenAttempts?: number;
   footerComponent?: any;
+  fontFamily?: string;
 }
 
 export interface IState {
@@ -318,6 +319,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           }
           vibrationEnabled={this.props.vibrationEnabled}
           delayBetweenAttempts={this.props.delayBetweenAttempts}
+          fontFamily={this.props.fontFamily}
         />
         {this.props.footerComponent &&
           this.props.footerComponent(this.props, this.state)}

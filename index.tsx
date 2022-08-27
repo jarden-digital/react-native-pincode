@@ -127,6 +127,7 @@ export type IProps = {
   vibrationEnabled?: boolean;
   delayBetweenAttempts?: number;
   footerComponent?: any;
+  fontFamily?: string;
 };
 
 export type IState = {
@@ -215,6 +216,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
         timeToLock={this.props.timeLocked || 300000}
         titleComponent={this.props.titleComponentLockedPage || undefined}
         footerComponent={this.props.footerComponent}
+        fontFamily={this.props.fontFamily}
       />
     );
   };
@@ -303,6 +305,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
             footerComponent={this.props.footerComponent}
+            fontFamily={this.props.fontFamily}
           />
         )}
         {status === PinStatus.enter && (
@@ -405,6 +408,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             vibrationEnabled={this.props.vibrationEnabled}
             delayBetweenAttempts={this.props.delayBetweenAttempts}
             footerComponent={this.props.footerComponent}
+            fontFamily={this.props.fontFamily}
           />
         )}
         {(pinStatus === PinResultStatus.locked ||
