@@ -21,17 +21,17 @@ const colors = {
   ausEquities: '#DECD58',
   globalEquities: '#FFAA4A',
   altStrategies: '#FC4349',
-  globalDebtSecurities: '#213249'
-}
+  globalDebtSecurities: '#213249',
+};
 
 const documentColor = (docType: string) => {
   switch (docType) {
     case 'CUSTODY_REPORT':
-      return colors.pink
+      return colors.pink;
     case 'TAX_REPORT':
     default:
-      return colors.primary
+      return colors.primary;
   }
-}
+};
 
-export { colors, documentColor }
+export { colors, documentColor };

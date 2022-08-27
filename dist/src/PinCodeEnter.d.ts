@@ -79,6 +79,7 @@ export interface IProps {
     passcodeFallback?: boolean;
     vibrationEnabled?: boolean;
     delayBetweenAttempts?: number;
+    footerComponent?: any;
 }
 export interface IState {
     pinCodeStatus: PinResultStatus;
@@ -96,6 +97,6 @@ declare class PinCodeEnter extends React.PureComponent<IProps, IState> {
     triggerTouchID(): void;
     endProcess: (pinCode?: string) => Promise<void>;
     launchTouchID(): Promise<void>;
-    render(): any;
+    render(): JSX.Element;
 }
 export default PinCodeEnter;

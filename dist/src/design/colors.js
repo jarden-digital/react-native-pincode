@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.documentColor = exports.colors = void 0;
 const colors = {
     red: '#FC4349',
     alert: '#FC4349',
@@ -23,7 +24,7 @@ const colors = {
     ausEquities: '#DECD58',
     globalEquities: '#FFAA4A',
     altStrategies: '#FC4349',
-    globalDebtSecurities: '#213249'
+    globalDebtSecurities: '#213249',
 };
 exports.colors = colors;
 const documentColor = (docType) => {
