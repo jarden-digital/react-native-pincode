@@ -805,7 +805,7 @@ const styles = StyleSheet.create({
     flex: 0,
     flexShrink: 1,
     alignItems: 'center',
-    height: grid.unit * 5.5,
+    height: grid.unit * 4,
   },
   rowWithEmpty: {
     flexShrink: 0,

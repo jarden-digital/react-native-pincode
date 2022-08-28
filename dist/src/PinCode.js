@@ -483,7 +483,7 @@ const styles = react_native_1.StyleSheet.create({
         flex: 0,
         flexShrink: 1,
         alignItems: 'center',
-        height: grid_1.grid.unit * 5.5,
+        height: grid_1.grid.unit * 4,
     },
     rowWithEmpty: {
         flexShrink: 0,
