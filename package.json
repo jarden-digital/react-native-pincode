@@ -48,7 +48,7 @@
     "@react-native-community/async-storage": "^1.7.1",
     "d3-ease": "^1.0.3",
     "lodash": "^4.17.5",
-    "react-move": "^2.7.0",
+    "react-move": "^6.5.0",
     "react-native-easy-grid": "^0.2.2",
     "react-native-keychain": "^6.1.1",
     "react-native-touch-id": "^4.4.1",
