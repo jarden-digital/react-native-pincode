@@ -2,7 +2,7 @@ import delay from './delay'
 import PinCode, { PinStatus } from './PinCode'
 import { PinResultStatus, noBiometricsConfig } from './utils'
 
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as React from 'react'
 import {
   StyleProp,
@@ -91,6 +91,7 @@ export interface IProps {
   touchIDTitle?: string
   passcodeFallback?: boolean
   vibrationEnabled?: boolean
+  errorForm?: boolean
   delayBetweenAttempts?: number
 }
 
@@ -155,8 +156,37 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
 
   endProcess = async (pinCode?: string) => {
     if (!!this.props.endProcessFunction) {
+      
       this.props.endProcessFunction(pinCode as string)
+      
+      let pinValidOverride = undefined;
+      if (this.props.handleResult) {
+        pinValidOverride = await Promise.resolve(this.props.handleResult(pinCode));
+      }
+      this.setState({ pinCodeStatus: PinResultStatus.initial })
+      this.props.changeInternalStatus(PinResultStatus.initial)
+      const pinAttemptsStr = await AsyncStorage.getItem(
+        this.props.pinAttemptsAsyncStorageName
+      )
+      let pinAttempts = pinAttemptsStr ? +pinAttemptsStr : 0
+      const pin = this.props.storedPin || this.keyChainResult
+      if (pinValidOverride !== undefined ? pinValidOverride : pin === pinCode) {
+        this.setState({ pinCodeStatus: PinResultStatus.success })
+        AsyncStorage.multiRemove([
+          this.props.pinAttemptsAsyncStorageName,
+          this.props.timePinLockedAsyncStorageName
+        ])
+        this.props.changeInternalStatus(PinResultStatus.success)
+        if (!!this.props.finishProcess)
+          this.props.finishProcess(pinCode as string)
+      } else {
+        
+        this.setState({ pinCodeStatus: PinResultStatus.failure })
+        this.props.changeInternalStatus(PinResultStatus.failure)
+        
+      }
     } else {
+      
       let pinValidOverride = undefined;
       if (this.props.handleResult) {
         pinValidOverride = await Promise.resolve(this.props.handleResult(pinCode));
@@ -198,7 +228,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           this.props.changeInternalStatus(PinResultStatus.failure)
         }
         if (this.props.onFail) {
-          await delay(1500)
+          await delay(0)
           this.props.onFail(pinAttempts)
         }
       }
@@ -313,6 +343,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
             this.props.titleConfirmFailed || 'Your entries did not match'
           }
           vibrationEnabled={this.props.vibrationEnabled}
+          errorForm={this.props.errorForm}
           delayBetweenAttempts={this.props.delayBetweenAttempts}
         />
       </View>

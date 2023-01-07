@@ -85,6 +85,7 @@ export interface IProps {
   titleValidationFailed?: string
   validationRegex?: RegExp
   vibrationEnabled?: boolean
+  errorForm?: boolean
   delayBetweenAttempts?: number;
 }
 
@@ -137,6 +138,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     textPasswordVisibleFamily: "system font",
     textPasswordVisibleSize: 22,
     vibrationEnabled: true,
+    errorForm: false,
     delayBetweenAttempts: 3000,
   }
 
@@ -152,7 +154,12 @@ class PinCode extends React.PureComponent<IProps, IState> {
       textButtonSelected: "",
       colorDelete: this.props.styleDeleteButtonColorHideUnderlay,
       attemptFailed: false,
-      changeScreen: false
+      changeScreen: false,
+      numberOne: null,
+      numberTwo:null,
+      numberThree:null,
+      numberFour:null,
+      numberLength:0
     };
     this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4;
     this._circleSizeFull =
@@ -179,7 +186,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
   }
 
   failedAttempt = async () => {
-    await delay(300);
+    await delay(0);
     this.setState({
       showError: true,
       attemptFailed: true,
@@ -192,7 +199,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
 
   newAttempt = async () => {
     this.setState({ changeScreen: true });
-    await delay(200);
+    await delay(0);
     this.setState({
       changeScreen: false,
       showError: false,
@@ -265,7 +272,51 @@ class PinCode extends React.PureComponent<IProps, IState> {
           timing: { duration: 200, ease: easeLinear }
         }}>
         {({ opacity }: any) => (
-          <TouchableHighlight
+          this.state.password.includes(text) ? <TouchableHighlight
+            style={[
+              styles.buttonCircle,
+              { backgroundColor: '#fff' },
+              this.props.styleButtonCircle,
+            ]}
+            underlayColor={this.props.numbersButtonOverlayColor}
+            disabled={disabled}
+            onShowUnderlay={() => this.setState({ textButtonSelected: text })}
+            onHideUnderlay={() => this.setState({ textButtonSelected: "" })}
+            onPress={() => {
+              this.onPressButtonNumber(text);
+              
+            }}
+            accessible
+            accessibilityLabel={text}>
+            <View>
+            <Text
+              style={[
+                styles.text,
+                this.props.styleTextButton,
+                {
+                  opacity: opacity,
+                  color: '#202020'
+                }
+              ]}>
+              {text} 
+            </Text>
+            {((this.props.alphabetCharsVisible) &&
+              <Text
+                style={[
+                  styles.tinytext,
+                  this.props.styleAlphabet,
+                {
+                  opacity: opacity,
+                  color: this.state.textButtonSelected === text
+                    ? this.props.styleColorButtonTitleSelected
+                    : this.props.styleColorButtonTitle
+                }
+                ]}>
+                {alphanumericMap.get(text)}
+              </Text>
+            )}
+            </View>
+          </TouchableHighlight> : <TouchableHighlight
             style={[
               styles.buttonCircle,
               { backgroundColor: this.props.colorCircleButtons },
@@ -277,6 +328,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
             onHideUnderlay={() => this.setState({ textButtonSelected: "" })}
             onPress={() => {
               this.onPressButtonNumber(text);
+              
             }}
             accessible
             accessibilityLabel={text}>
@@ -438,6 +490,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 marginLeft
               }: any) => (
                   <View style={styles.viewCircles}>
+
                     {((!this.props.pinCodeVisible ||
                       (this.props.pinCodeVisible && !lengthSup)) && (
                         <View
@@ -445,11 +498,12 @@ class PinCode extends React.PureComponent<IProps, IState> {
                             left: x,
                             height: height,
                             width: width,
-                            opacity: opacity,
                             borderRadius: borderRadius,
                             marginLeft: marginLeft,
                             marginRight: marginRight,
-                            backgroundColor: color
+                            borderColor: opacity != 1 && this.props.errorForm == true  ? '#E63131' : '#fff5f5',
+                            borderWidth: 2,
+                            backgroundColor: opacity == 1 && this.props.errorForm == false ? '#fff' : 'transparent'
                           }, this.props.stylePinCodeCircle]}
                         />
                       )) || (
@@ -466,7 +520,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                               fontFamily: this.props.textPasswordVisibleFamily,
                               fontSize: this.props.textPasswordVisibleSize
                             }}>
-                            {this.state.password[val]}
+                            {this.state.password[val]} 
                           </Text>
                         </View>
                       )}
@@ -583,71 +637,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
           styles.container,
           this.props.styleContainer
         ]}>
-        <Animate
-          show={true}
-          start={{
-            opacity: 0,
-            colorTitle: this.props.styleColorTitle,
-            colorSubtitle: this.props.styleColorSubtitle,
-            opacityTitle: 1
-          }}
-          enter={{
-            opacity: [1],
-            colorTitle: [
-              this.props.styleColorTitle
-            ],
-            colorSubtitle: [
-              this.props.styleColorSubtitle
-            ],
-            opacityTitle: [1],
-            timing: { duration: 200, ease: easeLinear }
-          }}
-          update={{
-            opacity: [changeScreen ? 0 : 1],
-            colorTitle: [
-              showError || attemptFailed
-                ? this.props.styleColorTitleError
-                : this.props.styleColorTitle
-            ],
-            colorSubtitle: [
-              showError || attemptFailed
-                ? this.props.styleColorSubtitleError
-                : this.props.styleColorSubtitle
-            ],
-            opacityTitle: [showError || attemptFailed ? grid.highOpacity : 1],
-            timing: { duration: 200, ease: easeLinear }
-          }}>
-          {({ opacity, colorTitle, colorSubtitle, opacityTitle }: any) => (
-            <View
-              style={[
-                styles.viewTitle,
-                this.props.styleViewTitle,
-                { opacity: opacity }
-              ]}>
-              {this.props.titleComponent
-                ? this.props.titleComponent()
-                : this.renderTitle(
-                  colorTitle,
-                  opacityTitle,
-                  attemptFailed,
-                  showError
-                )}
-              {this.props.subtitleComponent
-                ? this.props.subtitleComponent()
-                : this.renderSubtitle(
-                  colorSubtitle,
-                  opacityTitle,
-                  attemptFailed,
-                  showError
-                )}
-            </View>
-          )}
-        </Animate>
-        <View style={styles.flexCirclePassword}>
-          {this.props.passwordComponent
-            ? this.props.passwordComponent()
-            : this.renderCirclePassword()}
-        </View>
+        
+        
         <Grid style={styles.grid}>
           <Row
             style={[
@@ -781,6 +772,57 @@ class PinCode extends React.PureComponent<IProps, IState> {
             </Col>
           </Row>
         </Grid>
+        <View style={styles.flexCirclePassword}>
+          {this.props.passwordComponent
+            ? this.props.passwordComponent()
+            : this.renderCirclePassword()}
+        </View>
+        <Animate
+          show={true}
+          start={{
+            opacity: 0,
+            colorTitle: this.props.styleColorTitle,
+            colorSubtitle: this.props.styleColorSubtitle,
+            opacityTitle: 1
+          }}
+          enter={{
+            opacity: [1],
+            colorTitle: [
+              this.props.styleColorTitle
+            ],
+            colorSubtitle: [
+              this.props.styleColorSubtitle
+            ],
+            opacityTitle: [1],
+            timing: { duration: 200, ease: easeLinear }
+          }}
+          update={{
+            opacity: [changeScreen ? 0 : 1],
+            colorTitle: [
+              showError || attemptFailed
+                ? this.props.styleColorTitleError
+                : this.props.styleColorTitle
+            ],
+            colorSubtitle: [
+              showError || attemptFailed
+                ? this.props.styleColorSubtitleError
+                : this.props.styleColorSubtitle
+            ],
+            opacityTitle: [showError || attemptFailed ? grid.highOpacity : 1],
+            timing: { duration: 200, ease: easeLinear }
+          }}>
+          {({ opacity, colorTitle, colorSubtitle, opacityTitle }: any) => (
+            <View
+              style={[
+                styles.viewTitle,
+                this.props.styleViewTitle,
+                { opacity: opacity }
+              ]}>
+                {this.props.errorForm ? <Text style={{textAlign:'center',color:'#E63131',fontFamily: 'Avenir',fontSize:18,marginTop:5}}>Incorrect Code</Text> : <Text style={{textAlign:'center',color:'#fff',fontFamily: 'Avenir',fontSize:18,marginTop:5}}>Enter your 4 digit code</Text> }
+            </View>
+          )}
+        </Animate>
+        
       </View>
     );
   }
@@ -859,7 +901,9 @@ const styles = StyleSheet.create({
   flexCirclePassword: {
     flex: 2,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop:25,
+    marginBottom:5
   },
   topViewCirclePassword: {
     flexDirection: "row",
