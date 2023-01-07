@@ -155,11 +155,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
       colorDelete: this.props.styleDeleteButtonColorHideUnderlay,
       attemptFailed: false,
       changeScreen: false,
-      numberOne: null,
-      numberTwo:null,
-      numberThree:null,
-      numberFour:null,
-      numberLength:0
+      
     };
     this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 4;
     this._circleSizeFull =

@@ -4,7 +4,6 @@ import PinCodeChoose from "./src/PinCodeChoose";
 import PinCodeEnter from "./src/PinCodeEnter";
 import { hasPinCode, deletePinCode, resetInternalStates, PinResultStatus } from "./src/utils";
 
-import AsyncStorage from '@react-native-community/async-storage'
 import * as React from "react";
 import { View, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
 
@@ -139,11 +138,6 @@ class PINCode extends React.PureComponent<IProps, IState> {
     this.state = { internalPinStatus: PinResultStatus.initial, pinLocked: false };
     this.changeInternalStatus = this.changeInternalStatus.bind(this);
     this.renderLockedPage = this.renderLockedPage.bind(this);
-    AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault).then((val) => {
-      this.setState({ pinLocked: !!val });
-    }).catch(error => {
-      console.log('PINCode: ', error)
-    })
   }
 
   changeInternalStatus = (status: PinResultStatus) => {

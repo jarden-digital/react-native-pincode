@@ -4,7 +4,6 @@ const colors_1 = require("./design/colors");
 const grid_1 = require("./design/grid");
 const delay_1 = require("./delay");
 const utils_1 = require("./utils");
-const async_storage_1 = require("@react-native-community/async-storage");
 const d3_ease_1 = require("d3-ease");
 const React = require("react");
 const Animate_1 = require("react-move/Animate");
@@ -103,10 +102,6 @@ class ApplicationLocked extends React.PureComponent {
         this.renderTitle = this.renderTitle.bind(this);
     }
     componentDidMount() {
-        async_storage_1.default.getItem(this.props.timePinLockedAsyncStorageName).then(val => {
-            this.timeLocked = new Date(val ? val : "").getTime() + this.props.timeToLock;
-            this.timer();
-        });
     }
     async timer() {
         const timeDiff = +new Date(this.timeLocked) - +new Date();
@@ -114,10 +109,6 @@ class ApplicationLocked extends React.PureComponent {
         await delay_1.default(1000);
         if (timeDiff < 1000) {
             this.props.changeStatus(utils_1.PinResultStatus.initial);
-            async_storage_1.default.multiRemove([
-                this.props.timePinLockedAsyncStorageName,
-                this.props.pinAttemptsAsyncStorageName
-            ]);
         }
         if (!this.isUnmounted) {
             this.timer();
