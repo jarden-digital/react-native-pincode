@@ -42,10 +42,10 @@
     "react-dom": "^16.4.1",
     "react-native": "^0.54.2",
     "react-test-renderer": "^16.4.1",
-    "typescript": "^2.7.2"
+    "typescript": "2.9.2"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.7.1",
+    "@react-native-async-storage/async-storage": "1.17.11",
     "d3-ease": "^1.0.3",
     "lodash": "^4.17.5",
     "react-move": "^2.7.0",

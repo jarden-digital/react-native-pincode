@@ -77,6 +77,6 @@ declare class PinCodeChoose extends React.PureComponent<IProps, IState> {
     endProcessCreation: (pinCode: string, isErrorValidation?: boolean) => void;
     endProcessConfirm: (pinCode: string) => Promise<void>;
     cancelConfirm: () => void;
-    render(): any;
+    render(): JSX.Element;
 }
 export default PinCodeChoose;

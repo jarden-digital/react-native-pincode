@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_native_1 = require("react-native");
-const async_storage_1 = require("@react-native-community/async-storage");
 const Keychain = require("react-native-keychain");
 var PinResultStatus;
 (function (PinResultStatus) {
@@ -19,7 +18,7 @@ exports.deletePinCode = async (serviceName) => {
     return await Keychain.resetInternetCredentials(serviceName);
 };
 exports.resetInternalStates = async (asyncStorageKeys) => {
-    return await async_storage_1.default.multiRemove(asyncStorageKeys);
+    return '';
 };
 exports.noBiometricsConfig = react_native_1.Platform.select({
     android: {
