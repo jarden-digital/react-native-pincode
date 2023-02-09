@@ -512,6 +512,7 @@ const styles = react_native_1.StyleSheet.create({
         flexDirection: 'column',
     },
     text: {
+        color: 'rgb(0, 0, 0)',
         fontSize: 26,
         lineHeight: 32,
         fontWeight: '400',
