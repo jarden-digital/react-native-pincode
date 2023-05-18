@@ -152,8 +152,8 @@ class PinCode extends React.PureComponent {
                         width: this._circleSizeEmpty,
                         borderRadius: this._circleSizeEmpty / 2,
                         color: colorPwdEmp,
-                        marginRight: 10,
-                        marginLeft: 10,
+                        marginRight: 15,
+                        marginLeft: 15,
                         x: 0,
                         y: 0,
                     }, update: {
@@ -165,12 +165,13 @@ class PinCode extends React.PureComponent {
                         width: [
                             lengthSup ? this._circleSizeFull : this._circleSizeEmpty,
                         ],
-                        color: 
+                        color: [
                             showError
                                 ? colorPwdErr
                                 : lengthSup && password.length > 0
                                     ? colorPwd
                                     : colorPwdEmp,
+                        ],
                         borderRadius: [
                             lengthSup
                                 ? this._circleSizeFull / 2
@@ -178,13 +179,13 @@ class PinCode extends React.PureComponent {
                         ],
                         marginRight: [
                             lengthSup
-                                ? 10 - (this._circleSizeFull - this._circleSizeEmpty) / 2
-                                : 10,
+                                ? 15 - (this._circleSizeFull - this._circleSizeEmpty) / 2
+                                : 15,
                         ],
                         marginLeft: [
                             lengthSup
-                                ? 10 - (this._circleSizeFull - this._circleSizeEmpty) / 2
-                                : 10,
+                                ? 15 - (this._circleSizeFull - this._circleSizeEmpty) / 2
+                                : 15,
                         ],
                         y: [moveData.y],
                         timing: { duration: 200, ease: d3_ease_1.easeLinear },
@@ -203,16 +204,16 @@ class PinCode extends React.PureComponent {
                         this.props.stylePinCodeCircle,
                     ] }))) || (React.createElement(react_native_1.View, { style: {
                         left: x,
-                        // width: this._circleSizeFull,
+                        width: this._circleSizeFull,
                         opacity: opacity,
                         marginLeft: marginLeft,
                         marginRight: marginRight,
                     } },
                     React.createElement(react_native_1.Text, { style: [
                             {
-                                color: color,
+                                color: colorPwd,
                                 fontFamily: this.props.fontFamily,
-                                fontSize: this.props.textPasswordVisibleSize, // passtest
+                                fontSize: this.props.textPasswordVisibleSize,
                             },
                             { fontFamily: this.props.fontFamily },
                         ] }, this.state.password[val])))))));
@@ -220,8 +221,8 @@ class PinCode extends React.PureComponent {
         };
         this.renderButtonDelete = (opacity) => {
             return (React.createElement(react_native_1.TouchableHighlight, { style: [
-                    styles.deleteButtonCircle,
-                    // { backgroundColor: this.props.colorCircleButtons },
+                    // styles.buttonCircle,
+                    { backgroundColor: colors_1.colors.transparent },
                     this.props.styleButtonCircle,
                 ], disabled: this.state.password.length === 0, underlayColor: this.props.numbersButtonOverlayColor, onHideUnderlay: () => this.setState({
                     colorDelete: this.props.styleDeleteButtonColorHideUnderlay,
@@ -243,7 +244,7 @@ class PinCode extends React.PureComponent {
                     React.createElement(react_native_1.Text, { style: [
                             styles.text,
                             // this.props.styleDeleteButtonText,
-                            { opacity: opacity, color: this.props.styleColorButtonTitle },
+                            { opacity: opacity },
                             { fontFamily: this.props.fontFamily },
                         ] }, '<'))))));
         };
@@ -264,14 +265,9 @@ class PinCode extends React.PureComponent {
                     this.props.styleTextSubtitle,
                     { color: colorTitle, opacity: opacityTitle },
                     { fontFamily: this.props.fontFamily },
-                ] },
-                // attemptFailed || showError
-                // ? this.props.subtitleError
-                // : this.props.subtitle));
-                (attemptFailed && this.props.subtitleError) ||
-                (showError && this.props.titleConfirmFailed) ||
-                (showError && this.props.titleValidationFailed) ||
-                this.props.subtitle));
+                ] }, attemptFailed || showError
+                ? this.props.subtitleError
+                : this.props.subtitle));
         };
         this.state = {
             password: '',
@@ -283,7 +279,7 @@ class PinCode extends React.PureComponent {
             changeScreen: false,
         };
         this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 14;
-        this._circleSizeFull = this.props.styleCircleSizeFull || 14;
+        this._circleSizeFull = this.props.styleCircleSizeFull + 2 || 14;
     }
     componentDidMount() {
         if (this.props.getCurrentLength)
@@ -366,7 +362,7 @@ class PinCode extends React.PureComponent {
                 } }, ({ opacity, colorTitle, colorSubtitle, opacityTitle }) => (React.createElement(react_native_1.View, { style: [
                     styles.viewTitle,
                     this.props.styleViewTitle,
-                    // { opacity: opacity },
+                    { opacity: opacity },
                 ] },
                 this.props.titleComponent
                     ? this.props.titleComponent()
@@ -404,7 +400,7 @@ class PinCode extends React.PureComponent {
                 })),
                 React.createElement(react_native_easy_grid_1.Row, { style: [
                         styles.row,
-                        styles.rowWithEmpty,
+                        // styles.rowWithEmpty,
                         this.props.styleRowButtons,
                     ] },
                     React.createElement(react_native_easy_grid_1.Col, { style: [styles.colEmpty, this.props.styleEmptyColumn] }, this.props.emptyColumnComponent
@@ -437,18 +433,16 @@ class PinCode extends React.PureComponent {
 }
 PinCode.defaultProps = {
     alphabetCharsVisible: false,
-    styleButtonCircle: null, // button circle overlay style
-    colorCircleButtons: colors_1.colors.transparentBlue, // button circle overlay color
+    styleButtonCircle: null,
+    colorCircleButtons: colors_1.colors.transparent,
     styleDeleteButtonColorHideUnderlay: colors_1.colors.transparent,
-    numbersButtonOverlayColor: colors_1.colors.lightTransparentBlue, // button circle overlay color when press
+    numbersButtonOverlayColor: colors_1.colors.grey100,
     styleDeleteButtonColorShowUnderlay: colors_1.colors.grey100,
-    // styleTextButton: { fontSize: 38, lineHeight: 42, textAlign: 'center' },
     styleTextButton: null,
-    styleColorButtonTitleSelected: colors_1.colors.white, // button numbers color when press
-    styleColorButtonTitle: colors_1.colors.white, // button numbers color
-    colorPasswordError: colors_1.colors.white,
-    colorPasswordEmpty: colors_1.colors.white, // pin Code Circle color when empty
-    colorPassword: colors_1.colors.white, // pin Code Circle color
+    styleColorButtonTitleSelected: colors_1.colors.black,
+    styleColorButtonTitle: colors_1.colors.black,
+    colorPasswordError: colors_1.colors.black,
+    colorPassword: colors_1.colors.black,
     styleCircleHiddenPassword: null,
     styleColumnDeleteButton: null,
     styleDeleteButtonIcon: 'backspace',
@@ -458,10 +452,10 @@ PinCode.defaultProps = {
     styleTextTitle: null,
     styleTextSubtitle: null,
     styleContainer: null,
-    styleColorTitle: colors_1.colors.white,
-    styleColorSubtitle: colors_1.colors.white,
-    styleColorTitleError: colors_1.colors.white,
-    styleColorSubtitleError: colors_1.colors.white,
+    styleColorTitle: colors_1.colors.black,
+    styleColorSubtitle: colors_1.colors.black,
+    styleColorTitleError: colors_1.colors.black,
+    styleColorSubtitleError: colors_1.colors.black,
     styleViewTitle: null,
     styleRowButtons: null,
     styleColumnButtons: null,
@@ -477,8 +471,8 @@ const styles = react_native_1.StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: grid_1.grid.unit * 2,
         width: '100%',
-        marginTop: 48,
     },
     viewTitle: {
         flexDirection: 'column',
@@ -487,30 +481,32 @@ const styles = react_native_1.StyleSheet.create({
         flex: 2,
     },
     row: {
-        // flex: 0,
+        flex: 0,
         flexShrink: 1,
         alignItems: 'center',
-        height: grid_1.grid.unit * 4.6,
+        height: grid_1.grid.unit * 4,
+        marginBottom: grid_1.grid.unit,
     },
-    rowWithEmpty: {
-        flexShrink: 0,
-        justifyContent: 'flex-end',
-    },
+    // rowWithEmpty: {
+    //   flexShrink: 0,
+    //   justifyContent: 'flex-end',
+    //   backgroundColor: 'yellow',
+    // },
     colButtonCircle: {
         flex: 0,
-        marginLeft: grid_1.grid.unit / 1.5,
-        marginRight: grid_1.grid.unit / 1.5,
+        marginLeft: grid_1.grid.unit / 2,
+        marginRight: grid_1.grid.unit / 2,
         alignItems: 'center',
         justifyContent: 'center',
-        width: grid_1.grid.unit * 3.5,
-        height: grid_1.grid.unit * 3.5,
+        width: grid_1.grid.unit * 4,
+        height: grid_1.grid.unit * 4,
     },
     colEmpty: {
         flex: 0,
-        marginLeft: grid_1.grid.unit / 1.5,
-        marginRight: grid_1.grid.unit / 1.5,
-        width: grid_1.grid.unit * 3.5,
-        height: grid_1.grid.unit * 3.5,
+        marginLeft: grid_1.grid.unit / 2,
+        marginRight: grid_1.grid.unit / 2,
+        width: grid_1.grid.unit * 4,
+        height: grid_1.grid.unit * 4,
     },
     colIcon: {
         alignSelf: 'center',
@@ -519,8 +515,9 @@ const styles = react_native_1.StyleSheet.create({
         flexDirection: 'column',
     },
     text: {
-        fontSize: 38,
-        lineHeight: 42,
+        color: 'rgb(0, 0, 0)',
+        fontSize: 26,
+        lineHeight: 32,
         fontWeight: '400',
         fontFamily: 'CircularStd-Book',
     },
@@ -531,16 +528,9 @@ const styles = react_native_1.StyleSheet.create({
     buttonCircle: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: grid_1.grid.unit * 3.8,
-        height: grid_1.grid.unit * 3.8,
+        width: grid_1.grid.unit * 3.5,
+        height: grid_1.grid.unit * 3.5,
         backgroundColor: 'rgb(242, 245, 251)',
-        borderRadius: grid_1.grid.unit * 2,
-    },
-    deleteButtonCircle: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: grid_1.grid.unit * 3.8,
-        height: grid_1.grid.unit * 3.8,
         borderRadius: grid_1.grid.unit * 2,
     },
     textTitle: {
@@ -553,14 +543,12 @@ const styles = react_native_1.StyleSheet.create({
         lineHeight: 20,
         fontWeight: '400',
         textAlign: 'center',
+        marginTop: 16,
     },
     flexCirclePassword: {
-        // flex: 1,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 32,
-        paddingTop: 16,
-        width: '65%',
     },
     topViewCirclePassword: {
         flexDirection: 'row',
@@ -572,17 +560,17 @@ const styles = react_native_1.StyleSheet.create({
         height: 32,
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1,
     },
     textDeleteButton: {
         fontWeight: '200',
         marginTop: 5,
     },
     grid: {
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         width: '100%',
-        flex: 3.5,
-        marginVertical: 32,
+        flex: 5,
+        paddingBottom: grid_1.grid.unit,
+        paddingTop: grid_1.grid.unit,
     },
 });
 exports.default = PinCode;

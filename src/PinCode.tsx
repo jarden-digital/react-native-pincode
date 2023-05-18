@@ -157,7 +157,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
       changeScreen: false,
     };
     this._circleSizeEmpty = this.props.styleCircleSizeEmpty || 14;
-    this._circleSizeFull = this.props.styleCircleSizeFull || 14;
+    this._circleSizeFull = this.props.styleCircleSizeFull + 2 || 14;
   }
 
   componentDidMount() {
@@ -397,8 +397,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 width: this._circleSizeEmpty,
                 borderRadius: this._circleSizeEmpty / 2,
                 color: colorPwdEmp,
-                marginRight: 10,
-                marginLeft: 10,
+                marginRight: 15,
+                marginLeft: 15,
                 x: 0,
                 y: 0,
               }}
@@ -425,13 +425,13 @@ class PinCode extends React.PureComponent<IProps, IState> {
                 ],
                 marginRight: [
                   lengthSup
-                    ? 10 - (this._circleSizeFull - this._circleSizeEmpty) / 2
-                    : 10,
+                    ? 15 - (this._circleSizeFull - this._circleSizeEmpty) / 2
+                    : 15,
                 ],
                 marginLeft: [
                   lengthSup
-                    ? 10 - (this._circleSizeFull - this._circleSizeEmpty) / 2
-                    : 10,
+                    ? 15 - (this._circleSizeFull - this._circleSizeEmpty) / 2
+                    : 15,
                 ],
                 y: [moveData.y],
                 timing: { duration: 200, ease: easeLinear },
@@ -478,7 +478,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
                       <Text
                         style={[
                           {
-                            color: color,
+                            color: colorPwd,
                             fontFamily: this.props.fontFamily,
                             fontSize: this.props.textPasswordVisibleSize,
                           },
@@ -502,8 +502,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
     return (
       <TouchableHighlight
         style={[
-          styles.buttonCircle,
-          { backgroundColor: this.props.colorCircleButtons },
+          // styles.buttonCircle,
+          { backgroundColor: colors.transparent },
           this.props.styleButtonCircle,
         ]}
         disabled={this.state.password.length === 0}
@@ -731,7 +731,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
           <Row
             style={[
               styles.row,
-              styles.rowWithEmpty,
+              // styles.rowWithEmpty,
               this.props.styleRowButtons,
             ]}
           >
@@ -793,6 +793,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: grid.unit * 2,
     width: '100%',
   },
   viewTitle: {
@@ -806,11 +807,13 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     alignItems: 'center',
     height: grid.unit * 4,
+    marginBottom: grid.unit,
   },
-  rowWithEmpty: {
-    flexShrink: 0,
-    justifyContent: 'flex-end',
-  },
+  // rowWithEmpty: {
+  //   flexShrink: 0,
+  //   justifyContent: 'flex-end',
+  //   backgroundColor: 'yellow',
+  // },
   colButtonCircle: {
     flex: 0,
     marginLeft: grid.unit / 2,
@@ -847,8 +850,8 @@ const styles = StyleSheet.create({
   buttonCircle: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: grid.unit * 4,
-    height: grid.unit * 4,
+    width: grid.unit * 3.5,
+    height: grid.unit * 3.5,
     backgroundColor: 'rgb(242, 245, 251)',
     borderRadius: grid.unit * 2,
   },
@@ -865,7 +868,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   flexCirclePassword: {
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -888,6 +891,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     width: '100%',
     flex: 5,
+    paddingBottom: grid.unit,
+    paddingTop: grid.unit,
   },
 });
 
